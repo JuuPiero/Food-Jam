@@ -45,10 +45,11 @@ export class MatchObj extends Component {
 
         tween(this.node).by(0.2, { position: new Vec3(0, -MatchObj.rowDisplacement, 0) }, { easing: 'sineIn' }).start();
     }
-
-    public OnClick_button(event: Event, customEventData: string) {
+    public RemoveFromShelf(){
         this.button.enabled = false;
         this.shelf.RemoveMatchObj(this.row, this.col);
+    }
+    public OnClick_button(event: Event, customEventData: string) {
         GameManager.instance.PickUpMatchObj(this);
     }
 }

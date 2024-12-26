@@ -22,12 +22,15 @@ export class GameManager extends Component {
         if (!this.MoveToBoxIfFit(matchObj)) {
             // if can't move to box -> move to empty slot
             if (this.MoveToSlotIfFit(matchObj)) {
+                matchObj.RemoveFromShelf();
                 // wait before check full
                 setTimeout(() => {
                     if (this.slotController.IsFull()) this.FullSlot();
                 }, 400);
             }
+            return;
         }
+        matchObj.RemoveFromShelf();
     }
 
     public MoveToBoxIfFit(matchObj: MatchObj): boolean {
