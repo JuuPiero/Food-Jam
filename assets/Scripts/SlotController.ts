@@ -14,24 +14,26 @@ export class SlotController extends Component {
             if (this.ObjHolding[i] != null && GameManager.instance.MoveToBoxIfFit(this.ObjHolding[i])) {
                 // Remove from list
                 this.ObjHolding[i] = null;
-                
-                // Move so that obj holding to the start of array
-                let insertPos = 0;
-                for (let j = 0; j < this.ObjHolding.length; j++) {
-                    if (this.ObjHolding[j] !== null) {
-                        this.ObjHolding[insertPos] = this.ObjHolding[j];
-                        tween(this.ObjHolding[insertPos].node)
-                            .to(0.2, {worldPosition: this.Slots[insertPos].worldPosition}, { easing: 'sineIn' })
-                            .start();
-                        insertPos++;
-                    }
-                }
-
-                // Fill the remaining positions with `null`
-                for (let j = insertPos; j < this.ObjHolding.length; j++) {
-                    this.ObjHolding[j] = null;
-                }
+                this.SortObjInSlot();
             }
+        }
+    }
+    public SortObjInSlot() {
+        // Move so that obj holding to the start of array
+        let insertPos = 0;
+        for (let j = 0; j < this.ObjHolding.length; j++) {
+            if (this.ObjHolding[j] !== null) {
+                this.ObjHolding[insertPos] = this.ObjHolding[j];
+                tween(this.ObjHolding[insertPos].node)
+                    .to(0.2, { worldPosition: this.Slots[insertPos].worldPosition }, { easing: 'sineIn' })
+                    .start();
+                insertPos++;
+            }
+        }
+
+        // Fill the remaining positions with `null`
+        for (let j = insertPos; j < this.ObjHolding.length; j++) {
+            this.ObjHolding[j] = null;
         }
     }
     public PreMoveToEmptySlot(matchObj: MatchObj): number {

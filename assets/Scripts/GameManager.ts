@@ -57,6 +57,9 @@ export class GameManager extends Component {
                     worldPosition: this.slotController.Slots[id].worldPosition,
                     scale: new Vec3(0.5, 0.5, 0.5)
                 }, { easing: 'sineIn' })
+                .call(()=>{
+                    this.slotController.SortObjInSlot();
+                })
                 .start();
             return true;
         }
