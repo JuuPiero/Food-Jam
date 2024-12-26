@@ -1,4 +1,4 @@
-import { _decorator, Component, instantiate, Node, Prefab, SpriteFrame, TextAsset, Vec2, Vec3 } from 'cc';
+import { _decorator, Component, instantiate, Node, Prefab, Sprite, SpriteFrame, TextAsset, Vec2, Vec3 } from 'cc';
 import { Shelf } from './Shelf';
 import { BoxController } from './BoxController';
 const { ccclass, property } = _decorator;
@@ -10,6 +10,10 @@ export class MapLoader extends Component {
     private shelfHolder: Node;
     @property({ type: Prefab })
     private shelfPrb: Prefab;
+    @property({ type: SpriteFrame })
+    private normSpr: SpriteFrame;
+    @property({ type: SpriteFrame })
+    private singleSpr: SpriteFrame;
     public Shelfs: Shelf[] = [];
 
     @property({ type: BoxController })
@@ -33,7 +37,8 @@ export class MapLoader extends Component {
             var shelfNode = instantiate(this.shelfPrb);
             shelfNode.setPosition(shelf.position);
             shelfNode.setParent(this.shelfHolder);
-            shelfNode.getComponent(Shelf).Init(shelf.shelf, shelf.data, this.sprites);
+            shelfNode.getComponent(Sprite).spriteFrame = shelf.type == "Norm" ? this.normSpr : this.singleSpr;
+            shelfNode.getComponent(Shelf).Init(shelf.type, shelf.data, this.sprites);
 
             this.Shelfs.push(shelfNode.getComponent(Shelf));
         });
@@ -44,12 +49,12 @@ export class MapLoader extends Component {
 }
 
 export class ShelfData {
-    shelf: number;
+    type: string;
     position: Vec3;
     data: number[][];
 
-    constructor(shelf: number, position: Vec3, data: number[][]) {
-        this.shelf = shelf;
+    constructor(type: string, position: Vec3, data: number[][]) {
+        this.type = type;
         this.position = position;
         this.data = data;
     }

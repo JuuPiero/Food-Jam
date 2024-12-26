@@ -455,7 +455,6 @@
         "z": 0
       }
     ],
-    "Boxes": [],
     "_id": "bcrZBESwVOOobeERp/Bm/E"
   },
   {
@@ -1812,6 +1811,14 @@
     "shelfPrb": {
       "__uuid__": "37c1b6d5-7a62-4be1-89d0-e7b5550af059",
       "__expectedType__": "cc.Prefab"
+    },
+    "normSpr": {
+      "__uuid__": "56dba497-8cb5-463b-955b-2dc6d4df1ec0@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "singleSpr": {
+      "__uuid__": "7b92d24f-6ad1-4735-829e-19591ee6dfb2@f9941",
+      "__expectedType__": "cc.SpriteFrame"
     },
     "boxController": {
       "__id__": 10

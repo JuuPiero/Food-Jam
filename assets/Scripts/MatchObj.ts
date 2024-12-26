@@ -47,6 +47,7 @@ export class MatchObj extends Component {
     }
 
     public OnClick_button(event: Event, customEventData: string) {
+        this.button.enabled = false;
         this.shelf.RemoveMatchObj(this.row, this.col);
         GameManager.instance.PickUpMatchObj(this);
     }
