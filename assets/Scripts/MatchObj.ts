@@ -36,7 +36,7 @@ export class MatchObj extends Component {
 
     private UpdatePositionAndColor(anim: boolean) {
         this.button.interactable = (this.curRow == 0);
-        this.node.active = (this.curRow < MatchObj.maxRowSee);
+        this.node.active = (this.shelf.type == "Norm") ? (this.curRow < MatchObj.maxRowSee) : (this.curRow == 0);
 
         if (!anim) {
             this.node.setPosition(new Vec3(0, this.curRow * MatchObj.rowDisplacement, 0));

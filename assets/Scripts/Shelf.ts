@@ -1,4 +1,4 @@
-import { _decorator, Component, instantiate, Node, Prefab, resources, SpriteFrame, Vec3 } from 'cc';
+import { _decorator, Component, instantiate, Label, Node, Prefab, resources, SpriteFrame, Vec3 } from 'cc';
 import { MatchObj } from './MatchObj';
 const { ccclass, property } = _decorator;
 
@@ -6,17 +6,27 @@ const { ccclass, property } = _decorator;
 export class Shelf extends Component {
     @property({ type: [Node] })
     private spawnpoints: Node[] = [];
+    @property({ type: Node })
+    private normalShelf: Node;
+    @property({ type: Node })
+    private singleShelf: Node;
+    @property({ type: Label })
+    private layerTxt: Label;
     @property({ type: Prefab })
     private matchObject: Prefab;
 
     private matchObjs: MatchObj[][];
     private curRow: number;
-    private type: string;
+    public type: string;
 
     public Init(type: string, data: number[][], sprites: SpriteFrame[]) {
         this.matchObjs = [];
         this.curRow = 0;
         this.type = type;
+        this.normalShelf.active = (type == "Norm");
+        this.singleShelf.active = !this.normalShelf.active; 
+        this.layerTxt.string = data.length.toString();
+        
         for (let i = data.length - 1; i >= 0; i--) { // rows
             const rows = data[i];
             this.matchObjs[i] = [];
@@ -63,6 +73,7 @@ export class Shelf extends Component {
             }
             this.curRow++;
         }
+        this.layerTxt.string = (this.matchObjs.length - this.curRow).toString();
     }
 }
 

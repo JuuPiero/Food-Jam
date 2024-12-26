@@ -10,10 +10,6 @@ export class MapLoader extends Component {
     private shelfHolder: Node;
     @property({ type: Prefab })
     private shelfPrb: Prefab;
-    @property({ type: SpriteFrame })
-    private normSpr: SpriteFrame;
-    @property({ type: SpriteFrame })
-    private singleSpr: SpriteFrame;
     public Shelfs: Shelf[] = [];
 
     @property({ type: BoxController })
@@ -37,7 +33,6 @@ export class MapLoader extends Component {
             var shelfNode = instantiate(this.shelfPrb);
             shelfNode.setPosition(shelf.position);
             shelfNode.setParent(this.shelfHolder);
-            shelfNode.getComponent(Sprite).spriteFrame = shelf.type == "Norm" ? this.normSpr : this.singleSpr;
             shelfNode.getComponent(Shelf).Init(shelf.type, shelf.data, this.sprites);
 
             this.Shelfs.push(shelfNode.getComponent(Shelf));
