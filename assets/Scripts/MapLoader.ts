@@ -1,19 +1,25 @@
 import { _decorator, Component, instantiate, Node, Prefab, SpriteFrame, TextAsset, Vec2, Vec3 } from 'cc';
 import { Shelf } from './Shelf';
+import { BoxController } from './BoxController';
 const { ccclass, property } = _decorator;
 
 @ccclass('MapLoader')
 export class MapLoader extends Component {
 
     @property({ type: Node })
-    private mapHolder: Node;
+    private shelfHolder: Node;
     @property({ type: Prefab })
     private shelfPrb: Prefab;
     public Shelfs: Shelf[] = [];
 
+    @property({ type: BoxController })
+    private boxController: BoxController;
+
     @property({ type: [TextAsset] })
     private levelDataAsset: TextAsset[] = [];
-    private levelDataArray: LevelData[] = [];
+
+    @property({ type: [TextAsset] })
+    private boxDataAsset: TextAsset[] = [];
 
     @property({ type: [SpriteFrame] })
     private sprites: SpriteFrame[] = [];
@@ -22,30 +28,22 @@ export class MapLoader extends Component {
         this.LoadLevelData(null, "0");
     }
     public LoadLevelData(event: Event, customEventData: string): void {
-        this.levelDataArray = []
+        const shelfData = JSON.parse(this.levelDataAsset[parseInt(customEventData)].text);
+        shelfData.forEach((shelf: ShelfData) => {
+            var shelfNode = instantiate(this.shelfPrb);
+            shelfNode.setPosition(shelf.position);
+            shelfNode.setParent(this.shelfHolder);
+            shelfNode.getComponent(Shelf).Init(shelf.shelf, shelf.data, this.sprites);
 
-        const jsonData = JSON.parse(this.levelDataAsset[parseInt(customEventData)].text);
-        jsonData.forEach((shelf: LevelData) => {
-            const levelData = new LevelData(shelf.shelf, shelf.position, shelf.data);
-            this.levelDataArray.push(levelData);
+            this.Shelfs.push(shelfNode.getComponent(Shelf));
         });
-        this.Init();
-    }
 
-    public Init() {
-        for (let i = 0; i < this.levelDataArray.length; i++) {
-            const shelfData = this.levelDataArray[i];
-            var shelf = instantiate(this.shelfPrb);
-            shelf.setParent(this.mapHolder);
-            shelf.setPosition(shelfData.position);
-            shelf.getComponent(Shelf).Init(i, shelfData.data, this.sprites);
-            
-            this.Shelfs[i] = shelf.getComponent(Shelf);
-        }
+        const boxData = JSON.parse(this.boxDataAsset[parseInt(customEventData)].text);
+        this.boxController.Init(boxData, this.sprites);
     }
 }
 
-export class LevelData {
+export class ShelfData {
     shelf: number;
     position: Vec3;
     data: number[][];
@@ -54,5 +52,15 @@ export class LevelData {
         this.shelf = shelf;
         this.position = position;
         this.data = data;
+    }
+}
+
+export class BoxData {
+    id: number;
+    count: number;
+
+    constructor(id: number, count: number) {
+        this.id = id;
+        this.count = count;
     }
 }

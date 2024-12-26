@@ -14,13 +14,9 @@ export class MatchObj extends Component {
     private static maxRowSee: number = 3;
     private shelf: Shelf;
 
-    @property
-    private objId: number;
-    @property
+    public objId: number;
     private row: number; // row for shelfData
-    @property
     private curRow: number; // current item in what row
-    @property
     private col: number;
 
     public Init(shelf: Shelf, row: number, col: number, objId: number, sprite: SpriteFrame) {
