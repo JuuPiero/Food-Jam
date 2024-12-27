@@ -17,6 +17,10 @@ export class GameManager extends Component {
         GameManager.instance = this;
     }
 
+    public StartGame(){
+
+    }
+    
     public PickUpMatchObj(matchObj: MatchObj) {
         // move object to box if possible
         if (!this.MoveToBoxIfFit(matchObj)) {
@@ -32,7 +36,6 @@ export class GameManager extends Component {
         }
         matchObj.RemoveFromShelf();
     }
-
     public MoveToBoxIfFit(matchObj: MatchObj): boolean {
         var id = this.boxController.CheckContainId(matchObj.objId);
         if (id != -1) {
