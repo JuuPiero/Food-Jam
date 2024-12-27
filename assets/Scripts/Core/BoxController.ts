@@ -11,8 +11,9 @@ export class BoxController extends Component {
     private spawnPoint: Vec3[]=[];
 
     private static maxBoxSee: number = 4;
+    public static maxObj: number;
     public Boxes: Box[] = [];
-
+    
     public Init(boxData: BoxData[], sprites: SpriteFrame[]) {
         for (let i = 0; i < boxData.length; i++) {
             const box = boxData[i];

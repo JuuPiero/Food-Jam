@@ -6,23 +6,21 @@ const { ccclass, property } = _decorator;
 @ccclass('MapLoader')
 export class MapLoader extends Component {
 
-    @property({ type: Node })
-    private shelfHolder: Node;
-    @property({ type: Prefab })
-    private shelfPrb: Prefab;
-    public Shelfs: Shelf[] = [];
+    @property({ type: [TextAsset], group: "Data" })
+    private levelDataAsset: TextAsset[] = [];
+    @property({ type: [TextAsset], group: "Data" })
+    private boxDataAsset: TextAsset[] = [];
+    @property({ type: [SpriteFrame], group: "Data" })
+    private sprites: SpriteFrame[] = [];
 
-    @property({ type: BoxController })
+    @property({ type: Node, group: "Import" })
+    private shelfHolder: Node;
+    @property({ type: Prefab, group: "Import" })
+    private shelfPrb: Prefab;
+    @property({ type: BoxController, group: "Import" })
     private boxController: BoxController;
 
-    @property({ type: [TextAsset] })
-    private levelDataAsset: TextAsset[] = [];
-
-    @property({ type: [TextAsset] })
-    private boxDataAsset: TextAsset[] = [];
-
-    @property({ type: [SpriteFrame] })
-    private sprites: SpriteFrame[] = [];
+    public Shelfs: Shelf[] = [];
     
     protected start(): void {
         this.LoadLevelData(null, "0");
