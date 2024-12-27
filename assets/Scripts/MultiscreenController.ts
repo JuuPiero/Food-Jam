@@ -1,5 +1,5 @@
 import { _decorator, Component, Node, ResolutionPolicy, screen, UITransform, Vec2, Vec3, view, Widget } from 'cc';
-import { GameManager } from './GameManager';
+import { GameManager } from './Core/GameManager';
 const { ccclass, property } = _decorator;
 
 export enum ScreenType {
