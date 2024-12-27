@@ -49,10 +49,12 @@ export class GameManager extends Component {
                     scale: new Vec3(0.5, 0.5, 0.5)
                 }, { easing: 'sineIn' })
                 .call(()=>{ 
-                    this.slotController.CheckMoveSlotToBox(); 
                     matchObj.node.active = false;
                     this.isBusy = false;
-                }).start();
+                })
+                .delay(0.1)
+                .call(()=>{this.slotController.CheckMoveSlotToBox();})
+                .start();
             return true;
         }
         return false;
