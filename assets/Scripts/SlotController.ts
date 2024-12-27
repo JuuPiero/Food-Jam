@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, tween } from 'cc';
+import { _decorator, Component, Node, Tween, tween } from 'cc';
 import { MatchObj } from './MatchObj';
 import { GameManager } from './GameManager';
 const { ccclass, property } = _decorator;
@@ -21,10 +21,12 @@ export class SlotController extends Component {
     public SortObjInSlot() {
         // Move so that obj holding to the start of array
         let insertPos = 0;
+        Tween.stopAllByTag(1);
         for (let j = 0; j < this.ObjHolding.length; j++) {
             if (this.ObjHolding[j] !== null) {
                 this.ObjHolding[insertPos] = this.ObjHolding[j];
                 tween(this.ObjHolding[insertPos].node)
+                    .tag(1)
                     .to(0.2, { worldPosition: this.Slots[insertPos].worldPosition }, { easing: 'sineIn' })
                     .start();
                 insertPos++;

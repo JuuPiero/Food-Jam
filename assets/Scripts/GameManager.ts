@@ -12,6 +12,7 @@ export class GameManager extends Component {
     private boxController: BoxController;
     @property({ type: SlotController }) // slot
     private slotController: SlotController;
+    private isBusy: boolean;
 
     protected start(): void {
         GameManager.instance = this;
@@ -22,6 +23,8 @@ export class GameManager extends Component {
     }
     
     public PickUpMatchObj(matchObj: MatchObj) {
+        if (this.isBusy) return;
+
         // move object to box if possible
         if (!this.MoveToBoxIfFit(matchObj)) {
             // if can't move to box -> move to empty slot
@@ -39,14 +42,16 @@ export class GameManager extends Component {
     public MoveToBoxIfFit(matchObj: MatchObj): boolean {
         var id = this.boxController.CheckContainId(matchObj.objId);
         if (id != -1) {
+            this.isBusy = true;
             tween(matchObj.node)
-                .to(0.3, {
+                .to(0.25, {
                     worldPosition: this.boxController.Boxes[id].node.worldPosition,
                     scale: new Vec3(0.5, 0.5, 0.5)
                 }, { easing: 'sineIn' })
                 .call(()=>{ 
                     this.slotController.CheckMoveSlotToBox(); 
                     matchObj.node.active = false;
+                    this.isBusy = false;
                 }).start();
             return true;
         }
@@ -55,13 +60,16 @@ export class GameManager extends Component {
     private MoveToSlotIfFit(matchObj: MatchObj): boolean {
         var id = this.slotController.PreMoveToEmptySlot(matchObj);
         if (id != -1) {
+            this.isBusy = true;
             tween(matchObj.node)
-                .to(0.3, {
+                .to(0.25, {
                     worldPosition: this.slotController.Slots[id].worldPosition,
                     scale: new Vec3(0.5, 0.5, 0.5)
                 }, { easing: 'sineIn' })
                 .call(()=>{
+                    matchObj.node.setParent(this.slotController.node, true);
                     this.slotController.SortObjInSlot();
+                    this.isBusy = false;
                 })
                 .start();
             return true;

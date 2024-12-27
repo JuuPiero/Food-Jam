@@ -1,4 +1,4 @@
-import { _decorator, Component, instantiate, Layout, math, Node, Prefab, SpriteFrame, tween, Vec3 } from 'cc';
+import { _decorator, Component, instantiate, Layout, math, Node, Prefab, SpriteFrame, Tween, tween, Vec3 } from 'cc';
 import { Box } from './Box';
 import { BoxData } from './MapLoader';
 const { ccclass, property } = _decorator;
@@ -40,14 +40,17 @@ export class BoxController extends Component {
                     setTimeout(() => {
                         this.Boxes[i].node.active = false;
                         this.Boxes[i] = null;
-                        for (let j = 0, k = 0; j < this.Boxes.length; j++, k < BoxController.maxBoxSee) {
+                        Tween.stopAllByTag(0);
+                        for (let j = 0, k = 0; j < this.Boxes.length; j++) {
                             const box = this.Boxes[j];
                             if (box != null){
                                 box.node.active = true;
                                 tween(box.node)
-                                    .to(0.2, { position: this.spawnPoint[k] }, { easing: 'sineIn' })
+                                    .tag(0)
+                                    .to(0.12, { position: this.spawnPoint[k] }, { easing: 'sineIn' })
                                     .start();
                                 k++;
+                                if (k >= BoxController.maxBoxSee) break;
                             }
                         }
                     }, 200);
