@@ -2,6 +2,7 @@ import { _decorator, CCInteger, Component, Node, tween, Vec3 } from 'cc';
 import { MatchObj } from './MatchObj';
 import { SlotController } from './SlotController';
 import { BoxController } from './BoxController';
+import { IntroBase } from '../Animation/IntroBase';
 const { ccclass, property } = _decorator;
 
 @ccclass('GameManager')
@@ -12,6 +13,8 @@ export class GameManager extends Component {
     private boxController: BoxController;
     @property({ type: SlotController, group: "Import" }) // slot
     private slotController: SlotController;
+    @property({ type: IntroBase, group: "Import" })
+    private intro: IntroBase;
     
     @property({ type: Node, group: "Popup" })
     private popup_win: Node;
@@ -27,6 +30,7 @@ export class GameManager extends Component {
 
     protected start(): void {
         GameManager.instance = this;
+        this.intro.StartAnim();
     }
 
     // region Start
@@ -34,6 +38,7 @@ export class GameManager extends Component {
         this.gameStart = true;
         this.isBusy = false;
         this.objPickedUp = 0;
+        this.intro.Play();
     }
 
     // region Pickup MatchObj
