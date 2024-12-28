@@ -12,6 +12,12 @@ export class GameManager extends Component {
     private boxController: BoxController;
     @property({ type: SlotController, group: "Import" }) // slot
     private slotController: SlotController;
+    
+    @property({ type: Node, group: "Popup" })
+    private popup_win: Node;
+    @property({ type: Node, group: "Popup" })
+    private popup_lose: Node;
+
     private isBusy: boolean;
     private gameStart: boolean;
 
@@ -95,11 +101,11 @@ export class GameManager extends Component {
     // region Win/Lose
     public FullSlot() {
         this.gameStart = false;
-        console.log("Full Slot");
+        this.popup_lose.active = true;
     }
     public Win() {
         this.gameStart = false;
-        console.log("Win");
+        this.popup_win.active = true;
     }
 }
 
