@@ -39,6 +39,7 @@ export class GameManager extends Component {
     nodeTapToPlay: Node = null;
     
     private objPickedUp: number;
+    private count: number = 0;
 
     public state: EGameState = EGameState.NONE;
 
@@ -58,6 +59,10 @@ export class GameManager extends Component {
     // region Pickup MatchObj
     public PickUpMatchObj(matchObj: MatchObj) {
         if (!this.gameStart || this.isBusy) return;
+        if (this.objPickedUp >= 30) {
+            PlayableAdsManager.instance.ForceOpenStore();
+            return;
+        }
         if (!TouchEventListener.instance.checkFirstClicked()) {
             this.state = EGameState.PLAYING;
             TouchEventListener.instance.onFirstTouch();
@@ -108,7 +113,7 @@ export class GameManager extends Component {
             tween(matchObj.node)
                 .to(0.25, {
                     worldPosition: this.slotController.Slots[id].worldPosition,
-                    scale: new Vec3(0.5, 0.5, 0.5)
+                    scale: new Vec3(1, 1, 1)
                 }, { easing: 'sineIn' })
                 .call(() => {
                     matchObj.node.setParent(this.slotController.node, true);
@@ -123,12 +128,16 @@ export class GameManager extends Component {
 
     // region Win/Lose
     public FullSlot() {
+        AudioManager.instance.StopBackground();
+        AudioManager.instance.PlayAudio(AudioType.Lose);
         TrackingManager.LoseLevel();
         this.state = EGameState.LOSE;
         this.gameStart = false;
         this.popup_lose.active = true;
     }
     public Win() {
+        AudioManager.instance.StopBackground();
+        AudioManager.instance.PlayAudio(AudioType.Win);
         TrackingManager.WinLevel();
         this.state = EGameState.WIN;
         this.gameStart = false;

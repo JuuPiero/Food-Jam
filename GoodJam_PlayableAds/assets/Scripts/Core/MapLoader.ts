@@ -54,23 +54,26 @@ export class MapLoader extends Component {
         this.scheduleOnce(() => {
             let obj = this.findItemsTutorial();
             obj.forEach((matchObj, index) => {
-                if (index === 2)
-                this.nodeTutorial.setWorldPosition(matchObj.node.getWorldPosition());
-                this.nodeTutorial.active = true;
+                if (index === 6) {
+                    this.nodeTutorial.setWorldPosition(matchObj.node.getWorldPosition());
+                    this.nodeTutorial.active = true;
+                    GameManager.instance.nodeTapToPlay.active = true;
+                }
             });
-        }, 1);
+        });
     }
 
     public findItemsTutorial(): MatchObj[] {
+        let obj = [];
         for (let i = 0; i < this.Shelfs.length; i++) {
             const shelf = this.Shelfs[i];
             let matchObjects = shelf.getComponentsInChildren(MatchObj);
-            let obj: MatchObj[] = matchObjects.filter((matchObj) => matchObj.button.interactable);
-            if (obj) {
-                return obj;
+            let items: MatchObj[] = matchObjects.filter((matchObj) => matchObj.button.interactable);
+            if (items.length) {
+                obj = obj.concat(items);
             }
         }
-        return null;
+        return obj;
     }
 }
 

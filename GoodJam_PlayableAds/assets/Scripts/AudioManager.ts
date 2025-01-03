@@ -30,6 +30,9 @@ export class AudioManager extends Component {
     PlayBackground() {
         this.audioSources[AudioType.Background].play();
     }
+    StopBackground() {
+        this.audioSources[AudioType.Background].stop();
+    }
 }
 
 
