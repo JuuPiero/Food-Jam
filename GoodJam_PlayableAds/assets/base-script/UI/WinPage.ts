@@ -7,6 +7,8 @@ export class WinPage extends Component {
     protected onEnable(): void {
         TrackingManager.WinLevel();
     }
+
+    
 }
 
 

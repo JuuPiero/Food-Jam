@@ -26,7 +26,9 @@ export class PlayableAdsManager extends SingletonInSceneComponent {
     firstClicked : boolean = false;
     runningGame : boolean = true;
 
+    public static instance: PlayableAdsManager = null;
     onLoad(): void {
+        PlayableAdsManager.instance = this;
         this.SetLinkStore();
 
         // Gọi EventListener.emit(GameEvent.CLICK); vào hàm click của game 
@@ -97,6 +99,7 @@ export class PlayableAdsManager extends SingletonInSceneComponent {
     }
     countTimeTracking : number = 3;
     totalTimePlay :  number = 0;
+
     protected update(dt: number): void {
         if(this.runningGame){
             this.totalTimePlay+= dt;

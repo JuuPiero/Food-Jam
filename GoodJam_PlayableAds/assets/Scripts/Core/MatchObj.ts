@@ -1,6 +1,7 @@
 import { _decorator, Button, CCInteger, Color, Component, Node, Sprite, SpriteFrame, tween, Vec3 } from 'cc';
 import { GameManager } from './GameManager';
 import { Shelf } from './Shelf';
+import { AudioManager, AudioType } from '../AudioManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('MatchObj')
@@ -8,7 +9,7 @@ export class MatchObj extends Component {
     @property({ type: Sprite })
     private sprite: Sprite;
     @property({ type: Button })
-    private button: Button;
+    button: Button;
 
     private static rowDisplacement: number = 7;
     private static maxRowSee: number = 3;
@@ -50,6 +51,7 @@ export class MatchObj extends Component {
         this.shelf.RemoveMatchObj(this.row, this.col);
     }
     public OnClick_button(event: Event, customEventData: string) {
+        AudioManager.instance.PlayAudio(AudioType.Tap);
         GameManager.instance.PickUpMatchObj(this);
     }
 }

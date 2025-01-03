@@ -1,8 +1,14 @@
-import { _decorator, CCInteger, Component, Node, tween, Vec3 } from 'cc';
+import { _decorator, Animation, CCInteger, Component, Node, tween, Vec3 } from 'cc';
 import { MatchObj } from './MatchObj';
 import { SlotController } from './SlotController';
 import { BoxController } from './BoxController';
 import { IntroBase } from '../Animation/IntroBase';
+import { EGameState } from './EGameState';
+import { TouchEventListener } from './TouchEventListener';
+import { TrackingManager } from '../../base-script/PlayableAds/Tracking/TrackingManager';
+import { PlayableAdsManager } from '../../base-script/PlayableAds/PlayableAdsManager';
+import { AudioManager, AudioType } from '../AudioManager';
+import { MapLoader } from './MapLoader';
 const { ccclass, property } = _decorator;
 
 @ccclass('GameManager')
@@ -26,7 +32,15 @@ export class GameManager extends Component {
 
     @property({ type: CCInteger })
     private overridePickupWin: number = -1; // (-1) -> pickup all to win
+    @property(Animation)
+    animTutorial: Animation = null;
+
+    @property(Node)
+    nodeTapToPlay: Node = null;
+    
     private objPickedUp: number;
+
+    public state: EGameState = EGameState.NONE;
 
     protected start(): void {
         GameManager.instance = this;
@@ -43,8 +57,12 @@ export class GameManager extends Component {
 
     // region Pickup MatchObj
     public PickUpMatchObj(matchObj: MatchObj) {
-        if (this.gameStart || this.isBusy) return;
-
+        if (!this.gameStart || this.isBusy) return;
+        if (!TouchEventListener.instance.checkFirstClicked()) {
+            this.state = EGameState.PLAYING;
+            TouchEventListener.instance.onFirstTouch();
+        }
+        MapLoader.instance.nodeTutorial.active = false;
         // move object to box if possible
         if (!this.MoveToBoxIfFit(matchObj)) {
             // if can't move to box -> move to empty slot
@@ -73,7 +91,7 @@ export class GameManager extends Component {
                 .call(() => {
                     matchObj.node.active = false;
                     this.isBusy = false;
-                    if (this.objPickedUp == (this.overridePickupWin == -1 ? this.overridePickupWin : BoxController.maxObj))
+                    if (this.objPickedUp === BoxController.maxObj)
                         this.Win();
                 })
                 .delay(0.1)
@@ -105,12 +123,21 @@ export class GameManager extends Component {
 
     // region Win/Lose
     public FullSlot() {
+        TrackingManager.LoseLevel();
+        this.state = EGameState.LOSE;
         this.gameStart = false;
         this.popup_lose.active = true;
     }
     public Win() {
+        TrackingManager.WinLevel();
+        this.state = EGameState.WIN;
         this.gameStart = false;
         this.popup_win.active = true;
+    }
+
+    public playNow(): void {
+        TrackingManager.ClickConversion();
+        PlayableAdsManager.instance.OpenStore();
     }
 }
 

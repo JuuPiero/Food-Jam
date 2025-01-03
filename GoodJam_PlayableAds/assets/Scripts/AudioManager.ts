@@ -3,19 +3,10 @@ const { ccclass, property } = _decorator;
 
 export enum AudioType {
     Background,
-    Screw,
     Win,
     Lose,
-    Close_Box,
-    Warning,
-    ScrewHoleToBox,
-    Collider,
-    Confetti,
+    Tap,
     CompleteBox,
-    WoodBreak,
-    TutorialCompleted,
-    Sad,
-    ChainBreak
 }
 
 @ccclass('AudioManager')

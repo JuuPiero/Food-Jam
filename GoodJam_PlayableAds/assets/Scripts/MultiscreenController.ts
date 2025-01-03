@@ -21,6 +21,8 @@ export class MultiscreenController extends Component {
     private header: Widget;
     @property({ type: Widget })
     private mapHolder: Widget;
+    @property(Node)
+    nodeTapToPlay: Node = null;
 
     protected start(): void {
         window.addEventListener('resize', this.OnResize.bind(this));

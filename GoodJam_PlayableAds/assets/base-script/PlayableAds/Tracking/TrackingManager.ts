@@ -1,4 +1,4 @@
-import { _decorator, Component, director, Node, screen } from 'cc';
+import { _decorator, Component, director, log, Node, screen } from 'cc';
 const { ccclass, property } = _decorator;
 import { sys } from "cc"; 
 import { PlayableAdsManager } from '../PlayableAdsManager';
@@ -67,19 +67,12 @@ export class TrackingManager extends Component {
         this.LogEvent_Result(RESULT._win);
         this.currentScreen = "_Win_Screen";
         this.LogEvent_ShowScreen();
-        
-        setTimeout(() => {
-            PlayableAdsManager.Instance().ForceOpenStore();
-        }, 2000);
     }
 
     static LoseLevel(){
         this.LogEvent_Result(RESULT._lose);
         this.currentScreen = "_Lose_Screen";
         this.LogEvent_ShowScreen();
-        setTimeout(() => {
-            PlayableAdsManager.Instance().ForceOpenStore();
-        }, 2000);
     }
 
     static ClickConversion(){
@@ -113,7 +106,7 @@ export class TrackingManager extends Component {
         action_type : ACTION_TYPE,
         object : OBJECT = OBJECT.level_status)
         {
-        var jsonInput = JSON.stringify({
+        var jsonInput = {
             app_instance_id: this.userPseudoID,
             events: [{
                 name: 'playable_level',
@@ -129,7 +122,7 @@ export class TrackingManager extends Component {
                     "gpu": this.GPU,
                 },
             }]
-        });
+        }
         this.PostEvent(jsonInput);
     }
     static LogEvent_Click(
@@ -138,7 +131,7 @@ export class TrackingManager extends Component {
         object : OBJECT = OBJECT.level_status)
         {
 
-        var jsonInput = JSON.stringify({
+        var jsonInput = {
             app_instance_id: this.userPseudoID,
             events: [{
                 name: 'playable_level',
@@ -154,7 +147,7 @@ export class TrackingManager extends Component {
                     "gpu": this.GPU,
                 },
             }]
-        });
+        }
         this.PostEvent(jsonInput);
     }
     static LogEvent_ShowScreen(
@@ -162,7 +155,7 @@ export class TrackingManager extends Component {
         action_name : ACTION_NAME = ACTION_NAME._show_screen,
         object : OBJECT = OBJECT.conversion)
         {
-        var jsonInput = JSON.stringify({
+        var jsonInput = {
             app_instance_id: this.userPseudoID,
             events: [{
                 name: 'playable_level',
@@ -178,7 +171,7 @@ export class TrackingManager extends Component {
                     "gpu": this.GPU,
                 },
             }]
-        });
+        }
         this.PostEvent(jsonInput);
     }
 
@@ -188,7 +181,7 @@ export class TrackingManager extends Component {
         action_name : ACTION_NAME = ACTION_NAME._finish,
         object : OBJECT = OBJECT.level_status)
         {
-        var jsonInput = JSON.stringify({
+        var jsonInput = {
             app_instance_id: this.userPseudoID,
             events: [{
                 name: 'playable_level',
@@ -205,7 +198,7 @@ export class TrackingManager extends Component {
                     "gpu": this.GPU,
                 },
             }]
-        });
+        }
         this.PostEvent(jsonInput);
     }
     static LogEvent_Button(
@@ -214,7 +207,7 @@ export class TrackingManager extends Component {
         action_name : ACTION_NAME = ACTION_NAME._click_conversion,
         object : OBJECT = OBJECT.conversion)
         {
-        var jsonInput = JSON.stringify({
+        var jsonInput = {
             app_instance_id: this.userPseudoID,
             events: [{
                 name: 'playable_level',
@@ -232,7 +225,7 @@ export class TrackingManager extends Component {
                     
                 },
             }]
-        });
+        }
         this.PostEvent(jsonInput);
     }
     static LogEvent_Time(
@@ -242,7 +235,7 @@ export class TrackingManager extends Component {
         action_name : ACTION_NAME = ACTION_NAME._users_engagement, 
         object : OBJECT = OBJECT.users_engagement)
         {
-        var jsonInput = JSON.stringify({
+        var jsonInput = {
             app_instance_id: this.userPseudoID,
             events: [{
                 name: 'playable_level',
@@ -259,18 +252,11 @@ export class TrackingManager extends Component {
                     
                 },
             }]
-        });
+        }
         this.PostEvent(jsonInput);
     }
-    static PostEvent(jsonInput : string){
-        if(PlayableAdsManager.Instance().logDebug){
-            var splitJsonInput = jsonInput.split(",");
-            var result = "";
-            for (let i = 0; i < splitJsonInput.length; i++) {
-                result += splitJsonInput[i] + "\n";
-            }
-            console.log(result);
-        }
+    static PostEvent(jsonInput){
+        log(jsonInput)
         if(sys.os == sys.OS.WINDOWS || !PlayableAdsManager.Instance().activeTracking) return;
         fetch(`https://www.google-analytics.com/mp/collect?firebase_app_id=${this.firebase_app_id}&api_secret=${this.api_secret}`, {
             method: "POST",

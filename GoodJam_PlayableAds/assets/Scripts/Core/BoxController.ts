@@ -1,6 +1,7 @@
 import { _decorator, Component, instantiate, Layout, math, Node, Prefab, SpriteFrame, Tween, tween, Vec3 } from 'cc';
 import { Box } from './Box';
 import { BoxData } from './MapLoader';
+import { AudioManager, AudioType } from '../AudioManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('BoxController')
@@ -15,6 +16,7 @@ export class BoxController extends Component {
     public Boxes: Box[] = [];
     
     public Init(boxData: BoxData[], sprites: SpriteFrame[]) {
+        let total = 0;
         for (let i = 0; i < boxData.length; i++) {
             const box = boxData[i];
             var boxNode = instantiate(this.boxPrb);
@@ -24,7 +26,10 @@ export class BoxController extends Component {
             boxNode.active = (i < BoxController.maxBoxSee);
 
             this.Boxes.push(boxNode.getComponent(Box));
+
+            total += box.count;
         }
+        BoxController.maxObj = total;
 
         setTimeout(() => {
             this.node.getComponent(Layout).enabled = false;
@@ -35,10 +40,13 @@ export class BoxController extends Component {
         for (let i = 0; i < this.Boxes.length; i++) {
             const box = this.Boxes[i];
             if (box == null || !box.node.active) continue;
+            // Box active = true sẽ chạy xuống đây
             if (box.id == objId && box.count > 0) {
+
                 if (box.Collect()) {
                     // move box to new pos (wait for anim done)
                     setTimeout(() => {
+                        AudioManager.instance.PlayAudio(AudioType.CompleteBox);
                         this.Boxes[i].node.active = false;
                         this.Boxes[i] = null;
                         Tween.stopAllByTag(0);
