@@ -3,8 +3,6 @@ const { ccclass, property } = _decorator;
 import { sys } from "cc"; 
 import { PlayableAdsManager } from '../PlayableAdsManager';
 import { ACTION_NAME, ACTION_TYPE, OBJECT, OPERATING_SYSTEM, RESULT, USER_RETURN } from './Tracker/Output/DefineEventStruct';
-import { GameEvent } from '../GameEvent';
-import { EventListener } from '../EventListener';
 
 @ccclass('TrackingManager')
 export class TrackingManager extends Component {
@@ -12,7 +10,7 @@ export class TrackingManager extends Component {
 
     static api_secret : string = `ymcwxS12SSi6IavS3-Jj-Q`;
     static firebase_app_id : string= `1:444377725360:android:b0bef9148a16a69aa27e75`;
-    static package_name : string = `com.ig.weapon.backpack`;
+    static package_name : string = "com.ig.goods.jam";
     static os : OPERATING_SYSTEM = OPERATING_SYSTEM.NONE;
     static GPU : string = "webgl";
 

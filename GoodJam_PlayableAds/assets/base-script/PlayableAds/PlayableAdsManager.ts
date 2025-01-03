@@ -9,8 +9,8 @@ const { ccclass, property } = _decorator;
 
 @ccclass('PlayableAdsManager')
 export class PlayableAdsManager extends SingletonInSceneComponent {
-    urlPlayStore : string = "";
-    urlAppStore : string = "";
+    urlPlayStore : string = "https://play.google.com/store/apps/details?id=com.ig.goods.jam";
+    urlAppStore : string = "https://play.google.com/store/apps/details?id=com.ig.goods.jam";
     static instanceID: string = "PlayableAdsManager";
     playableAdsName : string = "iKame";
 
@@ -124,6 +124,7 @@ export class PlayableAdsManager extends SingletonInSceneComponent {
         super_html_playable.download();
         super_html_playable.game_end();
     }
+
     static LogDebug(message : string){
         if(PlayableAdsManager.Instance().logDebug){
             console.log(message);
