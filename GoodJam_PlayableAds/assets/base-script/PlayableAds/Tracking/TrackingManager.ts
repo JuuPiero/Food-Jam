@@ -258,7 +258,7 @@ export class TrackingManager extends Component {
         if(sys.os == sys.OS.WINDOWS || !PlayableAdsManager.Instance().activeTracking) return;
         fetch(`https://www.google-analytics.com/mp/collect?firebase_app_id=${this.firebase_app_id}&api_secret=${this.api_secret}`, {
             method: "POST",
-            body: jsonInput
+            body: JSON.stringify(jsonInput)
         }).then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
