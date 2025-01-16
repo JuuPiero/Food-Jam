@@ -15,6 +15,9 @@ export class Shelf extends Component {
     @property({ type: Prefab })
     private matchObject: Prefab;
 
+    @property([Node])
+    nodeShadow: Node[] = [];
+
     private matchObjs: MatchObj[][];
     private curRow: number;
     public type: string;
@@ -24,6 +27,8 @@ export class Shelf extends Component {
         this.curRow = 0;
         this.type = type;
         this.normalShelf.active = (type == "Norm");
+        this.nodeShadow[0].active = this.normalShelf.active;
+        this.nodeShadow[1].active = !this.normalShelf.active;
         this.singleShelf.active = !this.normalShelf.active; 
         this.layerTxt.string = data.length.toString();
         

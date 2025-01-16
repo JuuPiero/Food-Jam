@@ -41,7 +41,8 @@ export class MultiscreenController extends Component {
         // setup map + header position
         this.mapHolder.bottom = this.mapHolder.left = this.mapHolder.right = 0;
         this.mapHolder.top = this.header.getComponent(UITransform).contentSize.height * ratio;
-        this.header.top = this.header.left = this.header.right = 0;
+        this.header.top = 0.03;
+        this.header.left = this.header.right = 0;
 
         // extra
         this.logo.node.active = false;
@@ -54,8 +55,8 @@ export class MultiscreenController extends Component {
         var realWidth = 1280 * ratio;
 
         // scale with ratio
-        this.mapHolder.node.setScale(Vec3.ONE.clone().multiplyScalar(ratio - 0.5));
-        this.header.node.setScale(Vec3.ONE.clone().multiplyScalar(ratio - 0.5));
+        this.mapHolder.node.setScale(Vec3.ONE.clone().multiplyScalar(ratio));
+        this.header.node.setScale(Vec3.ONE.clone().multiplyScalar(ratio));
 
         // setup map + header position
         this.mapHolder.bottom = this.mapHolder.top = this.mapHolder.right = 0;

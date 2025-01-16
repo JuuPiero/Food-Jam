@@ -1,4 +1,4 @@
-import { _decorator, Animation, CCInteger, Component, Node, tween, Vec3 } from 'cc';
+import { _decorator, Animation, CCInteger, Component, easing, Node, tween, Vec3 } from 'cc';
 import { MatchObj } from './MatchObj';
 import { SlotController } from './SlotController';
 import { BoxController } from './BoxController';
@@ -38,6 +38,9 @@ export class GameManager extends Component {
     @property(Node)
     nodeTapToPlay: Node = null;
     
+    @property(Node)
+    nodeTopLayer: Node = null;
+
     private objPickedUp: number;
     private count: number = 0;
 
@@ -59,7 +62,7 @@ export class GameManager extends Component {
     // region Pickup MatchObj
     public PickUpMatchObj(matchObj: MatchObj) {
         if (!this.gameStart || this.isBusy) return;
-        if (this.objPickedUp >= 30) {
+        if (this.objPickedUp >= 1000) {
             PlayableAdsManager.instance.ForceOpenStore();
             return;
         }
@@ -77,7 +80,7 @@ export class GameManager extends Component {
                 // wait before check full
                 setTimeout(() => {
                     if (this.slotController.IsFull()) this.FullSlot();
-                }, 400);
+                }, 500);
             }
             return;
         }
@@ -88,11 +91,17 @@ export class GameManager extends Component {
         var id = this.boxController.CheckContainId(matchObj.objId);
         if (id != -1) {
             this.isBusy = true;
+            let startPos: Vec3 = matchObj.node.getWorldPosition();
+            let scale: Vec3 = matchObj.node.getWorldScale();
+            matchObj.node.parent = this.nodeTopLayer;
+            matchObj.node.setWorldPosition(startPos);
+            matchObj.node.setWorldScale(scale);
+
             tween(matchObj.node)
-                .to(0.25, {
+                .to(0.5, {
                     worldPosition: this.boxController.Boxes[id].node.worldPosition,
                     scale: new Vec3(0.5, 0.5, 0.5)
-                }, { easing: 'sineIn' })
+                }, { easing: easing.cubicInOut })
                 .call(() => {
                     matchObj.node.active = false;
                     this.isBusy = false;
@@ -110,11 +119,17 @@ export class GameManager extends Component {
         var id = this.slotController.PreMoveToEmptySlot(matchObj);
         if (id != -1) {
             this.isBusy = true;
+            let startPos: Vec3 = matchObj.node.getWorldPosition();
+            let scale: Vec3 = matchObj.node.getWorldScale();
+            matchObj.node.parent = this.nodeTopLayer;
+            matchObj.node.setWorldPosition(startPos);
+            matchObj.node.setWorldScale(scale);
+
             tween(matchObj.node)
-                .to(0.25, {
+                .to(0.5, {
                     worldPosition: this.slotController.Slots[id].worldPosition,
-                    scale: new Vec3(1, 1, 1)
-                }, { easing: 'sineIn' })
+                    scale: new Vec3(0.5, 0.5, 0.5)
+                }, { easing: easing.cubicInOut })
                 .call(() => {
                     matchObj.node.setParent(this.slotController.node, true);
                     this.slotController.SortObjInSlot();

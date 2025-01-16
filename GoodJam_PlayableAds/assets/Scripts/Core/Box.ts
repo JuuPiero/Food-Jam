@@ -1,8 +1,11 @@
-import { _decorator, Component, Label, Node, Sprite, SpriteFrame } from 'cc';
+import { _decorator, Animation, Component, Label, Node, Sprite, SpriteFrame } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('Box')
 export class Box extends Component {
+    @property(Animation)
+    animBox: Animation = null;
+
     @property({ type: Sprite })
     private icon: Sprite;
     @property({ type: Label })
@@ -17,6 +20,8 @@ export class Box extends Component {
 
         this.icon.spriteFrame = sprite;
         this.countTxt.string = count.toString();
+
+        this.animBox.play("IdleBox");
     }
 
     public Collect(): boolean {

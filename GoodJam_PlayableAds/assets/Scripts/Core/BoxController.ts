@@ -2,6 +2,7 @@ import { _decorator, Component, instantiate, Layout, math, Node, Prefab, SpriteF
 import { Box } from './Box';
 import { BoxData } from './MapLoader';
 import { AudioManager, AudioType } from '../AudioManager';
+import { PromiseUtils } from '../PromiseUtils';
 const { ccclass, property } = _decorator;
 
 @ccclass('BoxController')
@@ -45,8 +46,10 @@ export class BoxController extends Component {
 
                 if (box.Collect()) {
                     // move box to new pos (wait for anim done)
-                    setTimeout(() => {
+                    setTimeout(async () => {
                         AudioManager.instance.PlayAudio(AudioType.CompleteBox);
+                        this.Boxes[i].animBox.play("CompleteBox");
+                        await PromiseUtils.delay(2);
                         this.Boxes[i].node.active = false;
                         this.Boxes[i] = null;
                         Tween.stopAllByTag(0);
@@ -57,12 +60,20 @@ export class BoxController extends Component {
                                 tween(box.node)
                                     .tag(0)
                                     .to(0.12, { position: this.spawnPoint[k] }, { easing: 'sineIn' })
+                                    .call(() => {
+                                        // box.animBox.play("CompleteBox");
+                                    })
                                     .start();
                                 k++;
                                 if (k >= BoxController.maxBoxSee) break;
                             }
                         }
                     }, 200);
+                }
+                else {
+                    this.scheduleOnce(() => {
+                        this.Boxes[i].animBox.play("ActionBox");
+                    }, 0.5);
                 }
                 return i;
             }

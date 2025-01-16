@@ -204,9 +204,9 @@
     },
     "_disabledColor": {
       "__type__": "cc.Color",
-      "r": 124,
-      "g": 124,
-      "b": 124,
+      "r": 73,
+      "g": 73,
+      "b": 73,
       "a": 255
     },
     "_normalSprite": null,

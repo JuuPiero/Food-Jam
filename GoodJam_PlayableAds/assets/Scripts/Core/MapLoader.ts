@@ -39,6 +39,7 @@ export class MapLoader extends Component {
     }
     public LoadLevelData(event: Event, customEventData: string): void {
         const shelfData = this.levelDataAsset[parseInt(customEventData)].json;
+        // Sort laij data
         shelfData.forEach((shelf: ShelfData) => {
             var shelfNode = instantiate(this.shelfPrb);
             shelfNode.setPosition(shelf.position);
@@ -54,7 +55,7 @@ export class MapLoader extends Component {
         this.scheduleOnce(() => {
             let obj = this.findItemsTutorial();
             obj.forEach((matchObj, index) => {
-                if (index === 6) {
+                if (index === 17) {
                     this.nodeTutorial.setWorldPosition(matchObj.node.getWorldPosition());
                     this.nodeTutorial.active = true;
                     GameManager.instance.nodeTapToPlay.active = true;
