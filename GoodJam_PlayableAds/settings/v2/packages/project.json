@@ -8,5 +8,23 @@
       "fitWidth": false
     }
   },
-  "custom_joint_texture_layouts": []
+  "custom_joint_texture_layouts": [],
+  "layer": [
+    {
+      "name": "SHADOW",
+      "value": 1
+    },
+    {
+      "name": "SHELF",
+      "value": 2
+    },
+    {
+      "name": "BACKGROUND",
+      "value": 4
+    },
+    {
+      "name": "GOODS",
+      "value": 8
+    }
+  ]
 }

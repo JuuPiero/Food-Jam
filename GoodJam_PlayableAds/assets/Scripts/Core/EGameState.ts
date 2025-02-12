@@ -1,6 +1,6 @@
 export enum EGameState {
     NONE,
-    INITIALIZING,
+    INITIALIZATION,
     READY,
     PLAYING,
     WIN,

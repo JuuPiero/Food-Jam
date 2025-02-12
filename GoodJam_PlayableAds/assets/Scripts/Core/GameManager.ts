@@ -1,4 +1,4 @@
-import { _decorator, Animation, CCInteger, Component, easing, Node, tween, Vec3 } from 'cc';
+import { _decorator, Animation, CCInteger, Component, easing, JsonAsset, Node, tween, Vec3 } from 'cc';
 import { MatchObj } from './MatchObj';
 import { SlotController } from './SlotController';
 import { BoxController } from './BoxController';
@@ -9,48 +9,67 @@ import { TrackingManager } from '../../base-script/PlayableAds/Tracking/Tracking
 import { PlayableAdsManager } from '../../base-script/PlayableAds/PlayableAdsManager';
 import { AudioManager, AudioType } from '../AudioManager';
 import { MapLoader } from './MapLoader';
+import { State } from '../Base/State/State';
+import { GameState } from '../Base/State/GameState/GameState';
+import { GameInitialization } from '../Base/State/GameState/GameInitialization';
+import { GameReady } from '../Base/State/GameState/GameReady';
+import { GamePlaying } from '../Base/State/GameState/GamePlaying';
+import { GameWin } from '../Base/State/GameState/GameWin';
+import { GameLose } from '../Base/State/GameState/GameLose';
+import { GameEnd } from '../Base/State/GameState/GameEnd';
 const { ccclass, property } = _decorator;
 
+
 @ccclass('GameManager')
-export class GameManager extends Component {
-    public static instance: GameManager;
+export class GameManager extends State<EGameState, GameState> {
 
-    @property({ type: BoxController, group: "Import" }) // box
-    private boxController: BoxController;
-    @property({ type: SlotController, group: "Import" }) // slot
-    private slotController: SlotController;
-    @property({ type: IntroBase, group: "Import" })
-    private intro: IntroBase;
-    
-    @property({ type: Node, group: "Popup" })
-    private popup_win: Node;
-    @property({ type: Node, group: "Popup" })
-    private popup_lose: Node;
+    @property(BoxController) // box
+    boxController: BoxController = null;
 
-    private isBusy: boolean;
-    private gameStart: boolean;
-
-    @property({ type: CCInteger })
-    private overridePickupWin: number = -1; // (-1) -> pickup all to win
-    @property(Animation)
-    animTutorial: Animation = null;
-
-    @property(Node)
-    nodeTapToPlay: Node = null;
+    @property(SlotController) // slot
+    slotController: SlotController = null;
     
     @property(Node)
     nodeTopLayer: Node = null;
 
-    private objPickedUp: number;
-    private count: number = 0;
+    @property(MapLoader)
+    mapLoader: MapLoader = null;
 
-    public state: EGameState = EGameState.NONE;
-
-    protected start(): void {
-        GameManager.instance = this;
-        this.intro.StartAnim();
+    public currentLevel: number = 0;
+    private static _instance: GameManager;
+    public static get Instance(): GameManager {
+        return this._instance;
     }
 
+    protected start(): void {
+        GameManager._instance = this;
+        this.State = EGameState.INITIALIZATION;
+    }
+
+    protected changeState(state: EGameState): void {
+        switch (state) {
+            case EGameState.INITIALIZATION:
+                this._stateIntance = new GameInitialization(this);
+                break;
+            case EGameState.READY:
+                this._stateIntance = new GameReady(this);
+                (this);
+                break;
+            case EGameState.PLAYING:
+                this._stateIntance = new GamePlaying(this);
+                break;
+            case EGameState.WIN:
+                this._stateIntance = new GameWin(this);
+                break;
+            case EGameState.LOSE:
+                this._stateIntance = new GameLose(this);
+                break;
+            case EGameState.END:
+                this._stateIntance = new GameEnd(this);
+                break;
+        }
+        this._stateIntance?.enterState();
+    }
     // region Start
     public StartGame() {
         this.gameStart = true;

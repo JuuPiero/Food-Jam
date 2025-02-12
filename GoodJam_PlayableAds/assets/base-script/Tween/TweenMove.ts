@@ -1,6 +1,7 @@
 import { Widget } from 'cc';
 import { UIOpacity } from 'cc';
-import { _decorator, Component, Node, tween, Vec3 } from 'cc';
+import { _decorator, Component, Node, Vec3 } from 'cc';
+import { tween } from '../../Scripts/TweenUtils';
 const { ccclass, property } = _decorator;
 
 @ccclass('TweenMove')

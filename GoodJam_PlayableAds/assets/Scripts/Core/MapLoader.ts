@@ -1,101 +1,73 @@
-import { _decorator, Component, instantiate, JsonAsset, Node, Prefab, Sprite, SpriteFrame, TextAsset, Vec2, Vec3 } from 'cc';
-import { Shelf } from './Shelf';
-import { BoxController } from './BoxController';
-import { MatchObj } from './MatchObj';
-import { GameManager } from './GameManager';
+import { _decorator, Component, instantiate, JsonAsset, Layers, Node, Prefab, Sprite, SpriteFrame, TextAsset, Vec2, Vec3 } from 'cc';
+import { GoodsFactory } from '../Goods/GoodsFactory';
+import { EShelfType, ILevelData } from '../Data/ILevelData';
+import { Shelf } from '../Shelf/Shelf';
+
 const { ccclass, property } = _decorator;
 
 @ccclass('MapLoader')
 export class MapLoader extends Component {
 
-    @property({ type: [JsonAsset], group: "Data" })
-    private levelDataAsset: JsonAsset[] = [];
-    @property({ type: [JsonAsset], group: "Data" })
-    private boxDataAsset: JsonAsset[] = [];
-    @property({ type: [SpriteFrame], group: "Data" })
-    private sprites: SpriteFrame[] = [];
+    @property(GoodsFactory)
+    goodsFactory: GoodsFactory = null;
 
-    @property({ type: Node, group: "Import" })
-    private shelfHolder: Node;
-    @property({ type: Prefab, group: "Import" })
-    private shelfPrb: Prefab;
-    @property({ type: BoxController, group: "Import" })
-    private boxController: BoxController;
+    @property([Prefab])
+    prefabsShelf: Prefab[] = [];
+
+    @property([JsonAsset])
+    jsonLevelData: JsonAsset[] = [];
 
     @property(Node)
-    nodeTutorial: Node = null;
+    nodeLevelParent: Node = null;
 
-    public Shelfs: Shelf[] = [];
+    @property
+    columns: number = 0;
 
-    public static instance: MapLoader = null;
+    @property
+    spacingX: number = 0;
 
-    protected onLoad(): void {
-        MapLoader.instance = this;
-    }
+    @property
+    spacingY: number = 0;
 
-    protected start(): void {
-        this.LoadLevelData(null, "0");
-        this.nodeTutorial.active = false;
-    }
-    public LoadLevelData(event: Event, customEventData: string): void {
-        const shelfData = this.levelDataAsset[parseInt(customEventData)].json;
-        // Sort laij data
-        shelfData.forEach((shelf: ShelfData) => {
-            var shelfNode = instantiate(this.shelfPrb);
-            shelfNode.setPosition(shelf.position);
-            shelfNode.setParent(this.shelfHolder);
-            shelfNode.getComponent(Shelf).Init(shelf.type, shelf.data, this.sprites);
+    public currentLevel: number = 0;
 
-            this.Shelfs.push(shelfNode.getComponent(Shelf));
-        });
+    public initialize(level: number): void {
+        this.nodeLevelParent.removeAllChildren();
+        let data = this.jsonLevelData[level].json as ILevelData;
+        let shelfData = data.cells;
+        let positions = this.getPositionByColumn(shelfData.length, this.columns);
+        for (let i = 0; i < shelfData.length; i++) {
+            // Create shelf
+            let prefab = this.prefabsShelf[data.cells[i].cellType];
+            let nodeShelf = instantiate(prefab);
+            this.nodeLevelParent.addChild(nodeShelf);
+            nodeShelf.setPosition(positions[i]);
 
-        const boxData = this.boxDataAsset[parseInt(customEventData)].json as BoxData[];
-        this.boxController.Init(boxData, this.sprites);
-
-        this.scheduleOnce(() => {
-            let obj = this.findItemsTutorial();
-            obj.forEach((matchObj, index) => {
-                if (index === 17) {
-                    this.nodeTutorial.setWorldPosition(matchObj.node.getWorldPosition());
-                    this.nodeTutorial.active = true;
-                    GameManager.instance.nodeTapToPlay.active = true;
-                }
-            });
-        });
-    }
-
-    public findItemsTutorial(): MatchObj[] {
-        let obj = [];
-        for (let i = 0; i < this.Shelfs.length; i++) {
-            const shelf = this.Shelfs[i];
-            let matchObjects = shelf.getComponentsInChildren(MatchObj);
-            let items: MatchObj[] = matchObjects.filter((matchObj) => matchObj.button.interactable);
-            if (items.length) {
-                obj = obj.concat(items);
-            }
+            // Create layers
+            let shelf = nodeShelf.getComponent(Shelf);
+            shelf.goodsFactory = this.goodsFactory;
+            shelf.initialize(data.cells[i]);
         }
-        return obj;
     }
-}
 
-export class ShelfData {
-    type: string;
-    position: Vec3;
-    data: number[][];
+    public reset(): void {
 
-    constructor(type: string, position: Vec3, data: number[][]) {
-        this.type = type;
-        this.position = position;
-        this.data = data;
     }
-}
 
-export class BoxData {
-    id: number;
-    count: number;
-
-    constructor(id: number, count: number) {
-        this.id = id;
-        this.count = count;
+    private getPositionByColumn(total: number, columns: number): Vec3[] {
+        const positions: Vec3[] = [];
+        const rows = Math.ceil(total / columns);
+        const startX = -((columns - 1) * this.spacingX) / 2;
+        const startY = -((rows - 1) * this.spacingY) / 2;
+    
+        for (let i = 0; i < total; i++) {
+            const col = i % columns;
+            const row = Math.floor(i / columns);
+            const x = startX + col * this.spacingX;
+            const y = startY + row * this.spacingY;
+            positions.push(new Vec3(x, y, 0));
+        }
+    
+        return positions;
     }
 }
