@@ -1,7 +1,7 @@
 import { tween, Tween, Vec3, Node } from "cc";
 
 export function BezierTween(
-    target: Node, 
+    node: Node, 
     duration: number, 
     p1: Vec3, 
     p2: Vec3, 
@@ -9,13 +9,11 @@ export function BezierTween(
 ) {
     return new Promise<void>((resolve) => {
         let tweenObj = { t: 0 };
-        Tween.stopAllByTarget(target);
-
         tween(tweenObj)
             .to(duration, { t: 1 }, {
                 onUpdate: (target: Node, ratio) => {
                     let easedT = easeOutCubic(ratio); // Áp dụng easing cho t
-                    target.position = bezierPosition(p1, p2, p3, easedT);
+                    node.worldPosition = bezierPosition(p1, p2, p3, easedT);
                 },
                 onComplete: () => {
                     resolve();
@@ -39,5 +37,5 @@ function bezierPosition(p1: Vec3, p2: Vec3, p3: Vec3, t: number): Vec3 {
 }
 
 function easeOutCubic(t: number): number {
-    return 1 - Math.pow(1 - t, 3);
+    return -(Math.cos(Math.PI * t) - 1) / 2;
 }

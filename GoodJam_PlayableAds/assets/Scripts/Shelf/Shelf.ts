@@ -1,7 +1,9 @@
-import { _decorator, Component, instantiate, Node, Prefab } from 'cc';
-import { IShelfData } from '../Data/ILevelData';
+import { _decorator, Component, easing, instantiate, Node, Prefab, tween, Vec3 } from 'cc';
+import { EShelfType, IShelfData } from '../Data/ILevelData';
 import { GoodsFactory } from '../Goods/GoodsFactory';
 import { ShelfLayer } from './Layer/ShelfLayer';
+import { EGoodsState, Goods } from '../Goods/Goods';
+import { BoxManager } from '../Core/BoxManager';
 const { ccclass, property } = _decorator;
 
 @ccclass("Shelf")
@@ -13,6 +15,7 @@ export class Shelf extends Component {
     @property(Node)
     nodeLayers: Node = null;
 
+    public boxManager: BoxManager = null;
     public goodsFactory: GoodsFactory = null;
     public currentLayer: ShelfLayer = null;
     
@@ -23,7 +26,7 @@ export class Shelf extends Component {
         this.reset();
 
         // Create
-        for (let i = 0; i < data.itemsLayer.length; i++) {
+        for (let i = data.itemsLayer.length - 1; i >= 0; i--) {
             let itemsLayer = data.itemsLayer[i];
             let nodeLayer = instantiate(this.prefabLayer);
             this.nodeLayers.addChild(nodeLayer);
@@ -33,6 +36,7 @@ export class Shelf extends Component {
             for (let j = 0; j < itemsLayer.items.length; j++) {
                 let item = itemsLayer.items[j];
                 let goods = this.goodsFactory.createGoods(item);
+                goods && (goods.shelf = this);
                 list.push(goods);
             }
             layer.initialize(list);
@@ -40,12 +44,58 @@ export class Shelf extends Component {
         }
 
         // Setup
-
+        this.updateLayer();
     }
 
     public reset(): void {
         this.nodeLayers.removeAllChildren();
     }
-}
 
+    public onGoodsPickUp(goods: Goods): void {
+        this.currentLayer.removeGoods(goods).then(goods => {
+            if (goods.length === 0) {
+                this.showNextLayer();
+            }
+        });
+    }
+
+    private showNextLayer(): void {
+        let index = this._layers.indexOf(this.currentLayer);
+        if (index > -1) {
+            this._layers.splice(index, 1);
+            this.updateLayer();
+        }
+    }
+    private updateLayer(): void {
+        this.currentLayer = this._layers[this._layers.length - 1]
+        if (this.currentLayer) {
+            let goods = this.currentLayer.getGoods();
+            goods.forEach(good => {
+                if (good)
+                    good.State = EGoodsState.ACTIVE;
+            });
+            this.currentLayer.node.active = true;
+            tween(this.currentLayer.node).to(0.5, {position: new Vec3(0, 0, 0)}, {easing: easing.cubicOut}).start();
+        }
+        let nextLayer = this._layers[this._layers.length - 2];
+        if (nextLayer) {
+            let goods = nextLayer.getGoods();
+            goods.forEach(good => {
+                if (good)
+                    good.State = EGoodsState.INTERACTIVE;
+            });
+            nextLayer.node.active = true;
+            nextLayer.node.position = new Vec3(0, 20, 0);
+        }
+        for (let i = this._layers.length - 3; i >= 0; i--) {    
+            let layer = this._layers[i];
+            let goods = layer.getGoods();
+            goods.forEach(good => {
+                if (good)
+                    good.State = EGoodsState.HIDDEN;
+            });
+            layer.node.active = false;
+        }
+    }
+}
 

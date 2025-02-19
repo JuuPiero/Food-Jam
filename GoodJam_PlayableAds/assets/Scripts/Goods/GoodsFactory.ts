@@ -17,13 +17,15 @@ export class GoodsFactory extends Component {
     sfrGoods: SpriteFrame[] = [];
 
     public createGoods(id: number): Goods {
+        if (id === 0)
+            return null;
         let node = instantiate(this.prefabsGoods);
         let goods = node.getComponent(Goods);
         goods.initialize(id, this.sfrGoods[id]);
         return goods;
     }
 
-    private getSpriteFrameByID(id: number): SpriteFrame {
+    public getSpriteFrameByID(id: number): SpriteFrame {
         if (id === 0)
             return null;
         return this.sfrGoods[id];

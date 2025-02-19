@@ -10,10 +10,13 @@ const { ccclass, property } = _decorator;
 export class TouchEventListener extends Component {
     
     private _firstTouch: boolean = false;
-    public static instance: TouchEventListener = null;
+    private static _instance: TouchEventListener = null;
+    public static get Instance(): TouchEventListener {
+        return TouchEventListener._instance;
+    }
 
     protected onLoad(): void {
-        TouchEventListener.instance = this;
+        TouchEventListener._instance = this;
     }
 
     protected onEnable(): void {
@@ -28,20 +31,24 @@ export class TouchEventListener extends Component {
         return this._firstTouch;
     }
 
+    public onTouchGoods(): void {
+        this.onTouchStart(null);
+    }
+
     private onTouchStart(event: EventTouch): void {
         console.log('TouchEventListener: onTouchStart');
         if (!this._firstTouch) {
             this.onFirstTouch();
         }
-        if (GameManager.instance.state == EGameState.WIN || GameManager.instance.state == EGameState.LOSE) {
-            PlayableAdsManager.instance.OpenStore();
-        }
+        // if (GameManager.instance.state == EGameState.WIN || GameManager.instance.state == EGameState.LOSE) {
+        //     PlayableAdsManager.instance.OpenStore();
+        // }
     }
 
     public onFirstTouch(): void {
         this._firstTouch = true;
-        GameManager.instance.state = EGameState.PLAYING;
-        GameManager.instance.nodeTapToPlay.active = false;
+        // GameManager.instance.state = EGameState.PLAYING;
+        // GameManager.instance.nodeTapToPlay.active = false;
         TrackingManager.FirstClick();
         AudioManager.instance.PlayBackground();
     }

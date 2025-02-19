@@ -1,5 +1,5 @@
-import { _decorator, Component, Layers, Node } from 'cc';
-import { Goods } from '../../Goods/Goods';
+import { _decorator, Component, Layers, Node, tween, Vec3 } from 'cc';
+import { EGoodsState, Goods } from '../../Goods/Goods';
 import { Shelf } from '../Shelf';
 
 const { ccclass, property } = _decorator;
@@ -15,10 +15,11 @@ export class ShelfLayer extends Component {
 
     public initialize(goods: Goods[]): void {
         this.reset();
-        this._goods = goods;
+        this._goods = goods.filter(good => good !== null);
         for (let i = 0; i < goods.length; i++) {
-            goods[i].shelfLayer = this;
-            this.nodesPosition[i].addChild(goods[i].node);
+            if (goods[i]) {
+                this.nodesPosition[i].addChild(goods[i].node);
+            }
         }
     }
 
@@ -40,8 +41,25 @@ export class ShelfLayer extends Component {
         });
     }
 
-    private complete(): void {
-        this.shelf
+    public getGoods(): Goods[] {
+        return this._goods;
+    }
+
+    public show(): void {
+        this._goods.forEach(good => {
+            if (good)
+                good.State = EGoodsState.ACTIVE;
+        });
+        tween(this.node).to(0.3, { position: Vec3.ZERO }, { easing: 'smooth' }).start();
+    }
+
+    public empty(): boolean {
+        let result = false;
+        this._goods.forEach(good => {
+            if (good)
+                result = true;
+        });
+        return result;
     }
 }
 

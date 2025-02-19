@@ -6,6 +6,12 @@ const { ccclass, property } = _decorator;
 export class GameLose extends GameState {
     
     public enterState(): void {
+        console.log('GameLose');
+        this._gameManager.scheduleOnce(() => {
+            this._gameManager.screenLose.forEach(screen => {
+                screen.show();
+            });
+        }, 2);
     }
 
     public updateState(dt: number): void {

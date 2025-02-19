@@ -164,10 +164,10 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
-      "b": 0,
-      "a": 100
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
     },
     "_spriteFrame": {
       "__uuid__": "53309d83-87d9-4092-8338-9f73a2187875@f9941",
@@ -362,7 +362,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 0,
+      "y": -110,
       "z": 0
     },
     "_lrot": {
@@ -491,6 +491,7 @@
       "__id__": 0
     },
     "fileId": "a4UGIrHJpJCZXlnPNKKnC5",
+    "instance": null,
     "targetOverrides": null
   }
 ]

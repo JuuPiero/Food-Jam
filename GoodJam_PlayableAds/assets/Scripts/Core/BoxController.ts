@@ -1,8 +1,7 @@
 import { _decorator, Component, instantiate, Layout, math, Node, Prefab, SpriteFrame, Tween, tween, Vec3 } from 'cc';
-import { Box } from './Box';
-import { BoxData } from './MapLoader';
 import { AudioManager, AudioType } from '../AudioManager';
 import { PromiseUtils } from '../PromiseUtils';
+import { Box } from '../Box/Box';
 const { ccclass, property } = _decorator;
 
 @ccclass('BoxController')

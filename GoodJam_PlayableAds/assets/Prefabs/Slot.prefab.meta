@@ -2,12 +2,12 @@
   "ver": "1.1.50",
   "importer": "prefab",
   "imported": true,
-  "uuid": "37c1b6d5-7a62-4be1-89d0-e7b5550af059",
+  "uuid": "5597e2fa-8728-473b-90fe-386aa1682372",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "NormalShelf"
+    "syncNodeName": "Slot"
   }
 }
