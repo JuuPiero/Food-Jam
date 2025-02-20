@@ -25,6 +25,10 @@
     {
       "name": "GOODS",
       "value": 8
+    },
+    {
+      "name": "BOX",
+      "value": 16
     }
   ]
 }

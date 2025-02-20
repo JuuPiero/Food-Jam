@@ -11,6 +11,7 @@ import { Shelf } from '../Shelf/Shelf';
 import { GameManager } from '../Core/GameManager';
 import { EGameState } from '../Core/EGameState';
 import { TouchEventListener } from '../Core/TouchEventListener';
+import * as fs from "fs";
 
 const { ccclass, property } = _decorator;
 
