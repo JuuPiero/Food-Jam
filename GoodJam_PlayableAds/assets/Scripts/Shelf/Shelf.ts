@@ -22,7 +22,7 @@ export class Shelf extends Component {
     moveType: EMoveType = EMoveType.NONE;
 
    
-
+    public isTutShelf: boolean;
     public boxManager: BoxManager = null;
     public goodsFactory: GoodsFactory = null;
     public currentLayer: ShelfLayer = null;
@@ -55,7 +55,11 @@ export class Shelf extends Component {
         // Setup
         this.updateLayer();
     }
-
+    public tutAnim()
+    {
+        this.currentLayer.getGoods()[0].TutAnim();
+     
+    }
     public reset(): void {
         this.nodeLayers.removeAllChildren();
     }

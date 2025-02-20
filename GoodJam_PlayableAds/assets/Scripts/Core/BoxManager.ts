@@ -1,4 +1,4 @@
-import { _decorator, Component, easing, instantiate, Node, NodePool, Prefab, tween, Vec3 } from 'cc';
+import { _decorator, CCInteger, Component, easing, instantiate, Node, NodePool, Prefab, tween, Vec3 } from 'cc';
 import { Box } from '../Box/Box';
 import { ILevelData } from '../Data/ILevelData';
 import { ObjectPool } from '../Modules/ObjectPool';
@@ -25,6 +25,10 @@ export class BoxManager extends Component {
     @property([Node])
     nodePositions: Node[] = [];
     
+    @property(CCInteger)
+    tutorialID: number = 0;
+
+    public firstBoxSpawn: boolean = false;
     public levelLoader: LevelLoader = null;
     private _pool = new NodePool();
     private _boxesActive: Box[] = [];
@@ -71,15 +75,78 @@ export class BoxManager extends Component {
         }
         return false;
     }
+    public pickUpTut(goods:Goods)
+    {// Duyệt qua các box xem có box nào cùng id với goods không
+        let boxMatch = null;
+        for (let i = 0; i < this._boxesActive.length; i++) {
+            let box = this._boxesActive[i];
+            if (box.getId() === goods.getId()) {
+                boxMatch = box;
+                break;
+            }
+        }
+        if (boxMatch) {
+            boxMatch.addTut(goods);
+            return true;
+        }
+        // Nếu không có box trùng id thì chuyển goods sang slot free
+        let freeSlot = this.slotManager.getFreeSlot();
+        if (freeSlot) {
+            freeSlot.add(goods);
+            if (this.slotManager.fullSlot()) {
+                GameManager.Instance.State = EGameState.LOSE;
+            }
+            return true;
+        }
+        return false;
+
+    }
 
     public fill(): void {
         for (let i = 0; i < this.nodePositions.length; i++) {
             let node = this.nodePositions[i];
+            if(i==0)
+            {
+                if(!this.firstBoxSpawn)
+                {
+                    if (node.children.length === 0) {
+                        let boxData = BoxDataFactory.getTutorialBoxData(this.tutorialID);
+                        if (!boxData || !boxData.id) {
+                            console.log("noooo");
+                            return;
+                        }
+                        this.firstBoxSpawn=true;
+                        let box = this.getNewBox();
+                        box.levelLoader = this.levelLoader;
+                        box.boxManager = this;
+                        box.node.setParent(node);
+                        box.node.setPosition(0, 300, 0);
+                        box.initialize(boxData.id, boxData.total);
+                        this._boxesActive.push(box);
+                        tween(box.node).to(0.3, {position: new Vec3(0, 0, 0)}, {easing: easing.backOut})
+                            .call(() => {
+                                // Lấy goods từ free slot
+                                for (let j = 0; j < this.slotManager.freeSlots.length; j++) {
+                                    let freeSlot = this.slotManager.freeSlots[j];
+                                    if (freeSlot.isFull()) {
+                                        let goods = freeSlot.getGoods();
+                                        if (box.getId() === goods.getId()) {
+                                            box.add(goods);
+                                            freeSlot.reset();
+                                        }
+                                    }
+                                }
+                            }).start();
+                        
+                    } 
+                }
+            }
             if (node.children.length === 0) {
                 let boxData = BoxDataFactory.getRandomBoxData();
                 if (!boxData || !boxData.id) {
                     return;
                 }
+               
                 let box = this.getNewBox();
                 box.levelLoader = this.levelLoader;
                 box.boxManager = this;

@@ -77,7 +77,11 @@ export class Goods extends State<EGoodsState, GoodsState> implements GoodsBase {
             }   
         }
     }
-
+    public TutAnim()
+    {
+        let boxManager = this.shelf.boxManager;
+        boxManager.pickUpTut(this);
+    }
     private pickUp(): void {
         // Xử lý shelf
         this.shelf.onGoodsPickUp(this);

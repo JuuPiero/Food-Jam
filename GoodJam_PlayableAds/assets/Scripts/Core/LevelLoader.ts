@@ -1,9 +1,10 @@
-import { _decorator, Component, instantiate, JsonAsset, Layers, Node, Prefab, Sprite, SpriteFrame, TextAsset, Vec2, Vec3 } from 'cc';
+import { _decorator, CCInteger, Component, instantiate, JsonAsset, Layers, Node, Prefab, Sprite, SpriteFrame, TextAsset, Vec2, Vec3 } from 'cc';
 import { GoodsFactory } from '../Goods/GoodsFactory';
 import { EShelfType, ILevelData } from '../Data/ILevelData';
 import { Shelf } from '../Shelf/Shelf';
 import { BoxManager } from './BoxManager';
 import { HandleData } from './HandleData';
+import { TutorialController } from './TutorialController';
 
 const { ccclass, property } = _decorator;
 
@@ -25,6 +26,12 @@ export class LevelLoader extends Component {
     @property(Node)
     nodeLevelParent: Node = null;
 
+    @property(Node)
+    shelfContainer: Node = null;
+
+    @property(CCInteger)
+    tutShelfIndex: number;
+
     @property
     columns: number = 0;
 
@@ -35,11 +42,20 @@ export class LevelLoader extends Component {
     spacingY: number = 0;
 
     public currentLevel: number = 0;
+    private static _instance: LevelLoader = null;
+    public static get Instance(): LevelLoader {
+        return LevelLoader._instance;
+    }
 
+    protected onLoad(): void {
+        LevelLoader._instance = this;
+    }
     public initialize(level: number): void {
         this.nodeLevelParent.removeAllChildren();
         this.boxManager.levelLoader = this;
         let data = this.jsonLevelData[level].json as ILevelData;
+       
+
         HandleData.updatePosition(data);
         HandleData.updatePositionSingleShelf(data);
         HandleData.sortData(data);
@@ -59,7 +75,15 @@ export class LevelLoader extends Component {
             shelf.initialize(data.cells[i]);
         }
         this.boxManager.initialize(data);
+        this.OnTut();
     }
+    OnTut()
+    {
+        TutorialController.Instance.OnTut();
+        var tutShelf = this.shelfContainer.children[this.tutShelfIndex].getComponent(Shelf);
+        tutShelf.tutAnim();
+    }
+
 
     public reset(): void {
 
