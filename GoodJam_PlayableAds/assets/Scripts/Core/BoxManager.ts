@@ -107,11 +107,15 @@ export class BoxManager extends Component {
 
     public onBoxComplete(box: Box): void {
         this.put(box);
+        let gameManager = GameManager.Instance;
         if (this.checkWin()) {
-            GameManager.Instance.State = EGameState.WIN;
+            gameManager.State = EGameState.WIN;
         }
         else {
-            this.fill();
+            let state = [EGameState.WIN, EGameState.LOSE, EGameState];
+            if (state.includes(gameManager.State)) {   
+                this.fill();
+            }
         }
     }
 
