@@ -1491,6 +1491,7 @@
     "__type__": "b4e76KRAuFEi4sz510uMiR/",
     "_name": "",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 22
     },
@@ -3005,6 +3006,7 @@
     "__type__": "15253dnnnJMU67ewRAzzIYf",
     "_name": "",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 42
     },
@@ -3041,6 +3043,7 @@
     "__type__": "605a9dFN8dA6r5F2+0MsFsy",
     "_name": "",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 87
     },
@@ -3419,6 +3422,7 @@
     "__type__": "0491fWX/YVMBZlPnpQuOgyn",
     "_name": "",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 88
     },
@@ -3716,6 +3720,7 @@
     "__type__": "0491fWX/YVMBZlPnpQuOgyn",
     "_name": "",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 97
     },
@@ -4013,6 +4018,7 @@
     "__type__": "0491fWX/YVMBZlPnpQuOgyn",
     "_name": "",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 106
     },
@@ -4310,6 +4316,7 @@
     "__type__": "0491fWX/YVMBZlPnpQuOgyn",
     "_name": "",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 115
     },
@@ -4607,6 +4614,7 @@
     "__type__": "0491fWX/YVMBZlPnpQuOgyn",
     "_name": "",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 124
     },
@@ -5527,13 +5535,15 @@
     "__type__": "1f89creVPhCtpUfNfZF8z7o",
     "_name": "",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 152
     },
     "_enabled": true,
     "__prefab": null,
-    "targetItem": null,
-    "tutHand": null,
+    "tutHand": {
+      "__id__": 153
+    },
     "_id": "d8IS/Ht9pHELec5jzFG0TD"
   },
   {
@@ -7646,6 +7656,7 @@
     "__type__": "3b55fJqc7FA+qXGi0ZlLt5p",
     "_name": "",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 214
     },
@@ -7670,6 +7681,7 @@
     "__type__": "fab398T2dZAKa7WpnaN/+GC",
     "_name": "",
     "_objFlags": 0,
+    "__editorExtras__": {},
     "node": {
       "__id__": 217
     },

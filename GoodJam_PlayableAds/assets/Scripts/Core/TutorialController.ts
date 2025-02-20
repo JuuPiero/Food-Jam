@@ -1,21 +1,20 @@
 import { _decorator, Component, Node } from 'cc';
-import { Goods } from '../Goods/Goods';
+
 const { ccclass, property } = _decorator;
 
 @ccclass('TutorialController')
 export class TutorialController extends Component {
     
-    @property(Goods)
-    targetItem: Goods = null;
+    private static _instance: TutorialController = null;
+    public static get Instance(): TutorialController {
+        return TutorialController._instance;
+    }
+
 
     @property(Node)
     tutHand: Node = null;
 
     public tutBool: boolean = false;
-    private static _instance: TutorialController = null;
-    public static get Instance(): TutorialController {
-        return TutorialController._instance;
-    }
 
     protected onLoad(): void {
         TutorialController._instance = this;
