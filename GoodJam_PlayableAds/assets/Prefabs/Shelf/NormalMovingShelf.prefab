@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.Prefab",
-    "_name": "NormalShelf",
+    "_name": "NormalMovingShelf",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_native": "",
@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "NormalShelf",
+    "_name": "NormalMovingShelf",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": null,
@@ -63,7 +63,7 @@
       "z": 1
     },
     "_mobility": 0,
-    "_layer": 2,
+    "_layer": 33554432,
     "_euler": {
       "__type__": "cc.Vec3",
       "x": 0,
@@ -684,7 +684,7 @@
       "z": 1
     },
     "_mobility": 0,
-    "_layer": 2,
+    "_layer": 33554432,
     "_euler": {
       "__type__": "cc.Vec3",
       "x": 0,
@@ -763,7 +763,7 @@
     "fileId": "43rhrxSVVIha2ZsqRnJgWB"
   },
   {
-    "__type__": "396c0b7mtlAL4Jp/pra/ib8",
+    "__type__": "f80d2hDuGpGL4Hs0W/0W7u2",
     "_name": "",
     "_objFlags": 0,
     "__editorExtras__": {},
@@ -784,11 +784,21 @@
     "shelfCloseLid": {
       "__id__": 15
     },
+    "moveType": 0,
+    "col": {
+      "__id__": 9
+    },
+    "_velocity": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "speed": 50,
     "_id": ""
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "70nPzigVdKvqjTLwNJfvVp"
+    "fileId": "62lMY0nU5N9qmnthqawu3b"
   },
   {
     "__type__": "cc.PrefabInfo",

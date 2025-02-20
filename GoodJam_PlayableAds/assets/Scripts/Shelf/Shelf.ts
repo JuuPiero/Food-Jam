@@ -1,5 +1,5 @@
-import { _decorator, Component, easing, instantiate, Node, Prefab, tween, Vec3 } from 'cc';
-import { EShelfType, IShelfData } from '../Data/ILevelData';
+import { _decorator, Component, easing, Enum, instantiate, Node, Prefab, SpriteFrame, tween, Vec3 } from 'cc';
+import { EMoveType, EShelfType, IShelfData } from '../Data/ILevelData';
 import { GoodsFactory } from '../Goods/GoodsFactory';
 import { ShelfLayer } from './Layer/ShelfLayer';
 import { EGoodsState, Goods } from '../Goods/Goods';
@@ -14,6 +14,14 @@ export class Shelf extends Component {
 
     @property(Node)
     nodeLayers: Node = null;
+
+    @property(Node)
+    shelfCloseLid: Node = null;
+
+    @property({type: Enum(EMoveType)})
+    moveType: EMoveType = EMoveType.NONE;
+
+   
 
     public boxManager: BoxManager = null;
     public goodsFactory: GoodsFactory = null;
@@ -33,6 +41,7 @@ export class Shelf extends Component {
             let layer = nodeLayer.getComponent(ShelfLayer);
             layer.shelf = this;
             let list = [];
+           
             for (let j = 0; j < itemsLayer.items.length; j++) {
                 let item = itemsLayer.items[j];
                 let goods = this.goodsFactory.createGoods(item);
@@ -77,6 +86,11 @@ export class Shelf extends Component {
             this.currentLayer.node.active = true;
             tween(this.currentLayer.node).to(0.5, {position: new Vec3(0, 0, 0)}, {easing: easing.cubicOut}).start();
         }
+        else
+        {
+            this.shelfCleared();
+            return;
+        }
         let nextLayer = this._layers[this._layers.length - 2];
         if (nextLayer) {
             let goods = nextLayer.getGoods();
@@ -96,6 +110,24 @@ export class Shelf extends Component {
             });
             layer.node.active = false;
         }
+    }
+    shelfCleared()
+    {
+        if(!this.shelfCloseLid)
+            return;
+        tween(this.shelfCloseLid).to(0.3, {position: new Vec3(0, 0, 0)})
+        .call(()=>
+            {
+                tween(this.shelfCloseLid).to(0.15, {position: new Vec3(0, 20, 0)})
+                .call(()=>
+                    {
+                        tween(this.shelfCloseLid).to(0.15, {position: new Vec3(0, 0, 0)})
+                        .start();
+                    })
+                    .start();
+                    
+            })
+        .start();
     }
 }
 
