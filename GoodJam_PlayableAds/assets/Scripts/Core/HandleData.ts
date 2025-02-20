@@ -1,19 +1,27 @@
-import { EShelfType, ILevelData } from "../Data/ILevelData";
+import { EMoveType, EShelfType, ILevelData } from "../Data/ILevelData";
 
 export class HandleData {
     public static updatePosition(data: ILevelData): ILevelData {
+
+
         data.cells.forEach(cell => {
-            cell.posX += 3;
-            cell.posY += 2;
+            {
+                
+                    cell.posX += 3;
+                    cell.posY += 2;
+                
+            }
+           
         });
         return data;
     }
 
     public static updatePositionSingleShelf(data: ILevelData): ILevelData {
         data.cells.forEach(cell => {
-            if (cell.cellType === EShelfType.SINGLE) {
+            if (cell.cellType === EShelfType.SINGLE || cell.cellType === EShelfType.SINGLE_MOVE) {
                 cell.posX -= 2;
             }
+            
         });
         return data;
     }

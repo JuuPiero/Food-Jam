@@ -18,7 +18,7 @@ export interface IItemsLayerData {
 }
 
 export enum EMoveType {
-    INPLACE,
+    NONE,
     FALLING,
     LEFT_TO_RIGHT,
     RIGHT_TO_LEFT,
@@ -28,7 +28,7 @@ export enum EMoveType {
 
 export enum EShelfType {
     NORMAL,
-    SINGLE_MOVE,
+    MOVE,
     SINGLE,
-    MOVE
+    SINGLE_MOVE,
 }
