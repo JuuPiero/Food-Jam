@@ -784,8 +784,10 @@
     "shelfCloseLid": {
       "__id__": 15
     },
-    "moveType": null,
-    "_col": null,
+    "moveType": 0,
+    "col": {
+      "__id__": 9
+    },
     "_velocity": {
       "__type__": "cc.Vec2",
       "x": 0,

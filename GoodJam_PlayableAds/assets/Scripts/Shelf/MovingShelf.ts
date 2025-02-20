@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, SpriteFrame, Vec2, Vec3 } from 'cc';
+import { _decorator, Component, Node, Sprite, UITransform, Vec2, Vec3 } from 'cc';
 import { Shelf } from './Shelf';
 import { EMoveType, IShelfData } from '../Data/ILevelData';
 import { NormalShelf } from './NormalShelf';
@@ -8,18 +8,18 @@ const { ccclass, property } = _decorator;
 @ccclass
 export class MovingShelfBoundsLimit {
     @property(Vec2)
-    horizontalLimits: Vec2 = new Vec2(0, 0);
+    horizontalLimits: Vec2 = new Vec2(-500 , 500);
 
     @property(Vec2)
-    verticalLimits: Vec2 = new Vec2(0, 0);
+    verticalLimits: Vec2 = new Vec2(-500, 500);
 }
 @ccclass('MovingShelf')
 export class MovingShelf extends NormalShelf {
 
     @property(MovingShelfBoundsLimit)
     boundsLimit: MovingShelfBoundsLimit = new MovingShelfBoundsLimit;
-    @property(SpriteFrame)
-    _col: SpriteFrame = null;
+    @property(UITransform)
+    col: UITransform = null;
     @property(Vec2)
     _velocity: Vec2 = new Vec2(0, 0);
     @property
@@ -118,9 +118,8 @@ export class MovingShelf extends NormalShelf {
         }
     }
     registerBoundsLimitVertical() {
-        const spriteSize = this._col.getOriginalSize();
-        const upperYLimit = this.node.position.y + spriteSize.height * this.node.getWorldScale().y / 2;
-        const lowerYLimit = this.node.position.y - spriteSize.height * this.node.getWorldScale().y / 2;
+        const upperYLimit = this.node.position.y + this.col.height * this.node.getWorldScale().y / 2;
+        const lowerYLimit = this.node.position.y - this.col.height * this.node.getWorldScale().y / 2;
 
         if (this.boundsLimit.verticalLimits.x > lowerYLimit) {
             this.boundsLimit.verticalLimits.x = lowerYLimit;
@@ -132,9 +131,8 @@ export class MovingShelf extends NormalShelf {
     }
 
     registerBoundsLimitHorizontal() {
-        const spriteSize = this._col.getOriginalSize();
-        const rightXLimit = this.node.position.x + spriteSize.width * this.node.getWorldScale().x / 2;
-        const leftXLimit = this.node.position.x - spriteSize.width * this.node.getWorldScale().x / 2;
+        const rightXLimit = this.node.position.x + this.col.width * this.node.getWorldScale().x / 2;
+        const leftXLimit = this.node.position.x - this.col.width * this.node.getWorldScale().x / 2;
 
         if (this.boundsLimit.horizontalLimits.x > leftXLimit) {
             this.boundsLimit.horizontalLimits.x = leftXLimit;

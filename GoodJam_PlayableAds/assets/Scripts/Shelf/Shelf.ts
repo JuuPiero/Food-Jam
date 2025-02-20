@@ -1,4 +1,4 @@
-import { _decorator, Component, easing, Enum, instantiate, Node, Prefab, tween, Vec3 } from 'cc';
+import { _decorator, Component, easing, Enum, instantiate, Node, Prefab, SpriteFrame, tween, Vec3 } from 'cc';
 import { EMoveType, EShelfType, IShelfData } from '../Data/ILevelData';
 import { GoodsFactory } from '../Goods/GoodsFactory';
 import { ShelfLayer } from './Layer/ShelfLayer';
@@ -20,6 +20,8 @@ export class Shelf extends Component {
 
     @property({type: Enum(EMoveType)})
     moveType: EMoveType = EMoveType.NONE;
+
+   
 
     public boxManager: BoxManager = null;
     public goodsFactory: GoodsFactory = null;
