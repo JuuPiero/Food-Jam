@@ -1,37 +1,48 @@
 import { _decorator, AudioSource, Component } from 'cc';
 const { ccclass, property } = _decorator;
 
-export enum AudioType {
-    Background,
-    Win,
-    Lose,
-    Tap,
-    CompleteBox,
+export enum ESoundEffect {
+    BACKGROUND,
+    PICKUP,
+    DROP_BOX,
+    DROP_SLOT,
+    COMPLETE_BOX,
+    WIN,
+    LOSE
 }
 
 @ccclass('AudioManager')
 export class AudioManager extends Component {
 
-    public static instance: AudioManager;
-
+    @property
+    mute: boolean = false;
     @property([AudioSource])
     audioSources: AudioSource[] = [];
 
+    private static _instance: AudioManager;
+
     protected onLoad(): void {
-        if (AudioManager.instance == null) {
-            AudioManager.instance = this;
+        if (AudioManager._instance == null) {
+            AudioManager._instance = this;
         }
     }
 
-    public PlayAudio(type: AudioType) {
-        this.audioSources[type].playOneShot(this.audioSources[type].clip);
+    public static playEffect(sound: ESoundEffect) {
+        let self = AudioManager._instance;
+        if (self.mute) return;
+        self.audioSources[sound].playOneShot(self.audioSources[sound].clip);
     }
 
-    PlayBackground() {
-        this.audioSources[AudioType.Background].play();
+    public static playBackground(): void {
+        let self = AudioManager._instance;
+        if (self.mute) return;
+        self.audioSources[ESoundEffect.BACKGROUND].play();
     }
-    StopBackground() {
-        this.audioSources[AudioType.Background].stop();
+    
+    public static stopBackground(): void {
+        let self = AudioManager._instance;
+        if (self.mute) return;
+        self.audioSources[ESoundEffect.BACKGROUND].stop();
     }
 }
 

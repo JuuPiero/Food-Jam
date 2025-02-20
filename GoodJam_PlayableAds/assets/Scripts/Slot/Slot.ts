@@ -26,7 +26,7 @@ export class Slot extends Component {
         return new Promise((resolve, reject) => {
             this._goods = goods;
             this._isFull = true;
-            let duration = 0.3;
+            let duration = 0.5;
 
             // Start
             let worldPos = goods.node.getWorldPosition();

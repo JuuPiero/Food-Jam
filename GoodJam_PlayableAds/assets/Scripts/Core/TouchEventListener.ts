@@ -1,6 +1,4 @@
 import { _decorator, Component, EventTouch, Input, input, Node, NodeEventType } from 'cc';
-import { GameManager } from './GameManager';
-import { EGameState } from './EGameState';
 import { TrackingManager } from '../../base-script/PlayableAds/Tracking/TrackingManager';
 import { AudioManager } from '../AudioManager';
 import { PlayableAdsManager } from '../../base-script/PlayableAds/PlayableAdsManager';
@@ -50,7 +48,7 @@ export class TouchEventListener extends Component {
         // GameManager.instance.state = EGameState.PLAYING;
         // GameManager.instance.nodeTapToPlay.active = false;
         TrackingManager.FirstClick();
-        AudioManager.instance.PlayBackground();
+        AudioManager.playBackground();
     }
 }
 

@@ -12,6 +12,7 @@ import { GameManager } from '../Core/GameManager';
 import { EGameState } from '../Core/EGameState';
 import { TouchEventListener } from '../Core/TouchEventListener';
 import * as fs from "fs";
+import { AudioManager, ESoundEffect } from '../AudioManager';
 
 const { ccclass, property } = _decorator;
 
@@ -79,6 +80,7 @@ export class Goods extends State<EGoodsState, GoodsState> implements GoodsBase {
     }
 
     private pickUp(): void {
+        AudioManager.playEffect(ESoundEffect.PICKUP);
         // Xử lý shelf
         this.shelf.onGoodsPickUp(this);
         // Xử lý box

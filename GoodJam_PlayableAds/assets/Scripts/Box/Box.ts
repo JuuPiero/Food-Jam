@@ -4,6 +4,7 @@ import { LevelLoader } from '../Core/LevelLoader';
 import { BoxSlot } from '../Slot/BoxSlot';
 import { Goods } from '../Goods/Goods';
 import { BoxManager } from '../Core/BoxManager';
+import { AudioManager, ESoundEffect } from '../AudioManager';
 const { ccclass, property } = _decorator;
 
 export enum EBoxAnimation {
@@ -50,6 +51,7 @@ export class Box extends Component implements IBox {
     public complete(): Promise<void> {
         return new Promise((resolve, reject) => {
             this.animBox.play(EBoxAnimation.COMPLETE);
+            AudioManager.playEffect(ESoundEffect.COMPLETE_BOX);
             this.scheduleOnce(() => {
                 tween(this.node).to(0.5, {position: new Vec3(0, 300, 0)}, {easing: easing.cubicOut})
                     .call(() => {
@@ -70,6 +72,7 @@ export class Box extends Component implements IBox {
                 continue;
             }
             boxSlot.add(goods).then(goods => {
+                AudioManager.playEffect(ESoundEffect.DROP_BOX);
                 goods.animGoods.play("GoodsJump");
                 this._count++;
                 if (this._count === this._total) {
