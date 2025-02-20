@@ -80,14 +80,22 @@ export class Slot extends Component {
             tween(goods.node).to(duration, {worldScale: endScale}).start();
             BezierTween(goods.node, duration + 0.1, worldPos, p2, endPos)
             .then(()=>{
-                
+                tween(goods.node)
+                .to(.1,{scale: new Vec3(goods.node.getScale().x*1.25,goods.node.getScale().y *.75,goods.node.getScale().z)})
+                .call(()=>{
+                    tween(goods.node)
+                    .to(.1,{scale: new Vec3(goods.node.getScale().x/1.25,goods.node.getScale().y /.75,goods.node.getScale().z)})
+                    .start();
+            })
+                .start();
+                setTimeout(()=>{
                 goods.node.parent = originalParent;
                 goods.node.setScale(new Vec3(1,1,1));
                 goods.node.setPosition(new Vec3(0,0,0));
                 if(TutorialController.Instance.tutBool)
                     this.addTut(goods);
                 
-                
+            },500)
             });
         },1000)
             // .then(() => {
