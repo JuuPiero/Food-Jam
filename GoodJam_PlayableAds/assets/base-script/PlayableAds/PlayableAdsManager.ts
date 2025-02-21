@@ -1,4 +1,4 @@
-import { _decorator, Enum, Game, game, Input, input } from 'cc';
+import { _decorator, Component, Enum, Game, game, Input, input } from 'cc';
 import super_html_playable from './super_html_playable';
 import { SingletonInSceneComponent } from '../Pattern/SingletonInSceneComponent';
 import { TrackingManager } from './Tracking/TrackingManager';
@@ -8,18 +8,18 @@ import { GameEvent } from './GameEvent';
 const { ccclass, property } = _decorator;
 
 @ccclass('PlayableAdsManager')
-export class PlayableAdsManager extends SingletonInSceneComponent {
+export class PlayableAdsManager extends Component {
     private urlPlayStore: string = "https://play.google.com/store/apps/details?id=com.ig.goods.jam";
     private urlAppStore: string = "https://play.google.com/store/apps/details?id=com.ig.goods.jam"; 
     private static instanceId: string = "PlayableAdsManager";
-    private playableAdsName: string = "iKame";
+    public playableAdsName: string = "iKame";
 
     private readonly titleDefault: string = "Cocos Creator - iKameSTPA_PlayableAds";
 
     private network: string = "";
 
     @property
-    private activeTracking: boolean = false;
+    activeTracking: boolean = false;
     @property
     private logDebug: boolean = false;
     private touchedSpecific: boolean;
@@ -95,7 +95,7 @@ export class PlayableAdsManager extends SingletonInSceneComponent {
 
     private actionFirstClicked(): void {
         if(!this.firstClicked){
-            TrackingManager.firstClick();
+            // TrackingManager.firstClick();
             this.firstClicked = true;
 
             // Bật background Music sau lần đầu play PA. Đây là Policy của web nên bắt buộc phải follow.
@@ -132,7 +132,7 @@ export class PlayableAdsManager extends SingletonInSceneComponent {
     }
 
     public static logDebug(message: string): void {
-        if(PlayableAdsManager.Instance().logDebug){
+        if(PlayableAdsManager.Instance.logDebug){
             console.log(message);
         }
     }

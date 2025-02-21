@@ -115,7 +115,7 @@ export class TrackingManager extends Component {
                     "screen": this.currentScreen,
                     "user_return": USER_RETURN[this.returnGame],
                     "object": OBJECT[object],
-                    "playable_ad_id": PlayableAdsManager.Instance().playableAdsName,
+                    "playable_ad_id": PlayableAdsManager.Instance.playableAdsName,
                     "operating_system": OPERATING_SYSTEM[this.os],
                     "package_name": this.packageName,
                     "gpu": this.gpu,
@@ -140,7 +140,7 @@ export class TrackingManager extends Component {
                     "screen": this.currentScreen,
                     "user_return": USER_RETURN[this.returnGame],
                     "object": OBJECT[object],
-                    "playable_ad_id": PlayableAdsManager.Instance().playableAdsName,
+                    "playable_ad_id": PlayableAdsManager.Instance.playableAdsName,
                     "operating_system": OPERATING_SYSTEM[this.os],
                     "package_name": this.packageName,
                     "gpu": this.gpu,
@@ -165,7 +165,7 @@ export class TrackingManager extends Component {
                     "screen": this.currentScreen,
                     "user_return": USER_RETURN[this.returnGame],
                     "object": OBJECT[object],
-                    "playable_ad_id": PlayableAdsManager.Instance().playableAdsName,
+                    "playable_ad_id": PlayableAdsManager.Instance.playableAdsName,
                     "operating_system": OPERATING_SYSTEM[this.os],
                     "package_name": this.packageName,
                     "gpu": this.gpu,
@@ -192,7 +192,7 @@ export class TrackingManager extends Component {
                     "user_return": USER_RETURN[this.returnGame],
                     "result": RESULT[result],
                     "object": OBJECT[object],
-                    "playable_ad_id": PlayableAdsManager.Instance().playableAdsName,
+                    "playable_ad_id": PlayableAdsManager.Instance.playableAdsName,
                     "operating_system": OPERATING_SYSTEM[this.os],
                     "package_name": this.packageName,
                     "gpu": this.gpu,
@@ -219,7 +219,7 @@ export class TrackingManager extends Component {
                     "screen": this.currentScreen,
                     "button_name": buttonName,
                     "object": OBJECT[object],
-                    "playable_ad_id": PlayableAdsManager.Instance().playableAdsName,
+                    "playable_ad_id": PlayableAdsManager.Instance.playableAdsName,
                     "operating_system": OPERATING_SYSTEM[this.os],
                     "package_name": this.packageName,
                     "gpu": this.gpu,
@@ -246,7 +246,7 @@ export class TrackingManager extends Component {
                     "engagement_time": engagementTime,
                     "fps": fps,
                     "object": OBJECT[object],
-                    "playable_ad_id": PlayableAdsManager.Instance().playableAdsName,
+                    "playable_ad_id": PlayableAdsManager.Instance.playableAdsName,
                     "operating_system": OPERATING_SYSTEM[this.os],
                     "package_name": this.packageName,
                     "gpu": this.gpu,
@@ -258,7 +258,7 @@ export class TrackingManager extends Component {
 
     private static postEvent(jsonInput: any): void {
         log(jsonInput);
-        if(sys.os == sys.OS.WINDOWS || !PlayableAdsManager.Instance().activeTracking) return;
+        if(sys.os == sys.OS.WINDOWS || !PlayableAdsManager.Instance.activeTracking) return;
         fetch(`https://www.google-analytics.com/mp/collect?firebase_app_id=${this.firebaseAppId}&api_secret=${this.apiSecret}`, {
             method: "POST",
             body: JSON.stringify(jsonInput)

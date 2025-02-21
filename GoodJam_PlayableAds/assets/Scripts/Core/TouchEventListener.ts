@@ -2,11 +2,14 @@ import { _decorator, Component, EventTouch, Input, input, Node, NodeEventType } 
 import { TrackingManager } from '../../base-script/PlayableAds/Tracking/TrackingManager';
 import { AudioManager } from '../AudioManager';
 import { PlayableAdsManager } from '../../base-script/PlayableAds/PlayableAdsManager';
+import { TutorialController } from './TutorialController';
+import { LevelLoader } from './LevelLoader';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchEventListener')
 export class TouchEventListener extends Component {
     
+  
     private _firstTouch: boolean = false;
     private static _instance: TouchEventListener = null;
     public static get Instance(): TouchEventListener {
@@ -45,9 +48,11 @@ export class TouchEventListener extends Component {
 
     public onFirstTouch(): void {
         this._firstTouch = true;
+        TutorialController.Instance.OffTut();
+        LevelLoader.Instance.tutNode.active = false;
         // GameManager.instance.state = EGameState.PLAYING;
         // GameManager.instance.nodeTapToPlay.active = false;
-        TrackingManager.FirstClick();
+        TrackingManager.firstClick();
         AudioManager.playBackground();
     }
 }

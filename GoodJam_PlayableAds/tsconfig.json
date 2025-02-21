@@ -4,7 +4,7 @@
 
   /* Add your custom configuration here. */
   "compilerOptions": {
-    "lib": ["ES7", "es2017"],
+    "lib": ["ES7", "es2017","DOM"],
     "strict": false,
     "types": ["node"],
     "typeRoots": ["./node_modules/@types"],

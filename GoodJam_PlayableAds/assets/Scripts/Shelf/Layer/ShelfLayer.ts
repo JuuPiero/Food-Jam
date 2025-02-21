@@ -22,7 +22,7 @@ export class ShelfLayer extends Component {
             }
         }
     }
-
+    
     public reset(): void {
         this.nodesPosition.forEach(node => {
             node.removeAllChildren();

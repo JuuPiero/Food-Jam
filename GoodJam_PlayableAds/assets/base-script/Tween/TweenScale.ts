@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, tween, UIOpacity, Vec3 } from 'cc';
+import { _decorator, Component, Node, Sprite, SpriteFrame, tween, UIOpacity, Vec3 } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('TweenScale')
@@ -16,6 +16,10 @@ export class TweenScale extends Component {
     @property
     repeatForever : boolean = false;
 
+    @property
+    spriteSwap : boolean = false;
+
+ 
 
     start() {
         this.ActionTween();
@@ -40,6 +44,7 @@ export class TweenScale extends Component {
             .to(this.duration, {opacity: 255} , {easing: "backOut"})
             .start();
         }else{
+            
             let currentScale = this.node.getScale();
 
             tween(this.node)
