@@ -1,4 +1,4 @@
-import { _decorator, CCInteger, Component, Node, tween, Vec3 } from 'cc';
+import { _decorator, CCBoolean, CCInteger, Component, Node, tween, Vec3 } from 'cc';
 import { LevelLoader } from './LevelLoader';
 import { BoxManager } from './BoxManager';
 import { Box } from '../Box/Box';
@@ -19,7 +19,8 @@ export class TutorialController extends Component {
 
     @property(Node)
     tutHand: Node = null;
-    
+    @property(CCBoolean)
+    enableTut: boolean= false;
     public tutBool: boolean = false;
 
     protected onLoad(): void {

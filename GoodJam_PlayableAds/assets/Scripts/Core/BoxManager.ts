@@ -1,4 +1,4 @@
-import { _decorator, CCInteger, Component, easing, instantiate, Node, NodePool, Prefab, tween, Vec3 } from 'cc';
+import { _decorator, CCBoolean, CCInteger, Component, easing, instantiate, Node, NodePool, Prefab, tween, Vec3 } from 'cc';
 import { Box } from '../Box/Box';
 import { ILevelData } from '../Data/ILevelData';
 import { ObjectPool } from '../Modules/ObjectPool';
@@ -8,6 +8,7 @@ import BoxDataFactory from '../BoxDataFactory';
 import { LevelLoader } from './LevelLoader';
 import { GameManager } from './GameManager';
 import { EGameState } from './EGameState';
+import { TutorialController } from './TutorialController';
 const { ccclass, property } = _decorator;
 
 @ccclass('BoxManager')
@@ -28,6 +29,9 @@ export class BoxManager extends Component {
     @property(CCInteger)
     tutorialID: number = 0;
 
+    
+    enableTut: boolean = false;
+
     public firstBoxSpawn: boolean = false;
     public levelLoader: LevelLoader = null;
     private _pool = new NodePool();
@@ -45,6 +49,7 @@ export class BoxManager extends Component {
             slot.boxManager = this;
         });
         BoxDataFactory.initialize(data);
+        this.enableTut = TutorialController.Instance.enableTut;
         this.fill();
     }
 
@@ -113,10 +118,11 @@ export class BoxManager extends Component {
     public fill(): void {
         for (let i = 0; i < this.nodePositions.length; i++) {
             let node = this.nodePositions[i];
-            if(i==0)
-            {
-                if(!this.firstBoxSpawn)
+           
+                if(!this.firstBoxSpawn && this.enableTut)
                 {
+                     if(i==0)
+                    {
                     if (node.children.length === 0) {
                         let boxData = BoxDataFactory.getTutorialBoxData(this.tutorialID);
                         if (!boxData || !boxData.id) {

@@ -87,6 +87,7 @@ export class LevelLoader extends Component {
             shelf.initialize(data.cells[i]);
         }
         this.boxManager.initialize(data);
+        if(TutorialController.Instance.enableTut)
         this.onTut();
         
        
@@ -102,7 +103,7 @@ onTut()
 }
 animTut()
     {
-        var targetTutObj = this.shelfContainer.children[this.tutShelfIndex].getComponent(Shelf).currentLayer.getGoods()[0];
+        var targetTutObj = this.shelfContainer.children[this.tutShelfIndex].getComponent(Shelf).currentLayer.getGoods()[1];
         if(!targetTutObj || !this.tutNode || targetTutObj.node.active == false || this.tutNode.active ==false)
             return;
         

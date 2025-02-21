@@ -48,8 +48,12 @@ export class TouchEventListener extends Component {
 
     public onFirstTouch(): void {
         this._firstTouch = true;
-        TutorialController.Instance.OffTut();
-        LevelLoader.Instance.tutNode.active = false;
+        if(TutorialController.Instance.enableTut)
+        {
+            TutorialController.Instance.OffTut();
+            LevelLoader.Instance.tutNode.active = false;
+        }
+       
         // GameManager.instance.state = EGameState.PLAYING;
         // GameManager.instance.nodeTapToPlay.active = false;
         TrackingManager.firstClick();

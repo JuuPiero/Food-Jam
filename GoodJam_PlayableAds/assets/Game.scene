@@ -3346,9 +3346,7 @@
     "animSlot": {
       "__id__": 92
     },
-    "uiOpacity": {
-      "__id__": 84
-    },
+    "uiOpacity": null,
     "_id": "1cxjsjM/5PX70I1vRBOhgT"
   },
   {
@@ -3887,9 +3885,7 @@
     "animSlot": {
       "__id__": 108
     },
-    "uiOpacity": {
-      "__id__": 100
-    },
+    "uiOpacity": null,
     "_id": "d1liq2OHdGS4wC56p4zg+t"
   },
   {
@@ -4428,9 +4424,7 @@
     "animSlot": {
       "__id__": 124
     },
-    "uiOpacity": {
-      "__id__": 116
-    },
+    "uiOpacity": null,
     "_id": "16i8SuQChLaoi1OcJrVjhw"
   },
   {
@@ -4969,9 +4963,7 @@
     "animSlot": {
       "__id__": 140
     },
-    "uiOpacity": {
-      "__id__": 132
-    },
+    "uiOpacity": null,
     "_id": "8dIZi8w21EtK00LWBExfvd"
   },
   {
@@ -5510,9 +5502,7 @@
     "animSlot": {
       "__id__": 156
     },
-    "uiOpacity": {
-      "__id__": 148
-    },
+    "uiOpacity": null,
     "_id": "f95/l8WQJNL74/rlj0v/QK"
   },
   {
@@ -6426,6 +6416,7 @@
     "tutHand": {
       "__id__": 179
     },
+    "enableTut": true,
     "_id": "d8IS/Ht9pHELec5jzFG0TD"
   },
   {
