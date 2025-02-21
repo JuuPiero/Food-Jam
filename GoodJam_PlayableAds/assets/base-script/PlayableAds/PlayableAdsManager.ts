@@ -1,4 +1,4 @@
-import { _decorator,Enum, Game, game, Input, input} from 'cc';
+import { _decorator, Enum, Game, game, Input, input } from 'cc';
 import super_html_playable from './super_html_playable';
 import { SingletonInSceneComponent } from '../Pattern/SingletonInSceneComponent';
 import { TrackingManager } from './Tracking/TrackingManager';
@@ -9,31 +9,34 @@ const { ccclass, property } = _decorator;
 
 @ccclass('PlayableAdsManager')
 export class PlayableAdsManager extends SingletonInSceneComponent {
-    urlPlayStore : string = "https://play.google.com/store/apps/details?id=com.ig.goods.jam";
-    urlAppStore : string = "https://play.google.com/store/apps/details?id=com.ig.goods.jam";
-    static instanceID: string = "PlayableAdsManager";
-    playableAdsName : string = "iKame";
+    private urlPlayStore: string = "https://play.google.com/store/apps/details?id=com.ig.goods.jam";
+    private urlAppStore: string = "https://play.google.com/store/apps/details?id=com.ig.goods.jam"; 
+    private static instanceId: string = "PlayableAdsManager";
+    private playableAdsName: string = "iKame";
 
-    readonly titleDefault : string = "Cocos Creator - iKameSTPA_PlayableAds";
+    private readonly titleDefault: string = "Cocos Creator - iKameSTPA_PlayableAds";
 
-    network : string = "";
+    private network: string = "";
 
     @property
-    activeTracking : boolean = false;
+    private activeTracking: boolean = false;
     @property
-    logDebug : boolean = false;
-    touchedSpecific : boolean;
-    firstClicked : boolean = false;
-    runningGame : boolean = true;
+    private logDebug: boolean = false;
+    private touchedSpecific: boolean;
+    private firstClicked: boolean = false;
+    private runningGame: boolean = true;
 
-    public static instance: PlayableAdsManager = null;
-    onLoad(): void {
-        PlayableAdsManager.instance = this;
-        this.SetLinkStore();
+    private static _instance: PlayableAdsManager = null;
+    public static get Instance(): PlayableAdsManager {
+        return this._instance;
+    }
+
+    protected onLoad(): void {
+        PlayableAdsManager._instance = this;
+        this.setLinkStore();
 
         // Gọi EventListener.emit(GameEvent.CLICK); vào hàm click của game 
-        EventListener.on(GameEvent.CLICK, this.ActionFirstClicked, this);
-        
+        EventListener.on(GameEvent.CLICK, this.actionFirstClicked, this);
 
         const pageTitle = document.title;
         if(pageTitle == this.titleDefault) return;
@@ -54,82 +57,83 @@ export class PlayableAdsManager extends SingletonInSceneComponent {
     
     protected start(): void {
         TrackingManager.gameStart();
-        game.on(Game.EVENT_RESUME, ()=> this.onGameResume());
-        game.on(Game.EVENT_PAUSE, ()=> this.onGamePause());
-        game.on(Game.EVENT_HIDE, ()=> this.onGameHide());
+        game.on(Game.EVENT_RESUME, () => this.onGameResume());
+        game.on(Game.EVENT_PAUSE, () => this.onGamePause());
+        game.on(Game.EVENT_HIDE, () => this.onGameHide());
     }
-    onGameResume(){
+
+    private onGameResume(): void {
         this.runningGame = true;
         if(this.logDebug){
             console.log("On Game Resume");
         }
     }
-    onGamePause(){
+
+    private onGamePause(): void {
         this.runningGame = false;
         if(this.logDebug){
             console.log("On Game Pause");
         }
     }
-    onGameHide(){
+
+    private onGameHide(): void {
         this.runningGame = false;
         if(this.logDebug){
             console.log("On Game Hide");
         }
     }
-    SetLinkStore(){
-        // Điều chỉnh lại link này theo từng dự án
 
+    private setLinkStore(): void {
+        // Điều chỉnh lại link này theo từng dự án
         this.urlPlayStore = "https://ikameglobal.com/";
         this.urlAppStore = "https://ikameglobal.com/";
         super_html_playable.set_google_play_url(this.urlPlayStore);
         super_html_playable.set_app_store_url(this.urlAppStore);
         console.log("iKame Playstore :" + this.urlPlayStore)
         console.log("iKame AppStore:" + this.urlAppStore)
-               
     }
-    ActionFirstClicked(){
+
+    private actionFirstClicked(): void {
         if(!this.firstClicked){
-            TrackingManager.FirstClick();
+            TrackingManager.firstClick();
             this.firstClicked = true;
 
             // Bật background Music sau lần đầu play PA. Đây là Policy của web nên bắt buộc phải follow.
             //AudioManager.instance.playBackgroundMusic();
         }
-       
     }
-    countTimeTracking : number = 3;
-    totalTimePlay :  number = 0;
+
+    private countTimeTracking: number = 3;
+    private totalTimePlay: number = 0;
 
     protected update(dt: number): void {
         if(this.runningGame){
-            this.totalTimePlay+= dt;
+            this.totalTimePlay += dt;
             this.countTimeTracking -= dt;
             if(this.countTimeTracking <= 0){
                 this.countTimeTracking = 3;
-                TrackingManager.UserEngagement(this.totalTimePlay);
+                TrackingManager.userEngagement(this.totalTimePlay);
             }
         }
     }
 
     // Dùng khi click vào button vào store
-    OpenStore(){
-        TrackingManager.ClickConversion();
+    public openStore(): void {
+        TrackingManager.clickConversion();
         super_html_playable.download();
         super_html_playable.game_end();
     }
 
     // Dùng khi không click mà đẩy thẳng vào store
-    ForceOpenStore(){
-        TrackingManager.ForceConversion();
+    public forceOpenStore(): void {
+        TrackingManager.forceConversion();
         super_html_playable.download();
         super_html_playable.game_end();
     }
 
-    static LogDebug(message : string){
+    public static logDebug(message: string): void {
         if(PlayableAdsManager.Instance().logDebug){
             console.log(message);
         }
     }
 }
-
-

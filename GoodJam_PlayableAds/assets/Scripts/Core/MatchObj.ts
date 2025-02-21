@@ -1,6 +1,6 @@
 import { _decorator, Button, CCInteger, Color, Component, Node, Sprite, SpriteFrame, tween, Vec3 } from 'cc';
 import { GameManager } from './GameManager';
-import { AudioManager, AudioType } from '../AudioManager';
+import { AudioManager } from '../AudioManager';
 import { Shelf } from '../Shelf/Shelf';
 const { ccclass, property } = _decorator;
 

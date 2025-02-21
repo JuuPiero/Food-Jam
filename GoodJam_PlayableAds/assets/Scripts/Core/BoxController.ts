@@ -1,5 +1,5 @@
 import { _decorator, Component, instantiate, Layout, math, Node, Prefab, SpriteFrame, Tween, tween, Vec3 } from 'cc';
-import { AudioManager, AudioType } from '../AudioManager';
+import { AudioManager } from '../AudioManager';
 import { PromiseUtils } from '../PromiseUtils';
 import { Box } from '../Box/Box';
 const { ccclass, property } = _decorator;
