@@ -31,6 +31,9 @@ export class ScreenOrientation extends Component {
     @property(Camera)
     uiCamera: Camera = null;
 
+    @property(Node)
+    nodeBGHeader: Node = null;
+
     protected start(): void {
         this.onSizeChanged();
     }
@@ -72,12 +75,15 @@ export class ScreenOrientation extends Component {
         // Chỉnh kích thước camera
         switch (this.orientation) {
             case EScreenOrientation.PORTRAIT:
+                this.nodeBGHeader.active = true;
                 this.enablePortrait();
                 break;
             case EScreenOrientation.LANDSCAPE:
+                this.nodeBGHeader.active = false;
                 this.enableLandscape();
                 break;
             case EScreenOrientation.SQUARE:
+                this.nodeBGHeader.active = false;
                 this.enableSquare();
                 break;
         }
