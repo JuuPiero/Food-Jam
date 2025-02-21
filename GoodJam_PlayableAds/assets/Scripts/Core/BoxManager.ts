@@ -75,10 +75,14 @@ export class BoxManager extends Component {
             if (this.slotManager.fullSlot()) {
                 GameManager.Instance.State = EGameState.LOSE;
             }
+            if (this.slotManager.checkWarning()) {
+                this.slotManager.showWarning();
+            }
             return true;
         }
         return false;
     }
+
     public pickUpTut(goods:Goods)
     {// Duyệt qua các box xem có box nào cùng id với goods không
         let boxMatch = null;

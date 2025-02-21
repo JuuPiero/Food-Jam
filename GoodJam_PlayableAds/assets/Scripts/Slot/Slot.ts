@@ -1,9 +1,10 @@
-import { _decorator, Component, Node, tween, Vec3 } from 'cc';
+import { _decorator, Component, Node, tween, UIOpacity, Vec3 } from 'cc';
 import { Goods } from '../Goods/Goods';
 import { BezierTween } from '../Modules/BezierTween';
 import { LevelLoader } from '../Core/LevelLoader';
 import { BoxManager } from '../Core/BoxManager';
 import { TutorialController } from '../Core/TutorialController';
+import { AudioManager, ESoundEffect } from '../AudioManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('Slot')

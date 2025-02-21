@@ -8,7 +8,8 @@ export enum ESoundEffect {
     DROP_SLOT,
     COMPLETE_BOX,
     WIN,
-    LOSE
+    LOSE,
+    WARNING
 }
 
 @ccclass('AudioManager')
