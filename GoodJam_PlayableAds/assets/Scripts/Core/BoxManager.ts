@@ -33,7 +33,11 @@ export class BoxManager extends Component {
     private _pool = new NodePool();
     private _boxesActive: Box[] = [];
     private _boxes: Box[] = [];
-
+    public static instance:BoxManager;
+    
+    protected onLoad(): void {
+    BoxManager.instance = this;
+}   
     public initialize(data: ILevelData): void {
         this.reset();
         this.initPool();

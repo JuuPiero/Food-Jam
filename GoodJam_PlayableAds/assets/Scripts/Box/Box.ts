@@ -89,12 +89,12 @@ export class Box extends Component implements IBox {
             }
             boxSlot.addTut(goods).then(goods => {
                 goods.animGoods.play("GoodsJump");
-                this._count++;
-                if (this._count === this._total) {
-                    this.complete().then(() => {
-                        this.boxManager.onBoxComplete(this);
-                    });
-                }
+                // this._count++;
+                // if (this._count === this._total) {
+                //     this.complete().then(() => {
+                //         this.boxManager.onBoxComplete(this);
+                //     });
+                // }
             })
             return;
         }

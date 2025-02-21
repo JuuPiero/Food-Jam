@@ -12,6 +12,7 @@ import { GameManager } from '../Core/GameManager';
 import { EGameState } from '../Core/EGameState';
 import { TouchEventListener } from '../Core/TouchEventListener';
 import * as fs from "fs";
+import { BoxManager } from '../Core/BoxManager';
 
 const { ccclass, property } = _decorator;
 
@@ -79,7 +80,7 @@ export class Goods extends State<EGoodsState, GoodsState> implements GoodsBase {
     }
     public TutAnim()
     {
-        let boxManager = this.shelf.boxManager;
+        let boxManager = BoxManager.instance;
         boxManager.pickUpTut(this);
     }
     private pickUp(): void {

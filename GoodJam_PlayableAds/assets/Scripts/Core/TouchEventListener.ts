@@ -5,6 +5,7 @@ import { TrackingManager } from '../../base-script/PlayableAds/Tracking/Tracking
 import { AudioManager } from '../AudioManager';
 import { PlayableAdsManager } from '../../base-script/PlayableAds/PlayableAdsManager';
 import { TutorialController } from './TutorialController';
+import { LevelLoader } from './LevelLoader';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchEventListener')
@@ -50,6 +51,7 @@ export class TouchEventListener extends Component {
     public onFirstTouch(): void {
         this._firstTouch = true;
         TutorialController.Instance.OffTut();
+        LevelLoader.Instance.tutNode.active = false;
         // GameManager.instance.state = EGameState.PLAYING;
         // GameManager.instance.nodeTapToPlay.active = false;
         TrackingManager.FirstClick();

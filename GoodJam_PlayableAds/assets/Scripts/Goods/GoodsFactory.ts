@@ -13,6 +13,9 @@ export class GoodsFactory extends Component {
     @property(Prefab)
     prefabsGoods: Prefab = null;
 
+    @property(Prefab)
+    prefabsGoodsTut: Prefab = null;
+
     @property([SpriteFrame])
     sfrGoods: SpriteFrame[] = [];
 
@@ -24,7 +27,14 @@ export class GoodsFactory extends Component {
         goods.initialize(id, this.sfrGoods[id]);
         return goods;
     }
-
+    public createGoodsTut(id: number): Goods {
+        if (id === 0)
+            return null;
+        let node = instantiate(this.prefabsGoodsTut);
+        let goods = node.getComponent(Goods);
+        goods.initialize(id, this.sfrGoods[id]);
+        return goods;
+    }
     public getSpriteFrameByID(id: number): SpriteFrame {
         if (id === 0)
             return null;

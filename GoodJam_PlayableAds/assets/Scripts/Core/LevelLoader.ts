@@ -1,10 +1,14 @@
-import { _decorator, CCInteger, Component, instantiate, JsonAsset, Layers, Node, Prefab, Sprite, SpriteFrame, TextAsset, Vec2, Vec3 } from 'cc';
+import { _decorator, CCInteger, Component, instantiate, JsonAsset, Layers, Node, Prefab, Sprite, SpriteFrame, TextAsset, tween, Vec2, Vec3 } from 'cc';
 import { GoodsFactory } from '../Goods/GoodsFactory';
 import { EShelfType, ILevelData } from '../Data/ILevelData';
 import { Shelf } from '../Shelf/Shelf';
 import { BoxManager } from './BoxManager';
 import { HandleData } from './HandleData';
 import { TutorialController } from './TutorialController';
+import { Goods } from '../Goods/Goods';
+import { Box } from '../Box/Box';
+import { BoxSlot } from '../Slot/BoxSlot';
+import { BezierTween } from '../Modules/BezierTween';
 
 const { ccclass, property } = _decorator;
 
@@ -20,17 +24,25 @@ export class LevelLoader extends Component {
     @property([Prefab])
     prefabsShelf: Prefab[] = [];
 
-    @property([JsonAsset])
-    jsonLevelData: JsonAsset[] = [];
+    @property(Node)
+    tutNode: Node = null;
 
     @property(Node)
-    nodeLevelParent: Node = null;
+    tutParent: Node = null;
 
     @property(Node)
     shelfContainer: Node = null;
 
     @property(CCInteger)
     tutShelfIndex: number;
+
+    @property([JsonAsset])
+    jsonLevelData: JsonAsset[] = [];
+
+    @property(Node)
+    nodeLevelParent: Node = null;
+
+
 
     @property
     columns: number = 0;
@@ -75,15 +87,53 @@ export class LevelLoader extends Component {
             shelf.initialize(data.cells[i]);
         }
         this.boxManager.initialize(data);
-        this.OnTut();
+        this.onTut();
+        
+       
     }
-    OnTut()
+onTut()
+{
+    TutorialController.Instance.OnTut();
+    let tutObject = LevelLoader.Instance.goodsFactory.createGoodsTut(53);
+    this.tutNode = tutObject.node;
+    this.tutNode.parent = BoxManager.instance.nodeTopLayer;
+    this.tutParent = BoxManager.instance.nodePositions[0].children[0].getComponent(Box).nodeSlots.children[0].getComponent(BoxSlot).nodeParent;
+    setTimeout(()=>{ this.animTut();},500)
+}
+animTut()
     {
-        TutorialController.Instance.OnTut();
-        var tutShelf = this.shelfContainer.children[this.tutShelfIndex].getComponent(Shelf);
-        tutShelf.tutAnim();
+        var targetTutObj = this.shelfContainer.children[this.tutShelfIndex].getComponent(Shelf).currentLayer.getGoods()[0];
+        if(!targetTutObj || !this.tutNode || targetTutObj.node.active == false || this.tutNode.active ==false)
+            return;
+        
+        this.tutNode.setWorldPosition(targetTutObj.node.getWorldPosition());
+        this.tutNode.setWorldScale(targetTutObj.node.getWorldScale());
+
+        this.jump(this.tutNode);
+        setTimeout(()=>{ this.animTut();},1500)
+        // tween(this.tutNode)
+        // .to(1,{worldPosition: this.tutParent.getWorldPosition()})
+        // .call(()=>{this.animTut();})
+        // .start()
     }
 
+    jump(target: Node)
+    {
+                    tween(target)
+                    .to(1,{worldScale: this.tutParent.getWorldScale()})
+                    .start();
+                    BezierTween(target, 1 , target.getWorldPosition(), new Vec3(this.tutParent.worldPosition.x, this.tutParent.worldPosition.y + 500, this.tutParent.worldPosition.z), this.tutParent.worldPosition)
+                    .then(()=>{
+                        tween(target)
+                        .to(.1,{scale: new Vec3(target.getScale().x*1.25,target.getScale().y *.75,target.getScale().z)})
+                        .call(()=>{
+                            tween(target)
+                            .to(.1,{scale: new Vec3(target.getScale().x/1.25,target.getScale().y /.75,target.getScale().z)})
+                            .start();
+                    })
+                        .start();
+    });
+}
 
     public reset(): void {
 
