@@ -45,6 +45,10 @@ export class GameManager extends State<EGameState, GameState> {
     protected start(): void {
         GameManager._instance = this;
         this.State = EGameState.INITIALIZATION;
+        
+    }
+    startCounting()
+    {
         this.schedule(this.updateCountdown, 1); 
     }
     updateCountdown() {

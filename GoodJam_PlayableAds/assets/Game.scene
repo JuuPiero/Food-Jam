@@ -6358,8 +6358,8 @@
       "__uuid__": "cc63e542-39c1-4125-8d20-a4ac30fca044@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
-    "duration": 0.78,
-    "delay": 0.2,
+    "duration": 0.77,
+    "delay": 0,
     "_id": "feYkkftuFJeZJcqjG39ldz"
   },
   {
@@ -13335,7 +13335,7 @@
     "__prefab": null,
     "_alignFlags": 12,
     "_target": null,
-    "_left": 0.25,
+    "_left": 0.28,
     "_right": 0,
     "_top": 25,
     "_bottom": 0.3,
@@ -16432,6 +16432,9 @@
     },
     "uiCamera": {
       "__id__": 197
+    },
+    "nodeBGHeader": {
+      "__id__": 19
     },
     "_id": "86fpcMW9lGhaWRegm6I+AX"
   },
