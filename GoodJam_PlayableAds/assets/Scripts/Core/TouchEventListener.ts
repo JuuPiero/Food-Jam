@@ -4,6 +4,7 @@ import { AudioManager } from '../AudioManager';
 import { PlayableAdsManager } from '../../base-script/PlayableAds/PlayableAdsManager';
 import { TutorialController } from './TutorialController';
 import { LevelLoader } from './LevelLoader';
+import { GameManager } from './GameManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchEventListener')
@@ -38,6 +39,7 @@ export class TouchEventListener extends Component {
 
     private onTouchStart(event: EventTouch): void {
         console.log('TouchEventListener: onTouchStart');
+        GameManager.Instance.countdownTime = GameManager.Instance.timeLimit;
         if (!this._firstTouch) {
             this.onFirstTouch();
         }

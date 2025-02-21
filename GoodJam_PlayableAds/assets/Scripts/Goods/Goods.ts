@@ -74,6 +74,11 @@ export class Goods extends State<EGoodsState, GoodsState> implements GoodsBase {
         if (state.includes(GameManager.Instance.State)) {
             if (this.State === EGoodsState.ACTIVE) {
                 TouchEventListener.Instance.onTouchGoods();
+                GameManager.Instance.moveLimit--;
+                if(GameManager.Instance.moveLimit<=0)
+                {
+                    GameManager.Instance.autoShowStore.active = true;
+                }
                 this.pickUp();
             }   
         }
