@@ -2711,7 +2711,7 @@
         "__id__": 64
       }
     ],
-    "tutorialID": 41,
+    "tutorialID": 83,
     "_id": "23zKBA1ClJGbbHcKzbHZXu"
   },
   {
@@ -8554,7 +8554,8 @@
     "autoShowStore": {
       "__id__": 276
     },
-    "moveLimit": 20,
+    "moveLimit": 12,
+    "timeLimit": 10,
     "_id": "bdYW+RBfBPa7fE/KRcIhjD"
   },
   {
@@ -8595,7 +8596,7 @@
     "tutShelfIndex": 13,
     "jsonLevelData": [
       {
-        "__uuid__": "012decd9-193a-49a0-bbe2-9f3929abedce",
+        "__uuid__": "262ab4b9-8a10-4012-96f2-bbcb9d1ded4a",
         "__expectedType__": "cc.JsonAsset"
       }
     ],
