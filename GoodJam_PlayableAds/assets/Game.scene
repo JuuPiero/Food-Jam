@@ -2708,7 +2708,7 @@
         "__id__": 64
       }
     ],
-    "tutorialID": 53,
+    "tutorialID": 41,
     "_id": "23zKBA1ClJGbbHcKzbHZXu"
   },
   {
@@ -6249,7 +6249,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 123.956,
+      "x": 291.504,
       "y": 102.606,
       "z": 0
     },
@@ -8588,7 +8588,7 @@
     "tutShelfIndex": 13,
     "jsonLevelData": [
       {
-        "__uuid__": "f8662e49-5522-4882-97f7-c4f20e064b4c",
+        "__uuid__": "012decd9-193a-49a0-bbe2-9f3929abedce",
         "__expectedType__": "cc.JsonAsset"
       }
     ],

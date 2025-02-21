@@ -88,25 +88,28 @@ export class LevelLoader extends Component {
         }
         this.boxManager.initialize(data);
         if(TutorialController.Instance.enableTut)
-        this.onTut();
+            this.onTut();
         
        
     }
 onTut()
 {
     TutorialController.Instance.OnTut();
-    let tutObject = LevelLoader.Instance.goodsFactory.createGoodsTut(53);
+    let tutObject = LevelLoader.Instance.goodsFactory.createGoodsTut(BoxManager.instance.tutorialID);
     this.tutNode = tutObject.node;
     this.tutNode.parent = BoxManager.instance.nodeTopLayer;
     this.tutParent = BoxManager.instance.nodePositions[0].children[0].getComponent(Box).nodeSlots.children[0].getComponent(BoxSlot).nodeParent;
+    var targetTutObj = this.shelfContainer.children[this.tutShelfIndex].getComponent(Shelf).currentLayer.getGoods()[1];
+    this.tutNode.setWorldPosition(targetTutObj.node.getWorldPosition());
+    this.tutNode.setWorldScale(targetTutObj.node.getWorldScale());
     setTimeout(()=>{ this.animTut();},500)
 }
 animTut()
     {
         var targetTutObj = this.shelfContainer.children[this.tutShelfIndex].getComponent(Shelf).currentLayer.getGoods()[1];
+        
         if(!targetTutObj || !this.tutNode || targetTutObj.node.active == false || this.tutNode.active ==false)
             return;
-        
         this.tutNode.setWorldPosition(targetTutObj.node.getWorldPosition());
         this.tutNode.setWorldScale(targetTutObj.node.getWorldScale());
 
