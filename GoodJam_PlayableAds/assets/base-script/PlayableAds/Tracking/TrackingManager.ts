@@ -1,267 +1,270 @@
-import { _decorator, Component, director, log, Node, screen } from 'cc';
+import { _decorator, Component, director, log, Node, screen } from "cc";
 const { ccclass, property } = _decorator;
-import { sys } from "cc"; 
-import { PlayableAdsManager } from '../PlayableAdsManager';
-import { ACTION_NAME, ACTION_TYPE, OBJECT, OPERATING_SYSTEM, RESULT, USER_RETURN } from './Tracker/Output/DefineEventStruct';
+import { sys } from "cc";
+import { PlayableAdsManager } from "../PlayableAdsManager";
+import { ACTION_NAME, ACTION_TYPE, OBJECT, OPERATING_SYSTEM, RESULT, USER_RETURN } from "./Tracker/Output/DefineEventStruct";
 
-@ccclass('TrackingManager')
+@ccclass("TrackingManager")
 export class TrackingManager extends Component {
-    static userPseudoID : string = "";
+    private static userPseudoId: string = "";
 
-    static api_secret : string = `ymcwxS12SSi6IavS3-Jj-Q`;
-    static firebase_app_id : string= `1:444377725360:android:b0bef9148a16a69aa27e75`;
-    static package_name : string = "com.ig.goods.jam";
-    static os : OPERATING_SYSTEM = OPERATING_SYSTEM.NONE;
-    static GPU : string = "webgl";
+    private static apiSecret: string = "ymcwxS12SSi6IavS3-Jj-Q";
+    private static firebaseAppId: string = "1:444377725360:android:b0bef9148a16a69aa27e75";
+    private static packageName: string = "com.ig.goods.jam";
+    private static os: OPERATING_SYSTEM = OPERATING_SYSTEM.NONE;
+    private static gpu: string = "webgl";
 
-    static returnGame : USER_RETURN = USER_RETURN._false;
-    static currentScreen : string = "_level_1";
+    private static returnGame: USER_RETURN = USER_RETURN._false;
+    private static currentScreen: string = "_level_1";
 
     protected onLoad(): void {
-        TrackingManager.userPseudoID = this.generateUniqueString();
-        TrackingManager.SetOS();
-        TrackingManager.SetGPU();
+        TrackingManager.userPseudoId = this.generateUniqueString();
+        TrackingManager.setOS();
+        TrackingManager.setGPU();
     }
-    static SetOS(){
+
+    private static setOS(): void {
         switch (sys.os) {
             case sys.OS.ANDROID:
-                this.os  = OPERATING_SYSTEM.ANDROID;
+                this.os = OPERATING_SYSTEM.ANDROID;
                 break;
             case sys.OS.IOS:
-                this.os  = OPERATING_SYSTEM.IOS;
+                this.os = OPERATING_SYSTEM.IOS;
                 break;
             case sys.OS.WINDOWS:
-                this.os  = OPERATING_SYSTEM.NONE;
+                this.os = OPERATING_SYSTEM.NONE;
                 break;
         }
     }
-    static SetGPU(){
-        var SceneData : any = director.root.pipeline.pipelineSceneData;
-        this.GPU = SceneData._device._renderer;
-    }
 
+    private static setGPU(): void {
+        const sceneData: any = director.root.pipeline.pipelineSceneData;
+        this.gpu = sceneData._device._renderer;
+    }
 
     //#region LISTEN EVENT
-    static gameStart(){
-        this.LogEvent(ACTION_NAME._start, ACTION_TYPE._start);
+    public static gameStart(): void {
+        this.logEvent(ACTION_NAME._start, ACTION_TYPE._start);
     }
 
-    static FirstClick(){
-        this.LogEvent(ACTION_NAME._first_click, ACTION_TYPE._action);
+    public static firstClick(): void {
+        this.logEvent(ACTION_NAME._first_click, ACTION_TYPE._action);
     }
 
-    static Click(){
-        this.LogEvent(ACTION_NAME._click, ACTION_TYPE._action);
+    public static click(): void {
+        this.logEvent(ACTION_NAME._click, ACTION_TYPE._action);
     }
 
-    static UserEngagement(time : number){
-        var fps = director.root.fps;
-        this.LogEvent_Time(
+    public static userEngagement(time: number): void {
+        const fps: number = director.root.fps;
+        this.logEventTime(
             time.toFixed(2).toString(),
-            fps.toString());
+            fps.toString()
+        );
     }
 
-    static WinLevel(){
-        this.LogEvent_Result(RESULT._win);
+    public static winLevel(): void {
+        this.logEventResult(RESULT._win);
         this.currentScreen = "_Win_Screen";
-        this.LogEvent_ShowScreen();
+        this.logEventShowScreen();
     }
 
-    static LoseLevel(){
-        this.LogEvent_Result(RESULT._lose);
+    public static loseLevel(): void {
+        this.logEventResult(RESULT._lose);
         this.currentScreen = "_Lose_Screen";
-        this.LogEvent_ShowScreen();
+        this.logEventShowScreen();
     }
 
-    static ClickConversion(){
-        this.LogEvent_Button("_click");
+    public static clickConversion(): void {
+        this.logEventButton("_click");
         this.returnGame = USER_RETURN._true;
     }
 
-    static ForceConversion(){
-        TrackingManager.LogEvent_Button("_force");
+    public static forceConversion(): void {
+        TrackingManager.logEventButton("_force");
         this.returnGame = USER_RETURN._true;
     }
-    
     //#endregion
 
-
     //#region LOG EVENT
-    generateUniqueString(): string {
-        const characters = 'abcdef0123456789';
-        let randomStr = '';
-        const charactersLength = characters.length;
-        const currentTime = new Date().getTime();
-        const timeString = currentTime.toString(16);
-        const timeStringLength = timeString.length;
+    private generateUniqueString(): string {
+        const characters: string = "abcdef0123456789";
+        let randomStr: string = "";
+        const charactersLength: number = characters.length;
+        const currentTime: number = new Date().getTime();
+        const timeString: string = currentTime.toString(16);
+        const timeStringLength: number = timeString.length;
         for (let i = 0; i < 32 - timeStringLength; i++) {
             randomStr += characters.charAt(Math.floor(Math.random() * charactersLength));
         }
         return timeString + randomStr;
     }
-    static LogEvent(
-        action_name : ACTION_NAME, 
-        action_type : ACTION_TYPE,
-        object : OBJECT = OBJECT.level_status)
-        {
-        var jsonInput = {
-            app_instance_id: this.userPseudoID,
-            events: [{
-                name: 'playable_level',
-                params: {
-                    "action_type": ACTION_TYPE[action_type], // "start", "action", "end"
-                    "action_name": ACTION_NAME[action_name],
-                    "screen": this.currentScreen,
-                    "user_return": USER_RETURN[this.returnGame],
-                    "object": OBJECT[object],
-                    "playable_ad_id": PlayableAdsManager.Instance().playableAdsName,
-                    "operating_system": OPERATING_SYSTEM[this.os],
-                    "package_name": this.package_name,
-                    "gpu": this.GPU,
-                },
-            }]
-        }
-        this.PostEvent(jsonInput);
-    }
-    static LogEvent_Click(
-        action_type : ACTION_TYPE = ACTION_TYPE._action, 
-        action_name : ACTION_NAME = ACTION_NAME._click, 
-        object : OBJECT = OBJECT.level_status)
-        {
 
-        var jsonInput = {
-            app_instance_id: this.userPseudoID,
+    private static logEvent(
+        actionName: ACTION_NAME,
+        actionType: ACTION_TYPE,
+        object: OBJECT = OBJECT.level_status
+    ): void {
+        const jsonInput = {
+            app_instance_id: this.userPseudoId,
             events: [{
-                name: 'playable_level',
+                name: "playable_level",
                 params: {
-                    "action_type": ACTION_TYPE[action_type], // "start", "action", "end"
-                    "action_name": ACTION_NAME[action_name],
+                    "action_type": ACTION_TYPE[actionType],
+                    "action_name": ACTION_NAME[actionName],
                     "screen": this.currentScreen,
                     "user_return": USER_RETURN[this.returnGame],
                     "object": OBJECT[object],
-                    "playable_ad_id": PlayableAdsManager.Instance().playableAdsName,
+                    "playable_ad_id": PlayableAdsManager.Instance.playableAdsName,
                     "operating_system": OPERATING_SYSTEM[this.os],
-                    "package_name": this.package_name,
-                    "gpu": this.GPU,
+                    "package_name": this.packageName,
+                    "gpu": this.gpu,
                 },
             }]
         }
-        this.PostEvent(jsonInput);
-    }
-    static LogEvent_ShowScreen(
-        action_type : ACTION_TYPE = ACTION_TYPE._action,
-        action_name : ACTION_NAME = ACTION_NAME._show_screen,
-        object : OBJECT = OBJECT.conversion)
-        {
-        var jsonInput = {
-            app_instance_id: this.userPseudoID,
-            events: [{
-                name: 'playable_level',
-                params: {
-                    "action_type": ACTION_TYPE[action_type], // "start", "action", "end"
-                    "action_name": ACTION_NAME[action_name],
-                    "screen": this.currentScreen,
-                    "user_return": USER_RETURN[this.returnGame],
-                    "object": OBJECT[object],
-                    "playable_ad_id": PlayableAdsManager.Instance().playableAdsName,
-                    "operating_system": OPERATING_SYSTEM[this.os],
-                    "package_name": this.package_name,
-                    "gpu": this.GPU,
-                },
-            }]
-        }
-        this.PostEvent(jsonInput);
+        this.postEvent(jsonInput);
     }
 
-    static LogEvent_Result(
-        result : RESULT,
-        action_type : ACTION_TYPE = ACTION_TYPE._end, 
-        action_name : ACTION_NAME = ACTION_NAME._finish,
-        object : OBJECT = OBJECT.level_status)
-        {
-        var jsonInput = {
-            app_instance_id: this.userPseudoID,
+    private static logEventClick(
+        actionType: ACTION_TYPE = ACTION_TYPE._action,
+        actionName: ACTION_NAME = ACTION_NAME._click,
+        object: OBJECT = OBJECT.level_status
+    ): void {
+        const jsonInput = {
+            app_instance_id: this.userPseudoId,
             events: [{
-                name: 'playable_level',
+                name: "playable_level",
                 params: {
-                    "action_type": ACTION_TYPE[action_type], // "start", "action", "end"
-                    "action_name": ACTION_NAME[action_name],
+                    "action_type": ACTION_TYPE[actionType],
+                    "action_name": ACTION_NAME[actionName], 
+                    "screen": this.currentScreen,
+                    "user_return": USER_RETURN[this.returnGame],
+                    "object": OBJECT[object],
+                    "playable_ad_id": PlayableAdsManager.Instance.playableAdsName,
+                    "operating_system": OPERATING_SYSTEM[this.os],
+                    "package_name": this.packageName,
+                    "gpu": this.gpu,
+                },
+            }]
+        }
+        this.postEvent(jsonInput);
+    }
+
+    private static logEventShowScreen(
+        actionType: ACTION_TYPE = ACTION_TYPE._action,
+        actionName: ACTION_NAME = ACTION_NAME._show_screen,
+        object: OBJECT = OBJECT.conversion
+    ): void {
+        const jsonInput = {
+            app_instance_id: this.userPseudoId,
+            events: [{
+                name: "playable_level",
+                params: {
+                    "action_type": ACTION_TYPE[actionType],
+                    "action_name": ACTION_NAME[actionName],
+                    "screen": this.currentScreen,
+                    "user_return": USER_RETURN[this.returnGame],
+                    "object": OBJECT[object],
+                    "playable_ad_id": PlayableAdsManager.Instance.playableAdsName,
+                    "operating_system": OPERATING_SYSTEM[this.os],
+                    "package_name": this.packageName,
+                    "gpu": this.gpu,
+                },
+            }]
+        }
+        this.postEvent(jsonInput);
+    }
+
+    private static logEventResult(
+        result: RESULT,
+        actionType: ACTION_TYPE = ACTION_TYPE._end,
+        actionName: ACTION_NAME = ACTION_NAME._finish,
+        object: OBJECT = OBJECT.level_status
+    ): void {
+        const jsonInput = {
+            app_instance_id: this.userPseudoId,
+            events: [{
+                name: "playable_level",
+                params: {
+                    "action_type": ACTION_TYPE[actionType],
+                    "action_name": ACTION_NAME[actionName],
                     "screen": this.currentScreen,
                     "user_return": USER_RETURN[this.returnGame],
                     "result": RESULT[result],
                     "object": OBJECT[object],
-                    "playable_ad_id": PlayableAdsManager.Instance().playableAdsName,
+                    "playable_ad_id": PlayableAdsManager.Instance.playableAdsName,
                     "operating_system": OPERATING_SYSTEM[this.os],
-                    "package_name": this.package_name,
-                    "gpu": this.GPU,
+                    "package_name": this.packageName,
+                    "gpu": this.gpu,
                 },
             }]
         }
-        this.PostEvent(jsonInput);
+        this.postEvent(jsonInput);
     }
-    static LogEvent_Button(
-        button_name : string,
-        action_type : ACTION_TYPE = ACTION_TYPE._action,
-        action_name : ACTION_NAME = ACTION_NAME._click_conversion,
-        object : OBJECT = OBJECT.conversion)
-        {
-        var jsonInput = {
-            app_instance_id: this.userPseudoID,
+
+    private static logEventButton(
+        buttonName: string,
+        actionType: ACTION_TYPE = ACTION_TYPE._action,
+        actionName: ACTION_NAME = ACTION_NAME._click_conversion,
+        object: OBJECT = OBJECT.conversion
+    ): void {
+        const jsonInput = {
+            app_instance_id: this.userPseudoId,
             events: [{
-                name: 'playable_level',
+                name: "playable_level",
                 params: {
-                    "action_type": ACTION_TYPE[action_type], // "start", "action", "end"
-                    "action_name": ACTION_NAME[action_name],
+                    "action_type": ACTION_TYPE[actionType],
+                    "action_name": ACTION_NAME[actionName],
                     "user_return": USER_RETURN[this.returnGame],
                     "screen": this.currentScreen,
-                    "button_name" : button_name,
+                    "button_name": buttonName,
                     "object": OBJECT[object],
-                    "playable_ad_id": PlayableAdsManager.Instance().playableAdsName,
+                    "playable_ad_id": PlayableAdsManager.Instance.playableAdsName,
                     "operating_system": OPERATING_SYSTEM[this.os],
-                    "package_name": this.package_name,
-                    "gpu": this.GPU,
-                    
+                    "package_name": this.packageName,
+                    "gpu": this.gpu,
                 },
             }]
         }
-        this.PostEvent(jsonInput);
+        this.postEvent(jsonInput);
     }
-    static LogEvent_Time(
-        engagement_time : string,
-        fps : string,
-        action_type : ACTION_TYPE = ACTION_TYPE._action, 
-        action_name : ACTION_NAME = ACTION_NAME._users_engagement, 
-        object : OBJECT = OBJECT.users_engagement)
-        {
-        var jsonInput = {
-            app_instance_id: this.userPseudoID,
+
+    private static logEventTime(
+        engagementTime: string,
+        fps: string,
+        actionType: ACTION_TYPE = ACTION_TYPE._action,
+        actionName: ACTION_NAME = ACTION_NAME._users_engagement,
+        object: OBJECT = OBJECT.users_engagement
+    ): void {
+        const jsonInput = {
+            app_instance_id: this.userPseudoId,
             events: [{
-                name: 'playable_level',
+                name: "playable_level",
                 params: {
-                    "action_type": ACTION_TYPE[action_type], // "start", "action", "end"
-                    "action_name": ACTION_NAME[action_name],
-                    "engagement_time": engagement_time,
+                    "action_type": ACTION_TYPE[actionType],
+                    "action_name": ACTION_NAME[actionName],
+                    "engagement_time": engagementTime,
                     "fps": fps,
                     "object": OBJECT[object],
-                    "playable_ad_id": PlayableAdsManager.Instance().playableAdsName,
+                    "playable_ad_id": PlayableAdsManager.Instance.playableAdsName,
                     "operating_system": OPERATING_SYSTEM[this.os],
-                    "package_name": this.package_name,
-                    "gpu": this.GPU,
-                    
+                    "package_name": this.packageName,
+                    "gpu": this.gpu,
                 },
             }]
         }
-        this.PostEvent(jsonInput);
+        this.postEvent(jsonInput);
     }
-    static PostEvent(jsonInput){
-        log(jsonInput)
-        if(sys.os == sys.OS.WINDOWS || !PlayableAdsManager.Instance().activeTracking) return;
-        fetch(`https://www.google-analytics.com/mp/collect?firebase_app_id=${this.firebase_app_id}&api_secret=${this.api_secret}`, {
+
+    private static postEvent(jsonInput: any): void {
+        log(jsonInput);
+        if(sys.os == sys.OS.WINDOWS || !PlayableAdsManager.Instance.activeTracking) return;
+        fetch(`https://www.google-analytics.com/mp/collect?firebase_app_id=${this.firebaseAppId}&api_secret=${this.apiSecret}`, {
             method: "POST",
             body: JSON.stringify(jsonInput)
         }).then(response => {
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error("Network response was not ok");
             }
             return response.text();
         })

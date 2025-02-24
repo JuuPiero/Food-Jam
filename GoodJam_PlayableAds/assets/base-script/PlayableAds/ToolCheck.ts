@@ -18,7 +18,7 @@ export class ToolCheck extends Component {
         this.countClick++;
         if(this.countClick >= this.maxClick){
             this.countClick = 0;
-            PlayableAdsManager.Instance().OpenStore();
+            PlayableAdsManager.Instance.OpenStore();
         }
     }
 }

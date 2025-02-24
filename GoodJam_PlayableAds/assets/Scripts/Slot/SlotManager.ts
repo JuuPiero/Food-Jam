@@ -8,6 +8,11 @@ export class SlotManager extends Component {
     @property([FreeSlot])
     freeSlots: FreeSlot[] = [];
 
+    protected onLoad(): void {
+        this.freeSlots.forEach(slot => {
+            slot.slotManager = this;
+        });
+    }
     public reset(): void {
         this.freeSlots.forEach(slot => {
             if (slot)
@@ -21,6 +26,25 @@ export class SlotManager extends Component {
 
     public fullSlot(): boolean {
         return this.freeSlots.every(slot => slot.isFull());
+    }
+
+    public checkWarning(): boolean {
+        // Nếu 4/5 slot đã đầy thì trả về true
+        let count = 0;
+        this.freeSlots.forEach(slot => {
+            if (slot.isFull()) {
+                count++;
+            }
+        });
+        return count >= 4;
+    }
+
+    public showWarning(): void {
+        this.freeSlots.forEach(slot => {
+            if (!slot.isFull()) {
+                slot.warning();
+            }
+        });
     }
 }
 

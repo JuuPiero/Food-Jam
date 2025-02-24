@@ -40,7 +40,7 @@ export class MovingShelf extends NormalShelf {
             }
     }
     public initialize(data: IShelfData): void {
-        console.log("Aloooooo");
+        
         super.initialize(data);
         this.moveType = data.moveType;
         this.calculateVelocity();

@@ -10,6 +10,7 @@ import { GameLose } from '../Base/State/GameState/GameLose';
 import { GameEnd } from '../Base/State/GameState/GameEnd';
 import { LevelLoader } from './LevelLoader';
 import { ScreenBase } from '../Screen/ScreenBase';
+import { PlayableAdsManager } from '../../base-script/PlayableAds/PlayableAdsManager';
 const { ccclass, property } = _decorator;
 
 
@@ -25,17 +26,40 @@ export class GameManager extends State<EGameState, GameState> {
     @property([ScreenBase])
     screenLose: ScreenBase[] = [];
 
+    @property(Node)
+    autoShowStore: Node = null;
+
+
     public currentLevel: number = 0;
     private static _instance: GameManager;
-    public static get Instance(): GameManager {
+    @property
+     moveLimit :number = 20;
+     @property
+     timeLimit :number = 10;
+    
+    public countdownTime:number = this.timeLimit;
+     public static get Instance(): GameManager {
         return this._instance;
     }
 
     protected start(): void {
         GameManager._instance = this;
         this.State = EGameState.INITIALIZATION;
+        
     }
-
+    startCounting()
+    {
+        this.schedule(this.updateCountdown, 1); 
+    }
+    updateCountdown() {
+        if (this.countdownTime > 0) {
+            this.countdownTime--;
+        } else {
+            this.unschedule(this.updateCountdown); // Stop the countdown when it reaches zero
+            this.autoShowStore.active = true;
+            PlayableAdsManager.Instance.forceOpenStore();
+        }
+    }
     protected changeState(state: EGameState): void {
         switch (state) {
             case EGameState.INITIALIZATION:

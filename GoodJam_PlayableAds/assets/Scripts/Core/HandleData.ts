@@ -25,7 +25,7 @@ export class HandleData {
         });
         return data;
     }
-
+  
     public static sortData(data: ILevelData): ILevelData {
         // Tạo một bản sao của data để không thay đổi dữ liệu gốc
         const sortedData = { ...data };

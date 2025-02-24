@@ -14,7 +14,36 @@ class BoxDataFactorty {
         this._data = data;
         this._layersData = this.getAllLayersData(this._data);
     }
-
+    public getTutorialBoxData(initID: number):IBoxData
+    {
+        let firstLayer = this._layersData[0];
+        if (firstLayer) {
+            // Lấy ngẫu nhiên một id từ mảng phần tử đầu tiên
+         
+            let targetID = firstLayer.find(x=>x==initID);
+            
+            let count = 0;
+            // Duyệt qua các mảng phần tử để tìm và xóa id
+            for (let layerIndex = 0; layerIndex < this._layersData.length; layerIndex++) {
+                let ids = this._layersData[layerIndex];
+                let idIndex = ids.indexOf(targetID);
+                while (idIndex !== -1 && count < 3) {
+                    ids.splice(idIndex, 1); // Xóa id khỏi mảng
+                    count++;
+                    idIndex = ids.indexOf(targetID); // Tìm vị trí tiếp theo của id
+                }
+                if (count >= 3) {
+                    break; // Dừng khi đã tìm thấy 3 id
+                }
+            }
+            if (firstLayer.length === 0) {
+                this._layersData.shift();
+            }
+            // Trả về IBoxData với id và total = 3
+            return { id: targetID, total: 3 };
+        }
+        return null;
+    }
     public getRandomBoxData(): IBoxData {
         // Lấy mảng phần tử đầu tiên
         let firstLayer = this._layersData[0];

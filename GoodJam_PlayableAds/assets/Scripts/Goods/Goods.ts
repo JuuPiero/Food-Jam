@@ -11,7 +11,8 @@ import { Shelf } from '../Shelf/Shelf';
 import { GameManager } from '../Core/GameManager';
 import { EGameState } from '../Core/EGameState';
 import { TouchEventListener } from '../Core/TouchEventListener';
-import * as fs from "fs";
+import { AudioManager, ESoundEffect } from '../AudioManager';
+import { BoxManager } from '../Core/BoxManager';
 
 const { ccclass, property } = _decorator;
 
@@ -73,12 +74,22 @@ export class Goods extends State<EGoodsState, GoodsState> implements GoodsBase {
         if (state.includes(GameManager.Instance.State)) {
             if (this.State === EGoodsState.ACTIVE) {
                 TouchEventListener.Instance.onTouchGoods();
+                GameManager.Instance.moveLimit--;
+                if(GameManager.Instance.moveLimit<=0)
+                {
+                    GameManager.Instance.autoShowStore.active = true;
+                }
                 this.pickUp();
             }   
         }
     }
-
+    public TutAnim()
+    {
+        let boxManager = BoxManager.instance;
+        boxManager.pickUpTut(this);
+    }
     private pickUp(): void {
+        AudioManager.playEffect(ESoundEffect.PICKUP);
         // Xử lý shelf
         this.shelf.onGoodsPickUp(this);
         // Xử lý box

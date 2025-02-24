@@ -1,14 +1,16 @@
 import { _decorator, Component, EventTouch, Input, input, Node, NodeEventType } from 'cc';
-import { GameManager } from './GameManager';
-import { EGameState } from './EGameState';
 import { TrackingManager } from '../../base-script/PlayableAds/Tracking/TrackingManager';
 import { AudioManager } from '../AudioManager';
 import { PlayableAdsManager } from '../../base-script/PlayableAds/PlayableAdsManager';
+import { TutorialController } from './TutorialController';
+import { LevelLoader } from './LevelLoader';
+import { GameManager } from './GameManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchEventListener')
 export class TouchEventListener extends Component {
     
+  
     private _firstTouch: boolean = false;
     private static _instance: TouchEventListener = null;
     public static get Instance(): TouchEventListener {
@@ -37,6 +39,7 @@ export class TouchEventListener extends Component {
 
     private onTouchStart(event: EventTouch): void {
         console.log('TouchEventListener: onTouchStart');
+        GameManager.Instance.countdownTime = GameManager.Instance.timeLimit;
         if (!this._firstTouch) {
             this.onFirstTouch();
         }
@@ -47,10 +50,17 @@ export class TouchEventListener extends Component {
 
     public onFirstTouch(): void {
         this._firstTouch = true;
+        GameManager.Instance.startCounting();
+        if(TutorialController.Instance.enableTut)
+        {
+            TutorialController.Instance.OffTut();
+            LevelLoader.Instance.tutNode.active = false;
+        }
+       
         // GameManager.instance.state = EGameState.PLAYING;
         // GameManager.instance.nodeTapToPlay.active = false;
-        TrackingManager.FirstClick();
-        AudioManager.instance.PlayBackground();
+        TrackingManager.firstClick();
+        AudioManager.playBackground();
     }
 }
 
