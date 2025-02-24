@@ -28,16 +28,13 @@
       },
       {
         "__id__": 34
-      },
-      {
-        "__id__": 45
       }
     ],
     "_exoticAnimation": null,
     "_events": [],
     "_embeddedPlayers": [],
     "_additiveSettings": {
-      "__id__": 51
+      "__id__": 45
     },
     "_auxiliaryCurveEntries": []
   },
@@ -556,69 +553,6 @@
     "__type__": "cc.RealCurve",
     "_times": [],
     "_values": [],
-    "preExtrapolation": 1,
-    "postExtrapolation": 1
-  },
-  {
-    "__type__": "cc.animation.RealTrack",
-    "_binding": {
-      "__type__": "cc.animation.TrackBinding",
-      "path": {
-        "__id__": 46
-      },
-      "proxy": null
-    },
-    "_channel": {
-      "__id__": 49
-    }
-  },
-  {
-    "__type__": "cc.animation.TrackPath",
-    "_paths": [
-      {
-        "__id__": 47
-      },
-      {
-        "__id__": 48
-      },
-      "opacity"
-    ]
-  },
-  {
-    "__type__": "cc.animation.HierarchyPath",
-    "path": "Effect"
-  },
-  {
-    "__type__": "cc.animation.ComponentPath",
-    "component": "cc.UIOpacity"
-  },
-  {
-    "__type__": "cc.animation.Channel",
-    "_curve": {
-      "__id__": 50
-    }
-  },
-  {
-    "__type__": "cc.RealCurve",
-    "_times": [
-      0
-    ],
-    "_values": [
-      {
-        "__type__": "cc.RealKeyframeValue",
-        "interpolationMode": 0,
-        "tangentWeightMode": 0,
-        "value": 0,
-        "rightTangent": 0,
-        "rightTangentWeight": 1,
-        "leftTangent": 0,
-        "leftTangentWeight": 1,
-        "easingMethod": 0,
-        "__editorExtras__": {
-          "tangentMode": 0
-        }
-      }
-    ],
     "preExtrapolation": 1,
     "postExtrapolation": 1
   },

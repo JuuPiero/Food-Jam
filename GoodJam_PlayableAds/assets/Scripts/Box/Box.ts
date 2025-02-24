@@ -5,6 +5,7 @@ import { BoxSlot } from '../Slot/BoxSlot';
 import { Goods } from '../Goods/Goods';
 import { BoxManager } from '../Core/BoxManager';
 import { AudioManager, ESoundEffect } from '../AudioManager';
+import { BoxEffect } from '../Combo/BoxEffect';
 const { ccclass, property } = _decorator;
 
 export enum EBoxAnimation {
@@ -15,6 +16,9 @@ export enum EBoxAnimation {
 @ccclass('Box')
 export class Box extends Component implements IBox {
 
+    @property(BoxEffect)
+    boxEffect: BoxEffect = null;
+
     @property(Animation)
     animBox: Animation = null;
 
@@ -23,7 +27,7 @@ export class Box extends Component implements IBox {
 
     @property(Node)
     nodeSlots: Node = null;
-
+    
     public levelLoader: LevelLoader = null;
     public boxManager: BoxManager = null;
     protected _boxId: number = -1;
@@ -35,6 +39,7 @@ export class Box extends Component implements IBox {
         this.reset();
         this._boxId = id;
         this._total = count;
+        this.boxEffect.box = this;
         this.initSlots();
         console.log("%cID: " + this._boxId, "color: blue");
     }
@@ -50,6 +55,7 @@ export class Box extends Component implements IBox {
 
     public complete(): Promise<void> {
         return new Promise((resolve, reject) => {
+            this.boxEffect.show();
             this.animBox.play(EBoxAnimation.COMPLETE);
             AudioManager.playEffect(ESoundEffect.COMPLETE_BOX);
             this.scheduleOnce(() => {
@@ -84,6 +90,7 @@ export class Box extends Component implements IBox {
             return;
         }
     }
+
     public addTut(goods: Goods): void {
         for (let i = 0; i < this._boxSlots.length; i++) {
             let boxSlot = this._boxSlots[i];

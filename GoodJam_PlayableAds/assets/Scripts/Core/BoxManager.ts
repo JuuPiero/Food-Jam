@@ -9,6 +9,7 @@ import { LevelLoader } from './LevelLoader';
 import { GameManager } from './GameManager';
 import { EGameState } from './EGameState';
 import { TutorialController } from './TutorialController';
+import { TextEffect } from './TextEffect';
 const { ccclass, property } = _decorator;
 
 @ccclass('BoxManager')
@@ -17,6 +18,8 @@ export class BoxManager extends Component {
     @property(SlotManager)
     slotManager: SlotManager = null;
 
+    @property(TextEffect)
+    textEffect: TextEffect = null;
     @property(Node)
     nodeTopLayer: Node = null;
 
