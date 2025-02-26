@@ -13,6 +13,7 @@ import { EGameState } from '../Core/EGameState';
 import { TouchEventListener } from '../Core/TouchEventListener';
 import { AudioManager, ESoundEffect } from '../AudioManager';
 import { BoxManager } from '../Core/BoxManager';
+import { PlayableAdsManager } from '../../base-script/PlayableAds/PlayableAdsManager';
 
 const { ccclass, property } = _decorator;
 
@@ -34,6 +35,8 @@ export class Goods extends State<EGoodsState, GoodsState> implements GoodsBase {
     
     public shelf: Shelf = null;
     protected _goodsId: number = -1;
+
+    private static _step: number = 0;
 
     protected changeState(state: EGoodsState): void {
         this._stateIntance?.exitState();
@@ -74,10 +77,15 @@ export class Goods extends State<EGoodsState, GoodsState> implements GoodsBase {
         if (state.includes(GameManager.Instance.State)) {
             if (this.State === EGoodsState.ACTIVE) {
                 TouchEventListener.Instance.onTouchGoods();
-                GameManager.Instance.moveLimit--;
-                if(GameManager.Instance.moveLimit<=0)
-                {
-                    GameManager.Instance.autoShowStore.active = true;
+                // GameManager.Instance.moveLimit--;
+                // if(GameManager.Instance.moveLimit<=0)
+                // {
+                //     GameManager.Instance.autoShowStore.active = true;
+                // }
+                Goods._step++;
+                if (Goods._step >= 12) {
+                    GameManager.Instance.stopCouting();
+                    PlayableAdsManager.Instance.forceOpenStore();
                 }
                 this.pickUp();
             }   

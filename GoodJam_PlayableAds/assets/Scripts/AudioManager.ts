@@ -9,7 +9,9 @@ export enum ESoundEffect {
     COMPLETE_BOX,
     WIN,
     LOSE,
-    WARNING
+    WARNING,
+    FAIL,
+    TYPING
 }
 
 @ccclass('AudioManager')

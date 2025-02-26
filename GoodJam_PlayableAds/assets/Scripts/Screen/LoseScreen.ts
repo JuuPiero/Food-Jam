@@ -5,6 +5,7 @@ import { SlotManager } from '../Slot/SlotManager';
 import { Box } from '../Box/Box';
 import { Slot } from '../Slot/Slot';
 import { PromiseUtils } from '../PromiseUtils';
+import { AudioManager, ESoundEffect } from '../AudioManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('LoseScreen')
@@ -33,14 +34,17 @@ export class LoseScreen extends ScreenBase {
 
     public show(): Promise<void> {
         return new Promise(async (resolve, reject) => {
+            AudioManager.stopBackground();
+            AudioManager.playEffect(ESoundEffect.TYPING);
             this.nodeStages[0].active = true;
             this.nodeParent.removeAllChildren();
             this.nodeResults.forEach(node => {
+                AudioManager.playEffect(ESoundEffect.FAIL);
                 let clone = this.clone(node, this.nodeParent);
                 this._nodeClones.push(clone);
             }, 0.5);
 
-            await PromiseUtils.delay(3);
+            await PromiseUtils.delay(3.5);
 
             this.nodeStages[0].active = false;
             this.nodeStages[1].active = true;

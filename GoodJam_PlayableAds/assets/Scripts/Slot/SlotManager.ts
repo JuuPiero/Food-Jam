@@ -54,7 +54,7 @@ export class SlotManager extends Component {
     private flashesWarning(): void {
         this.uiWarning.forEach(uiOpacity => {
             if (uiOpacity.node.activeInHierarchy) {
-                let duration = 0.3
+                let duration = 0.25
                 tween(uiOpacity).to(duration, {opacity: 255}, {easing: easing.cubicOut})
                     .to(duration, {opacity: 0}, {easing: easing.cubicOut})
                     .to(duration, {opacity: 255}, {easing: easing.cubicOut})

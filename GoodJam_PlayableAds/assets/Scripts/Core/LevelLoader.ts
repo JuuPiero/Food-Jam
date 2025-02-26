@@ -1,4 +1,4 @@
-import { _decorator, CCInteger, Component, instantiate, JsonAsset, Node, Prefab, tween, Vec3 } from 'cc';
+import { _decorator, CCInteger, Component, easing, instantiate, JsonAsset, Node, Prefab, tween, Vec3 } from 'cc';
 import { GoodsFactory } from '../Goods/GoodsFactory';
 import { ILevelData } from '../Data/ILevelData';
 import { Shelf } from '../Shelf/Shelf';
@@ -110,7 +110,7 @@ onTut()
         var pos = targetTutObj.node.getWorldPosition()
         TutorialController.Instance.tutHand.parent = targetTutObj.node;
         TutorialController.Instance.tutHand.setPosition(Vec3.ZERO);
-        setTimeout(()=>{ this.animTut();},500);
+        setTimeout(()=>{ this.animTut();},1000);
         
    
 }
@@ -133,19 +133,20 @@ animTut()
 
     jump(target: Node)
     {
-                    tween(target)
-                    .to(1,{worldScale: this.tutParent.getWorldScale()})
-                    .start();
-                    BezierTween(target, 1 , target.getWorldPosition(), new Vec3(this.tutParent.worldPosition.x, this.tutParent.worldPosition.y + 500, this.tutParent.worldPosition.z), this.tutParent.worldPosition)
-                    .then(()=>{
-                        tween(target)
-                        .to(.1,{scale: new Vec3(target.getScale().x*1.25,target.getScale().y *.75,target.getScale().z)})
-                        .call(()=>{
-                            tween(target)
-                            .to(.1,{scale: new Vec3(target.getScale().x/1.25,target.getScale().y /.75,target.getScale().z)})
-                            .start();
-                    })
-                        .start();
+        tween(target)
+        .to(1,{worldScale: this.tutParent.getWorldScale()})
+        .start();
+
+        BezierTween(target, 1 , target.getWorldPosition(), new Vec3(this.tutParent.worldPosition.x, this.tutParent.worldPosition.y + 500, this.tutParent.worldPosition.z), this.tutParent.worldPosition)
+        .then(()=>{
+            tween(target)
+            .to(.1,{scale: new Vec3(target.getScale().x*1.25,target.getScale().y *.75,target.getScale().z)})
+            .call(()=>{
+                tween(target)
+                .to(.1,{scale: new Vec3(target.getScale().x/1.25,target.getScale().y /.75,target.getScale().z)})
+                .start();
+        })
+            .start();
     });
 }
 

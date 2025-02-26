@@ -187,6 +187,10 @@ export class BoxManager extends Component {
 
     public onBoxComplete(box: Box): void {
         this.put(box);
+        let index = this._boxesActive.indexOf(box);
+        if (index > -1) {
+            this._boxesActive.splice(index, 1);
+        }
         let gameManager = GameManager.Instance;
         if (this.checkWin()) {
             gameManager.State = EGameState.WIN;
@@ -197,6 +201,10 @@ export class BoxManager extends Component {
                 this.fill();
             }
         }
+    }
+
+    public getBoxesActive(): Box[] {
+        return this._boxesActive;
     }
 
     private put(box: Box): void {

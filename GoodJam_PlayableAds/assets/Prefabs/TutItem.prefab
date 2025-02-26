@@ -178,10 +178,7 @@
       "b": 255,
       "a": 150
     },
-    "_spriteFrame": {
-      "__uuid__": "51975a64-f03c-4ce2-8812-2917d0537aee@f9941",
-      "__expectedType__": "cc.SpriteFrame"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_fillType": 0,
     "_sizeMode": 1,

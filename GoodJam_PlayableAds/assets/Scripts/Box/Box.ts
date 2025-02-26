@@ -71,6 +71,10 @@ export class Box extends Component implements IBox {
         return this._boxId;
     }
 
+    public getSlots(): BoxSlot[] {
+        return this._boxSlots;
+    }
+
     public add(goods: Goods): void {
         for (let i = 0; i < this._boxSlots.length; i++) {
             let boxSlot = this._boxSlots[i];

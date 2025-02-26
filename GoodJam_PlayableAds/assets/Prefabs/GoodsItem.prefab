@@ -188,7 +188,10 @@
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_useGrayscale": false,
-    "_atlas": null,
+    "_atlas": {
+      "__uuid__": "b0e43a25-3e81-4e78-9369-53f3281279f1",
+      "__expectedType__": "cc.SpriteAtlas"
+    },
     "_id": ""
   },
   {

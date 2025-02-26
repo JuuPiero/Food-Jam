@@ -1,4 +1,4 @@
-import { _decorator, Animation, CCInteger, Component, easing, JsonAsset, Node, tween, Vec3 } from 'cc';
+import { _decorator, Animation, CCInteger, Component, DynamicAtlasManager, easing, JsonAsset, macro, Node, tween, Vec3 } from 'cc';
 import { EGameState } from './EGameState';
 import { State } from '../Base/State/State';
 import { GameState } from '../Base/State/GameState/GameState';
@@ -13,6 +13,9 @@ import { ScreenBase } from '../Screen/ScreenBase';
 import { PlayableAdsManager } from '../../base-script/PlayableAds/PlayableAdsManager';
 const { ccclass, property } = _decorator;
 
+// macro.CLEANUP_IMAGE_CACHE = false;
+// DynamicAtlasManager.instance.enabled = true;
+// DynamicAtlasManager.instance.maxFrameSize = 2048;
 
 @ccclass('GameManager')
 export class GameManager extends State<EGameState, GameState> {
@@ -30,15 +33,16 @@ export class GameManager extends State<EGameState, GameState> {
     autoShowStore: Node = null;
 
 
-    public currentLevel: number = 0;
-    private static _instance: GameManager;
     @property
-     moveLimit :number = 20;
-     @property
-     timeLimit :number = 10;
-    
+    moveLimit :number = 20;
+
+    @property
+    timeLimit :number = 10;
+
+    public currentLevel: number = 0;
     public countdownTime:number = this.timeLimit;
-     public static get Instance(): GameManager {
+    private static _instance: GameManager;
+    public static get Instance(): GameManager {
         return this._instance;
     }
 
@@ -50,6 +54,9 @@ export class GameManager extends State<EGameState, GameState> {
     startCounting()
     {
         this.schedule(this.updateCountdown, 1); 
+    }
+    stopCouting() {
+        this.unschedule(this.updateCountdown);
     }
     updateCountdown() {
         if (this.countdownTime > 0) {
