@@ -5,6 +5,9 @@ const { ccclass, property } = _decorator;
 @ccclass('SingleShelf')
 export class SingleShelf extends Shelf {
     
+    protected completeShelf(): void {
+        // Chả có gì làm cả.
+    }
 }
 
 

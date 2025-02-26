@@ -39,3 +39,8 @@ function bezierPosition(p1: Vec3, p2: Vec3, p3: Vec3, t: number): Vec3 {
 function easeOutCubic(t: number): number {
     return -(Math.cos(Math.PI * t) - 1) / 2;
 }
+
+function easeInOutCubic(x: number): number {
+    return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+}
+    

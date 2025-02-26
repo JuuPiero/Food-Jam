@@ -29,6 +29,10 @@
     {
       "name": "BOX",
       "value": 16
+    },
+    {
+      "name": "UI_RESULT",
+      "value": 32
     }
   ]
 }

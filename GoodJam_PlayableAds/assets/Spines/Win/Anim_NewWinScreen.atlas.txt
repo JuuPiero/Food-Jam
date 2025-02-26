@@ -1,0 +1,111 @@
+
+Anim_NewWinScreen.png
+size: 1292,1292
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/B
+  rotate: true
+  xy: 640, 233
+  size: 168, 226
+  orig: 168, 226
+  offset: 0, 0
+  index: -1
+images/Layer 607
+  rotate: true
+  xy: 675, 634
+  size: 656, 400
+  orig: 656, 400
+  offset: 0, 0
+  index: -1
+images/OUT
+  rotate: false
+  xy: 2, 3
+  size: 451, 205
+  orig: 451, 205
+  offset: 0, 0
+  index: -1
+images/S
+  rotate: false
+  xy: 663, 403
+  size: 265, 229
+  orig: 267, 229
+  offset: 0, 0
+  index: -1
+images/Shadown
+  rotate: false
+  xy: 2, 887
+  size: 671, 403
+  orig: 673, 407
+  offset: 2, 4
+  index: -1
+images/U_V
+  rotate: false
+  xy: 898, 2
+  size: 264, 206
+  orig: 264, 207
+  offset: 0, 1
+  index: -1
+images/co1
+  rotate: false
+  xy: 930, 477
+  size: 114, 155
+  orig: 114, 155
+  offset: 0, 0
+  index: -1
+images/co2
+  rotate: true
+  xy: 2, 376
+  size: 212, 231
+  orig: 212, 231
+  offset: 0, 0
+  index: -1
+images/cuon
+  rotate: true
+  xy: 1164, 19
+  size: 189, 98
+  orig: 189, 98
+  offset: 0, 0
+  index: -1
+images/ken1
+  rotate: true
+  xy: 485, 254
+  size: 341, 153
+  orig: 341, 153
+  offset: 0, 0
+  index: -1
+images/ken2
+  rotate: false
+  xy: 2, 590
+  size: 333, 295
+  orig: 333, 295
+  offset: 0, 0
+  index: -1
+images/ken3
+  rotate: true
+  xy: 337, 237
+  size: 358, 146
+  orig: 358, 146
+  offset: 0, 0
+  index: -1
+images/ken4
+  rotate: false
+  xy: 337, 597
+  size: 324, 288
+  orig: 324, 288
+  offset: 0, 0
+  index: -1
+images/ruybang
+  rotate: true
+  xy: 455, 40
+  size: 168, 441
+  orig: 168, 441
+  offset: 0, 0
+  index: -1
+images/ruybang_big
+  rotate: true
+  xy: 1077, 210
+  size: 1080, 201
+  orig: 1080, 201
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,48 @@
+
+Logo_Good_Jam.png
+size: 988,988
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/B
+  rotate: true
+  xy: 2, 11
+  size: 168, 226
+  orig: 168, 226
+  offset: 0, 0
+  index: -1
+images/Layer 607
+  rotate: false
+  xy: 2, 181
+  size: 656, 400
+  orig: 656, 400
+  offset: 0, 0
+  index: -1
+images/OUT
+  rotate: true
+  xy: 660, 2
+  size: 451, 205
+  orig: 451, 205
+  offset: 0, 0
+  index: -1
+images/S
+  rotate: true
+  xy: 675, 721
+  size: 265, 229
+  orig: 267, 229
+  offset: 0, 0
+  index: -1
+images/Shadown
+  rotate: false
+  xy: 2, 583
+  size: 671, 403
+  orig: 673, 407
+  offset: 2, 4
+  index: -1
+images/U_V
+  rotate: true
+  xy: 675, 455
+  size: 264, 206
+  orig: 264, 207
+  offset: 0, 1
+  index: -1

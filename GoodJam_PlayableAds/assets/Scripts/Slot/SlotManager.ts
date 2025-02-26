@@ -1,4 +1,4 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component, easing, tween, UIOpacity } from 'cc';
 import { FreeSlot } from './FreeSlot';
 const { ccclass, property } = _decorator;
 
@@ -7,6 +7,9 @@ export class SlotManager extends Component {
     
     @property([FreeSlot])
     freeSlots: FreeSlot[] = [];
+
+    @property([UIOpacity])
+    uiWarning: UIOpacity[] = [];
 
     protected onLoad(): void {
         this.freeSlots.forEach(slot => {
@@ -43,6 +46,22 @@ export class SlotManager extends Component {
         this.freeSlots.forEach(slot => {
             if (!slot.isFull()) {
                 slot.warning();
+            }
+        });
+        this.flashesWarning();
+    }
+
+    private flashesWarning(): void {
+        this.uiWarning.forEach(uiOpacity => {
+            if (uiOpacity.node.activeInHierarchy) {
+                let duration = 0.3
+                tween(uiOpacity).to(duration, {opacity: 255}, {easing: easing.cubicOut})
+                    .to(duration, {opacity: 0}, {easing: easing.cubicOut})
+                    .to(duration, {opacity: 255}, {easing: easing.cubicOut})
+                    .to(duration, {opacity: 0}, {easing: easing.cubicOut})
+                    .to(duration, {opacity: 255}, {easing: easing.cubicOut})
+                    .to(duration, {opacity: 0}, {easing: easing.cubicOut})
+                    .start();
             }
         });
     }

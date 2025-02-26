@@ -31,6 +31,9 @@ export class ScreenOrientation extends Component {
     @property(Camera)
     uiCamera: Camera = null;
 
+    @property(Camera)
+    uiResultCamera: Camera = null;
+
     @property(Node)
     nodeBGHeader: Node = null;
 
@@ -98,6 +101,7 @@ export class ScreenOrientation extends Component {
         console.log("%cnewOrthoHeight: ", "color: blue", newOrthoHeight);
         this.shadowCamera.orthoHeight = newOrthoHeight;
         this.gameCamera.orthoHeight = newOrthoHeight;
+        this.uiResultCamera.orthoHeight = this.gameCamera.orthoHeight;
     }
 
     private enableLandscape(): void {

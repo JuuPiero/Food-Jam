@@ -2,6 +2,7 @@ import { _decorator, Animation, Component, Node, tween, UIOpacity } from 'cc';
 import { Slot } from './Slot';
 import { Goods } from '../Goods/Goods';
 import { AudioManager, ESoundEffect } from '../AudioManager';
+import { SlotManager } from './SlotManager';
 const { ccclass, property } = _decorator;
 
 export enum ESlotAnimation {
@@ -17,7 +18,7 @@ export class FreeSlot extends Slot {
     @property(UIOpacity)
     uiOpacity: UIOpacity = null;
 
-    public slotManager: SlotManager = null;
+    public slotManager: SlotManager  = null;
 
     public add(goods: Goods): Promise<Goods> {
         return new Promise((resolve, reject) => {

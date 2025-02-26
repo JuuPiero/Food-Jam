@@ -8,42 +8,51 @@ const { ccclass, property } = _decorator;
 @ccclass
 export class MovingShelfBoundsLimit {
     @property(Vec2)
-    horizontalLimits: Vec2 = new Vec2(-500 , 500);
+    horizontalLimits: Vec2 = new Vec2(-1000 , 1000);
 
     @property(Vec2)
-    verticalLimits: Vec2 = new Vec2(-500, 500);
+    verticalLimits: Vec2 = new Vec2(-1000, 1000);
 }
+
 @ccclass('MovingShelf')
-export class MovingShelf extends NormalShelf {
+export class MovingShelf extends Shelf {
 
     @property(MovingShelfBoundsLimit)
-    boundsLimit: MovingShelfBoundsLimit = new MovingShelfBoundsLimit;
+    boundsLimit: MovingShelfBoundsLimit = new MovingShelfBoundsLimit();
+
     @property(UITransform)
     col: UITransform = null;
+
     @property(Vec2)
-    _velocity: Vec2 = new Vec2(0, 0);
+    velocity: Vec2 = null;
+    
     @property
     speed: number = 0;
-    start() {
 
+    protected update(deltaTime: number) {
+        // Check out of bounds
+        if (this.checkOutOfBounds()) {
+            this.repositionSelfWhenOutOfBounds();
+        }
+        else {
+            this.node.position = this.node.position.add(new Vec3(this.velocity.x * deltaTime, this.velocity.y * deltaTime));
+        }
     }
 
-    update(deltaTime: number) {
-            if (this.checkOutOfBounds())
-            {
-                this.repositionSelfWhenOutOfBounds();
-            }
-            else
-            {
-
-                this.node.position = this.node.position.add(new Vec3(this._velocity.x * deltaTime, this._velocity.y * deltaTime));
-            }
-    }
-    public initialize(data: IShelfData): void {
-        
+    public initialize(data: IShelfData): void { 
         super.initialize(data);
         this.moveType = data.moveType;
         this.calculateVelocity();
+        switch (this.moveType) {
+            case EMoveType.LEFT_TO_RIGHT:
+                break;
+            case EMoveType.RIGHT_TO_LEFT:
+                break;
+            case EMoveType.TOP_TO_BOTTOM:
+                break;
+            case EMoveType.BOTTOM_TO_TOP:
+                break;
+        }
         if (this.moveType == EMoveType.LEFT_TO_RIGHT ||  this.moveType == EMoveType.RIGHT_TO_LEFT)
             this.registerBoundsLimitHorizontal();
         
@@ -51,63 +60,91 @@ export class MovingShelf extends NormalShelf {
             this.registerBoundsLimitVertical();
     }
 
+    protected completeShelf(): void {
+        // Chả làm gì cả.
+    }
+    
+    private calculateVelocity() {
+        switch (this.moveType) {
+            case EMoveType.NONE:
+                break;
+            case EMoveType.FALLING:
+                break;
+            case EMoveType.LEFT_TO_RIGHT:
+                this.velocity = new Vec2(this.speed, 0);
+                break;
+            case EMoveType.RIGHT_TO_LEFT:
+                this.velocity = new Vec2(-this.speed, 0);
+                break;
+            case EMoveType.BOTTOM_TO_TOP:
+                this.velocity = new Vec2(0, this.speed);
+                break;
+            case EMoveType.TOP_TO_BOTTOM:
+                this.velocity = new Vec2(0, -this.speed);
+                break;
+        }
+    }
 
-    calculateVelocity() {
+    private checkOutOfBounds(): boolean {
+        let pos = this.node.getPosition();
         switch (this.moveType) {
             case EMoveType.NONE:
                 break;
             case EMoveType.FALLING:
                 break;
             case EMoveType.LEFT_TO_RIGHT:
-                this._velocity = new Vec2(this.speed, 0);
-                break;
+                return pos.x >= this.boundsLimit.horizontalLimits.y;
             case EMoveType.RIGHT_TO_LEFT:
-                this._velocity = new Vec2(-this.speed, 0);
-                break;
+                return pos.x <= this.boundsLimit.horizontalLimits.x;
             case EMoveType.BOTTOM_TO_TOP:
-                this._velocity = new Vec2(0, this.speed);
-                break;
+                return pos.y >= this.boundsLimit.verticalLimits.y;
             case EMoveType.TOP_TO_BOTTOM:
-                this._velocity = new Vec2(0, -this.speed);
-                break;
+                return pos.y <= this.boundsLimit.verticalLimits.x;
+            default:
+                return false;
         }
     }
-    checkOutOfBounds(): boolean {
-        switch (this.moveType) {
-            case EMoveType.NONE:
-                break;
-            case EMoveType.FALLING:
-                break;
-            case EMoveType.LEFT_TO_RIGHT:
-                if (this.node.position.x >= this.boundsLimit.horizontalLimits.y) {
-                    return true;
-                }
-                break;
-            case EMoveType.RIGHT_TO_LEFT:
-                if (this.node.position.x <= this.boundsLimit.horizontalLimits.x) {
-                    return true;
-                }
-                break;
-            case EMoveType.BOTTOM_TO_TOP:
-                if (this.node.position.y >= this.boundsLimit.verticalLimits.y) {
-                    return true;
-                }
-                break;
-            case EMoveType.TOP_TO_BOTTOM:
-                if (this.node.position.y <= this.boundsLimit.verticalLimits.x) {
-                    return true;
-                }
-                break;
-        }
-        return false;
-    }
-    repositionSelfWhenOutOfBounds() {
+    
+    private repositionSelfWhenOutOfBounds() {
+        let pos = this.node.getPosition();
+        let shelves = this.boxManager.levelLoader.getShelves();
+        let horizontalMovingShelves: Shelf[] = [];
+        let minShelf: Shelf = null;
+        let maxShelf: Shelf = null;
+        let spacingX = 0;
+        let spacingY = 0;
+        let minPos: Vec3 = null;
+        let maxPos: Vec3 = null;
+        let newPos: Vec3 = null;
+
         switch (this.moveType) {
             case EMoveType.LEFT_TO_RIGHT:
-                this.node.setPosition(this.boundsLimit.horizontalLimits.x, this.node.position.y);
+                horizontalMovingShelves = shelves.filter(shelf => shelf.node.getPosition().y === pos.y);
+                horizontalMovingShelves.sort((a, b) => a.node.getPosition().x - b.node.getPosition().x);
+                minShelf = horizontalMovingShelves[0];
+                for (let i = 1; i < horizontalMovingShelves.length; ++i) {
+                    if (minShelf.node.getPosition().x > horizontalMovingShelves[i].node.getPosition().x) {
+                        minShelf = horizontalMovingShelves[i];
+                    }
+                }
+                spacingX = Math.abs(horizontalMovingShelves[0].node.getPosition().x - horizontalMovingShelves[1].node.getPosition().x);
+                minPos = minShelf.node.getPosition();
+                newPos = new Vec3(minPos.x - spacingX, minPos.y, minPos.z);
+                this.node.setPosition(newPos);
                 break;
             case EMoveType.RIGHT_TO_LEFT:
-                this.node.setPosition(this.boundsLimit.horizontalLimits.y, this.node.position.y);
+                horizontalMovingShelves = shelves.filter(shelf => shelf.node.getPosition().y === pos.y);
+                horizontalMovingShelves.sort((a, b) => b.node.getPosition().x - a.node.getPosition().x);
+                maxShelf = horizontalMovingShelves[0];
+                for (let i = 1; i < horizontalMovingShelves.length; ++i) {
+                    if (maxShelf.node.getPosition().x < horizontalMovingShelves[i].node.getPosition().x) {
+                        maxShelf = horizontalMovingShelves[i];
+                    }
+                }
+                spacingX = Math.abs(horizontalMovingShelves[0].node.getPosition().x - horizontalMovingShelves[1].node.getPosition().x);
+                maxPos = maxShelf.node.getPosition();
+                newPos = new Vec3(maxPos.x + spacingX, maxPos.y, maxPos.z);
+                this.node.setPosition(newPos);
                 break;
             case EMoveType.BOTTOM_TO_TOP:
                 this.node.setPosition(this.node.position.x, this.boundsLimit.verticalLimits.x);
@@ -117,7 +154,8 @@ export class MovingShelf extends NormalShelf {
                 break;
         }
     }
-    registerBoundsLimitVertical() {
+    
+    private registerBoundsLimitVertical() {
         const upperYLimit = this.node.position.y + this.col.height * this.node.getWorldScale().y / 2;
         const lowerYLimit = this.node.position.y - this.col.height * this.node.getWorldScale().y / 2;
 
@@ -130,7 +168,7 @@ export class MovingShelf extends NormalShelf {
         }
     }
 
-    registerBoundsLimitHorizontal() {
+    private registerBoundsLimitHorizontal() {
         const rightXLimit = this.node.position.x + this.col.width * this.node.getWorldScale().x / 2;
         const leftXLimit = this.node.position.x - this.col.width * this.node.getWorldScale().x / 2;
 

@@ -18,6 +18,10 @@ export class GameSync extends Component {
     private _tempUIPos: Vec3 = new Vec3();
     private _tempGamePos: Vec3 = new Vec3();
 
+    protected onEnable(): void {
+        this.update(null);
+    }
+
     protected update(dt: number): void {
         this.nodeTarget.active = this.node.active;
         this.nodeTarget.setScale(this.node.getScale());

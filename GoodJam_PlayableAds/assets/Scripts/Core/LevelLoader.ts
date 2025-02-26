@@ -1,14 +1,14 @@
-import { _decorator, CCInteger, Component, instantiate, JsonAsset, Layers, Node, Prefab, Sprite, SpriteFrame, TextAsset, tween, Vec2, Vec3 } from 'cc';
+import { _decorator, CCInteger, Component, instantiate, JsonAsset, Node, Prefab, tween, Vec3 } from 'cc';
 import { GoodsFactory } from '../Goods/GoodsFactory';
-import { EShelfType, ILevelData } from '../Data/ILevelData';
+import { ILevelData } from '../Data/ILevelData';
 import { Shelf } from '../Shelf/Shelf';
 import { BoxManager } from './BoxManager';
 import { HandleData } from './HandleData';
 import { TutorialController } from './TutorialController';
-import { Goods } from '../Goods/Goods';
 import { Box } from '../Box/Box';
 import { BoxSlot } from '../Slot/BoxSlot';
 import { BezierTween } from '../Modules/BezierTween';
+import { MovingShelf } from '../Shelf/MovingShelf';
 
 const { ccclass, property } = _decorator;
 
@@ -42,8 +42,6 @@ export class LevelLoader extends Component {
     @property(Node)
     nodeLevelParent: Node = null;
 
-
-
     @property
     columns: number = 0;
 
@@ -54,6 +52,8 @@ export class LevelLoader extends Component {
     spacingY: number = 0;
 
     public currentLevel: number = 0;
+    private _shelfs: Shelf[] = [];
+    private _movingShelfs: MovingShelf[][] = [];
     private static _instance: LevelLoader = null;
     public static get Instance(): LevelLoader {
         return LevelLoader._instance;
@@ -62,6 +62,7 @@ export class LevelLoader extends Component {
     protected onLoad(): void {
         LevelLoader._instance = this;
     }
+
     public initialize(level: number): void {
         this.nodeLevelParent.removeAllChildren();
         this.boxManager.levelLoader = this;
@@ -85,7 +86,9 @@ export class LevelLoader extends Component {
             shelf.boxManager = this.boxManager;
             shelf.goodsFactory = this.goodsFactory;
             shelf.initialize(data.cells[i]);
+            this._shelfs.push(shelf);
         }
+
         this.boxManager.initialize(data);
         if(TutorialController.Instance.enableTut)
             this.onTut();
@@ -96,11 +99,11 @@ onTut()
 {
     
      
-         TutorialController.Instance.OnTut();
-        let tutObject = LevelLoader.Instance.goodsFactory.createGoodsTut(BoxManager.instance.tutorialID);
+        TutorialController.Instance.OnTut();
+        let tutObject = this.goodsFactory.createGoodsTut(this.boxManager.tutorialID);
         this.tutNode = tutObject.node;
-        this.tutNode.parent = BoxManager.instance.nodeTopLayer;
-        this.tutParent = BoxManager.instance.nodePositions[0].children[0].getComponent(Box).nodeSlots.children[0].getComponent(BoxSlot).nodeParent;
+        this.tutNode.parent = this.boxManager.nodeTopLayer;
+        this.tutParent = this.boxManager.nodePositions[0].children[0].getComponent(Box).nodeSlots.children[0].getComponent(BoxSlot).nodeParent;
         var targetTutObj = this.shelfContainer.children[this.tutShelfIndex].getComponent(Shelf).currentLayer.getGoods()[1];
         this.tutNode.setWorldPosition(targetTutObj.node.getWorldPosition());
         this.tutNode.setWorldScale(targetTutObj.node.getWorldScale());
@@ -150,6 +153,9 @@ animTut()
 
     }
 
+    public getShelves(): Shelf[] {
+        return this._shelfs;
+    }
     // private getPositionByColumn(total: number, columns: number): Vec3[] {
     //     const positions: Vec3[] = [];
     //     const rows = Math.ceil(total / columns);

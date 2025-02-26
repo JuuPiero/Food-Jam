@@ -1,4 +1,4 @@
-import { _decorator, CCBoolean, CCInteger, Component, easing, instantiate, Node, NodePool, Prefab, tween, Vec3 } from 'cc';
+import { _decorator, CCBoolean, CCInteger, Component, easing, instantiate, Node, NodePool, Prefab, tween, UIOpacity, Vec3 } from 'cc';
 import { Box } from '../Box/Box';
 import { ILevelData } from '../Data/ILevelData';
 import { ObjectPool } from '../Modules/ObjectPool';
@@ -20,6 +20,7 @@ export class BoxManager extends Component {
 
     @property(TextEffect)
     textEffect: TextEffect = null;
+
     @property(Node)
     nodeTopLayer: Node = null;
 
@@ -32,6 +33,8 @@ export class BoxManager extends Component {
     @property(CCInteger)
     tutorialID: number = 0;
 
+    @property([UIOpacity])
+    uiWarning: UIOpacity[] = [];
     
     enableTut: boolean = false;
 
@@ -40,11 +43,7 @@ export class BoxManager extends Component {
     private _pool = new NodePool();
     private _boxesActive: Box[] = [];
     private _boxes: Box[] = [];
-    public static instance:BoxManager;
-    
-    protected onLoad(): void {
-    BoxManager.instance = this;
-}   
+     
     public initialize(data: ILevelData): void {
         this.reset();
         this.initPool();
@@ -121,11 +120,8 @@ export class BoxManager extends Component {
     public fill(): void {
         for (let i = 0; i < this.nodePositions.length; i++) {
             let node = this.nodePositions[i];
-           
-                if(!this.firstBoxSpawn && this.enableTut)
-                {
-                     if(i==0)
-                    {
+                if(!this.firstBoxSpawn && this.enableTut) {
+                    if( i == 0) {
                     if (node.children.length === 0) {
                         let boxData = BoxDataFactory.getTutorialBoxData(this.tutorialID);
                         if (!boxData || !boxData.id) {
@@ -226,6 +222,21 @@ export class BoxManager extends Component {
 
     private checkWin(): boolean {
         return this.nodePositions.every(node => node.children.length === 0);
+    }
+
+    private flashesWarning(): void {
+        this.uiWarning.forEach(uiOpacity => {
+            if (uiOpacity.node.activeInHierarchy) {
+                let duration = 0.3
+                tween(uiOpacity).to(0.25, {opacity: 255}, {easing: easing.cubicOut})
+                    .to(0.25, {opacity: 0}, {easing: easing.cubicOut})
+                    .to(0.25, {opacity: 255}, {easing: easing.cubicOut})
+                    .to(0.25, {opacity: 0}, {easing: easing.cubicOut})
+                    .to(0.25, {opacity: 255}, {easing: easing.cubicOut})
+                    .to(0.25, {opacity: 0}, {easing: easing.cubicOut})
+                    .start();
+            }
+        });
     }
 }
 

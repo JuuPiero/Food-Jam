@@ -7,7 +7,7 @@ import { BoxManager } from '../Core/BoxManager';
 const { ccclass, property } = _decorator;
 
 @ccclass("Shelf")
-export class Shelf extends Component {
+export abstract class Shelf extends Component {
     
     @property(Prefab)
     prefabLayer: Prefab = null;
@@ -28,6 +28,8 @@ export class Shelf extends Component {
     public currentLayer: ShelfLayer = null;
     
     private _layers: ShelfLayer[] = [];
+
+    protected abstract completeShelf(): void;
 
     public initialize(data: IShelfData): void {
         // Clear
@@ -72,14 +74,15 @@ export class Shelf extends Component {
         });
     }
 
-    private showNextLayer(): void {
+    protected showNextLayer(): void {
         let index = this._layers.indexOf(this.currentLayer);
         if (index > -1) {
             this._layers.splice(index, 1);
             this.updateLayer();
         }
     }
-    private updateLayer(): void {
+
+    protected updateLayer(): void {
         this.currentLayer = this._layers[this._layers.length - 1]
         if (this.currentLayer) {
             let goods = this.currentLayer.getGoods();
@@ -92,7 +95,7 @@ export class Shelf extends Component {
         }
         else
         {
-            this.shelfCleared();
+            this.completeShelf();
             return;
         }
         let nextLayer = this._layers[this._layers.length - 2];
@@ -115,7 +118,8 @@ export class Shelf extends Component {
             layer.node.active = false;
         }
     }
-    shelfCleared()
+
+    protected shelfCleared()
     {
         if(!this.shelfCloseLid)
             return;

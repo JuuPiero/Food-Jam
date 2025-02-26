@@ -7,6 +7,9 @@ const { ccclass, property } = _decorator;
 @ccclass("NormalShelf")
 export class NormalShelf extends Shelf {
     
+    protected completeShelf(): void {
+        this.shelfCleared();
+    }
 }
 
 

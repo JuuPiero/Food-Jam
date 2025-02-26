@@ -4,7 +4,7 @@ import { BezierTween } from '../Modules/BezierTween';
 import { LevelLoader } from '../Core/LevelLoader';
 import { BoxManager } from '../Core/BoxManager';
 import { TutorialController } from '../Core/TutorialController';
-import { AudioManager, ESoundEffect } from '../AudioManager';
+
 const { ccclass, property } = _decorator;
 
 @ccclass('Slot')
