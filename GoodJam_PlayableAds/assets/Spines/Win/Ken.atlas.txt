@@ -1,0 +1,48 @@
+
+Ken.png
+size: 364,1108
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/co1
+  rotate: false
+  xy: 235, 59
+  size: 114, 155
+  orig: 114, 155
+  offset: 0, 0
+  index: -1
+images/co2
+  rotate: true
+  xy: 2, 2
+  size: 212, 231
+  orig: 212, 231
+  offset: 0, 0
+  index: -1
+images/ken1
+  rotate: false
+  xy: 2, 216
+  size: 341, 153
+  orig: 341, 153
+  offset: 0, 0
+  index: -1
+images/ken2
+  rotate: false
+  xy: 2, 809
+  size: 333, 295
+  orig: 333, 295
+  offset: 0, 0
+  index: -1
+images/ken3
+  rotate: false
+  xy: 2, 371
+  size: 358, 146
+  orig: 358, 146
+  offset: 0, 0
+  index: -1
+images/ken4
+  rotate: false
+  xy: 2, 519
+  size: 324, 288
+  orig: 324, 288
+  offset: 0, 0
+  index: -1

@@ -4,6 +4,7 @@ import { BoxManager } from '../Core/BoxManager';
 import { SlotManager } from '../Slot/SlotManager';
 import { Box } from '../Box/Box';
 import { Slot } from '../Slot/Slot';
+import { PromiseUtils } from '../PromiseUtils';
 const { ccclass, property } = _decorator;
 
 @ccclass('LoseScreen')
@@ -31,13 +32,19 @@ export class LoseScreen extends ScreenBase {
     }
 
     public show(): Promise<void> {
-        return new Promise((resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
             this.nodeStages[0].active = true;
             this.nodeParent.removeAllChildren();
             this.nodeResults.forEach(node => {
                 let clone = this.clone(node, this.nodeParent);
                 this._nodeClones.push(clone);
             }, 0.5);
+
+            await PromiseUtils.delay(3);
+
+            this.nodeStages[0].active = false;
+            this.nodeStages[1].active = true;
+            
         });
     }
 

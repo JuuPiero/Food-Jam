@@ -29,6 +29,9 @@ export class ScreenOrientation extends Component {
     gameCamera: Camera = null;
 
     @property(Camera)
+    tutorialCamera: Camera = null;
+
+    @property(Camera)
     uiCamera: Camera = null;
 
     @property(Camera)
@@ -52,7 +55,7 @@ export class ScreenOrientation extends Component {
     public onSizeChanged(): void {
         let size = screen.windowSize;
         let ratio = size.width / size.height;
-        if (size.width < size.height && ratio < 0.6) {
+        if (size.width < size.height && ratio < 0.65) {
             console.log("%cPORTRAIT", "color: red");
             this.orientation = EScreenOrientation.PORTRAIT;
         }
@@ -102,6 +105,7 @@ export class ScreenOrientation extends Component {
         this.shadowCamera.orthoHeight = newOrthoHeight;
         this.gameCamera.orthoHeight = newOrthoHeight;
         this.uiResultCamera.orthoHeight = this.gameCamera.orthoHeight;
+        this.tutorialCamera.orthoHeight = this.gameCamera.orthoHeight;
     }
 
     private enableLandscape(): void {

@@ -33,6 +33,10 @@
     {
       "name": "UI_RESULT",
       "value": 32
+    },
+    {
+      "name": "TUTORIAL",
+      "value": 64
     }
   ]
 }

@@ -1,0 +1,27 @@
+
+Rem.png
+size: 1628,208
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/cuon
+  rotate: true
+  xy: 1527, 14
+  size: 189, 98
+  orig: 189, 98
+  offset: 0, 0
+  index: -1
+images/ruybang
+  rotate: true
+  xy: 1084, 35
+  size: 168, 441
+  orig: 168, 441
+  offset: 0, 0
+  index: -1
+images/ruybang_big
+  rotate: false
+  xy: 2, 2
+  size: 1080, 201
+  orig: 1080, 201
+  offset: 0, 0
+  index: -1

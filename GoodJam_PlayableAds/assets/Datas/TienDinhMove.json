@@ -121,7 +121,7 @@
         "moveType": 2,
         "speed": 0.0,
         "itemsLayer": [
-          { "items": [6, 6, 0] }
+          { "items": [6, 6, 4] }
         ]
       },
       {
