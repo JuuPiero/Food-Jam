@@ -5,6 +5,7 @@ import { PlayableAdsManager } from '../../base-script/PlayableAds/PlayableAdsMan
 import { TutorialController } from './TutorialController';
 import { LevelLoader } from './LevelLoader';
 import { GameManager } from './GameManager';
+import { EGameState } from './EGameState';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchEventListener')
@@ -57,7 +58,7 @@ export class TouchEventListener extends Component {
             LevelLoader.Instance.tutNode.active = false;
         }
        
-        // GameManager.instance.state = EGameState.PLAYING;
+        GameManager.Instance.State = EGameState.PLAYING;
         // GameManager.instance.nodeTapToPlay.active = false;
         TrackingManager.firstClick();
         AudioManager.playBackground();
