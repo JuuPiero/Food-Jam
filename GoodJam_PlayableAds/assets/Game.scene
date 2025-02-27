@@ -8033,7 +8033,7 @@
     "autoShowStore": {
       "__id__": 506
     },
-    "moveLimit": 12,
+    "moveLimit": 21,
     "timeLimit": 12,
     "_id": "bdYW+RBfBPa7fE/KRcIhjD"
   },
