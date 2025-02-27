@@ -104,7 +104,7 @@ onTut()
         this.tutNode = tutObject.node;
         this.tutNode.parent = this.boxManager.nodeTopLayer;
         this.tutParent = this.boxManager.nodePositions[0].children[0].getComponent(Box).nodeSlots.children[0].getComponent(BoxSlot).nodeParent;
-        var targetTutObj = this.shelfContainer.children[this.tutShelfIndex].getComponent(Shelf).currentLayer.getGoods()[1];
+        var targetTutObj = this.shelfContainer.children[this.tutShelfIndex].getComponent(Shelf).currentLayer.getGoods()[2];
         this.tutNode.setWorldPosition(targetTutObj.node.getWorldPosition());
         this.tutNode.setWorldScale(targetTutObj.node.getWorldScale());
         var pos = targetTutObj.node.getWorldPosition()
@@ -116,7 +116,7 @@ onTut()
 }
 animTut()
     {
-        var targetTutObj = this.shelfContainer.children[this.tutShelfIndex].getComponent(Shelf).currentLayer.getGoods()[1];
+        var targetTutObj = this.shelfContainer.children[this.tutShelfIndex].getComponent(Shelf).currentLayer.getGoods()[2];
         
         if(!targetTutObj || !this.tutNode || targetTutObj.node.active == false || this.tutNode.active ==false)
             return;

@@ -11,6 +11,8 @@ import { GameEnd } from '../Base/State/GameState/GameEnd';
 import { LevelLoader } from './LevelLoader';
 import { ScreenBase } from '../Screen/ScreenBase';
 import { PlayableAdsManager } from '../../base-script/PlayableAds/PlayableAdsManager';
+import { Random } from '../Modules/Random';
+import { generateShuffledSubArrays } from '../GenerateSubArrays';
 const { ccclass, property } = _decorator;
 
 // macro.CLEANUP_IMAGE_CACHE = false;
@@ -49,6 +51,8 @@ export class GameManager extends State<EGameState, GameState> {
     protected start(): void {
         GameManager._instance = this;
         this.State = EGameState.INITIALIZATION;
+        let result = generateShuffledSubArrays([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], 27)
+        window.g = this
         
     }
     startCounting()
@@ -92,5 +96,3 @@ export class GameManager extends State<EGameState, GameState> {
         this._stateIntance?.enterState();
     }
 }
-
-

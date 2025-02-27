@@ -114,6 +114,18 @@ export class Box extends Component implements IBox {
         }
     }
     
+    public isFull(): boolean {
+        let isFull = true;
+        for (let i = 0; i < this._boxSlots.length; ++i) {
+            if (this._boxSlots[i].isFull()) {
+                continue;
+            }
+            isFull = false;
+            break;
+        }
+        return isFull;
+    }
+
     private initSlots(): void {
         for (let i = 0; i < this._total; i++) {
             let node = instantiate(this.prefabSlot);

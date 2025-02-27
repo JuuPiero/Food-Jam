@@ -8,10 +8,10 @@ const { ccclass, property } = _decorator;
 @ccclass
 export class MovingShelfBoundsLimit {
     @property(Vec2)
-    horizontalLimits: Vec2 = new Vec2(-1000 , 1000);
+    horizontalLimits: Vec2 = new Vec2(-1100 , 1100);
 
     @property(Vec2)
-    verticalLimits: Vec2 = new Vec2(-1000, 1000);
+    verticalLimits: Vec2 = new Vec2(-1100, 1100);
 }
 
 @ccclass('MovingShelf')
@@ -63,7 +63,7 @@ export class MovingShelf extends Shelf {
     protected completeShelf(): void {
         // Chả làm gì cả.
     }
-    
+
     private calculateVelocity() {
         switch (this.moveType) {
             case EMoveType.NONE:
@@ -109,6 +109,7 @@ export class MovingShelf extends Shelf {
         let pos = this.node.getPosition();
         let shelves = this.boxManager.levelLoader.getShelves();
         let horizontalMovingShelves: Shelf[] = [];
+        let verticalMovingShelves: Shelf[] = [];
         let minShelf: Shelf = null;
         let maxShelf: Shelf = null;
         let spacingX = 0;
@@ -147,10 +148,33 @@ export class MovingShelf extends Shelf {
                 this.node.setPosition(newPos);
                 break;
             case EMoveType.BOTTOM_TO_TOP:
-                this.node.setPosition(this.node.position.x, this.boundsLimit.verticalLimits.x);
+                verticalMovingShelves = shelves.filter(shelf => shelf.node.getPosition().x === pos.x);
+                verticalMovingShelves.sort((a, b) => a.node.getPosition().y - b.node.getPosition().y);
+                minShelf = verticalMovingShelves[0];
+                for (let i = 1; i < verticalMovingShelves.length; ++i) {
+                    if (minShelf.node.getPosition().y > verticalMovingShelves[i].node.getPosition().y) {
+                        minShelf = verticalMovingShelves[i];
+                    }
+                }
+                spacingY = Math.abs(verticalMovingShelves[0].node.getPosition().y - verticalMovingShelves[1].node.getPosition().y);
+                minPos = minShelf.node.getPosition();
+                newPos = new Vec3(minPos.x, minPos.y - spacingY, minPos.z);
+                this.node.setPosition(newPos);
                 break;
+
             case EMoveType.TOP_TO_BOTTOM:
-                this.node.setPosition(this.node.position.x, this.boundsLimit.verticalLimits.y);
+                verticalMovingShelves = shelves.filter(shelf => shelf.node.getPosition().x === pos.x);
+                verticalMovingShelves.sort((a, b) => b.node.getPosition().y - a.node.getPosition().y);
+                maxShelf = verticalMovingShelves[0];
+                for (let i = 1; i < verticalMovingShelves.length; ++i) {
+                    if (maxShelf.node.getPosition().y < verticalMovingShelves[i].node.getPosition().y) {
+                        maxShelf = verticalMovingShelves[i];
+                    }
+                }
+                spacingY = Math.abs(verticalMovingShelves[0].node.getPosition().y - verticalMovingShelves[1].node.getPosition().y);
+                maxPos = maxShelf.node.getPosition();
+                newPos = new Vec3(maxPos.x, maxPos.y + spacingY, maxPos.z);
+                this.node.setPosition(newPos);
                 break;
         }
     }

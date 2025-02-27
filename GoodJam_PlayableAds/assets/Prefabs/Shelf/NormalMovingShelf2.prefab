@@ -357,7 +357,7 @@
         "__id__": 15
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 21
@@ -573,7 +573,7 @@
     "node": {
       "__id__": 14
     },
-    "_enabled": true,
+    "_enabled": false,
     "__prefab": {
       "__id__": 24
     },
@@ -595,7 +595,7 @@
     "node": {
       "__id__": 14
     },
-    "_enabled": true,
+    "_enabled": false,
     "__prefab": {
       "__id__": 26
     },

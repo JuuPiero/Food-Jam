@@ -66,7 +66,7 @@ export class BoxManager extends Component {
         let boxMatch = null;
         for (let i = 0; i < this._boxesActive.length; i++) {
             let box = this._boxesActive[i];
-            if (box.getId() === goods.getId()) {
+            if (box.getId() === goods.getId() && !box.isFull()) {
                 boxMatch = box;
                 break;
             }

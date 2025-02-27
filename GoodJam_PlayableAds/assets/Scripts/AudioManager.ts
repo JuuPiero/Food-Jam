@@ -11,7 +11,8 @@ export enum ESoundEffect {
     LOSE,
     WARNING,
     FAIL,
-    TYPING
+    TYPING,
+    CONFETTI
 }
 
 @ccclass('AudioManager')
