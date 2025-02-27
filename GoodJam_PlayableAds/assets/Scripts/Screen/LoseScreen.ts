@@ -6,6 +6,7 @@ import { Box } from '../Box/Box';
 import { Slot } from '../Slot/Slot';
 import { PromiseUtils } from '../PromiseUtils';
 import { AudioManager, ESoundEffect } from '../AudioManager';
+
 const { ccclass, property } = _decorator;
 
 @ccclass('LoseScreen')
@@ -13,6 +14,7 @@ export class LoseScreen extends ScreenBase {
     
     @property([Node])
     nodeResults: Node[] = [];
+
 
     @property(Node)
     nodeParent: Node = null;
@@ -46,8 +48,8 @@ export class LoseScreen extends ScreenBase {
 
             await PromiseUtils.delay(3.5);
 
-            this.nodeStages[0].active = false;
-            this.nodeStages[1].active = true;
+            // this.nodeStages[0].active = false;
+            // this.nodeStages[1].active = true;
             
         });
     }
