@@ -28,7 +28,7 @@ export enum EMoveType {
 
 export enum EShelfType {
     NORMAL,
-    MOVE,
-    SINGLE,
     SINGLE_MOVE,
+    SINGLE,
+    NORMAL_MOVE,
 }

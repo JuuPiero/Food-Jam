@@ -37,11 +37,11 @@ export class LoseScreen extends ScreenBase {
     public show(): Promise<void> {
         return new Promise(async (resolve, reject) => {
             AudioManager.stopBackground();
-            AudioManager.playEffect(ESoundEffect.TYPING);
+            // AudioManager.playEffect(ESoundEffect.TYPING);
             this.nodeStages[0].active = true;
             this.nodeParent.removeAllChildren();
+            AudioManager.playEffect(ESoundEffect.FAIL);
             this.nodeResults.forEach(node => {
-                AudioManager.playEffect(ESoundEffect.FAIL);
                 let clone = this.clone(node, this.nodeParent);
                 this._nodeClones.push(clone);
             }, 0.5);

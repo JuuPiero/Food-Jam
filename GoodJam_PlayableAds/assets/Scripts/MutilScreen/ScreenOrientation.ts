@@ -89,7 +89,7 @@ export class ScreenOrientation extends Component {
                 this.enableLandscape();
                 break;
             case EScreenOrientation.SQUARE:
-                this.nodeBGHeader.active = false;
+                this.nodeBGHeader.active = true;
                 this.enableSquare();
                 break;
         }
