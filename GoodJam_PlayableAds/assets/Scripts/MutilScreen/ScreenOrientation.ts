@@ -113,10 +113,11 @@ export class ScreenOrientation extends Component {
         let size = screen.windowSize;
         let designRatio = 1920 / 1080;
         let realRatio = size.width / size.height;
-        // let newOrthoHeight = this.orthoHeight[this.orientation] * realRatio / designRatio;
-        // console.log("%cnewOrthoHeight: ", "color: blue", newOrthoHeight);
-        // this.shadowCamera.orthoHeight = newOrthoHeight;
-        // this.gameCamera.orthoHeight = newOrthoHeight;
+        let newOrthoHeight = this.orthoHeight[this.orientation];
+        this.shadowCamera.orthoHeight = newOrthoHeight;
+        this.gameCamera.orthoHeight = newOrthoHeight;
+        this.uiResultCamera.orthoHeight = this.gameCamera.orthoHeight;
+        this.tutorialCamera.orthoHeight = this.gameCamera.orthoHeight;
     }
 
     private enableSquare(): void {
@@ -124,10 +125,11 @@ export class ScreenOrientation extends Component {
         let size = screen.windowSize;
         let designRatio = 1080 / 1080;
         let realRatio = size.width / size.height;
-        // let newOrthoHeight = this.orthoHeight[this.orientation] * designRatio / realRatio;
-        // console.log("%cnewOrthoHeight: ", "color: blue", newOrthoHeight);
-        // this.shadowCamera.orthoHeight = newOrthoHeight;
-        // this.gameCamera.orthoHeight = newOrthoHeight;
+        let newOrthoHeight = this.orthoHeight[this.orientation];
+        this.shadowCamera.orthoHeight = newOrthoHeight;
+        this.gameCamera.orthoHeight = newOrthoHeight;
+        this.uiResultCamera.orthoHeight = this.gameCamera.orthoHeight;
+        this.tutorialCamera.orthoHeight = this.gameCamera.orthoHeight;
     }
 }
 
