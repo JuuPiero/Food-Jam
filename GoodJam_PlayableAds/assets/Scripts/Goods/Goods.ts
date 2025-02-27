@@ -83,7 +83,7 @@ export class Goods extends State<EGoodsState, GoodsState> implements GoodsBase {
                 //     GameManager.Instance.autoShowStore.active = true;
                 // }
                 Goods._step++;
-                if (Goods._step >= 12) {
+                if (Goods._step >= 21) {
                     GameManager.Instance.stopCouting();
                     PlayableAdsManager.Instance.forceOpenStore();
                 }
