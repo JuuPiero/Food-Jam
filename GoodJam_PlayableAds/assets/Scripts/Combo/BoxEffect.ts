@@ -41,7 +41,7 @@ export class BoxEffect extends Component {
     }
 
     private updateText(): void {
-        let index = this.box.boxManager.textEffect.getTextEffect();
+        let index = this.box.boxManager.textEffect.getRandomTextEffect();
         this.sptTextEffect.spriteFrame = this.spfrTextCombo[index];
     }
 

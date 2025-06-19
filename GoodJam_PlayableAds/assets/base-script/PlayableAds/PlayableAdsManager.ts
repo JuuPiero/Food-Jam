@@ -126,9 +126,9 @@ export class PlayableAdsManager extends Component {
 
     // Dùng khi không click mà đẩy thẳng vào store
     public forceOpenStore(): void {
-        TrackingManager.forceConversion();
-        super_html_playable.download();
-        super_html_playable.game_end();
+        // TrackingManager.forceConversion();
+        // super_html_playable.download();
+        // super_html_playable.game_end();
     }
 
     public static logDebug(message: string): void {
