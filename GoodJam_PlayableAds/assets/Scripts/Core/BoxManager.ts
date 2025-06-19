@@ -123,7 +123,9 @@ export class BoxManager extends Component {
                 if(!this.firstBoxSpawn && this.enableTut) {
                     if( i == 0) {
                     if (node.children.length === 0) {
-                        let boxData = BoxDataFactory.getTutorialBoxData(this.tutorialID);
+                        // Lấy danh sách ID của các box đang hoạt động
+                        let activeIds = this._boxesActive.map(box => box.getId());
+                        let boxData = BoxDataFactory.getTutorialBoxData(this.tutorialID, activeIds);
                         if (!boxData || !boxData.id) {
                             console.log("noooo");
                             return;
@@ -155,7 +157,9 @@ export class BoxManager extends Component {
                 }
             }
             if (node.children.length === 0) {
-                let boxData = BoxDataFactory.getRandomBoxData();
+                // Lấy danh sách ID của các box đang hoạt động
+                let activeIds = this._boxesActive.map(box => box.getId());
+                let boxData = BoxDataFactory.getRandomBoxData(activeIds);
                 if (!boxData || !boxData.id) {
                     return;
                 }

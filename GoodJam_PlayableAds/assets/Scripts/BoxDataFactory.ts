@@ -14,13 +14,21 @@ class BoxDataFactorty {
         this._data = data;
         this._layersData = this.getAllLayersData(this._data);
     }
-    public getTutorialBoxData(initID: number):IBoxData
-    {
+    public getTutorialBoxData(initID: number, activeIds: number[] = []): IBoxData {
         let firstLayer = this._layersData[0];
         if (firstLayer) {
-            // Lấy ngẫu nhiên một id từ mảng phần tử đầu tiên
-         
-            let targetID = firstLayer.find(x=>x==initID);
+            // Tìm targetID trong layer đầu tiên và đảm bảo không trùng với activeIds
+            let targetID = firstLayer.find(x => x == initID && !activeIds.includes(x));
+            
+            // Nếu không tìm thấy ID phù hợp, thử tìm ID khác không trùng
+            if (!targetID) {
+                let availableIds = firstLayer.filter(id => !activeIds.includes(id));
+                if (availableIds.length > 0) {
+                    targetID = availableIds[0]; // Lấy ID đầu tiên khả dụng
+                } else {
+                    return null; // Không có ID nào khả dụng
+                }
+            }
             
             let count = 0;
             // Duyệt qua các mảng phần tử để tìm và xóa id
@@ -36,21 +44,33 @@ class BoxDataFactorty {
                     break; // Dừng khi đã tìm thấy 3 id
                 }
             }
-            if (firstLayer.length === 0) {
+            
+            // Kiểm tra nếu layer đầu tiên hết ID thì xóa nó  
+            if (this._layersData[0] && this._layersData[0].length === 0) {
                 this._layersData.shift();
             }
+            
             // Trả về IBoxData với id và total = 3
             return { id: targetID, total: 3 };
         }
         return null;
     }
-    public getRandomBoxData(): IBoxData {
+    public getRandomBoxData(activeIds: number[] = []): IBoxData {
         // Lấy mảng phần tử đầu tiên
         let firstLayer = this._layersData[0];
         if (firstLayer) {
-            // Lấy ngẫu nhiên một id từ mảng phần tử đầu tiên
-            let randomIndex = Random.getRandomInt(0, firstLayer.length - 1);
-            let randomId = firstLayer[randomIndex];
+            // Lọc ra các ID không trùng với các box đang hoạt động
+            let availableIds = firstLayer.filter(id => !activeIds.includes(id));
+            
+            // Nếu không có ID nào khả dụng trong layer đầu, chuyển sang layer tiếp theo
+            if (availableIds.length === 0) {
+                this._layersData.shift();
+                return this.getRandomBoxData(activeIds); // Đệ quy với layer tiếp theo
+            }
+            
+            // Lấy ngẫu nhiên một id từ mảng ID khả dụng
+            let randomIndex = Random.getRandomInt(0, availableIds.length - 1);
+            let randomId = availableIds[randomIndex];
             
             let count = 0;
             // Duyệt qua các mảng phần tử để tìm và xóa id
@@ -66,9 +86,12 @@ class BoxDataFactorty {
                     break; // Dừng khi đã tìm thấy 3 id
                 }
             }
-            if (firstLayer.length === 0) {
+            
+            // Kiểm tra nếu layer đầu tiên hết ID thì xóa nó
+            if (this._layersData[0] && this._layersData[0].length === 0) {
                 this._layersData.shift();
             }
+            
             // Trả về IBoxData với id và total = 3
             return { id: randomId, total: 3 };
         }
