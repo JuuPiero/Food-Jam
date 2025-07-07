@@ -1,4 +1,4 @@
-import { _decorator, Camera, CCFloat, Component, Enum, Node, ResolutionPolicy, screen, Size, view } from 'cc';
+import { _decorator, Camera, CCFloat, Component, Enum, Node, ResolutionPolicy, screen, Size, Vec3, view } from 'cc';
 const { ccclass, property } = _decorator;
 
 export enum EScreenOrientation {
@@ -39,6 +39,11 @@ export class ScreenOrientation extends Component {
 
     @property(Node)
     nodeBGHeader: Node = null;
+
+    @property([Node])
+    nodesSyncLevel: Node[] = [];
+
+    private portraitScale: Vec3 = null;
 
     protected start(): void {
         this.onSizeChanged();
@@ -106,6 +111,10 @@ export class ScreenOrientation extends Component {
         this.gameCamera.orthoHeight = newOrthoHeight;
         this.uiResultCamera.orthoHeight = this.gameCamera.orthoHeight;
         this.tutorialCamera.orthoHeight = this.gameCamera.orthoHeight;
+        if (this.portraitScale === null) {
+            this.portraitScale = this.nodesSyncLevel[0].getScale();
+        }
+        // this.nodesSyncLevel[0].setScale(this.portraitScale.clone().multiplyScalar(realRatio));
     }
 
     private enableLandscape(): void {
