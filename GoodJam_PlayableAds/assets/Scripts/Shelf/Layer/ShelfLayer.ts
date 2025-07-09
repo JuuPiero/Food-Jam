@@ -1,6 +1,7 @@
 import { _decorator, Component, Layers, Node, tween, Vec3 } from 'cc';
 import { EGoodsState, Goods } from '../../Goods/Goods';
 import { Shelf } from '../Shelf';
+import { GoodsBase } from '../../Base/GoodsBase';
 
 const { ccclass, property } = _decorator;
 
@@ -11,9 +12,9 @@ export class ShelfLayer extends Component {
     nodesPosition: Node[] = [];
 
     public shelf: Shelf = null;
-    private _goods: Goods[] = [];
+    private _goods: GoodsBase[] = [];
 
-    public initialize(goods: Goods[]): void {
+    public initialize(goods: GoodsBase[]): void {
         this.reset();
         this._goods = goods.filter(good => good !== null);
         for (let i = 0; i < goods.length; i++) {
@@ -29,7 +30,7 @@ export class ShelfLayer extends Component {
         });
     }
 
-    public removeGoods(goods: Goods): Promise<Goods[]> {
+    public removeGoods(goods: GoodsBase): Promise<GoodsBase[]> {
         return new Promise((resolve, reject) => {
             let index = this._goods.indexOf(goods);
             if (index !== -1) {
@@ -41,7 +42,7 @@ export class ShelfLayer extends Component {
         });
     }
 
-    public getGoods(): Goods[] {
+    public getGoods(): GoodsBase[] {
         return this._goods;
     }
 

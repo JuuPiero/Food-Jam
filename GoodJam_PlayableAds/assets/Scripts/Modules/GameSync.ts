@@ -1,9 +1,10 @@
 import { _decorator, Component, Node, Vec3 } from 'cc';
 import { Camera } from 'cc';
 
-const { ccclass, property } = _decorator;
+const { ccclass, property, executeInEditMode } = _decorator;
 
 @ccclass('GameSync')
+@executeInEditMode(true)
 export class GameSync extends Component {
     
     @property(Camera)

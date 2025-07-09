@@ -4,7 +4,6 @@ import { State } from '../Base/State/State';
 import { GoodsState } from './GoodsState';
 import { GoodsHiddenState } from './GoodsHiddenState';
 import { GoodsInteractiveState } from './GoodsInteractiveState';
-import { ShelfLayer } from '../Shelf/Layer/ShelfLayer';
 import { GoodsActiveState } from './GoodsActiveState';
 import { GoodsBlockState } from './GoodsBlockState';
 import { Shelf } from '../Shelf/Shelf';
@@ -12,7 +11,6 @@ import { GameManager } from '../Core/GameManager';
 import { EGameState } from '../Core/EGameState';
 import { TouchEventListener } from '../Core/TouchEventListener';
 import { AudioManager, ESoundEffect } from '../AudioManager';
-import { BoxManager } from '../Core/BoxManager';
 import { PlayableAdsManager } from '../../base-script/PlayableAds/PlayableAdsManager';
 
 const { ccclass, property } = _decorator;
@@ -25,7 +23,7 @@ export enum EGoodsState {
 }
 
 @ccclass('Goods')
-export class Goods extends State<EGoodsState, GoodsState> implements GoodsBase {
+export class Goods extends GoodsBase {
 
     @property(Sprite)
     sptGoods: Sprite = null;
@@ -93,10 +91,10 @@ export class Goods extends State<EGoodsState, GoodsState> implements GoodsBase {
     }
     public TutAnim()
     {
-        let boxManager = BoxManager.instance;
-        boxManager.pickUpTut(this);
+        // let boxManager = BoxManager.Instance;
+        // boxManager.pickUpTut(this);
     }
-    private pickUp(): void {
+    public pickUp(): void {
         AudioManager.playEffect(ESoundEffect.PICKUP);
         // Xử lý shelf
         this.shelf.onGoodsPickUp(this);

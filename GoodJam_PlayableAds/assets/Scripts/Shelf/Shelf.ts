@@ -4,6 +4,7 @@ import { GoodsFactory } from '../Goods/GoodsFactory';
 import { ShelfLayer } from './Layer/ShelfLayer';
 import { EGoodsState, Goods } from '../Goods/Goods';
 import { BoxManager } from '../Core/BoxManager';
+import { GoodsBase } from '../Base/GoodsBase';
 const { ccclass, property } = _decorator;
 
 @ccclass("Shelf")
@@ -66,7 +67,7 @@ export abstract class Shelf extends Component {
         this.nodeLayers.removeAllChildren();
     }
 
-    public onGoodsPickUp(goods: Goods): void {
+    public onGoodsPickUp(goods: GoodsBase): void {
         this.currentLayer.removeGoods(goods).then(goods => {
             if (goods.length === 0) {
                 this.showNextLayer();

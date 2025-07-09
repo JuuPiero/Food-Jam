@@ -1,5 +1,7 @@
 import { _decorator, Component, instantiate, Node, Prefab, SpriteFrame } from 'cc';
 import { Goods } from './Goods';
+import { GoodsBase } from '../Base/GoodsBase';
+import { Coin } from './Coin';
 const { ccclass, property } = _decorator;
 
 export enum EGoodsType {
@@ -16,12 +18,21 @@ export class GoodsFactory extends Component {
     @property(Prefab)
     prefabsGoodsTut: Prefab = null;
 
+    @property(Prefab)
+    prefabCoin: Prefab = null;
+
     @property([SpriteFrame])
     sfrGoods: SpriteFrame[] = [];
 
-    public createGoods(id: number): Goods {
+    public createGoods(id: number): GoodsBase {
         if (id === 0)
             return null;
+        if (id === 16) {
+            let node = instantiate(this.prefabCoin);
+            let goods = node.getComponent(Coin);
+            // goods.initialize(id, this.sfrGoods[id]);
+            return goods;
+        }
         let node = instantiate(this.prefabsGoods);
         let goods = node.getComponent(Goods);
         goods.initialize(id, this.sfrGoods[id]);
