@@ -36,7 +36,7 @@ export class CollectCoin extends Component {
         CollectCoin._instance = this;
     }
 
-    public collect(coin: Coin): Promise<Coin> {
+    public collect(coin: Coin): Promise<boolean> {
         return new Promise((resolve, reject) => {
             let wScale = coin.node.getWorldScale();
             let wPos = coin.node.getWorldPosition();
@@ -59,7 +59,7 @@ export class CollectCoin extends Component {
                 this.labelCoin.string = this._currentCoin.toString() + "/" + this.totalCoin.toString();
                 this.animCoin.play();
                 coin.node.destroy();
-                resolve(coin);
+                resolve(this._currentCoin === this.totalCoin);
             }).start();
         });
     }

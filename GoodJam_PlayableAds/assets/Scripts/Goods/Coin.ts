@@ -3,6 +3,8 @@ import { GoodsBase } from '../Base/GoodsBase';
 import { CollectCoin } from '../CollectCoin';
 import { AudioManager, ESoundEffect } from '../AudioManager';
 import { EGoodsState } from './Goods';
+import { GameManager } from '../Core/GameManager';
+import { EGameState } from '../Core/EGameState';
 const { ccclass, property } = _decorator;
 
 @ccclass('Coin')
@@ -13,7 +15,11 @@ export class Coin extends GoodsBase {
     }
 
     public onClick(): void {
-        CollectCoin.Instance.collect(this);
+        CollectCoin.Instance.collect(this).then(completed => {
+            if (completed) {
+                GameManager.Instance.State = EGameState.WIN;
+            }
+        });
         this.pickUp();
     }
 
