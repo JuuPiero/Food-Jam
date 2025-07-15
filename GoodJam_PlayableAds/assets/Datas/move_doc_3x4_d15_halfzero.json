@@ -5,32 +5,32 @@
   "maxUniqueColors": 30,
   "cells": [
     {
-      "posX": -9,
-      "posY": 6,
-      "cellType": 0,
+      "posX": -6,
+      "posY": 9,
+      "cellType": 3,
       "moveType": 0,
       "speed": 0.0,
       "itemsLayer": [
         { "items": [4, 6, 13] },
-        { "items": [0, 3, 16] }
+        { "items": [0, 3, 0] }
       ]
     },
     {
-      "posX": -9,
-      "posY": 2,
-      "cellType": 0,
+      "posX": -6,
+      "posY": 3,
+      "cellType": 3,
       "moveType": 0,
       "speed": 0.0,
       "itemsLayer": [
-        { "items": [ 16, 8, 15] },
+        { "items": [ 0, 8, 15] },
         { "items": [10, 3,  5] },
         { "items": [ 7, 3,  9] }
       ]
     },
     {
-      "posX": -9,
-      "posY": -2,
-      "cellType": 0,
+      "posX": -6,
+      "posY": -3,
+      "cellType": 3,
       "moveType": 0,
       "speed": 0.0,
       "itemsLayer": [
@@ -40,9 +40,9 @@
       ]
     },
     {
-      "posX": -9,
-      "posY": -6,
-      "cellType": 0,
+      "posX": -6,
+      "posY": -9,
+      "cellType": 3,
       "moveType": 0,
       "speed": 0.0,
       "itemsLayer": [
@@ -51,9 +51,9 @@
       ]
     },
     {
-      "posX": -3,
-      "posY": 6,
-      "cellType": 0,
+      "posX": 0,
+      "posY": 9,
+      "cellType": 3,
       "moveType": 0,
       "speed": 0.0,
       "itemsLayer": [
@@ -63,21 +63,9 @@
       ]
     },
     {
-      "posX": -3,
-      "posY": 2,
-      "cellType": 0,
-      "moveType": 0,
-      "speed": 0.0,
-      "itemsLayer": [
-        { "items": [3, 6,  9] },
-        { "items": [2, 16, 10] },
-        { "items": [0, 0,  0] }
-      ]
-    },
-    {
-      "posX": -3,
-      "posY": -2,
-      "cellType": 0,
+      "posX": 0,
+      "posY": 0,
+      "cellType": 3,
       "moveType": 0,
       "speed": 0.0,
       "itemsLayer": [
@@ -87,20 +75,20 @@
       ]
     },
     {
-      "posX": -3,
-      "posY": -6,
-      "cellType": 0,
+      "posX": 0,
+      "posY": -9,
+      "cellType": 3,
       "moveType": 0,
       "speed": 0.0,
       "itemsLayer": [
-        { "items": [ 0, 1, 8] },
-        { "items": [13, 3, 0] }
+        { "items": [ 6, 1, 8] },
+        { "items": [13, 3, 3] }
       ]
     },
     {
-      "posX": 3,
-      "posY": 6,
-      "cellType": 0,
+      "posX": 6,
+      "posY": 9,
+      "cellType": 3,
       "moveType": 0,
       "speed": 0.0,
       "itemsLayer": [
@@ -110,9 +98,9 @@
       ]
     },
     {
-      "posX": 3,
-      "posY": 2,
-      "cellType": 0,
+      "posX": 6,
+      "posY": 3,
+      "cellType": 3,
       "moveType": 0,
       "speed": 0.0,
       "itemsLayer": [
@@ -121,27 +109,26 @@
       ]
     },
     {
-      "posX": 3,
-      "posY": -2,
-      "cellType": 0,
+      "posX": 6,
+      "posY": -3,
+      "cellType": 3,
       "moveType": 0,
       "speed": 0.0,
       "itemsLayer": [
         { "items": [9, 12, 2] },
-        { "items": [0,  0, 9] },
-        { "items": [5,  7, 16] }
+        { "items": [0,  9, 9] },
+        { "items": [5,  7, 0] }
       ]
     },
     {
-      "posX": 3,
-      "posY": -6,
-      "cellType": 0,
+      "posX": 6,
+      "posY": -9,
+      "cellType": 3,
       "moveType": 0,
       "speed": 0.0,
       "itemsLayer": [
-        { "items": [1, 1, 16] },
-        { "items": [0, 2, 0] },
-        { "items": [6, 0, 0] }
+        { "items": [1, 1, 10] },
+        { "items": [6, 2, 2] }
       ]
     }
   ]
