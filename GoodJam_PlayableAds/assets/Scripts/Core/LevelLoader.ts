@@ -58,7 +58,6 @@ export class LevelLoader extends Component {
     public currentLevel: number = 0;
     private _shelfs: Shelf[] = [];
     private _movingShelfs: MovingShelf[][] = [];
-    private _mapLoop: MapLoop = null;
     private static _instance: LevelLoader = null;
     public static get Instance(): LevelLoader {
         return LevelLoader._instance;
@@ -66,12 +65,6 @@ export class LevelLoader extends Component {
 
     protected onLoad(): void {
         LevelLoader._instance = this;
-    }
-
-    protected update(dt: number): void {
-        if (this._mapLoop) {
-            this._mapLoop.update(dt);
-        }
     }
 
     public initialize(level: number): void {
@@ -103,7 +96,6 @@ export class LevelLoader extends Component {
         this.boxManager.initialize(data);
         if(TutorialController.Instance.enableTut)
             this.onTut();
-        this._mapLoop = new MapLoop(this._shelfs);
        
     }
 onTut()

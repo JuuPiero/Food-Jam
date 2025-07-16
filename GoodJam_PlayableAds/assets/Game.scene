@@ -1761,7 +1761,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -260,
+      "x": -375,
       "y": 0,
       "z": 0
     },
@@ -1966,7 +1966,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 0,
+      "x": -125,
       "y": 0,
       "z": 0
     },
@@ -2171,7 +2171,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 260,
+      "x": 125,
       "y": 0,
       "z": 0
     },
@@ -2367,7 +2367,7 @@
         "__id__": 82
       }
     ],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 92
@@ -2376,7 +2376,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 390,
+      "x": 375,
       "y": 0,
       "z": 0
     },
@@ -2571,7 +2571,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 520,
+      "width": 750,
       "height": 200
     },
     "_anchorPoint": {
@@ -2593,8 +2593,8 @@
     "__prefab": null,
     "_alignFlags": 41,
     "_target": null,
-    "_left": 280,
-    "_right": 280,
+    "_left": 165,
+    "_right": 165,
     "_top": 130,
     "_bottom": 0,
     "_horizontalCenter": 0,
@@ -2643,6 +2643,9 @@
       },
       {
         "__id__": 69
+      },
+      {
+        "__id__": 81
       }
     ],
     "tutorialID": 15,
@@ -8277,7 +8280,7 @@
     "tutShelfIndex": 5,
     "jsonLevelData": [
       {
-        "__uuid__": "38890b1f-27fb-4c4a-886b-9108f31b7552",
+        "__uuid__": "178ab4fc-8dc5-48ff-a741-7ed471e6d45f",
         "__expectedType__": "cc.JsonAsset"
       }
     ],
@@ -25666,7 +25669,7 @@
     "_paddingRight": 0,
     "_paddingTop": 0,
     "_paddingBottom": 0,
-    "_spacingX": 260,
+    "_spacingX": 250,
     "_spacingY": 0,
     "_verticalDirection": 1,
     "_horizontalDirection": 0,
@@ -26379,7 +26382,7 @@
       }
     ],
     "orthoHeight": [
-      900,
+      960,
       1200,
       840
     ],

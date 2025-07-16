@@ -58,11 +58,7 @@ export abstract class Shelf extends Component {
         // Setup
         this.updateLayer();
     }
-    public tutAnim()
-    {
-        this.currentLayer.getGoods()[0].TutAnim();
-     
-    }
+
     public reset(): void {
         this.nodeLayers.removeAllChildren();
     }
