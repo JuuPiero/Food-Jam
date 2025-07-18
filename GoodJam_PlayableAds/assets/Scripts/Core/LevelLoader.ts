@@ -10,6 +10,7 @@ import { BoxSlot } from '../Slot/BoxSlot';
 import { BezierTween } from '../Modules/BezierTween';
 import { MovingShelf } from '../Shelf/MovingShelf';
 import { MapLoop } from '../MapLoop';
+import { FallingShelf } from '../Shelf/FallingShelf';
 
 const { ccclass, property } = _decorator;
 
@@ -55,8 +56,13 @@ export class LevelLoader extends Component {
     @property
     indexTutGoods: number = 0;
 
+    @property(Node)
+    nodeShadowContainer: Node= null;
+
     public currentLevel: number = 0;
     private _shelfs: Shelf[] = [];
+    private _fallingShelves: FallingShelf[] = [];
+    private _listFallingShelf: FallingShelf[][] = [];
     private _movingShelfs: MovingShelf[][] = [];
     private static _instance: LevelLoader = null;
     public static get Instance(): LevelLoader {
@@ -94,9 +100,10 @@ export class LevelLoader extends Component {
         }
 
         this.boxManager.initialize(data);
-        if(TutorialController.Instance.enableTut)
+        if(TutorialController.Instance.enableTut) {
             this.onTut();
-       
+        }
+        this._listFallingShelf = this.setupFallingShelf(this._fallingShelves);
     }
 onTut()
 {
@@ -160,22 +167,43 @@ animTut()
     public getShelves(): Shelf[] {
         return this._shelfs;
     }
-    // private getPositionByColumn(total: number, columns: number): Vec3[] {
-    //     const positions: Vec3[] = [];
-    //     const rows = Math.ceil(total / columns);
-    //     const startX = -((columns - 1) * this.spacingX) / 2;
-    //     const startY = -((rows - 1) * this.spacingY) / 2;
-    
-    //     for (let i = 0; i < total; i++) {
-    //         const col = i % columns;
-    //         const row = Math.floor(i / columns);
-    //         const x = startX + col * this.spacingX;
-    //         const y = startY + row * this.spacingY;
-    //         positions.push(new Vec3(x, y, 0));
-    //     }
-    
-    //     return positions;
-    // }
+
+    public setupFallingShelf(shelves: Shelf[]): Shelf[][] {
+        // Lấy tất cả tọa độ Y
+        let wPosX = [];
+        shelves.forEach(shelf => {
+            let pos = shelf.node.getWorldPosition();
+            if (!wPosX.includes(pos.x)) {
+                wPosX.push(pos.x);
+            }
+        });
+        // Tạo list các shelf cùng tọa độ Y
+        let array: Shelf[][] = [];
+        for (let i = 0; i < wPosX.length; ++i) {
+            let arr = [];
+            let x = wPosX[i];
+            for (let j = 0; j < shelves.length; ++j) {
+                if (shelves[j].node.getWorldPosition().x === x) {
+                    arr.push(shelves[j]);
+                }
+            }
+            array.push(arr);
+        }
+        
+        array.forEach(arr => {
+            // Sort tọa độ x lớn dần.
+            arr.sort((a, b) => a.node.getPosition().y - b.node.getPosition().y);
+            // Set top/bot cho Shelf
+            for (let i = 0; i < arr.length; ++i) {
+                let bottom = arr[i - 1];
+                let top = arr[i + 1];
+                let currentShelf = arr[i];
+                currentShelf.bottom = bottom ? bottom : null;
+                currentShelf.top = top ? top : null;
+            }
+        })
+        return array;
+    }
 
     private getPositionByColumn(data: ILevelData): Vec3[] {
         let positions: Vec3[] = [];

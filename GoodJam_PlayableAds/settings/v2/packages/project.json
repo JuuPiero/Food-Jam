@@ -15,19 +15,11 @@
       "value": 1
     },
     {
-      "name": "SHELF",
-      "value": 2
-    },
-    {
       "name": "BACKGROUND",
       "value": 4
     },
     {
-      "name": "GOODS",
-      "value": 8
-    },
-    {
-      "name": "BOX",
+      "name": "INGAME",
       "value": 16
     },
     {

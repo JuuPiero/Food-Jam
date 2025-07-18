@@ -5,11 +5,18 @@ import { ShelfLayer } from './Layer/ShelfLayer';
 import { EGoodsState, Goods } from '../Goods/Goods';
 import { BoxManager } from '../Core/BoxManager';
 import { GoodsBase } from '../Base/GoodsBase';
+import { ShelfStrategy } from './Strategy/ShelfStrategy';
 const { ccclass, property } = _decorator;
 
 @ccclass("Shelf")
 export abstract class Shelf extends Component {
     
+    @property(Node)
+    nodeShadow: Node = null;
+
+    @property(Node)
+    nodeShadowAnchor: Node = null;
+
     @property(Prefab)
     prefabLayer: Prefab = null;
 
@@ -22,15 +29,34 @@ export abstract class Shelf extends Component {
     @property({type: Enum(EMoveType)})
     moveType: EMoveType = EMoveType.NONE;
 
-   
+    private _moveType: EMoveType = EMoveType.NONE;
+    public set MoveType(value: EMoveType) {
+        this._moveType = value;
+        this.changeMoveType(this._moveType);
+    }
+    public get MoveType(): EMoveType {
+        return this._moveType;
+    }
+
     public isTutShelf: boolean;
     public boxManager: BoxManager = null;
     public goodsFactory: GoodsFactory = null;
     public currentLayer: ShelfLayer = null;
+    public top: Shelf = null;
+    public bottom: Shelf = null;
+    public left: Shelf = null;
+    public right: Shelf = null;
+    
+    private _shelfStrategy: ShelfStrategy = null;
     
     private _layers: ShelfLayer[] = [];
 
     protected abstract completeShelf(): void;
+
+    protected update(dt: number): void {
+        this.nodeShadow.worldPosition = this.nodeShadowAnchor.worldPosition;
+        this._shelfStrategy?.move(dt);
+    }
 
     public initialize(data: IShelfData): void {
         // Clear
@@ -57,6 +83,9 @@ export abstract class Shelf extends Component {
 
         // Setup
         this.updateLayer();
+        // Setup shadow
+        this.nodeShadow.setParent(this.boxManager.levelLoader.nodeShadowContainer);
+        this.nodeShadow.worldPosition = this.nodeShadowAnchor.worldPosition;
     }
 
     public reset(): void {
@@ -69,6 +98,55 @@ export abstract class Shelf extends Component {
                 this.showNextLayer();
             }
         });
+    }
+
+    public complete(): Promise<void> {
+        return new Promise(async (resolve, reject) => {
+            // Hide current shelf
+            await this.hide();
+            // this.hide();
+            await this._shelfStrategy.complete();
+            // Get top
+            let shelf = this.top;
+            while (true) {
+                if (shelf) {
+                    shelf.fall();
+                    shelf = shelf.top;
+                    continue;
+                }
+                break;
+            }
+        });
+    }
+
+    public fall(): void {
+        if (this.MoveType === EMoveType.FALLING) {
+            let shelf = this.getBottomWPos();
+            if (shelf) {
+                let wPos = this.bottom.node.getWorldPosition();
+                tween(this.node).to(0.3, {worldPosition: wPos}, {easing: easing.cubicOut})
+                    .call(() => {
+                        this.bottom = shelf;
+                    }).start();
+                
+            }
+        }
+    }
+
+    protected changeMoveType(type: EMoveType): void {
+        switch (type) {
+            case EMoveType.LEFT_TO_RIGHT:
+                break;
+            case EMoveType.RIGHT_TO_LEFT:
+                break;
+            case EMoveType.TOP_TO_BOTTOM:
+                break;
+            case EMoveType.BOTTOM_TO_TOP:
+                break;
+            case EMoveType.FALLING:
+                this._shelfStrategy = new FallingShelf(this);
+                break;
+        }
     }
 
     protected showNextLayer(): void {
@@ -92,7 +170,7 @@ export abstract class Shelf extends Component {
         }
         else
         {
-            this.completeShelf();
+            this.complete();
             return;
         }
         let nextLayer = this._layers[this._layers.length - 2];
@@ -133,6 +211,37 @@ export abstract class Shelf extends Component {
                     
             })
         .start();
+    }
+
+    // Đệ quy lấy position bên dưới
+    private getBottomWPos(): Shelf {
+        let shelf = this.bottom;
+        while (true) {
+            if (!shelf) {
+                return null;
+            }
+            if (shelf && shelf.node.active) {
+                break;
+            }
+            if (!shelf.bottom)
+                break;
+            shelf = shelf.bottom;
+        }
+        return shelf;
+    }
+
+    private hide(): Promise<void> {
+        return new Promise((resolve, reject) => {
+            let duration = 0.3;
+            tween(this.nodeShadow).to(duration, {scale: Vec3.ZERO}, {easing: easing.cubicOut}).start();
+            tween(this.node).to(duration, {scale: Vec3.ZERO}, {easing: easing.cubicOut})
+                .call(() => {
+                    this.node.active = false;
+                    this.nodeShadow.active = false;
+                    resolve();
+                })
+                .start();
+        });
     }
 }
 
