@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "rtgAIX8RJRGvjsj3d4jDmmwwLWg",
+	"hash": "Gp5jz2JBFIlU7bDaMOziPNFE5QY",
 	"spine": "3.8.99",
 	"x": -143.65,
 	"y": -1.91,
@@ -179,7 +179,7 @@
 				"UI_glass_break": { "y": 97.34, "width": 248, "height": 165 }
 			},
 			"UI_icon_unlock_a": {
-				"UI_icon_unlock_a": { "x": -0.97, "y": -7.02, "width": 77, "height": 64 }
+				"UI_icon_unlock_a": { "x": -0.97, "y": -7.02, "rotation": -0.06, "width": 77, "height": 64 }
 			},
 			"UI_icon_unlock_b": {
 				"UI_icon_unlock_b": { "x": -18.92, "y": 7.44, "width": 63, "height": 47 }

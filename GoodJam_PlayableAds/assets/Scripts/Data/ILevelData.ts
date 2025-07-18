@@ -11,6 +11,7 @@ export interface IShelfData {
     moveType: EMoveType;
     speed: number;
     itemsLayer: IItemsLayerData[];
+    locked: number;
 }
 
 export interface IItemsLayerData {

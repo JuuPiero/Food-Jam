@@ -1,4 +1,4 @@
-import { _decorator, Component, easing, Enum, instantiate, Node, Prefab, SpriteFrame, tween, Vec3 } from 'cc';
+import { _decorator, Component, easing, Enum, instantiate, Node, Prefab, sp, SpriteFrame, tween, Vec3 } from 'cc';
 import { EMoveType, EShelfType, IShelfData } from '../Data/ILevelData';
 import { GoodsFactory } from '../Goods/GoodsFactory';
 import { ShelfLayer } from './Layer/ShelfLayer';
@@ -6,7 +6,14 @@ import { EGoodsState, Goods } from '../Goods/Goods';
 import { BoxManager } from '../Core/BoxManager';
 import { GoodsBase } from '../Base/GoodsBase';
 import { ShelfStrategy } from './Strategy/ShelfStrategy';
+import { Lock } from '../Lock/Lock';
+
 const { ccclass, property } = _decorator;
+
+export enum EShelfState {
+    LOCKED,
+    UNLOCKED
+}
 
 @ccclass("Shelf")
 export abstract class Shelf extends Component {
@@ -26,8 +33,14 @@ export abstract class Shelf extends Component {
     @property(Node)
     shelfCloseLid: Node = null;
 
+    @property(sp.Skeleton)
+    skeletonLock: sp.Skeleton = null;
+
     @property({type: Enum(EMoveType)})
     moveType: EMoveType = EMoveType.NONE;
+
+    @property(Lock)
+    lock: Lock = null;
 
     private _moveType: EMoveType = EMoveType.NONE;
     public set MoveType(value: EMoveType) {
@@ -38,6 +51,15 @@ export abstract class Shelf extends Component {
         return this._moveType;
     }
 
+    private _state: EShelfState = EShelfState.UNLOCKED;
+    public set State(value: EShelfState) {
+        this._state = value;
+        this.changeState(this._state);
+    }
+    public get State(): EShelfState {
+        return this._state;
+    }
+
     public isTutShelf: boolean;
     public boxManager: BoxManager = null;
     public goodsFactory: GoodsFactory = null;
@@ -46,6 +68,8 @@ export abstract class Shelf extends Component {
     public bottom: Shelf = null;
     public left: Shelf = null;
     public right: Shelf = null;
+    public locked: boolean = false;
+
     
     private _shelfStrategy: ShelfStrategy = null;
     
@@ -61,7 +85,13 @@ export abstract class Shelf extends Component {
     public initialize(data: IShelfData): void {
         // Clear
         this.reset();
-
+        if (data.locked && data.locked > 0) {
+            this.skeletonLock.node.parent.active = true;
+            this.lock && this.lock.initialize(data.locked);
+        }
+        else {
+            this.skeletonLock.node.parent.active = false;
+        }
         // Create
         for (let i = data.itemsLayer.length - 1; i >= 0; i--) {
             let itemsLayer = data.itemsLayer[i];
@@ -103,9 +133,9 @@ export abstract class Shelf extends Component {
     public complete(): Promise<void> {
         return new Promise(async (resolve, reject) => {
             // Hide current shelf
-            await this.hide();
+            // await this.hide();
             // this.hide();
-            await this._shelfStrategy.complete();
+            await this._shelfStrategy?.complete();
             // Get top
             let shelf = this.top;
             while (true) {
@@ -131,6 +161,10 @@ export abstract class Shelf extends Component {
                 
             }
         }
+    }
+
+    protected changeState(state: EShelfState): void {
+
     }
 
     protected changeMoveType(type: EMoveType): void {
@@ -196,6 +230,7 @@ export abstract class Shelf extends Component {
 
     protected shelfCleared()
     {
+
         if(!this.shelfCloseLid)
             return;
         tween(this.shelfCloseLid).to(0.3, {position: new Vec3(0, 0, 0)})

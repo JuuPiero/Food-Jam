@@ -11,6 +11,7 @@ import { BezierTween } from '../Modules/BezierTween';
 import { MovingShelf } from '../Shelf/MovingShelf';
 import { MapLoop } from '../MapLoop';
 import { FallingShelf } from '../Shelf/FallingShelf';
+import { Lock } from '../Lock/Lock';
 
 const { ccclass, property } = _decorator;
 
@@ -59,6 +60,7 @@ export class LevelLoader extends Component {
     @property(Node)
     nodeShadowContainer: Node= null;
 
+    public locks: Lock[] = [];
     public currentLevel: number = 0;
     private _shelfs: Shelf[] = [];
     private _fallingShelves: FallingShelf[] = [];
@@ -96,6 +98,9 @@ export class LevelLoader extends Component {
             shelf.boxManager = this.boxManager;
             shelf.goodsFactory = this.goodsFactory;
             shelf.initialize(data.cells[i]);
+            if (data.cells[i].locked) {
+                this.locks.push(shelf.lock);
+            }
             this._shelfs.push(shelf);
         }
 

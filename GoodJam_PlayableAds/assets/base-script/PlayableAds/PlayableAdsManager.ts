@@ -4,6 +4,7 @@ import { SingletonInSceneComponent } from '../Pattern/SingletonInSceneComponent'
 import { TrackingManager } from './Tracking/TrackingManager';
 import { EventListener } from './EventListener';
 import { GameEvent } from './GameEvent';
+import { GameManager } from '../../Scripts/Core/GameManager';
 
 const { ccclass, property } = _decorator;
 
@@ -119,6 +120,7 @@ export class PlayableAdsManager extends Component {
 
     // Dùng khi click vào button vào store
     public openStore(): void {
+        GameManager.Instance.unscheduleAllCallbacks();
         TrackingManager.clickConversion();
         super_html_playable.download();
         super_html_playable.game_end();
