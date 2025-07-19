@@ -85,12 +85,14 @@ export abstract class Shelf extends Component {
     public initialize(data: IShelfData): void {
         // Clear
         this.reset();
-        if (data.locked && data.locked > 0) {
-            this.skeletonLock.node.parent.active = true;
-            this.lock && this.lock.initialize(data.locked);
-        }
-        else {
-            this.skeletonLock.node.parent.active = false;
+        if (this.skeletonLock) {
+            if (data.locked && data.locked > 0) {
+                this.skeletonLock.node.parent.active = true;
+                this.lock && this.lock.initialize(data.locked);
+            }
+            else {
+                this.skeletonLock.node.parent.active = false;
+            }
         }
         // Create
         for (let i = data.itemsLayer.length - 1; i >= 0; i--) {

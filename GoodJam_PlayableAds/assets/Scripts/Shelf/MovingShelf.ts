@@ -30,6 +30,7 @@ export class MovingShelf extends Shelf {
     speed: number = 0;
 
     protected update(deltaTime: number) {
+        super.update(deltaTime);
         // Check out of bounds
         if (this.checkOutOfBounds()) {
             this.repositionSelfWhenOutOfBounds();
