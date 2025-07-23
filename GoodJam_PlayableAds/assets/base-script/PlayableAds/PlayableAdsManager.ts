@@ -1,10 +1,10 @@
 import { _decorator, Component, Enum, Game, game, Input, input } from 'cc';
 import super_html_playable from './super_html_playable';
-import { SingletonInSceneComponent } from '../Pattern/SingletonInSceneComponent';
 import { TrackingManager } from './Tracking/TrackingManager';
 import { EventListener } from './EventListener';
 import { GameEvent } from './GameEvent';
 import { GameManager } from '../../Scripts/Core/GameManager';
+import { KeyboardListener } from '../../Scripts/KeyboardListener';
 
 const { ccclass, property } = _decorator;
 
@@ -120,6 +120,7 @@ export class PlayableAdsManager extends Component {
 
     // Dùng khi click vào button vào store
     public openStore(): void {
+        if (KeyboardListener.isCreativeVersion) return;
         GameManager.Instance.unscheduleAllCallbacks();
         TrackingManager.clickConversion();
         super_html_playable.download();
@@ -128,6 +129,7 @@ export class PlayableAdsManager extends Component {
 
     // Dùng khi không click mà đẩy thẳng vào store
     public forceOpenStore(): void {
+        if (KeyboardListener.isCreativeVersion) return;
         TrackingManager.forceConversion();
         super_html_playable.download();
         super_html_playable.game_end();
