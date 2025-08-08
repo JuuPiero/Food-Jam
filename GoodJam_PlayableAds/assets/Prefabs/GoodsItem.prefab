@@ -57,7 +57,7 @@
       "z": 1
     },
     "_mobility": 0,
-    "_layer": 16,
+    "_layer": 8,
     "_euler": {
       "__type__": "cc.Vec3",
       "x": 0,
@@ -113,7 +113,7 @@
       "z": 1
     },
     "_mobility": 0,
-    "_layer": 16,
+    "_layer": 8,
     "_euler": {
       "__type__": "cc.Vec3",
       "x": 0,

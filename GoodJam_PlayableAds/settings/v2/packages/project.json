@@ -15,12 +15,16 @@
       "value": 1
     },
     {
+      "name": "SHELF",
+      "value": 2
+    },
+    {
       "name": "BACKGROUND",
       "value": 4
     },
     {
       "name": "INGAME",
-      "value": 16
+      "value": 8
     },
     {
       "name": "UI_RESULT",
@@ -29,6 +33,10 @@
     {
       "name": "TUTORIAL",
       "value": 64
+    },
+    {
+      "name": "BOX",
+      "value": 16
     }
   ]
 }

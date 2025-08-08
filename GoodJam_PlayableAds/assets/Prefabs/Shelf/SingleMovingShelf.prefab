@@ -60,7 +60,7 @@
       "z": 1
     },
     "_mobility": 0,
-    "_layer": 2,
+    "_layer": 8,
     "_euler": {
       "__type__": "cc.Vec3",
       "x": 0,
@@ -110,7 +110,7 @@
       "z": 1
     },
     "_mobility": 0,
-    "_layer": 1,
+    "_layer": 8,
     "_euler": {
       "__type__": "cc.Vec3",
       "x": 0,
@@ -246,7 +246,7 @@
       "z": 1
     },
     "_mobility": 0,
-    "_layer": 2,
+    "_layer": 8,
     "_euler": {
       "__type__": "cc.Vec3",
       "x": 0,
@@ -379,7 +379,7 @@
       "z": 1
     },
     "_mobility": 0,
-    "_layer": 2,
+    "_layer": 8,
     "_euler": {
       "__type__": "cc.Vec3",
       "x": 0,
@@ -469,6 +469,8 @@
     "__prefab": {
       "__id__": 21
     },
+    "nodeShadow": null,
+    "nodeShadowAnchor": null,
     "prefabLayer": {
       "__uuid__": "b1bd3d54-e404-4ef1-b711-f5404e63dea8",
       "__expectedType__": "cc.Prefab"
@@ -477,7 +479,9 @@
       "__id__": 14
     },
     "shelfCloseLid": null,
+    "skeletonLock": null,
     "moveType": 0,
+    "lock": null,
     "_id": ""
   },
   {
