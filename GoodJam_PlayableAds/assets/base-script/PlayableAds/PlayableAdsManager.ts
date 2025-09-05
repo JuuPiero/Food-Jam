@@ -10,8 +10,8 @@ const { ccclass, property } = _decorator;
 
 @ccclass('PlayableAdsManager')
 export class PlayableAdsManager extends Component {
-    private urlPlayStore: string = "https://play.google.com/store/apps/details?id=com.ig.goods.jam";
-    private urlAppStore: string = "https://play.google.com/store/apps/details?id=com.ig.goods.jam"; 
+    private urlPlayStore: string = "https://play.google.com/store/apps/details?id=com.ig.skewer.jam.food.sort";
+    private urlAppStore: string = ""; 
     private static instanceId: string = "PlayableAdsManager";
     public playableAdsName: string = "iKame";
 

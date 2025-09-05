@@ -10,7 +10,7 @@ export class TrackingManager extends Component {
 
     private static apiSecret: string = "ymcwxS12SSi6IavS3-Jj-Q";
     private static firebaseAppId: string = "1:444377725360:android:b0bef9148a16a69aa27e75";
-    private static packageName: string = "com.ig.goods.jam";
+    private static packageName: string = "com.ig.skewer.jam.food.sort";
     private static os: OPERATING_SYSTEM = OPERATING_SYSTEM.NONE;
     private static gpu: string = "webgl";
 

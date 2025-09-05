@@ -7,6 +7,7 @@ import { BoxManager } from '../Core/BoxManager';
 import { GoodsBase } from '../Base/GoodsBase';
 import { ShelfStrategy } from './Strategy/ShelfStrategy';
 import { Lock } from '../Lock/Lock';
+import { AudioManager, ESoundEffect } from '../AudioManager';
 
 const { ccclass, property } = _decorator;
 
@@ -88,7 +89,7 @@ export abstract class Shelf extends Component {
     }
 
     public initialize(data: IShelfData): void {
-        this.data = data;
+        this.data = JSON.parse(JSON.stringify(data));
         // Clear
         this.reset();
         if (this.skeletonLock) {
@@ -145,12 +146,20 @@ export abstract class Shelf extends Component {
         let listGoods =  this.activeSlotContainer.getAllGoods()
         // Nếu tất cả đều null thì push goods từ queueSlotContainer sang activeSlotContainer
         if (listGoods.every(goods => goods === null)) {
+            if (this.data.itemsLayer.length === 0 && this.queueSlotContainer.slots.every(slot => slot.getGoods() === null)) {
+                this.close();
+                return;
+            }
             this.pushGoodsToActiveSlotContainer();
             if (this.data.itemsLayer.length > 0) {
                 this.pushGoodsToQueueSlotContainer();
             }
             else {
-                this.uiQueueContainer.node.active = false;
+                tween(this.uiQueueContainer).to(0.3, {opacity: 0}, {easing: easing.cubicOut})
+                .call(() => {
+                    this.uiQueueContainer.node.active = false;
+                })
+                .start();
             }
         }
     }
@@ -192,6 +201,10 @@ export abstract class Shelf extends Component {
         }
     }
 
+    public close(): void {
+        this.animationShelf.play("ShelfComplete");
+    }
+
     protected changeState(state: EShelfState): void {
 
     }
@@ -230,7 +243,10 @@ export abstract class Shelf extends Component {
 
     private pushGoodsToActiveSlotContainer(): void {
         this.queueSlotContainer.slots.forEach(slot => {
-
+            let random = Math.random();
+            this.scheduleOnce(() => {
+                AudioManager.playEffect(ESoundEffect.MEAT);
+            }, random);
             let goods = slot.remove();
             if (goods) {
                 this.activeSlotContainer.add(goods);
@@ -245,7 +261,7 @@ export abstract class Shelf extends Component {
             if (goods) {
                 goods.shelf = this;
                 goods.State = EGoodsState.INTERACTIVE;
-                this.queueSlotContainer.add(goods);
+                this.queueSlotContainer.set(goods);
             }
         });
     }

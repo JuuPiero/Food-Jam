@@ -48,10 +48,10 @@ export class BoxEffect extends Component {
     private playEffect(): Promise<void> {
         return new Promise((resolve, reject) => {
             this.uiTextEffect.opacity = 0;
-            this.uiTextEffect.node.scale = new Vec3(0.5, 0.5, 0.5);
+            this.uiTextEffect.node.scale = new Vec3(0.3, 0.3, 0.3);
             this.uiTextEffect.node.position = new Vec3(0, 80, 0);
             tween(this.uiTextEffect).to(0.3, {opacity: 255}, {easing: easing.cubicOut}).start();
-            tween(this.uiTextEffect.node).to(0.3, {scale: new Vec3(1.8, 1.8, 1.8)}, {easing: easing.cubicOut})
+            tween(this.uiTextEffect.node).to(0.3, {scale: new Vec3(1.2, 1.2, 1.2)}, {easing: easing.cubicOut})
                 .call(() => {
                     tween(this.uiTextEffect).to(0.5, {opacity: 0}, {easing: easing.cubicOut}).start();
                 })

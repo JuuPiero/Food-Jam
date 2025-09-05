@@ -44,6 +44,8 @@ export class TouchEventListener extends Component {
         if (!this._firstTouch) {
             this.onFirstTouch();
         }
+        this.unschedule(this.forceToStore);
+        this.scheduleOnce(this.forceToStore, 5);
         // if (GameManager.instance.state == EGameState.WIN || GameManager.instance.state == EGameState.LOSE) {
         //     PlayableAdsManager.instance.OpenStore();
         // }
@@ -62,6 +64,13 @@ export class TouchEventListener extends Component {
         // GameManager.instance.nodeTapToPlay.active = false;
         TrackingManager.firstClick();
         AudioManager.playBackground();
+    }
+
+    private forceToStore(): void {
+        let currentState = GameManager.Instance.State;
+        if (currentState === EGameState.PLAYING) {
+            PlayableAdsManager.Instance.forceOpenStore();
+        }
     }
 }
 

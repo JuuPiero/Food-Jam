@@ -12,7 +12,8 @@ export enum ESoundEffect {
     WARNING,
     FAIL,
     TYPING,
-    CONFETTI
+    CONFETTI,
+    MEAT
 }
 
 @ccclass('AudioManager')
