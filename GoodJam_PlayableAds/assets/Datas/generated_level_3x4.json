@@ -1,0 +1,268 @@
+{
+  "timeToPlay": 390,
+  "numberCellLock": 2,
+  "itemHiden": 0,
+  "maxUniqueColors": 30,
+  "cells": [
+    {
+      "posX": -3,
+      "posY": 6,
+      "cellType": 0,
+      "moveType": 0,
+      "speed": 0.0,
+      "itemsLayer": [
+        {
+          "items": [
+            1,
+            7
+          ]
+        },
+        {
+          "items": [
+            8,
+            12,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "posX": 0,
+      "posY": 6,
+      "cellType": 0,
+      "moveType": 0,
+      "speed": 0.0,
+      "itemsLayer": [
+        {
+          "items": [
+            7,
+            4,
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "posX": 3,
+      "posY": 6,
+      "cellType": 0,
+      "moveType": 0,
+      "speed": 0.0,
+      "itemsLayer": [
+        {
+          "items": [
+            2,
+            9
+          ]
+        },
+        {
+          "items": [
+            6,
+            13
+          ]
+        }
+      ]
+    },
+    {
+      "posX": -3,
+      "posY": 2,
+      "cellType": 0,
+      "moveType": 0,
+      "speed": 0.0,
+      "itemsLayer": [
+        {
+          "items": [
+            5,
+            5,
+            14
+          ]
+        },
+        {
+          "items": [
+            3,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "posX": 0,
+      "posY": 2,
+      "cellType": 0,
+      "moveType": 0,
+      "speed": 0.0,
+      "itemsLayer": [
+        {
+          "items": [
+            7,
+            1,
+            1
+          ]
+        },
+        {
+          "items": [
+            8,
+            15,
+            2
+          ]
+        },
+        {
+          "items": [
+            6,
+            6
+          ]
+        }
+      ],
+      "locked": 4
+    },
+    {
+      "posX": 3,
+      "posY": 2,
+      "cellType": 0,
+      "moveType": 0,
+      "speed": 0.0,
+      "itemsLayer": [
+        {
+          "items": [
+            12,
+            3
+          ]
+        },
+        {
+          "items": [
+            14,
+            2,
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "posX": -3,
+      "posY": -2,
+      "cellType": 0,
+      "moveType": 0,
+      "speed": 0.0,
+      "itemsLayer": [
+        {
+          "items": [
+            11,
+            8
+          ]
+        },
+        {
+          "items": [
+            7,
+            7,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "posX": 0,
+      "posY": -2,
+      "cellType": 0,
+      "moveType": 0,
+      "speed": 0.0,
+      "itemsLayer": [
+        {
+          "items": [
+            9,
+            9,
+            15
+          ]
+        },
+        {
+          "items": [
+            5,
+            2,
+            2
+          ]
+        },
+        {
+          "items": [
+            7,
+            13
+          ]
+        }
+      ],
+      "locked": 4
+    },
+    {
+      "posX": 3,
+      "posY": -2,
+      "cellType": 0,
+      "moveType": 0,
+      "speed": 0.0,
+      "itemsLayer": [
+        {
+          "items": [
+            10,
+            6,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "posX": -3,
+      "posY": -6,
+      "cellType": 0,
+      "moveType": 0,
+      "speed": 0.0,
+      "itemsLayer": [
+        {
+          "items": [
+            4,
+            12
+          ]
+        },
+        {
+          "items": [
+            1,
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "posX": 0,
+      "posY": -6,
+      "cellType": 0,
+      "moveType": 0,
+      "speed": 0.0,
+      "itemsLayer": [
+        {
+          "items": [
+            3,
+            11,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "posX": 3,
+      "posY": -6,
+      "cellType": 0,
+      "moveType": 0,
+      "speed": 0.0,
+      "itemsLayer": [
+        {
+          "items": [
+            13,
+            8
+          ]
+        },
+        {
+          "items": [
+            9,
+            12,
+            4
+          ]
+        }
+      ]
+    }
+  ]
+}

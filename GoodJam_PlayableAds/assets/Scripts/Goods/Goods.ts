@@ -13,6 +13,7 @@ import { TouchEventListener } from '../Core/TouchEventListener';
 import { AudioManager, ESoundEffect } from '../AudioManager';
 import { PlayableAdsManager } from '../../base-script/PlayableAds/PlayableAdsManager';
 import { LevelLoader } from '../Core/LevelLoader';
+import { Slot } from '../Slot/Slot';
 
 const { ccclass, property } = _decorator;
 
@@ -107,10 +108,10 @@ export class Goods extends GoodsBase {
     }
     public pickUp(): void {
         AudioManager.playEffect(ESoundEffect.PICKUP);
-        // Xử lý shelf
-        this.shelf.onGoodsPickUp(this);
         // Xử lý box
         let boxManager = this.shelf.boxManager;
         boxManager.pickUp(this);
+        // Xử lý shelf
+        this.shelf.onGoodsPickUp(this);
     }
 }

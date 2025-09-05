@@ -8,9 +8,7 @@ import { TutorialController } from './TutorialController';
 import { Box } from '../Box/Box';
 import { BoxSlot } from '../Slot/BoxSlot';
 import { BezierTween } from '../Modules/BezierTween';
-import { MovingShelf } from '../Shelf/MovingShelf';
 import { MapLoop } from '../MapLoop';
-import { FallingShelf } from '../Shelf/FallingShelf';
 import { Lock } from '../Lock/Lock';
 
 const { ccclass, property } = _decorator;
@@ -32,9 +30,6 @@ export class LevelLoader extends Component {
 
     @property(Node)
     tutParent: Node = null;
-
-    @property(Node)
-    shelfContainer: Node = null;
 
     @property(CCInteger)
     tutShelfIndex: number;
@@ -63,9 +58,8 @@ export class LevelLoader extends Component {
     public locks: Lock[] = [];
     public currentLevel: number = 0;
     private _shelfs: Shelf[] = [];
-    private _fallingShelves: FallingShelf[] = [];
-    private _listFallingShelf: FallingShelf[][] = [];
-    private _movingShelfs: MovingShelf[][] = [];
+    private _fallingShelves: Shelf[] = [];
+    private _listFallingShelf: Shelf[][] = [];
     private static _instance: LevelLoader = null;
     public static get Instance(): LevelLoader {
         return LevelLoader._instance;
@@ -119,7 +113,7 @@ onTut()
         this.tutNode = tutObject.node;
         this.tutNode.parent = this.boxManager.nodeTopLayer;
         this.tutParent = this.boxManager.nodePositions[0].children[0].getComponent(Box).nodeSlots.children[0].getComponent(BoxSlot).nodeParent;
-        var targetTutObj = this.shelfContainer.children[this.tutShelfIndex].getComponent(Shelf).currentLayer.getGoods()[this.indexTutGoods];
+        var targetTutObj = this.nodeLevelParent.children[this.tutShelfIndex].getComponent(Shelf).getGoods()[this.indexTutGoods];
         this.tutNode.setWorldPosition(targetTutObj.node.getWorldPosition());
         this.tutNode.setWorldScale(targetTutObj.node.getWorldScale());
         var pos = targetTutObj.node.getWorldPosition()
@@ -131,7 +125,7 @@ onTut()
 }
 animTut()
     {
-        var targetTutObj = this.shelfContainer.children[this.tutShelfIndex].getComponent(Shelf).currentLayer.getGoods()[this.indexTutGoods];
+        var targetTutObj = this.nodeLevelParent.children[this.tutShelfIndex].getComponent(Shelf).getGoods()[this.indexTutGoods];
         
         if(!targetTutObj || !this.tutNode || targetTutObj.node.active == false || this.tutNode.active ==false)
             return;

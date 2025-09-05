@@ -1,8 +1,8 @@
 import { _decorator, Animation, Component, Node, tween, UIOpacity } from 'cc';
 import { Slot } from './Slot';
-import { Goods } from '../Goods/Goods';
 import { AudioManager, ESoundEffect } from '../AudioManager';
 import { SlotManager } from './SlotManager';
+import { GoodsBase } from '../Base/GoodsBase';
 const { ccclass, property } = _decorator;
 
 export enum ESlotAnimation {
@@ -20,7 +20,7 @@ export class FreeSlot extends Slot {
 
     public slotManager: SlotManager  = null;
 
-    public add(goods: Goods): Promise<Goods> {
+    public add(goods: GoodsBase): Promise<GoodsBase> {
         return new Promise((resolve, reject) => {
             super.add(goods).then(() => {
                 AudioManager.playEffect(ESoundEffect.DROP_SLOT);

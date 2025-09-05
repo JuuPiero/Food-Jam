@@ -1,14 +1,16 @@
-import { _decorator, Component, Node, tween, UIOpacity, Vec3 } from 'cc';
-import { Goods } from '../Goods/Goods';
+import { _decorator, Component, find, Node, tween, UIOpacity, Vec3 } from 'cc';
+import { EGoodsState, Goods } from '../Goods/Goods';
 import { BezierTween } from '../Modules/BezierTween';
 import { LevelLoader } from '../Core/LevelLoader';
 import { BoxManager } from '../Core/BoxManager';
 import { TutorialController } from '../Core/TutorialController';
+import { ISlot } from './ISlot';
+import { GoodsBase } from '../Base/GoodsBase';
 
 const { ccclass, property } = _decorator;
 
 @ccclass('Slot')
-export class Slot extends Component {
+export class Slot extends Component implements ISlot {
     
     @property(Node)
     nodeParent: Node = null;
@@ -17,24 +19,38 @@ export class Slot extends Component {
     public boxManager: BoxManager = null;
     protected _goodsId: number = -1;
     protected _isFull: boolean = false;
-    protected _goods: Goods = null;
+    protected _goods: GoodsBase = null;
+
+    protected onLoad(): void {
+        this.boxManager = find("").getComponentInChildren(BoxManager);
+    }
 
     public reset(): void {
         this._isFull = false;
         this.nodeParent.removeAllChildren();
     }
 
-    public add(goods: Goods): Promise<Goods> {
+    public set(goods: GoodsBase): void {
+        this._goods = goods;
+        this._isFull = true;
+        this._goods.slot = this;
+        goods.node.setParent(this.nodeParent);
+        goods.node.setPosition(new Vec3(0,0,0));
+    }
+
+    public add(goods: GoodsBase): Promise<GoodsBase> {
         return new Promise((resolve, reject) => {
             this._goods = goods;
             this._isFull = true;
+            this._goods.slot = this;
+
             let duration = 0.5;
 
             // Start
             let worldPos = goods.node.getWorldPosition();
             let worldScale = goods.node.getWorldScale();
             let nodeTopLayer = this.boxManager.nodeTopLayer;
-            goods.node.parent = nodeTopLayer;
+            goods.node.setParent(nodeTopLayer);
             goods.node.setWorldPosition(worldPos);
             goods.node.setWorldScale(worldScale);
             
@@ -50,10 +66,20 @@ export class Slot extends Component {
                 goods.node.parent = this.nodeParent;
                 goods.node.setWorldPosition(endPos);
                 goods.node.setWorldScale(endScale);
+                goods.State = EGoodsState.ACTIVE;
                 resolve(goods);
             });
         });
     }
+
+    public remove(): GoodsBase {
+        this._isFull = false;
+        let goods = this._goods;
+        goods.node.parent = null;
+        this._goods = null;
+        return goods;
+    }
+
     public addTut(goods: Goods): Promise<Goods> {
         return new Promise((resolve, reject) => {
             setTimeout(()=>{
@@ -111,7 +137,7 @@ export class Slot extends Component {
         return this.nodeParent.children.length > 0 || this._isFull;
     }
 
-    public getGoods(): Goods {
+    public getGoods(): GoodsBase {
         return this._goods;
     }
 }

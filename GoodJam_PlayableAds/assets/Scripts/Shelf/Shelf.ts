@@ -1,7 +1,7 @@
-import { _decorator, Component, easing, Enum, instantiate, Node, Prefab, sp, SpriteFrame, tween, Vec3 } from 'cc';
+import { _decorator, Animation, Component, easing, Enum, instantiate, Node, Prefab, sp, SpriteFrame, tween, UIOpacity, Vec3 } from 'cc';
 import { EMoveType, EShelfType, IShelfData } from '../Data/ILevelData';
 import { GoodsFactory } from '../Goods/GoodsFactory';
-import { ShelfLayer } from './Layer/ShelfLayer';
+import { SlotContainer } from './Layer/SlotContainer';
 import { EGoodsState, Goods } from '../Goods/Goods';
 import { BoxManager } from '../Core/BoxManager';
 import { GoodsBase } from '../Base/GoodsBase';
@@ -24,14 +24,8 @@ export abstract class Shelf extends Component {
     @property(Node)
     nodeShadowAnchor: Node = null;
 
-    @property(Prefab)
-    prefabLayer: Prefab = null;
-
-    @property(Node)
-    nodeLayers: Node = null;
-
-    @property(Node)
-    shelfCloseLid: Node = null;
+    @property(Animation)
+    animationShelf: Animation = null;
 
     @property(sp.Skeleton)
     skeletonLock: sp.Skeleton = null;
@@ -41,6 +35,15 @@ export abstract class Shelf extends Component {
 
     @property(Lock)
     lock: Lock = null;
+
+    @property(UIOpacity)
+    uiQueueContainer: UIOpacity = null;
+
+    @property(SlotContainer)
+    activeSlotContainer: SlotContainer = null;
+
+    @property(SlotContainer)
+    queueSlotContainer: SlotContainer = null;
 
     private _moveType: EMoveType = EMoveType.NONE;
     public set MoveType(value: EMoveType) {
@@ -63,17 +66,19 @@ export abstract class Shelf extends Component {
     public isTutShelf: boolean;
     public boxManager: BoxManager = null;
     public goodsFactory: GoodsFactory = null;
-    public currentLayer: ShelfLayer = null;
     public top: Shelf = null;
     public bottom: Shelf = null;
     public left: Shelf = null;
     public right: Shelf = null;
     public locked: boolean = false;
+    public data: IShelfData = null;
+    public currentLayer: GoodsBase[] = [];
+    public nextLayer: GoodsBase[] = [];
 
     
     private _shelfStrategy: ShelfStrategy = null;
     
-    private _layers: ShelfLayer[] = [];
+    private _slots: SlotContainer[] = [];
 
     protected abstract completeShelf(): void;
 
@@ -83,6 +88,7 @@ export abstract class Shelf extends Component {
     }
 
     public initialize(data: IShelfData): void {
+        this.data = data;
         // Clear
         this.reset();
         if (this.skeletonLock) {
@@ -95,41 +101,62 @@ export abstract class Shelf extends Component {
             }
         }
         // Create
-        for (let i = data.itemsLayer.length - 1; i >= 0; i--) {
-            let itemsLayer = data.itemsLayer[i];
-            let nodeLayer = instantiate(this.prefabLayer);
-            this.nodeLayers.addChild(nodeLayer);
-            let layer = nodeLayer.getComponent(ShelfLayer);
-            layer.shelf = this;
-            let list = [];
-           
-            for (let j = 0; j < itemsLayer.items.length; j++) {
-                let item = itemsLayer.items[j];
-                let goods = this.goodsFactory.createGoods(item);
-                goods && (goods.shelf = this);
-                list.push(goods);
+        // Khởi tạo item trên vỉ nướng
+        let currentData = this.data.itemsLayer.shift();
+        let nextData = this.data.itemsLayer.shift();
+        
+        // Push goods vào activeSlotContainer
+        currentData.items.forEach(item => {
+            let goods = this.goodsFactory.createGoods(item);
+            if (goods) {
+                goods.shelf = this;
+                goods.State = EGoodsState.ACTIVE;
+                this.activeSlotContainer.set(goods);
             }
-            layer.initialize(list);
-            this._layers.push(layer);
-        }
+        });
 
-        // Setup
-        this.updateLayer();
+        // Push goods vào queueSlotContainer
+        if (nextData) {
+            this.uiQueueContainer.node.active = true;
+            nextData.items.forEach(item => {
+                let goods = this.goodsFactory.createGoods(item);
+                if (goods) {
+                    goods.shelf = this;
+                    goods.State = EGoodsState.INTERACTIVE;
+                    this.queueSlotContainer.set(goods);
+                }
+            });
+        }
+        else {
+            this.uiQueueContainer.node.active = false;
+        }
         // Setup shadow
         this.nodeShadow.setParent(this.boxManager.levelLoader.nodeShadowContainer);
         this.nodeShadow.worldPosition = this.nodeShadowAnchor.worldPosition;
     }
 
     public reset(): void {
-        this.nodeLayers.removeAllChildren();
+        this.activeSlotContainer.removeAll();
+        this.queueSlotContainer.removeAll();
     }
 
     public onGoodsPickUp(goods: GoodsBase): void {
-        this.currentLayer.removeGoods(goods).then(goods => {
-            if (goods.length === 0) {
-                this.showNextLayer();
+        this.activeSlotContainer.remove(goods);
+        let listGoods =  this.activeSlotContainer.getAllGoods()
+        // Nếu tất cả đều null thì push goods từ queueSlotContainer sang activeSlotContainer
+        if (listGoods.every(goods => goods === null)) {
+            this.pushGoodsToActiveSlotContainer();
+            if (this.data.itemsLayer.length > 0) {
+                this.pushGoodsToQueueSlotContainer();
             }
-        });
+            else {
+                this.uiQueueContainer.node.active = false;
+            }
+        }
+    }
+
+    public getGoods(): GoodsBase[] {
+        return this.activeSlotContainer.getAllGoods();
     }
 
     public complete(): Promise<void> {
@@ -180,76 +207,10 @@ export abstract class Shelf extends Component {
             case EMoveType.BOTTOM_TO_TOP:
                 break;
             case EMoveType.FALLING:
-                this._shelfStrategy = new FallingShelf(this);
+                // Strategy not used currently
                 break;
         }
     }
-
-    protected showNextLayer(): void {
-        let index = this._layers.indexOf(this.currentLayer);
-        if (index > -1) {
-            this._layers.splice(index, 1);
-            this.updateLayer();
-        }
-    }
-
-    protected updateLayer(): void {
-        this.currentLayer = this._layers[this._layers.length - 1]
-        if (this.currentLayer) {
-            let goods = this.currentLayer.getGoods();
-            goods.forEach(good => {
-                if (good)
-                    good.State = EGoodsState.ACTIVE;
-            });
-            this.currentLayer.node.active = true;
-            tween(this.currentLayer.node).to(0.5, {position: new Vec3(0, 0, 0)}, {easing: easing.cubicOut}).start();
-        }
-        else
-        {
-            this.complete();
-            return;
-        }
-        let nextLayer = this._layers[this._layers.length - 2];
-        if (nextLayer) {
-            let goods = nextLayer.getGoods();
-            goods.forEach(good => {
-                if (good)
-                    good.State = EGoodsState.INTERACTIVE;
-            });
-            nextLayer.node.active = true;
-            nextLayer.node.position = new Vec3(0, 20, 0);
-        }
-        for (let i = this._layers.length - 3; i >= 0; i--) {    
-            let layer = this._layers[i];
-            let goods = layer.getGoods();
-            goods.forEach(good => {
-                if (good)
-                    good.State = EGoodsState.HIDDEN;
-            });
-            layer.node.active = false;
-        }
-    }
-
-    protected shelfCleared()
-    {
-
-        if(!this.shelfCloseLid)
-            return;
-        tween(this.shelfCloseLid).to(0.3, {position: new Vec3(0, 0, 0)})
-        .call(()=>
-            {
-                tween(this.shelfCloseLid).to(0.15, {position: new Vec3(0, 20, 0)})
-                .call(()=>
-                    {
-                        tween(this.shelfCloseLid).to(0.15, {position: new Vec3(0, 0, 0)})
-                        .start();
-                    })
-                    .start();
-                    
-            })
-        .start();
-    }
-
     // Đệ quy lấy position bên dưới
     private getBottomWPos(): Shelf {
         let shelf = this.bottom;
@@ -267,17 +228,25 @@ export abstract class Shelf extends Component {
         return shelf;
     }
 
-    private hide(): Promise<void> {
-        return new Promise((resolve, reject) => {
-            let duration = 0.3;
-            tween(this.nodeShadow).to(duration, {scale: Vec3.ZERO}, {easing: easing.cubicOut}).start();
-            tween(this.node).to(duration, {scale: Vec3.ZERO}, {easing: easing.cubicOut})
-                .call(() => {
-                    this.node.active = false;
-                    this.nodeShadow.active = false;
-                    resolve();
-                })
-                .start();
+    private pushGoodsToActiveSlotContainer(): void {
+        this.queueSlotContainer.slots.forEach(slot => {
+
+            let goods = slot.remove();
+            if (goods) {
+                this.activeSlotContainer.add(goods);
+            }
+        });
+    }
+
+    private pushGoodsToQueueSlotContainer(): void {
+        let data = this.data.itemsLayer.shift();
+        data.items.forEach(slot => {
+            let goods = this.goodsFactory.createGoods(slot);
+            if (goods) {
+                goods.shelf = this;
+                goods.State = EGoodsState.INTERACTIVE;
+                this.queueSlotContainer.add(goods);
+            }
         });
     }
 }

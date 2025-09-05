@@ -1,4 +1,4 @@
-import { _decorator, CCBoolean, CCInteger, Component, easing, instantiate, Node, NodePool, Prefab, tween, UIOpacity, Vec3 } from 'cc';
+import { _decorator, CCBoolean, CCInteger, Component, easing, error, instantiate, Node, NodePool, Prefab, tween, UIOpacity, Vec3 } from 'cc';
 import { Box } from '../Box/Box';
 import { ILevelData } from '../Data/ILevelData';
 import { ObjectPool } from '../Modules/ObjectPool';
@@ -14,7 +14,7 @@ const { ccclass, property } = _decorator;
 
 @ccclass('BoxManager')
 export class BoxManager extends Component {
-    
+
     @property(SlotManager)
     slotManager: SlotManager = null;
 
@@ -29,13 +29,13 @@ export class BoxManager extends Component {
 
     @property([Node])
     nodePositions: Node[] = [];
-    
+
     @property(CCInteger)
     tutorialID: number = 0;
 
     @property([UIOpacity])
     uiWarning: UIOpacity[] = [];
-    
+
     enableTut: boolean = false;
 
     public firstBoxSpawn: boolean = false;
@@ -43,7 +43,7 @@ export class BoxManager extends Component {
     private _pool = new NodePool();
     private _boxesActive: Box[] = [];
     private _boxes: Box[] = [];
-     
+
     public initialize(data: ILevelData): void {
         this.reset();
         this.initPool();
@@ -90,8 +90,7 @@ export class BoxManager extends Component {
         return false;
     }
 
-    public pickUpTut(goods:Goods)
-    {// Duyệt qua các box xem có box nào cùng id với goods không
+    public pickUpTut(goods: Goods) {// Duyệt qua các box xem có box nào cùng id với goods không
         let boxMatch = null;
         for (let i = 0; i < this._boxesActive.length; i++) {
             let box = this._boxesActive[i];
@@ -120,8 +119,8 @@ export class BoxManager extends Component {
     public fill(): void {
         for (let i = 0; i < this.nodePositions.length; i++) {
             let node = this.nodePositions[i];
-                if(!this.firstBoxSpawn && this.enableTut) {
-                    if( i == 0) {
+            if (!this.firstBoxSpawn && this.enableTut) {
+                if (i == 0) {
                     if (node.children.length === 0) {
                         // Lấy danh sách ID của các box đang hoạt động
                         let activeIds = this._boxesActive.map(box => box.getId());
@@ -130,7 +129,7 @@ export class BoxManager extends Component {
                             console.log("noooo");
                             return;
                         }
-                        this.firstBoxSpawn=true;
+                        this.firstBoxSpawn = true;
                         let box = this.getNewBox();
                         box.levelLoader = this.levelLoader;
                         box.boxManager = this;
@@ -138,7 +137,7 @@ export class BoxManager extends Component {
                         box.node.setPosition(0, 300, 0);
                         box.initialize(boxData.id, boxData.total);
                         this._boxesActive.push(box);
-                        tween(box.node).to(0.3, {position: new Vec3(0, 0, 0)}, {easing: easing.backOut})
+                        tween(box.node).to(0.3, { position: new Vec3(0, 0, 0) }, { easing: easing.backOut })
                             .call(() => {
                                 // Lấy goods từ free slot
                                 for (let j = 0; j < this.slotManager.freeSlots.length; j++) {
@@ -152,18 +151,20 @@ export class BoxManager extends Component {
                                     }
                                 }
                             }).start();
-                        
-                    } 
+
+                    }
                 }
             }
             if (node.children.length === 0) {
                 // Lấy danh sách ID của các box đang hoạt động
                 let activeIds = this._boxesActive.map(box => box.getId());
+                error("activeIds: ", activeIds);
                 let boxData = BoxDataFactory.getRandomBoxData(activeIds);
+                error("boxData: ", boxData);
                 if (!boxData || !boxData.id) {
                     return;
                 }
-               
+
                 let box = this.getNewBox();
                 box.levelLoader = this.levelLoader;
                 box.boxManager = this;
@@ -171,7 +172,7 @@ export class BoxManager extends Component {
                 box.node.setPosition(0, 300, 0);
                 box.initialize(boxData.id, boxData.total);
                 this._boxesActive.push(box);
-                tween(box.node).to(0.3, {position: new Vec3(0, 0, 0)}, {easing: easing.backOut})
+                tween(box.node).to(0.3, { position: new Vec3(0, 0, 0) }, { easing: easing.backOut })
                     .call(() => {
                         // Lấy goods từ free slot
                         for (let j = 0; j < this.slotManager.freeSlots.length; j++) {
@@ -201,7 +202,7 @@ export class BoxManager extends Component {
         }
         else {
             let state = [EGameState.WIN, EGameState.LOSE];
-            if (!state.includes(gameManager.State)) {   
+            if (!state.includes(gameManager.State)) {
                 this.fill();
             }
         }
@@ -240,12 +241,12 @@ export class BoxManager extends Component {
         this.uiWarning.forEach(uiOpacity => {
             if (uiOpacity.node.activeInHierarchy) {
                 let duration = 0.3
-                tween(uiOpacity).to(0.25, {opacity: 255}, {easing: easing.cubicOut})
-                    .to(0.25, {opacity: 0}, {easing: easing.cubicOut})
-                    .to(0.25, {opacity: 255}, {easing: easing.cubicOut})
-                    .to(0.25, {opacity: 0}, {easing: easing.cubicOut})
-                    .to(0.25, {opacity: 255}, {easing: easing.cubicOut})
-                    .to(0.25, {opacity: 0}, {easing: easing.cubicOut})
+                tween(uiOpacity).to(0.25, { opacity: 255 }, { easing: easing.cubicOut })
+                    .to(0.25, { opacity: 0 }, { easing: easing.cubicOut })
+                    .to(0.25, { opacity: 255 }, { easing: easing.cubicOut })
+                    .to(0.25, { opacity: 0 }, { easing: easing.cubicOut })
+                    .to(0.25, { opacity: 255 }, { easing: easing.cubicOut })
+                    .to(0.25, { opacity: 0 }, { easing: easing.cubicOut })
                     .start();
             }
         });

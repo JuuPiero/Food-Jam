@@ -5,7 +5,7 @@ export class GoodsInteractiveState extends GoodsState {
     
     public enterState(): void {
         this._goods.node.active = true;
-        this._goods.sptGoods.color = new Color(50, 50, 50, 255);
+        // this._goods.sptGoods.color = new Color(50, 50, 50, 255);
     }
 
     public exitState(): void {

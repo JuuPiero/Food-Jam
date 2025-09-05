@@ -13,11 +13,6 @@ class BoxDataFactorty {
     public initialize(data: ILevelData): void {
         this._data = data;
         this._layersData = this.getAllLayersData(this._data);
-
-        // Loại bỏ tất cả id = 16 trong mảng layersData
-        for (let i = 0; i < this._layersData.length; i++) {
-            this._layersData[i] = this._layersData[i].filter(id => id !== 16);
-        }
     }
     
     public getTutorialBoxData(initID: number, activeIds: number[] = []): IBoxData {

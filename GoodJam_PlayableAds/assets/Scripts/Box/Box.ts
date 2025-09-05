@@ -6,6 +6,7 @@ import { Goods } from '../Goods/Goods';
 import { BoxManager } from '../Core/BoxManager';
 import { AudioManager, ESoundEffect } from '../AudioManager';
 import { BoxEffect } from '../Combo/BoxEffect';
+import { GoodsBase } from '../Base/GoodsBase';
 const { ccclass, property } = _decorator;
 
 export enum EBoxAnimation {
@@ -75,7 +76,7 @@ export class Box extends Component implements IBox {
         return this._boxSlots;
     }
 
-    public add(goods: Goods): void {
+    public add(goods: GoodsBase): void {
         for (let i = 0; i < this._boxSlots.length; i++) {
             let boxSlot = this._boxSlots[i];
             if (boxSlot.isFull()) {
@@ -83,7 +84,6 @@ export class Box extends Component implements IBox {
             }
             boxSlot.add(goods).then(goods => {
                 AudioManager.playEffect(ESoundEffect.DROP_BOX);
-                goods.animGoods.play("GoodsJump");
                 this._count++;
                 if (this._count === this._total) {
                     this.complete().then(() => {
