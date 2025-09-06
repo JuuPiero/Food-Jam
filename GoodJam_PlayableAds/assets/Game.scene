@@ -226,7 +226,7 @@
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "d290138e-2797-4e82-82a4-d2ed19256b9d@f9941",
+        "__uuid__": "1582975c-07a6-4ac0-82dc-cf6d902d9848@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
@@ -2936,7 +2936,7 @@
         "__id__": 71
       }
     ],
-    "tutorialID": 8,
+    "tutorialID": 4,
     "uiWarning": [],
     "_id": "23zKBA1ClJGbbHcKzbHZXu"
   },
@@ -8917,7 +8917,7 @@
     "tutShelfIndex": 4,
     "jsonLevelData": [
       {
-        "__uuid__": "a7b8c9d0-1e2f-3456-7890-abcdef123456",
+        "__uuid__": "37291844-cf86-4690-8229-9d59b3b42385",
         "__expectedType__": "cc.JsonAsset"
       }
     ],
@@ -26289,10 +26289,10 @@
   {
     "__type__": "cc.ClickEvent",
     "target": {
-      "__id__": 192
+      "__id__": 264
     },
     "component": "",
-    "_componentId": "36ea9v0SHhCOqNvR777LBSD",
+    "_componentId": "3b55fJqc7FA+qXGi0ZlLt5p",
     "handler": "openStore",
     "customEventData": ""
   },

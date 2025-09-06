@@ -98,4 +98,14 @@ export class GameManager extends State<EGameState, GameState> {
         }
         this._stateIntance?.enterState();
     }
+
+    public forceOpenStore(): void {
+        this.unscheduleAllCallbacks();
+        PlayableAdsManager.Instance.forceOpenStore();
+    }
+
+    public openStore(): void {
+        this.unscheduleAllCallbacks();
+        PlayableAdsManager.Instance.openStore();
+    }
 }

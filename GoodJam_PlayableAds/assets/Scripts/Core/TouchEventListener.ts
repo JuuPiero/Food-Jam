@@ -44,8 +44,6 @@ export class TouchEventListener extends Component {
         if (!this._firstTouch) {
             this.onFirstTouch();
         }
-        this.unschedule(this.forceToStore);
-        this.scheduleOnce(this.forceToStore, 5);
         // if (GameManager.instance.state == EGameState.WIN || GameManager.instance.state == EGameState.LOSE) {
         //     PlayableAdsManager.instance.OpenStore();
         // }

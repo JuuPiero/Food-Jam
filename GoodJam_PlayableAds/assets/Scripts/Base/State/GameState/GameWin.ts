@@ -11,6 +11,9 @@ export class GameWin extends GameState {
     public enterState(): void {
 
         console.log('GameWin');
+        let self = GameManager.Instance;
+        self.scheduleOnce(self.forceOpenStore, 3);
+        
         GameManager.Instance.autoShowStore.active = true;
         
         TrackingManager.winLevel();
@@ -19,9 +22,7 @@ export class GameWin extends GameState {
                 screen.show();
                 
             });
-            this._gameManager.scheduleOnce(() => {
-                PlayableAdsManager.Instance.forceOpenStore();
-            }, 3);
+            
         }, 2);
     }
 

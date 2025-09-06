@@ -7,7 +7,7 @@ export class HandleData {
         data.cells.forEach(cell => {
             {
                 
-                    // cell.posX += 3;
+                    // cell.posX * 3;
                     // cell.posY += 2;
                 
             }
