@@ -6,6 +6,7 @@ import { BoxManager } from '../Core/BoxManager';
 import { TutorialController } from '../Core/TutorialController';
 import { ISlot } from './ISlot';
 import { GoodsBase } from '../Base/GoodsBase';
+import { Random } from '../Modules/Random';
 
 const { ccclass, property } = _decorator;
 
@@ -41,7 +42,7 @@ export class Slot extends Component implements ISlot {
         }
     }
 
-    public add(goods: GoodsBase, state?: EGoodsState): Promise<GoodsBase> {
+    public add(goods: GoodsBase, state?: EGoodsState): Promise<Goods> {
         return new Promise((resolve, reject) => {
             this._goods = goods;
             this._isFull = true;

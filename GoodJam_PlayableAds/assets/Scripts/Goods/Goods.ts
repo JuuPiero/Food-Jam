@@ -1,4 +1,4 @@
-import { _decorator, Animation, Button, CCInteger, Color, Component, Node, Sprite, SpriteFrame, tween, Vec3 } from 'cc';
+import { _decorator, Animation, Button, CCInteger, Color, Component, Node, sp, Sprite, SpriteFrame, tween, Vec3 } from 'cc';
 import { GoodsBase } from '../Base/GoodsBase';
 import { State } from '../Base/State/State';
 import { GoodsState } from './GoodsState';
@@ -31,6 +31,9 @@ export class Goods extends GoodsBase {
     @property(Animation)
     animGoods: Animation = null;
     
+    @property(sp.Skeleton)
+    skeletonSmoke: sp.Skeleton = null;
+
     public shelf: Shelf = null;
     protected _goodsId: number = -1;
 
@@ -104,6 +107,7 @@ export class Goods extends GoodsBase {
         // let boxManager = BoxManager.Instance;
         // boxManager.pickUpTut(this);
     }
+    
     public pickUp(): void {
         AudioManager.playEffect(ESoundEffect.PICKUP);
         // Xử lý box
@@ -112,4 +116,16 @@ export class Goods extends GoodsBase {
         // Xử lý shelf
         this.shelf.onGoodsPickUp(this);
     }
+
+    // Method play anim khói
+    public playSmokeAnim(): void {
+        this.skeletonSmoke.node.active = true;
+        this.skeletonSmoke.setCompleteListener(track => {
+            if (track.animation.name === "Smoke_01") {
+                this.skeletonSmoke.node.active = false;
+            }
+        });
+        this.skeletonSmoke.setAnimation(0, "Smoke_01", false);
+    }
+
 }

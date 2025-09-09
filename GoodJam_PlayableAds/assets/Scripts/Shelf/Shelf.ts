@@ -10,6 +10,8 @@ import { Lock } from '../Lock/Lock';
 import { AudioManager, ESoundEffect } from '../AudioManager';
 import { ShelfLayer } from './Layer/ShelfLayer';
 import { Queuelayer } from './QueueLayer';
+import { Random } from '../Modules/Random';
+import { PromiseUtils } from '../PromiseUtils';
 
 const { ccclass, property } = _decorator;
 
@@ -110,6 +112,8 @@ export abstract class Shelf extends Component {
         // Setup shadow
         this.nodeShadow.setParent(this.boxManager.levelLoader.nodeShadowContainer);
         this.nodeShadow.worldPosition = this.nodeShadowAnchor.worldPosition;
+
+        this.schedule(this.playRandomEffectSmoke, 8);
     }
 
     public reset(): void {
@@ -206,6 +210,20 @@ export abstract class Shelf extends Component {
             shelf = shelf.bottom;
         }
         return shelf;
+    }
+
+    private playRandomEffectSmoke(): void {
+        this.mainLayer.slots.forEach(async slot => {
+            let goods = slot.getGoods() as Goods;
+            if (goods) {
+                let num = Random.getRandomInt(0, 100);
+                if (num < 10) {
+                    await PromiseUtils.delay(Math.random());
+                    goods.playSmokeAnim();
+                    AudioManager.playEffect(ESoundEffect.MEAT);
+                }
+            }
+        });
     }
 }
 

@@ -1,9 +1,9 @@
-import { _decorator, Component, easing, Node, tween, UIOpacity } from 'cc';
+import { _decorator, Component, easing, log, Node, tween, UIOpacity } from 'cc';
 import { Slot } from '../../Slot/Slot';
 import { IItemsLayerData } from '../../Data/ILevelData';
 import { Shelf } from '../Shelf';
 import { GoodsFactory } from '../../Goods/GoodsFactory';
-import { EGoodsState } from '../../Goods/Goods';
+import { EGoodsState, Goods } from '../../Goods/Goods';
 import { GoodsBase } from '../../Base/GoodsBase';
 import { AudioManager, ESoundEffect } from '../../AudioManager';
 const { ccclass, property } = _decorator;
@@ -55,18 +55,21 @@ export class ShelfLayer extends Component {
 
     public wakeUp(shelf: Shelf): void {
         shelf.mainLayer.slots.forEach((slot, index) => {
-            let goods = this.slots[index].remove();
+            let goods = this.slots[index].remove() as Goods;
             if (goods) {
-                slot.add(goods, EGoodsState.ACTIVE);
+                slot.add(goods, EGoodsState.ACTIVE).then((_goods) => {
+                    let random = Math.random();
+                    this.scheduleOnce(() => {
+                        log(index);
+                        AudioManager.playEffect(ESoundEffect.MEAT);
+                        _goods.playSmokeAnim();
+                    }, random);
+                });
             }
         });
         
         this.hide();
 
-        let random = Math.random();
-        this.scheduleOnce(() => {
-            AudioManager.playEffect(ESoundEffect.MEAT);
-        }, random);
     }
 
     public sleep(): void {

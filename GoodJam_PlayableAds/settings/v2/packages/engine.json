@@ -6,7 +6,6 @@
     },
     "configs": {
       "migrationsConfig": {
-        "name": "Migrated Configuration",
         "cache": {
           "base": {
             "_value": true
@@ -153,7 +152,7 @@
           },
           "spine": {
             "_value": true,
-            "_option": "spine-3.8"
+            "_option": "spine-4.2"
           },
           "spine-3.8": {
             "_value": true,
@@ -171,10 +170,10 @@
             "_value": false
           },
           "marionette": {
-            "_value": false
+            "_value": true
           },
           "procedural-animation": {
-            "_value": false
+            "_value": true
           },
           "custom-pipeline-post-process": {
             "_value": false
@@ -193,7 +192,10 @@
             "_value": false
           }
         },
-        "flags": {},
+        "flags": {
+          "LOAD_SPINE_MANUALLY": false
+        },
+        "name": "Migrated Configuration",
         "includeModules": [
           "2d",
           "affine-transform",
@@ -205,12 +207,14 @@
           "graphics",
           "intersection-2d",
           "legacy-pipeline",
+          "marionette",
           "mask",
           "meshopt",
           "particle-2d",
+          "procedural-animation",
           "profiler",
           "rich-text",
-          "spine-3.8",
+          "spine-4.2",
           "tween",
           "ui",
           "webview"
