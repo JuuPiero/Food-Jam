@@ -131,7 +131,12 @@ export abstract class Shelf extends Component {
                 return;
             }
             let shelfLayer = this.queueLayer.pop();
-            shelfLayer.wakeUp(this);
+            if (shelfLayer) {
+                shelfLayer.wakeUp(this);
+            }
+            else {
+                this.close();
+            }
         }
     }
 
