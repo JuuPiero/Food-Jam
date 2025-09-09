@@ -7,21 +7,23 @@ const { ccclass, property } = _decorator;
 @ccclass('GrilSlot')
 export class GrilSlot extends Slot {
     
-    public set(goods: GoodsBase): void {
+    public set(goods: GoodsBase, state?: EGoodsState): void {
         this._goods = goods;
         this._isFull = true;
         goods.slot = this;
         goods.node.setParent(this.nodeParent);
         goods.node.setPosition(new Vec3(0,0,0));
+        if (state) {
+            goods.State = state;
+        }
     }
 
-    public add(goods: GoodsBase): Promise<GoodsBase> {
+    public add(goods: GoodsBase, state?: EGoodsState): Promise<GoodsBase> {
         return new Promise((resolve, reject) => {
             this._goods = goods;
             this._isFull = true;
             goods.slot = this;
             goods.node.setParent(this.nodeParent, true);
-
             let endPos = this.nodeParent.getWorldPosition();
             let endScale = this.nodeParent.getWorldScale();
             
@@ -32,7 +34,9 @@ export class GrilSlot extends Slot {
                 tween(goods.node).to(duration, {worldPosition: endPos}, {easing: easing.cubicOut}),
                 tween(goods.node).to(duration, {scale: new Vec3(1, 1, 1)}, {easing: easing.cubicOut})
             ).call(() => {
-                goods.State = EGoodsState.ACTIVE;
+                if (state) {
+                    goods.State = state;
+                }
                 resolve(goods);
             }).start();
         });

@@ -11,9 +11,7 @@ import { GameManager } from '../Core/GameManager';
 import { EGameState } from '../Core/EGameState';
 import { TouchEventListener } from '../Core/TouchEventListener';
 import { AudioManager, ESoundEffect } from '../AudioManager';
-import { PlayableAdsManager } from '../../base-script/PlayableAds/PlayableAdsManager';
 import { LevelLoader } from '../Core/LevelLoader';
-import { Slot } from '../Slot/Slot';
 
 const { ccclass, property } = _decorator;
 

@@ -30,15 +30,18 @@ export class Slot extends Component implements ISlot {
         this.nodeParent.removeAllChildren();
     }
 
-    public set(goods: GoodsBase): void {
+    public set(goods: GoodsBase, state?: EGoodsState): void {
         this._goods = goods;
         this._isFull = true;
         this._goods.slot = this;
         goods.node.setParent(this.nodeParent);
         goods.node.setPosition(new Vec3(0,0,0));
+        if (state) {
+            goods.State = state;
+        }
     }
 
-    public add(goods: GoodsBase): Promise<GoodsBase> {
+    public add(goods: GoodsBase, state?: EGoodsState): Promise<GoodsBase> {
         return new Promise((resolve, reject) => {
             this._goods = goods;
             this._isFull = true;
@@ -53,6 +56,10 @@ export class Slot extends Component implements ISlot {
             goods.node.setParent(nodeTopLayer);
             goods.node.setWorldPosition(worldPos);
             goods.node.setWorldScale(worldScale);
+            
+            if (state) {
+                goods.State = state;
+            }
             
             // End
             let endPos = this.nodeParent.getWorldPosition();

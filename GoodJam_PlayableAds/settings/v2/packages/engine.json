@@ -1,5 +1,5 @@
 {
-  "__version__": "1.0.9",
+  "__version__": "1.0.12",
   "modules": {
     "graphics": {
       "pipeline": "legacy-pipeline"
@@ -35,7 +35,7 @@
           "2d": {
             "_value": true
           },
-          "xr": {
+          "sorting-2d": {
             "_value": false
           },
           "rich-text": {
@@ -188,6 +188,9 @@
           },
           "legacy-pipeline": {
             "_value": false
+          },
+          "xr": {
+            "_value": false
           }
         },
         "flags": {},
@@ -339,8 +342,8 @@
       "procedural-animation": {
         "_value": false
       },
-      "custom-pipeline": {
-        "_value": false
+      "render-pipeline": {
+        "_option": "legacy-pipeline"
       }
     },
     "flags": {},
@@ -362,7 +365,8 @@
       "tiled-map",
       "tween",
       "ui",
-      "webview"
+      "webview",
+      "legacy-pipeline"
     ],
     "noDeprecatedFeatures": {
       "value": false,

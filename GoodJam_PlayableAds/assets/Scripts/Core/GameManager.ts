@@ -54,10 +54,8 @@ export class GameManager extends State<EGameState, GameState> {
     protected start(): void {
         GameManager._instance = this;
         this.State = EGameState.INITIALIZATION;
-        let result = generateShuffledSubArrays([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], 30)
-        window.g = this
-        
     }
+    
     startCounting()
     {
         this.schedule(this.updateCountdown, 1); 

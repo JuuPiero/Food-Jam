@@ -24,6 +24,15 @@ export class GoodsFactory extends Component {
     @property([SpriteFrame])
     sfrGoods: SpriteFrame[] = [];
 
+    private static _instance: GoodsFactory = null;
+    public static get Instance(): GoodsFactory {
+        return GoodsFactory._instance;
+    }
+
+    protected onLoad(): void {
+        GoodsFactory._instance = this;
+    }
+    
     public createGoods(id: number): GoodsBase {
         if (id === 0)
             return null;

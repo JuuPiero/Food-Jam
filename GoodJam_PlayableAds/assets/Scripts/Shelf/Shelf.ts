@@ -8,6 +8,8 @@ import { GoodsBase } from '../Base/GoodsBase';
 import { ShelfStrategy } from './Strategy/ShelfStrategy';
 import { Lock } from '../Lock/Lock';
 import { AudioManager, ESoundEffect } from '../AudioManager';
+import { ShelfLayer } from './Layer/ShelfLayer';
+import { Queuelayer } from './QueueLayer';
 
 const { ccclass, property } = _decorator;
 
@@ -37,14 +39,11 @@ export abstract class Shelf extends Component {
     @property(Lock)
     lock: Lock = null;
 
-    @property(UIOpacity)
-    uiQueueContainer: UIOpacity = null;
+    @property(ShelfLayer)
+    mainLayer: ShelfLayer = null;
 
-    @property(SlotContainer)
-    activeSlotContainer: SlotContainer = null;
-
-    @property(SlotContainer)
-    queueSlotContainer: SlotContainer = null;
+    @property(Queuelayer)
+    queueLayer: Queuelayer = null;
 
     private _moveType: EMoveType = EMoveType.NONE;
     public set MoveType(value: EMoveType) {
@@ -75,11 +74,8 @@ export abstract class Shelf extends Component {
     public data: IShelfData = null;
     public currentLayer: GoodsBase[] = [];
     public nextLayer: GoodsBase[] = [];
-
     
     private _shelfStrategy: ShelfStrategy = null;
-    
-    private _slots: SlotContainer[] = [];
 
     protected abstract completeShelf(): void;
 
@@ -103,69 +99,40 @@ export abstract class Shelf extends Component {
         }
         // Create
         // Khởi tạo item trên vỉ nướng
-        let currentData = this.data.itemsLayer.shift();
-        let nextData = this.data.itemsLayer.shift();
-        
-        // Push goods vào activeSlotContainer
-        currentData.items.forEach(item => {
-            let goods = this.goodsFactory.createGoods(item);
-            if (goods) {
-                goods.shelf = this;
-                goods.State = EGoodsState.ACTIVE;
-                this.activeSlotContainer.set(goods);
-            }
-        });
+        let mainData = this.data.itemsLayer.shift();
+        this.mainLayer.shelf = this;
+        this.mainLayer.initialize(mainData, EGoodsState.ACTIVE);
 
-        // Push goods vào queueSlotContainer
-        if (nextData) {
-            this.uiQueueContainer.node.active = true;
-            nextData.items.forEach(item => {
-                let goods = this.goodsFactory.createGoods(item);
-                if (goods) {
-                    goods.shelf = this;
-                    goods.State = EGoodsState.INTERACTIVE;
-                    this.queueSlotContainer.set(goods);
-                }
-            });
-        }
-        else {
-            this.uiQueueContainer.node.active = false;
-        }
+        // Khởi tạo item ở hàng chờ
+        this.queueLayer.shelf = this;
+        this.queueLayer.initialize(this.data.itemsLayer);
+
         // Setup shadow
         this.nodeShadow.setParent(this.boxManager.levelLoader.nodeShadowContainer);
         this.nodeShadow.worldPosition = this.nodeShadowAnchor.worldPosition;
     }
 
     public reset(): void {
-        this.activeSlotContainer.removeAll();
-        this.queueSlotContainer.removeAll();
+        this.mainLayer.removeAll();
+        this.queueLayer.removeAll();
     }
 
     public onGoodsPickUp(goods: GoodsBase): void {
-        this.activeSlotContainer.remove(goods);
-        let listGoods =  this.activeSlotContainer.getAllGoods()
+        this.mainLayer.remove(goods);
+        let listGoods =  this.mainLayer.getAllGoods()
         // Nếu tất cả đều null thì push goods từ queueSlotContainer sang activeSlotContainer
         if (listGoods.every(goods => goods === null)) {
-            if (this.data.itemsLayer.length === 0 && this.queueSlotContainer.slots.every(slot => slot.getGoods() === null)) {
+            if (this.data.itemsLayer.length === 0 && this.queueLayer.layers.every(layer => layer.getAllGoods().every(goods => goods === null))) {
                 this.close();
                 return;
             }
-            this.pushGoodsToActiveSlotContainer();
-            if (this.data.itemsLayer.length > 0) {
-                this.pushGoodsToQueueSlotContainer();
-            }
-            else {
-                tween(this.uiQueueContainer).to(0.3, {opacity: 0}, {easing: easing.cubicOut})
-                .call(() => {
-                    this.uiQueueContainer.node.active = false;
-                })
-                .start();
-            }
+            let shelfLayer = this.queueLayer.pop();
+            shelfLayer.wakeUp(this);
         }
     }
 
     public getGoods(): GoodsBase[] {
-        return this.activeSlotContainer.getAllGoods();
+        return this.mainLayer.getAllGoods();
     }
 
     public complete(): Promise<void> {
@@ -239,31 +206,6 @@ export abstract class Shelf extends Component {
             shelf = shelf.bottom;
         }
         return shelf;
-    }
-
-    private pushGoodsToActiveSlotContainer(): void {
-        this.queueSlotContainer.slots.forEach(slot => {
-            let random = Math.random();
-            this.scheduleOnce(() => {
-                AudioManager.playEffect(ESoundEffect.MEAT);
-            }, random);
-            let goods = slot.remove();
-            if (goods) {
-                this.activeSlotContainer.add(goods);
-            }
-        });
-    }
-
-    private pushGoodsToQueueSlotContainer(): void {
-        let data = this.data.itemsLayer.shift();
-        data.items.forEach(slot => {
-            let goods = this.goodsFactory.createGoods(slot);
-            if (goods) {
-                goods.shelf = this;
-                goods.State = EGoodsState.INTERACTIVE;
-                this.queueSlotContainer.set(goods);
-            }
-        });
     }
 }
 
