@@ -51,6 +51,7 @@ export class TouchEventListener extends Component {
 
     public onFirstTouch(): void {
         this._firstTouch = true;
+        AudioManager.mute = false;
         // GameManager.Instance.startCounting();
         if(TutorialController.Instance.enableTut)
         {

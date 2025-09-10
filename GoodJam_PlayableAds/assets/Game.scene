@@ -2936,7 +2936,7 @@
         "__id__": 71
       }
     ],
-    "tutorialID": 4,
+    "tutorialID": 8,
     "uiWarning": [],
     "_id": "23zKBA1ClJGbbHcKzbHZXu"
   },
@@ -8917,7 +8917,7 @@
     "tutShelfIndex": 4,
     "jsonLevelData": [
       {
-        "__uuid__": "37291844-cf86-4690-8229-9d59b3b42385",
+        "__uuid__": "314e9c5d-191c-42e1-bfaf-279ecdc7c6aa",
         "__expectedType__": "cc.JsonAsset"
       }
     ],

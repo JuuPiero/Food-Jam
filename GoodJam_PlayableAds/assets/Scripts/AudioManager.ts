@@ -19,11 +19,11 @@ export enum ESoundEffect {
 @ccclass('AudioManager')
 export class AudioManager extends Component {
 
-    @property
-    mute: boolean = false;
     @property([AudioSource])
     audioSources: AudioSource[] = [];
 
+    public static mute: boolean = false;
+    
     private static _instance: AudioManager;
 
     protected onLoad(): void {
@@ -34,19 +34,19 @@ export class AudioManager extends Component {
 
     public static playEffect(sound: ESoundEffect) {
         let self = AudioManager._instance;
-        if (self.mute) return;
+        if (AudioManager.mute) return;
         self.audioSources[sound].playOneShot(self.audioSources[sound].clip);
     }
 
     public static playBackground(): void {
         let self = AudioManager._instance;
-        if (self.mute) return;
+        if (AudioManager.mute) return;
         self.audioSources[ESoundEffect.BACKGROUND].play();
     }
     
     public static stopBackground(): void {
         let self = AudioManager._instance;
-        if (self.mute) return;
+        if (AudioManager.mute) return;
         self.audioSources[ESoundEffect.BACKGROUND].stop();
     }
 }
