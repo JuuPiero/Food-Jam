@@ -114,11 +114,12 @@ export abstract class Shelf extends Component {
         this.nodeShadow.worldPosition = this.nodeShadowAnchor.worldPosition;
 
         this.schedule(this.playRandomEffectSmoke, 8);
+
     }
 
     public reset(): void {
-        this.mainLayer.removeAll();
-        this.queueLayer.removeAll();
+        this.mainLayer?.removeAll();
+        this.queueLayer?.removeAll();
     }
 
     public onGoodsPickUp(goods: GoodsBase): void {
