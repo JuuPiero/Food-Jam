@@ -1,4 +1,4 @@
-import { _decorator, Component, instantiate, Node, Sprite, Widget } from 'cc';
+import { _decorator, Component, easing, instantiate, Node, Sprite, tween, UIOpacity, Widget } from 'cc';
 import { ScreenBase } from './ScreenBase';
 import { BoxManager } from '../Core/BoxManager';
 import { SlotManager } from '../Slot/SlotManager';
@@ -15,6 +15,8 @@ export class LoseScreen extends ScreenBase {
     @property([Node])
     nodeResults: Node[] = [];
 
+    @property([UIOpacity])
+    uiOpacities: UIOpacity[] = [];
 
     @property(Node)
     nodeParent: Node = null;
@@ -54,6 +56,15 @@ export class LoseScreen extends ScreenBase {
         });
     }
 
+    public showWithEffect(): Promise<void> {
+        return new Promise((resolve, reject) => {
+            this.uiOpacities.forEach(uiOpacity => {
+                tween(uiOpacity).to(0.3, {opacity: 255}, {easing: easing.cubicOut}).start();
+                resolve();
+            });
+        });
+    }
+    
     private clone(node: Node, parent: Node): Node {
         let clone = instantiate(node);
         // Remove component

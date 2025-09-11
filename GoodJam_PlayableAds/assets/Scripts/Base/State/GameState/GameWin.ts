@@ -12,17 +12,15 @@ export class GameWin extends GameState {
 
         console.log('GameWin');
         let self = GameManager.Instance;
-        self.scheduleOnce(self.forceOpenStore, 3);
         
         GameManager.Instance.autoShowStore.active = true;
         
         TrackingManager.winLevel();
         this._gameManager.scheduleOnce(() => {
             this._gameManager.screenWin.forEach(screen => {
-                screen.show();
-                
+                screen.showWithEffect();
             });
-            
+            self.scheduleOnce(self.forceOpenStore, 3);
         }, 2);
     }
 

@@ -170,10 +170,10 @@
             "_value": false
           },
           "marionette": {
-            "_value": true
+            "_value": false
           },
           "procedural-animation": {
-            "_value": true
+            "_value": false
           },
           "custom-pipeline-post-process": {
             "_value": false
@@ -207,11 +207,9 @@
           "graphics",
           "intersection-2d",
           "legacy-pipeline",
-          "marionette",
           "mask",
           "meshopt",
           "particle-2d",
-          "procedural-animation",
           "profiler",
           "rich-text",
           "spine-4.2",

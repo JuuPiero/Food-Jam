@@ -12,6 +12,7 @@ import { EGameState } from '../Core/EGameState';
 import { TouchEventListener } from '../Core/TouchEventListener';
 import { AudioManager, ESoundEffect } from '../AudioManager';
 import { LevelLoader } from '../Core/LevelLoader';
+import { PlayableAdsManager } from '../../base-script/PlayableAds/PlayableAdsManager';
 
 const { ccclass, property } = _decorator;
 
@@ -84,10 +85,10 @@ export class Goods extends GoodsBase {
                 //     GameManager.Instance.autoShowStore.active = true;
                 // }
                 Goods._step++;
-                // if (Goods._step === 40) {
-                //     GameManager.Instance.stopCouting();
-                //     PlayableAdsManager.Instance.forceOpenStore();
-                // }
+                if (Goods._step === 40) {
+                    GameManager.Instance.stopCouting();
+                    PlayableAdsManager.Instance.forceOpenStore();
+                }
                 let locks = LevelLoader.Instance.locks;
                 if (locks.length > 0) {
                     let lock = locks[0];

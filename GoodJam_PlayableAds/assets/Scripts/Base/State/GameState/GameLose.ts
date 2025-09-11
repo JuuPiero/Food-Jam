@@ -16,7 +16,7 @@ export class GameLose extends GameState {
         TrackingManager.loseLevel();
         this._gameManager.scheduleOnce(() => {
             this._gameManager.screenLose.forEach(screen => {
-                screen.show();
+                screen.showWithEffect();
             });
         }, 2);
     }
