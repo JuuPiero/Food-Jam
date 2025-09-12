@@ -120,6 +120,7 @@ export class Goods extends GoodsBase {
 
     // Method play anim khói
     public playSmokeAnim(): void {
+        AudioManager.playEffect(ESoundEffect.MEAT);
         this.skeletonSmoke.node.active = true;
         this.skeletonSmoke.setCompleteListener(track => {
             if (track.animation.name === "Smoke_01") {

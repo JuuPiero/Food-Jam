@@ -17,6 +17,7 @@ export abstract class GoodsBase extends State<EGoodsState, GoodsState>  {
     public abstract reset(): void;
     public abstract pickUp(): void;
     public abstract getId(): number;
+    public abstract playSmokeAnim(): void;
     
 }
 

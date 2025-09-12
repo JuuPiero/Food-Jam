@@ -206,6 +206,10 @@ export class BoxManager extends Component {
         }
     }
 
+    public getActiveBoxes(): Box[] {
+        return this._boxesActive;
+    }
+
     public getBoxesActive(): Box[] {
         return this._boxesActive;
     }

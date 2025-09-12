@@ -7,6 +7,7 @@ import { BoxManager } from '../Core/BoxManager';
 import { AudioManager, ESoundEffect } from '../AudioManager';
 import { BoxEffect } from '../Combo/BoxEffect';
 import { GoodsBase } from '../Base/GoodsBase';
+import { TextEffects } from '../TextEffects';
 const { ccclass, property } = _decorator;
 
 export enum EBoxAnimation {
@@ -31,6 +32,7 @@ export class Box extends Component implements IBox {
     
     public levelLoader: LevelLoader = null;
     public boxManager: BoxManager = null;
+    public textEffects: TextEffects = null;
     protected _boxId: number = -1;
     protected _total: number = 0;
     protected _boxSlots: BoxSlot[] = [];
@@ -57,7 +59,8 @@ export class Box extends Component implements IBox {
     public complete(): Promise<void> {
         return new Promise((resolve, reject) => {
             this.boxEffect.show();
-            this.animBox.play(EBoxAnimation.COMPLETE);
+            // this.animBox.play(EBoxAnimation.COMPLETE);
+            TextEffects.Instance.show();
             AudioManager.playEffect(ESoundEffect.COMPLETE_BOX);
             this.scheduleOnce(() => {
                 tween(this.node).to(0.5, {position: new Vec3(0, 300, 0)}, {easing: easing.cubicOut})

@@ -104,6 +104,22 @@ export class LevelLoader extends Component {
         }
         this._listFallingShelf = this.setupFallingShelf(this._fallingShelves);
     }
+
+    public hintGoodsBySmoke(): void {
+        let boxes = this.boxManager.getActiveBoxes();
+        // Tìm box có nhiều item nhất
+        let maxBox = boxes.reduce((max, box) => box.getSlots().length > max.getSlots().length ? box : max, boxes[0]);
+        let id = maxBox.getId();
+        let shelves = this.getShelves();
+        shelves.forEach(shelf => {
+            let goods = shelf.getGoods();
+            let good = goods.find(good => good?.getId() === id);
+            if (good) {
+                good.playSmokeAnim();
+            }
+        });
+    }
+    
 onTut()
 {
     

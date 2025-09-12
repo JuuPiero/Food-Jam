@@ -61,7 +61,6 @@ export class ShelfLayer extends Component {
                     let random = Math.random();
                     this.scheduleOnce(() => {
                         log(index);
-                        AudioManager.playEffect(ESoundEffect.MEAT);
                         _goods.playSmokeAnim();
                     }, random);
                 });

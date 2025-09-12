@@ -113,8 +113,6 @@ export abstract class Shelf extends Component {
         this.nodeShadow.setParent(this.boxManager.levelLoader.nodeShadowContainer);
         this.nodeShadow.worldPosition = this.nodeShadowAnchor.worldPosition;
 
-        this.schedule(this.playRandomEffectSmoke, 8);
-
     }
 
     public reset(): void {
@@ -226,7 +224,6 @@ export abstract class Shelf extends Component {
                 if (num < 10) {
                     await PromiseUtils.delay(Math.random());
                     goods.playSmokeAnim();
-                    AudioManager.playEffect(ESoundEffect.MEAT);
                 }
             }
         });
