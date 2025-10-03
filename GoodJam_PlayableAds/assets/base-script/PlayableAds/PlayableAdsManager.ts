@@ -11,7 +11,7 @@ const { ccclass, property } = _decorator;
 @ccclass('PlayableAdsManager')
 export class PlayableAdsManager extends Component {
     private urlPlayStore: string = "https://play.google.com/store/apps/details?id=com.ig.skewer.jam.food.sort";
-    private urlAppStore: string = ""; 
+    private urlAppStore: string = "https://apps.apple.com/us/app/skewer-jam/id6752386103"; 
     private static instanceId: string = "PlayableAdsManager";
     public playableAdsName: string = "iKame";
 
@@ -86,8 +86,6 @@ export class PlayableAdsManager extends Component {
 
     private setLinkStore(): void {
         // Điều chỉnh lại link này theo từng dự án
-        this.urlPlayStore = "https://ikameglobal.com/";
-        this.urlAppStore = "https://ikameglobal.com/";
         super_html_playable.set_google_play_url(this.urlPlayStore);
         super_html_playable.set_app_store_url(this.urlAppStore);
         console.log("iKame Playstore :" + this.urlPlayStore)

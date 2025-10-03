@@ -2,6 +2,8 @@ import { _decorator, Component, Node, Sprite, UITransform, Vec2, Vec3 } from 'cc
 import { Shelf } from './Shelf';
 import { EMoveType, IShelfData } from '../Data/ILevelData';
 import { NormalShelf } from './NormalShelf';
+import { GameManager } from '../Core/GameManager';
+import { EGameState } from '../Core/EGameState';
 const { ccclass, property } = _decorator;
 
 
@@ -30,6 +32,10 @@ export class MovingShelf extends Shelf {
     speed: number = 0;
 
     protected update(deltaTime: number) {
+        let state = GameManager.Instance.State;
+        if(state !== EGameState.PLAYING) {
+            return;
+        }
         super.update(deltaTime);
         // Check out of bounds
         if (this.checkOutOfBounds()) {
