@@ -13,7 +13,7 @@ export class MovingShelfBoundsLimit {
     horizontalLimits: Vec2 = new Vec2(-1100 , 1100);
 
     @property(Vec2)
-    verticalLimits: Vec2 = new Vec2(-1400, 1400);
+    verticalLimits: Vec2 = new Vec2(-1700, 1700);
 }
 
 @ccclass('MovingShelf')
