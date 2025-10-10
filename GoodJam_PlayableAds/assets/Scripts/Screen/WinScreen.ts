@@ -25,6 +25,7 @@ export class WinScreen extends ScreenBase {
     public showWithEffect(): Promise<void> {
         return new Promise((resolve, reject) => {
             this.uiOpacities.forEach(uiOpacity => {
+                uiOpacity.node.active = true;
                 tween(uiOpacity).to(0.3, {opacity: 255}, {easing: easing.cubicOut}).start();
                 resolve();
             });

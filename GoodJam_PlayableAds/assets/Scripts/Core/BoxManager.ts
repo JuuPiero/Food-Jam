@@ -158,7 +158,7 @@ export class BoxManager extends Component {
             if (node.children.length === 0) {
                 // Lấy danh sách ID của các box đang hoạt động
                 let activeIds = this._boxesActive.map(box => box.getId());
-                let boxData = BoxDataFactory.getRandomBoxData(activeIds);
+                let boxData = BoxDataFactory.getBestBoxData(activeIds);
                 if (!boxData || !boxData.id) {
                     return;
                 }

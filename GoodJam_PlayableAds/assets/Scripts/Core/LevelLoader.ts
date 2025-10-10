@@ -107,8 +107,23 @@ export class LevelLoader extends Component {
 
     public hintGoodsBySmoke(): void {
         let boxes = this.boxManager.getActiveBoxes();
+        
+        // Kiểm tra nếu không có box nào hoặc mảng rỗng
+        if (!boxes || boxes.length === 0) {
+            return;
+        }
+        
         // Tìm box có nhiều item nhất
-        let maxBox = boxes.reduce((max, box) => box.getSlots().length > max.getSlots().length ? box : max, boxes[0]);
+        let maxBox = boxes.reduce((max, box) => {
+            if (!max || !box) return box || max;
+            return box.getSlots().length > max.getSlots().length ? box : max;
+        }, boxes[0]);
+        
+        // Kiểm tra maxBox có tồn tại không
+        if (!maxBox) {
+            return;
+        }
+        
         let id = maxBox.getId();
         let shelves = this.getShelves();
         shelves.forEach(shelf => {

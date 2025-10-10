@@ -36,7 +36,7 @@ export class GoodsFactory extends Component {
     public createGoods(id: number): GoodsBase {
         if (id === 0)
             return null;
-        if (id === 16) {
+        if (id === -2) {
             let node = instantiate(this.prefabCoin);
             let goods = node.getComponent(Coin);
             // goods.initialize(id, this.sfrGoods[id]);

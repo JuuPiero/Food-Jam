@@ -14,6 +14,64 @@ class BoxDataFactorty {
         this._data = data;
         this._layersData = this.getAllLayersData(this._data);
     }
+
+    // Chọn ID "dễ hoàn thành" nhất cho player:
+    // - Ưu tiên ID xuất hiện nhiều nhất trong các layer sắp tới (lookaheadLayers)
+    // - Tránh trùng với activeIds nếu có thể
+    // - Sau khi chọn, tiêu thụ tối đa 3 occurrences của ID đó từ các layer (giống logic cũ)
+    public getBestBoxData(activeIds: number[] = [], lookaheadLayers: number = 2): IBoxData {
+        if (!this._layersData || this._layersData.length === 0) return null;
+
+        // Gộp tạm các layer trong phạm vi lookahead để chấm điểm
+        const maxLayer = Math.min(lookaheadLayers, this._layersData.length);
+        const freq: Map<number, number> = new Map();
+        for (let i = 0; i < maxLayer; i++) {
+            const layer = this._layersData[i];
+            for (let j = 0; j < layer.length; j++) {
+                const id = layer[j];
+                // if (id === 0) continue;
+                freq.set(id, (freq.get(id) || 0) + 1);
+            }
+        }
+        if (freq.size === 0) return null;
+
+        // Tách candidate thành 2 nhóm: tránh trùng activeIds nếu có thể
+        const candidates: Array<{ id: number; score: number }> = [];
+        freq.forEach((score, id) => {
+            candidates.push({ id, score });
+        });
+
+        // Sắp xếp: score giảm dần, tie-breaker: id không thuộc activeIds ưu tiên hơn
+        candidates.sort((a, b) => {
+            if (b.score !== a.score) return b.score - a.score;
+            const aIn = activeIds.includes(a.id) ? 1 : 0;
+            const bIn = activeIds.includes(b.id) ? 1 : 0;
+            return aIn - bIn; // id không trùng activeIds đứng trước
+        });
+
+        const pick = candidates[0]?.id;
+        if (pick == null) return null;
+
+        // Tiêu thụ tối đa 3 occurrences của pick từ _layersData (giống logic cũ)
+        let consumed = 0;
+        for (let layerIndex = 0; layerIndex < this._layersData.length; layerIndex++) {
+            const ids = this._layersData[layerIndex];
+            let idx = ids.indexOf(pick);
+            while (idx !== -1 && consumed < 3) {
+                ids.splice(idx, 1);
+                consumed++;
+                idx = ids.indexOf(pick);
+            }
+            if (consumed >= 3) break;
+        }
+
+        // Nếu layer đầu trống, bỏ đi để giảm độ sâu
+        if (this._layersData[0] && this._layersData[0].length === 0) {
+            this._layersData.shift();
+        }
+
+        return { id: pick, total: 3 };
+    }
     
     public getTutorialBoxData(initID: number, activeIds: number[] = []): IBoxData {
         let firstLayer = this._layersData[0];

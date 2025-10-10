@@ -24,8 +24,10 @@ export class ShelfLayer extends Component {
         this.slots.forEach((slot, index) => {
             slot.remove();
             let goods = goodsFactory.createGoods(data.items[index]);
-            goods.shelf = this.shelf;
-            slot.set(goods, state);
+            if(goods) {
+                goods.shelf = this.shelf;
+                slot.set(goods, state);
+            }
         });
         return this;
     }

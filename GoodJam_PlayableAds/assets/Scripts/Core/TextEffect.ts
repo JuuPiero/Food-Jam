@@ -5,8 +5,7 @@ export enum ETextEffect {
     NICE,
     GOOD_JOB,
     AWESOME,
-    AMAZING,
-    FANTASTIC
+    AMAZING
 }
 
 @ccclass('TextEffect')
@@ -19,8 +18,8 @@ export class TextEffect extends Component {
         this.scheduleOnce(this.resetSchedule.bind(this), 5);
         let textEffect = this._textEffect;
         this._textEffect++;
-        if (this._textEffect >= ETextEffect.FANTASTIC) {
-            this._textEffect = ETextEffect.FANTASTIC;
+        if (this._textEffect >= ETextEffect.AMAZING) {
+            this._textEffect = ETextEffect.AMAZING;
         }
         return textEffect;
     }

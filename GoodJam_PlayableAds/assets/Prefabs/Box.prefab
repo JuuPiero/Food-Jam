@@ -37,11 +37,14 @@
         "__id__": 60
       },
       {
+        "__id__": 64
+      },
+      {
         "__id__": 62
       }
     ],
     "_prefab": {
-      "__id__": 64
+      "__id__": 66
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -1074,7 +1077,7 @@
       "__id__": 1
     },
     "_children": [],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 49
@@ -1092,7 +1095,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 80,
+      "y": 0,
       "z": 0
     },
     "_lrot": {
@@ -1132,8 +1135,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 131,
-      "height": 58
+      "width": 248,
+      "height": 52
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1168,10 +1171,13 @@
       "b": 255,
       "a": 255
     },
-    "_spriteFrame": null,
+    "_spriteFrame": {
+      "__uuid__": "ea6b40c1-8925-4f41-94da-d1d68597f793@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
     "_type": 0,
     "_fillType": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillCenter": {
       "__type__": "cc.Vec2",
       "x": 0,
@@ -1315,11 +1321,54 @@
         "__expectedType__": "cc.SpriteFrame"
       }
     ],
+    "audioSource": {
+      "__id__": 62
+    },
+    "audioClips": [
+      {
+        "__uuid__": "91ee833f-7cbd-468c-bc84-86fdc88572d5",
+        "__expectedType__": "cc.AudioClip"
+      },
+      {
+        "__uuid__": "dd9fca98-2824-4eee-a75f-6640a71372a1",
+        "__expectedType__": "cc.AudioClip"
+      },
+      {
+        "__uuid__": "5c2062a6-6289-4089-871b-501ae6df24b7",
+        "__expectedType__": "cc.AudioClip"
+      },
+      {
+        "__uuid__": "bc2aa0f0-f3c7-41f7-aa4a-b4b2c85ff75a",
+        "__expectedType__": "cc.AudioClip"
+      }
+    ],
     "_id": ""
   },
   {
     "__type__": "cc.CompPrefabInfo",
     "fileId": "02l0YnaPpDgY2EAWjWbCC7"
+  },
+  {
+    "__type__": "cc.AudioSource",
+    "_name": "",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "__prefab": {
+      "__id__": 63
+    },
+    "_clip": null,
+    "_loop": false,
+    "_playOnAwake": true,
+    "_volume": 1,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.CompPrefabInfo",
+    "fileId": "da9zHksO1MgoH0T4w25J3i"
   },
   {
     "__type__": "cc.UIOpacity",
@@ -1331,7 +1380,7 @@
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 63
+      "__id__": 65
     },
     "_opacity": 255,
     "_id": ""
