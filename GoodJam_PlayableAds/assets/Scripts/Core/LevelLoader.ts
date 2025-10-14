@@ -178,7 +178,7 @@ animTut()
         .to(1,{worldScale: this.tutParent.getWorldScale()})
         .start();
 
-        BezierTween(target, 1 , target.getPosition(), new Vec3(this.tutParent.position.x, this.tutParent.position.y + 500, this.tutParent.position.z), this.tutParent.position, false)
+        BezierTween(target, 1 , this.tutParent, new Vec3(0, 500, 0))
         .then(()=>{
             tween(target)
             .to(.1,{scale: new Vec3(target.getScale().x*1.25,target.getScale().y *.75,target.getScale().z)})

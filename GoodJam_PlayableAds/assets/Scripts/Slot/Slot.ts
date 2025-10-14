@@ -67,12 +67,11 @@ export class Slot extends Component implements ISlot {
             let endScale = this.nodeParent.getWorldScale();
 
             // Tạo điểm để move curve
-            let p2 = new Vec3(endPos.x, endPos.y + 500, endPos.z);
 
             tween(goods.node).to(duration, {worldScale: endScale}).start();
-            BezierTween(goods.node, duration + 0.1, worldPos, p2, endPos, true).then(() => {
-                goods.node.parent = this.nodeParent;
-                goods.node.setWorldPosition(endPos);
+            BezierTween(goods.node, duration + 0.1, this.nodeParent, new Vec3(0, 800, 0)).then(() => {
+                goods.node.setParent(this.nodeParent, true);
+                // goods.node.setWorldPosition(endPos);
                 goods.node.setWorldScale(endScale);
                 goods.State = EGoodsState.ACTIVE;
                 // if (this.nodeParent.children.length > 1) debugger
@@ -116,7 +115,7 @@ export class Slot extends Component implements ISlot {
             let p2 = new Vec3(endPos.x, endPos.y + 500, endPos.z);
           
             tween(goods.node).to(duration, {worldScale: endScale}).start();
-            BezierTween(goods.node, duration + 0.1, worldPos, p2, endPos, true)
+            BezierTween(goods.node, duration + 0.1, this.nodeParent, new Vec3(0, 500, 0))
             .then(()=>{
                 tween(goods.node)
                 .to(.1,{scale: new Vec3(goods.node.getScale().x*1.25,goods.node.getScale().y *.75,goods.node.getScale().z)})
@@ -127,7 +126,7 @@ export class Slot extends Component implements ISlot {
             })
                 .start();
                 setTimeout(()=>{
-                goods.node.parent = originalParent;
+                goods.node.setParent(originalParent, true);
                 goods.node.setScale(new Vec3(1,1,1));
                 goods.node.setPosition(new Vec3(0,0,0));
                 if(TutorialController.Instance.tutBool)
