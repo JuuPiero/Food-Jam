@@ -1,13 +1,15 @@
 import { _decorator, Component, easing, Node, tween, Vec3 } from 'cc';
 import { Slot } from './Slot';
 import { GoodsBase } from '../Base/GoodsBase';
-import { EGoodsState } from '../Goods/Goods';
+import { EGoodsState, Goods } from '../Goods/Goods';
 const { ccclass, property } = _decorator;
 
 @ccclass('GrilSlot')
 export class GrilSlot extends Slot {
     
-    public set(goods: GoodsBase, state?: EGoodsState): void {
+    public set(goods: GoodsBase, state?: EGoodsState): void
+    {
+        
         this._goods = goods;
         this._isFull = true;
         goods.slot = this;
@@ -18,7 +20,7 @@ export class GrilSlot extends Slot {
         }
     }
 
-    public add(goods: GoodsBase, state?: EGoodsState): Promise<GoodsBase> {
+    public add(goods: Goods, state?: EGoodsState): Promise<Goods> {
         return new Promise((resolve, reject) => {
             this._goods = goods;
             this._isFull = true;
@@ -42,7 +44,9 @@ export class GrilSlot extends Slot {
         });
     }
 
-    public remove(): GoodsBase {
+    public remove(): GoodsBase
+    {
+        console.log("Remove goods from slot: ", this._goods);
         this._isFull = false;
         let goods = this._goods;
         this._goods = null;

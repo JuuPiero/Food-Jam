@@ -79,11 +79,6 @@ export class Goods extends GoodsBase {
         if (state.includes(GameManager.Instance.State)) {
             if (this.State === EGoodsState.ACTIVE) {
                 TouchEventListener.Instance.onTouchGoods();
-                // GameManager.Instance.moveLimit--;
-                // if(GameManager.Instance.moveLimit<=0)
-                // {
-                //     GameManager.Instance.autoShowStore.active = true;
-                // }
                 Goods._step++;
                 if (Goods._step === 40) {
                     GameManager.Instance.stopCouting();
@@ -109,13 +104,17 @@ export class Goods extends GoodsBase {
         // boxManager.pickUpTut(this);
     }
     
-    public pickUp(): void {
-        AudioManager.playEffect(ESoundEffect.PICKUP);
-        // Xử lý box
+    public pickUp(): void
+    {
         let boxManager = this.shelf.boxManager;
-        boxManager.pickUp(this);
-        // Xử lý shelf
-        this.shelf.onGoodsPickUp(this);
+        if (boxManager.slotManager.fullSlot()) {
+            return;
+        }
+        AudioManager.playEffect(ESoundEffect.PICKUP);
+        let success = boxManager.pickUp(this);
+        if (success) {
+            this.shelf.onGoodsPickUp(this);
+        }
     }
 
     // Method play anim khói

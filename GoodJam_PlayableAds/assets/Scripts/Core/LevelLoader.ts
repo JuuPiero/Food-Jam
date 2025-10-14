@@ -10,6 +10,7 @@ import { BoxSlot } from '../Slot/BoxSlot';
 import { BezierTween } from '../Modules/BezierTween';
 import { MapLoop } from '../MapLoop';
 import { Lock } from '../Lock/Lock';
+import { GoodsBase } from '../Base/GoodsBase';
 
 const { ccclass, property } = _decorator;
 
@@ -177,7 +178,7 @@ animTut()
         .to(1,{worldScale: this.tutParent.getWorldScale()})
         .start();
 
-        BezierTween(target, 1 , target.getWorldPosition(), new Vec3(this.tutParent.worldPosition.x, this.tutParent.worldPosition.y + 500, this.tutParent.worldPosition.z), this.tutParent.worldPosition)
+        BezierTween(target, 1 , target.getPosition(), new Vec3(this.tutParent.position.x, this.tutParent.position.y + 500, this.tutParent.position.z), this.tutParent.position, false)
         .then(()=>{
             tween(target)
             .to(.1,{scale: new Vec3(target.getScale().x*1.25,target.getScale().y *.75,target.getScale().z)})
@@ -259,5 +260,24 @@ animTut()
         });
 
         return sortedData;
+    }
+
+    public getActiveGoods(): GoodsBase[] {
+        const goods: GoodsBase[] = [];
+        for (let i = 0; i < this._shelfs.length; i++) {
+            const shelfGoods = this._shelfs[i].getActiveGoods();
+            goods.push(...shelfGoods);
+        }
+        return goods;
+    }
+
+    public getInQueueGoods() : {good : GoodsBase, stepToTop: number, shelf: Shelf}[]
+    {
+        const res : {good : GoodsBase, stepToTop: number, shelf: Shelf}[] = [];
+        for (let i = 0; i < this._shelfs.length; i++) {
+            const shelfGoods = this._shelfs[ i ].getInQueueItems();
+            res.push(...shelfGoods);
+        }
+        return res;
     }
 }

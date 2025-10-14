@@ -1,10 +1,4 @@
-import { _decorator, CCBoolean, CCInteger, Component, Node, tween, Vec3 } from 'cc';
-import { LevelLoader } from './LevelLoader';
-import { BoxManager } from './BoxManager';
-import { Box } from '../Box/Box';
-import { BoxSlot } from '../Slot/BoxSlot';
-import { Shelf } from '../Shelf/Shelf';
-import { BezierTween } from '../Modules/BezierTween';
+import { _decorator, CCBoolean, Component, Node } from 'cc';
 
 const { ccclass, property } = _decorator;
 

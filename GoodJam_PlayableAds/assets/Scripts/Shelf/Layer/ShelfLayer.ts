@@ -46,7 +46,11 @@ export class ShelfLayer extends Component {
     }
 
     public remove(goods: GoodsBase): GoodsBase {
-        return this.slots.find(slot => slot.getGoods() === goods).remove();
+        const slot = this.slots.find(slot => slot.getGoods() === goods);
+        if (slot) {
+            return slot.remove();
+        }
+        return null;
     }
 
     public removeAll(): void {
@@ -55,12 +59,16 @@ export class ShelfLayer extends Component {
         });
     }
 
-    public wakeUp(shelf: Shelf): void {
+    public wakeUp(shelf: Shelf): void
+    {
+        if (shelf.mainLayer.slots.find(slot => slot.node.children.length > 0)) debugger
         shelf.mainLayer.slots.forEach((slot, index) => {
             let goods = this.slots[index].remove() as Goods;
-            if (goods) {
-                slot.add(goods, EGoodsState.ACTIVE).then((_goods) => {
+            if (goods)
+            {
+                slot.add(goods, null).then((_goods) => {
                     let random = Math.random();
+                    goods.State = EGoodsState.ACTIVE;
                     this.scheduleOnce(() => {
                         log(index);
                         _goods.playSmokeAnim();
@@ -91,6 +99,18 @@ export class ShelfLayer extends Component {
         })
         .start();
     }
+
+    public getActiveGoods(): GoodsBase[]
+    {
+        return this.slots.map(slot => slot.getGoods())
+            .filter(goods => goods != null && goods.State === EGoodsState.ACTIVE);
+        // let goods = this.slots.map(slot =>
+        // {
+        //     let goods = slot.getGoods();
+        //     if (goods && goods.State === EGoodsState.ACTIVE)
+        //         return goods;
+        //     return null;
+        // }) 
+        // return goods;
+    }
 }
-
-

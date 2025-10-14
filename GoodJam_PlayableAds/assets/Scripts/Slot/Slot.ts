@@ -35,7 +35,7 @@ export class Slot extends Component implements ISlot {
         this._goods = goods;
         this._isFull = true;
         this._goods.slot = this;
-        goods.node.setParent(this.nodeParent);
+        goods.node.setParent(this.nodeParent, true);
         goods.node.setPosition(new Vec3(0,0,0));
         if (state) {
             goods.State = state;
@@ -54,7 +54,7 @@ export class Slot extends Component implements ISlot {
             let worldPos = goods.node.getWorldPosition();
             let worldScale = goods.node.getWorldScale();
             let nodeTopLayer = this.boxManager.nodeTopLayer;
-            goods.node.setParent(nodeTopLayer);
+            goods.node.setParent(nodeTopLayer, true);
             goods.node.setWorldPosition(worldPos);
             goods.node.setWorldScale(worldScale);
             
@@ -70,17 +70,20 @@ export class Slot extends Component implements ISlot {
             let p2 = new Vec3(endPos.x, endPos.y + 500, endPos.z);
 
             tween(goods.node).to(duration, {worldScale: endScale}).start();
-            BezierTween(goods.node, duration + 0.1, worldPos, p2, endPos).then(() => {
+            BezierTween(goods.node, duration + 0.1, worldPos, p2, endPos, true).then(() => {
                 goods.node.parent = this.nodeParent;
                 goods.node.setWorldPosition(endPos);
                 goods.node.setWorldScale(endScale);
                 goods.State = EGoodsState.ACTIVE;
-                resolve(goods);
+                // if (this.nodeParent.children.length > 1) debugger
+                resolve(goods as Goods);
             });
         });
     }
 
-    public remove(): GoodsBase {
+    public remove(): GoodsBase
+    {
+        console.log("Remove goods from slot: ", this._goods);
         this._isFull = false;
         let goods = this._goods;
         goods.node.parent = null;
@@ -113,7 +116,7 @@ export class Slot extends Component implements ISlot {
             let p2 = new Vec3(endPos.x, endPos.y + 500, endPos.z);
           
             tween(goods.node).to(duration, {worldScale: endScale}).start();
-            BezierTween(goods.node, duration + 0.1, worldPos, p2, endPos)
+            BezierTween(goods.node, duration + 0.1, worldPos, p2, endPos, true)
             .then(()=>{
                 tween(goods.node)
                 .to(.1,{scale: new Vec3(goods.node.getScale().x*1.25,goods.node.getScale().y *.75,goods.node.getScale().z)})
@@ -142,7 +145,7 @@ export class Slot extends Component implements ISlot {
         });
     }
     public isFull(): boolean {
-        return this.nodeParent.children.length > 0 || this._isFull;
+        return this._isFull;
     }
 
     public getGoods(): GoodsBase {

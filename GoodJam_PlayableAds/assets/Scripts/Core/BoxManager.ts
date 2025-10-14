@@ -71,14 +71,18 @@ export class BoxManager extends Component {
                 break;
             }
         }
+        
         if (boxMatch) {
-            boxMatch.add(goods);
+            let _goods = goods.slot.remove();
+            boxMatch.add(_goods);
             return true;
         }
+        
         // Nếu không có box trùng id thì chuyển goods sang slot free
         let freeSlot = this.slotManager.getFreeSlot();
-        if (freeSlot) {
-            freeSlot.add(goods);
+        if (freeSlot && this.isAllBoxesReady()) {
+            let _goods = goods.slot.remove();
+            freeSlot.add(_goods);
             if (this.slotManager.fullSlot()) {
                 GameManager.Instance.State = EGameState.LOSE;
             }
@@ -107,24 +111,25 @@ export class BoxManager extends Component {
         let freeSlot = this.slotManager.getFreeSlot();
         if (freeSlot) {
             freeSlot.add(goods);
-            if (this.slotManager.fullSlot()) {
-                GameManager.Instance.State = EGameState.LOSE;
-            }
+            // if (this.slotManager.fullSlot()) {
+            //     GameManager.Instance.State = EGameState.LOSE;
+            // }
             return true;
         }
         return false;
 
     }
 
-    public fill(): void {
+    public fill(): void
+    {
         for (let i = 0; i < this.nodePositions.length; i++) {
             let node = this.nodePositions[i];
             if (!this.firstBoxSpawn && this.enableTut) {
                 if (i == 0) {
                     if (node.children.length === 0) {
                         // Lấy danh sách ID của các box đang hoạt động
-                        let activeIds = this._boxesActive.map(box => box.getId());
-                        let boxData = BoxDataFactory.getTutorialBoxData(this.tutorialID, activeIds);
+                        const activeIds = this._boxesActive.map(box => box.getId());
+                        const boxData = BoxDataFactory.getBestBoxData(activeIds, 2, this.slotManager);
                         if (!boxData || !boxData.id) {
                             console.log("noooo");
                             return;
@@ -137,7 +142,13 @@ export class BoxManager extends Component {
                         box.node.setPosition(0, 300, 0);
                         box.initialize(boxData.id, boxData.total);
                         this._boxesActive.push(box);
-                        tween(box.node).to(0.3, { position: new Vec3(0, 0, 0) }, { easing: easing.backOut })
+                        box.isReady = false;
+                        tween(box.node).to(0.3, { position: new Vec3(0, 0, 0) }, {
+                            easing: easing.backOut, onComplete: () => 
+                            {
+                                box.isReady = true;
+                            }
+                         })
                             .call(() => {
                                 // Lấy goods từ free slot
                                 for (let j = 0; j < this.slotManager.freeSlots.length; j++) {
@@ -158,7 +169,7 @@ export class BoxManager extends Component {
             if (node.children.length === 0) {
                 // Lấy danh sách ID của các box đang hoạt động
                 let activeIds = this._boxesActive.map(box => box.getId());
-                let boxData = BoxDataFactory.getBestBoxData(activeIds);
+                let boxData = BoxDataFactory.getBestBoxData(activeIds, 2, this.slotManager);
                 if (!boxData || !boxData.id) {
                     return;
                 }
@@ -252,6 +263,29 @@ export class BoxManager extends Component {
                     .start();
             }
         });
+    }
+
+    public getAllNeededItems(): number[]
+    {
+        const neededItems: number[] = [];
+        const boxes = this.getActiveBoxesByAscendingNeededItems();
+        boxes.forEach(box => {
+            if (box.isReady && box.node.position.y === 0) {
+                neededItems.push(...box.getNeededItems());
+            }
+        });
+        return neededItems;
+    }
+
+    public getActiveBoxesByAscendingNeededItems(): Box[]
+    {
+        // the box with the smallest number of empty slot comes first
+        return this._boxesActive.sort((a, b) => a.getEmptySlotCount() - b.getEmptySlotCount());
+    }
+
+    public isAllBoxesReady(): boolean
+    {
+        return this._boxesActive.every(box => box.isReady && box.node.position.y === 0);
     }
 }
 

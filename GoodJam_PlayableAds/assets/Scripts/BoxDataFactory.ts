@@ -1,5 +1,6 @@
 import { IItemsLayerData, ILevelData } from "./Data/ILevelData";
 import { Random } from "./Modules/Random";
+import { SlotManager } from "./Slot/SlotManager";
 
 export interface IBoxData {
     id: number;
@@ -16,10 +17,11 @@ class BoxDataFactorty {
     }
 
     // Chọn ID "dễ hoàn thành" nhất cho player:
+    // - Ưu tiên ID có trong slotManager.getIdsInCaches() (các slot đã đầy)
     // - Ưu tiên ID xuất hiện nhiều nhất trong các layer sắp tới (lookaheadLayers)
     // - Tránh trùng với activeIds nếu có thể
     // - Sau khi chọn, tiêu thụ tối đa 3 occurrences của ID đó từ các layer (giống logic cũ)
-    public getBestBoxData(activeIds: number[] = [], lookaheadLayers: number = 2): IBoxData {
+    public getBestBoxData(activeIds: number[] = [], lookaheadLayers: number = 2, slotManager: SlotManager): IBoxData {
         if (!this._layersData || this._layersData.length === 0) return null;
 
         // Gộp tạm các layer trong phạm vi lookahead để chấm điểm
@@ -35,18 +37,33 @@ class BoxDataFactorty {
         }
         if (freq.size === 0) return null;
 
+        // Lấy danh sách ID trong cache (slot đã đầy)
+        const idsInCache = slotManager ? slotManager.getIdsInCaches() : [];
+
         // Tách candidate thành 2 nhóm: tránh trùng activeIds nếu có thể
         const candidates: Array<{ id: number; score: number }> = [];
         freq.forEach((score, id) => {
             candidates.push({ id, score });
         });
 
-        // Sắp xếp: score giảm dần, tie-breaker: id không thuộc activeIds ưu tiên hơn
+        // Sắp xếp ưu tiên:
+        // 1. ID có trong cache ưu tiên nhất
+        // 2. Score giảm dần (xuất hiện nhiều nhất)
+        // 3. ID không thuộc activeIds ưu tiên hơn
         candidates.sort((a, b) => {
+            const aInCache = idsInCache.includes(a.id) ? 1 : 0;
+            const bInCache = idsInCache.includes(b.id) ? 1 : 0;
+            
+            // Ưu tiên ID có trong cache
+            if (bInCache !== aInCache) return bInCache - aInCache;
+            
+            // Nếu cùng trạng thái cache, so sánh theo score
             if (b.score !== a.score) return b.score - a.score;
-            const aIn = activeIds.includes(a.id) ? 1 : 0;
-            const bIn = activeIds.includes(b.id) ? 1 : 0;
-            return aIn - bIn; // id không trùng activeIds đứng trước
+            
+            // Nếu cùng score, ưu tiên ID không trùng activeIds
+            const aInActive = activeIds.includes(a.id) ? 1 : 0;
+            const bInActive = activeIds.includes(b.id) ? 1 : 0;
+            return aInActive - bInActive;
         });
 
         const pick = candidates[0]?.id;

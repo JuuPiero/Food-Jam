@@ -123,12 +123,11 @@ export abstract class Shelf extends Component {
     public onGoodsPickUp(goods: GoodsBase): void {
         this.mainLayer.remove(goods);
         let listGoods =  this.mainLayer.getAllGoods()
-        // Nếu tất cả đều null thì push goods từ queueSlotContainer sang activeSlotContainer
-        if (listGoods.every(goods => goods === null)) {
-            if (this.data.itemsLayer.length === 0 && this.queueLayer.layers.every(layer => layer.getAllGoods().every(goods => goods === null))) {
-                this.close();
-                return;
-            }
+        for (let i = 0; i < listGoods.length; i++)
+        {
+            console.log("Goods left on shelf: ", listGoods[i]);
+        }
+        if (listGoods.every(goods => goods === null) || this.mainLayer.slots.length === 0) {
             let shelfLayer = this.queueLayer.pop();
             if (shelfLayer) {
                 shelfLayer.wakeUp(this);
@@ -227,6 +226,36 @@ export abstract class Shelf extends Component {
                 }
             }
         });
+    }
+
+    public getActiveGoods() : GoodsBase[] {
+        return this.mainLayer.getActiveGoods();
+    }
+
+    public getInQueueItems(): {good : GoodsBase, stepToTop: number, shelf: Shelf}[] {
+        const res: {good : GoodsBase, stepToTop: number, shelf: Shelf}[] = [];
+        const q = this.queueLayer.peek()
+        const step = this.getActiveGoods().length;
+        if (q)
+        {
+            q.slots.forEach((slot, index) => {
+                const good = slot.getGoods();
+                if (good)
+                {
+                    res.push({good: good, stepToTop: step, shelf: this});
+                }
+            });
+        }
+        return res;
+    }
+
+    public selectRandomGood(): void 
+    {
+        const goods = this.mainLayer.getAllGoods().filter(g => g !== null);
+        if (goods.length > 0) {
+            const good = goods[0];
+            good.onClick();
+        }
     }
 }
 

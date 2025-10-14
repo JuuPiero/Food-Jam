@@ -1,19 +1,24 @@
-import { tween, Tween, Vec3, Node } from "cc";
+import { tween, Tween, Vec3, Node, easing } from "cc";
 
 export function BezierTween(
     node: Node, 
     duration: number, 
     p1: Vec3, 
     p2: Vec3, 
-    p3: Vec3
+    p3: Vec3,
+    isWorldPosition: boolean
 ) {
     return new Promise<void>((resolve) => {
         let tweenObj = { t: 0 };
         tween(tweenObj)
-            .to(duration, { t: 1 }, {
-                onUpdate: (target: Node, ratio) => {
-                    let easedT = easeOutCubic(ratio); // Áp dụng easing cho t
-                    node.worldPosition = bezierPosition(p1, p2, p3, easedT);
+            .to(duration, { t: 1 },
+            {
+                onUpdate: () =>
+                { // Áp dụng easing cho t
+                    if (isWorldPosition)
+                        node.setWorldPosition(bezierPosition(p1, p2, p3, easing.cubicOut(tweenObj.t)));
+                    else
+                        node.setPosition(bezierPosition(p1, p2, p3, easing.cubicOut(tweenObj.t)));
                 },
                 onComplete: () => {
                     resolve();

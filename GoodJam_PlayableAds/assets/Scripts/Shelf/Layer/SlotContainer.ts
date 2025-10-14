@@ -37,7 +37,11 @@ export class SlotContainer extends Component {
     }
 
     public remove(goods: GoodsBase): GoodsBase {
-        return this.slots.find(slot => slot.getGoods() === goods).remove();
+        const slot = this.slots.find(slot => slot.getGoods() === goods);
+        if (slot) {
+            return slot.remove();
+        }
+        return null;
     }
     
     public removeAll(): void {

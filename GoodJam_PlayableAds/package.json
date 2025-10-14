@@ -2,7 +2,7 @@
   "name": "GoodJam",
   "uuid": "b3c7ba10-c8de-44a9-81c9-b80d33ba3eb3",
   "creator": {
-    "version": "3.8.7"
+    "version": "3.8.6"
   },
   "devDependencies": {
     "@types/node": "^22.13.4"

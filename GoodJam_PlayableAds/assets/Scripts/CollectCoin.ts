@@ -1,7 +1,6 @@
 import { _decorator, Animation, AudioSource, Component, easing, Label, Node, tween, Vec3 } from 'cc';
 import { Coin } from './Goods/Coin';
 import { BoxManager } from './Core/BoxManager';
-import { BezierTween } from './Modules/BezierTween';
 const { ccclass, property } = _decorator;
 
 @ccclass('CollectCoin')

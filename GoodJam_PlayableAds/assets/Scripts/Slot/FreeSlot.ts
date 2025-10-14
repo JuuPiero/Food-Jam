@@ -3,6 +3,7 @@ import { Slot } from './Slot';
 import { AudioManager, ESoundEffect } from '../AudioManager';
 import { SlotManager } from './SlotManager';
 import { GoodsBase } from '../Base/GoodsBase';
+import { Goods } from '../Goods/Goods';
 const { ccclass, property } = _decorator;
 
 export enum ESlotAnimation {
@@ -20,18 +21,20 @@ export class FreeSlot extends Slot {
 
     public slotManager: SlotManager  = null;
 
-    public add(goods: GoodsBase): Promise<GoodsBase> {
+    public add(goods: GoodsBase): Promise<Goods> {
         return new Promise((resolve, reject) => {
             super.add(goods).then(() => {
                 AudioManager.playEffect(ESoundEffect.DROP_SLOT);
                 this.animSlot.play(ESlotAnimation.DOWN);
 
-                resolve(goods);
+                resolve(goods as Goods);
             });
         });
     }
 
-    public warning(): void {
+    public warning(): void
+    {
+        return;
         tween(this.uiOpacity)
             .call(() => {
                 AudioManager.playEffect(ESoundEffect.WARNING)

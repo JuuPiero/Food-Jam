@@ -8,6 +8,8 @@ import { AudioManager, ESoundEffect } from '../AudioManager';
 import { BoxEffect } from '../Combo/BoxEffect';
 import { GoodsBase } from '../Base/GoodsBase';
 import { TextEffects } from '../TextEffects';
+import { GameManager } from '../Core/GameManager';
+import { EGameState } from '../Core/EGameState';
 const { ccclass, property } = _decorator;
 
 export enum EBoxAnimation {
@@ -93,6 +95,12 @@ export class Box extends Component implements IBox {
                         this.boxManager.onBoxComplete(this);
                     });
                 }
+                else 
+                {
+                    if (this.boxManager.slotManager.fullSlot()) {
+                        GameManager.Instance.State = EGameState.LOSE;
+                    }
+                }
             })
             return;
         }
@@ -141,6 +149,21 @@ export class Box extends Component implements IBox {
             this._boxSlots.push(boxSlot);
         }
     }
+
+    public getEmptySlotCount(): number 
+    {
+        const emptySlots = this._boxSlots.filter(slot => !slot.isFull());
+        return emptySlots.length;
+    }
+
+    public getNeededItems(): number []
+    {
+        const count = this.getEmptySlotCount();
+        const neededItems = Array(count).fill(this._boxId);
+        return neededItems;
+    }
+
+    public isReady: boolean = true;
 }
 
 

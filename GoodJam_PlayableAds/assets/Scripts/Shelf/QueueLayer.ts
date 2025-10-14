@@ -50,6 +50,9 @@ export class Queuelayer extends Component {
         }
     }
 
+    public peek(): ShelfLayer {
+        return this.layers[this.layers.length - 1];
+    }
 }
 
 
