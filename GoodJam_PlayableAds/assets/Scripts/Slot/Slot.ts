@@ -82,7 +82,6 @@ export class Slot extends Component implements ISlot {
 
     public remove(): GoodsBase
     {
-        console.log("Remove goods from slot: ", this._goods);
         this._isFull = false;
         let goods = this._goods;
         goods.node.parent = null;

@@ -1,4 +1,5 @@
 import { _decorator, AudioSource, Component } from 'cc';
+import { CreativeDataRecord } from './CreativeDataRecord';
 const { ccclass, property } = _decorator;
 
 export enum ESoundEffect {
@@ -26,14 +27,21 @@ export class AudioManager extends Component {
     
     private static _instance: AudioManager;
 
+    @property(CreativeDataRecord)
+    audioEventRecorder: CreativeDataRecord;
+
     protected onLoad(): void {
         if (AudioManager._instance == null) {
             AudioManager._instance = this;
         }
     }
 
-    public static playEffect(sound: ESoundEffect) {
+    public static playEffect(sound: ESoundEffect)
+    {
+        
+
         let self = AudioManager._instance;
+        self.audioEventRecorder.AddData(ESoundEffect[ sound ], 0, 0);
         if (AudioManager.mute) return;
         self.audioSources[sound].playOneShot(self.audioSources[sound].clip);
     }

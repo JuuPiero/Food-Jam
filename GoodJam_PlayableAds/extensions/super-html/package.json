@@ -26,6 +26,11 @@
                     "turn_on"
                 ]
             },
+            "delete_node":{
+                "methods":[
+                    "delete_node"
+                ]
+            },
             "open-panel": {
                 "methods": [
                     "open_panel"
@@ -41,6 +46,11 @@
             {
                 "message": "turn_on",
                 "win": "ctrl+g",
+                "mac": "cmd+z"
+            },
+            {
+                "message": "delete_node",
+                "win": "ctrl+h",
                 "mac": "cmd+z"
             }
         ]

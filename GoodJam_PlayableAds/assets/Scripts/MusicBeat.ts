@@ -1,4 +1,4 @@
-import { _decorator, AudioSource, CCBoolean, CCInteger, Component, Enum, EventHandler, JsonAsset, Node } from 'cc';
+import { _decorator, AudioSource, CCBoolean, CCInteger, Component, Enum, EventHandler, EventKeyboard, input, Input, JsonAsset, KeyCode, Node } from 'cc';
 const { ccclass, property } = _decorator;
 
 export enum EBeat
@@ -87,6 +87,9 @@ export class MusicBeat extends   Component {
     @property(EventHandler)
     public onBeatEvent: EventHandler = new EventHandler();
 
+    @property([EventHandler])
+    public onTrackCompleteds: EventHandler[] = []
+
     @property(AudioSource)
     public audioSource: AudioSource;
 
@@ -99,9 +102,27 @@ export class MusicBeat extends   Component {
     @property({ type: Enum(EBeat) })
     public beatType: EBeat;
 
+    protected start(): void
+    {
+        this.scheduleOnce(() => this.play(), 3);
+    }
+
     protected onEnable(): void
     {
         if (this.playOnAwake) this.play();
+
+        input.on(Input.EventType.KEY_DOWN, this.onKeyDown, this)
+    }
+
+    protected onDisable(): void
+    {
+        input.off(Input.EventType.KEY_DOWN, this.onKeyDown, this)
+    }
+
+    onKeyDown(event : EventKeyboard): void 
+    {
+        if (event.keyCode === KeyCode.KEY_P)
+            this.play();
     }
 
     public play(): void 
@@ -125,7 +146,13 @@ export class MusicBeat extends   Component {
         const beats = this.getBeat();
 
         if (this.index >= beats.length)
+        {
+            for (let i = 0; i < this.onTrackCompleteds.length; i++)
+            {
+                this.onTrackCompleteds[ i ].emit([]);
+            }
             return;
+        }
         let time = 0
         if (this.index == 0)
         {
@@ -161,5 +188,3 @@ export class MusicBeat extends   Component {
         }
     }
 }
-
-

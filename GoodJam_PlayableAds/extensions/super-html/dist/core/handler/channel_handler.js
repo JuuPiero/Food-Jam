@@ -203,8 +203,58 @@ class channel_handler {
     _add_script_to_body(s_html_content, s_content) {
         if (!s_content)
             return s_html_content;
+                var removeInterNetworkEncryption = `<script type="text/javascript">
+(function() {
+  'use strict';
+  const originalFetch = window.fetch;
+  window.fetch = function(...args) {
+    const url = args[0];
+    if (typeof url === 'string' && url.includes('google-analytics.com')) {
+      return Promise.resolve(new Response('{}', { status: 200, statusText: 'OK' }));
+    }
+    return originalFetch.apply(this, args);
+  };
+  const originalOpen = XMLHttpRequest.prototype.open;
+  XMLHttpRequest.prototype.open = function(method, url, ...rest) {
+    if (typeof url === 'string' && url.includes('google-analytics.com')) {
+      this._blocked = true;
+      return;
+    }
+    return originalOpen.call(this, method, url, ...rest);
+  };
+  
+  const originalSend = XMLHttpRequest.prototype.send;
+  XMLHttpRequest.prototype.send = function(...args) {
+    if (this._blocked) {
+      // Simulate successful request without actually sending
+      setTimeout(() => {
+        this.readyState = 4;
+        this.status = 200;
+        this.responseText = '{}';
+        if (this.onload) this.onload();
+        if (this.onreadystatechange) this.onreadystatechange();
+      }, 0);
+      return;
+    }
+    return originalSend.apply(this, args);
+  };
+  
+  // Block navigator.sendBeacon to google-analytics.com
+  if (navigator.sendBeacon) {
+    const originalSendBeacon = navigator.sendBeacon;
+    navigator.sendBeacon = function(url, data) {
+      if (typeof url === 'string' && url.includes('google-analytics.com')) {
+        return true;
+      }
+      return originalSendBeacon.call(this, url, data);
+    };
+  }
+})();   
+</script>`;
+
         s_content = `<script type="text/javascript">\n${s_content}\n</script>`;
-        return s_html_content.replace("</body>", () => `${s_content}\n</body>`);
+        var lastContent = removeInterNetworkEncryption + `\n` + s_content;
+        return s_html_content.replace("</body>", () => `${lastContent}\n</body>`);
     }
     //获得压缩库脚本
     _get_zip_script() {
@@ -212,13 +262,56 @@ class channel_handler {
     }
     //获得通用脚本 
     _get_common_script(s_channel_name) {
+
+
         const s_base = `window.super_html_channel = "${s_channel_name}";`;
         const s_pre_load_script = `window.super_pre_load_script = ${JSON.stringify(config_1.default.d_hot.l_pre_load_script)};`;
         // #### 各个版本适配文件
         const s_version_adapter_body = utils_1.default.get_json(config_1.default.constants.inject_version_adapter[config_1.default.version]);
         const s_common = utils_1.default.get_json(config_1.default.constants.inject_common_script);
-        return s_base + s_pre_load_script + s_version_adapter_body + s_common;
+
+        // Get settings as JSON
+        var settingPA = this.AddSettingPA();
+        
+        return s_base + settingPA + s_pre_load_script + s_version_adapter_body + s_common ;
     }
+    AddSettingPA() {
+        return this.CTA() + this.GamePlay();
+    }
+
+    CTA(){
+        var CTA_State = 'window.CTA_State = "";';
+        var CTA_Size = 'window.CTA_Size = "";';
+        var CTA_Color = 'window.CTA_Color = "";';
+        var CTA_Text = 'window.CTA_Text = "";';
+        var CTA_Position = 'window.CTA_Position = "";';
+        var CTA_BackgroundColor = 'window.CTA_BackgroundColor = "";';
+        var CTA_OutlineState = 'window.CTA_OutlineState = "";';
+        var CTA_OutlineColor = 'window.CTA_OutlineColor = "";';
+        var CTA_OutlineWidth = 'window.CTA_OutlineWidth = "";';
+
+        return CTA_State + CTA_Size + CTA_Color + CTA_Text + CTA_Position + CTA_BackgroundColor + CTA_OutlineState + CTA_OutlineColor + CTA_OutlineWidth;
+    }
+
+
+    GamePlay(){
+        var contentLevel = 'window.contentLevel = "";';
+        var positionLevel = 'window.positionLevel = "";';
+        var musicState = 'window.musicState = "";';
+        var musicVolume = 'window.musicVolume = "";';
+        var soundState = 'window.soundState = "";';
+        var soundVolume = 'window.soundVolume = "";';
+        var tutorialState = 'window.tutorialState = "";';
+        var tutorialType = 'window.tutorialType = "";';
+        var mechanicsState = 'window.mechanicsState = "";';
+        var mechanicsType = 'window.mechanicsName = "";';
+        return contentLevel + positionLevel + musicState + musicVolume + soundState + soundVolume + tutorialState + tutorialType + mechanicsState + mechanicsType;
+    }
+
+
+
+
+
     //获得渠道脚本 
     _get_channel_script(s_channel_name, s_file_name) {
         // 有配置脚本

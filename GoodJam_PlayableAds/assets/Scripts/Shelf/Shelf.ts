@@ -123,10 +123,6 @@ export abstract class Shelf extends Component {
     public onGoodsPickUp(goods: GoodsBase): void {
         this.mainLayer.remove(goods);
         let listGoods =  this.mainLayer.getAllGoods()
-        for (let i = 0; i < listGoods.length; i++)
-        {
-            console.log("Goods left on shelf: ", listGoods[i]);
-        }
         if (listGoods.every(goods => goods === null) || this.mainLayer.slots.length === 0) {
             let shelfLayer = this.queueLayer.pop();
             if (shelfLayer) {
@@ -249,13 +245,15 @@ export abstract class Shelf extends Component {
         return res;
     }
 
-    public selectRandomGood(): void 
+    public selectRandomGood(): Vec3 
     {
         const goods = this.mainLayer.getAllGoods().filter(g => g !== null);
         if (goods.length > 0) {
             const good = goods[0];
             good.onClick();
+            return good.node.getWorldPosition();
         }
+        return null;
     }
 }
 

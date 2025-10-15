@@ -46,7 +46,6 @@ export class GrilSlot extends Slot {
 
     public remove(): GoodsBase
     {
-        console.log("Remove goods from slot: ", this._goods);
         this._isFull = false;
         let goods = this._goods;
         this._goods = null;

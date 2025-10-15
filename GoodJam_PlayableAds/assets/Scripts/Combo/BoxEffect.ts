@@ -38,7 +38,7 @@ export class BoxEffect extends Component {
     public show(): void {
         this.resetCounter();
         this.updateText();
-        this.playEffect();
+        // this.playEffect();
     }
 
     private resetCounter(): void {
@@ -46,13 +46,17 @@ export class BoxEffect extends Component {
         this.scheduleOnce(BoxEffect.reset.bind(BoxEffect), 8);
     }
 
-    private updateText(): void {
+    private updateText(): void
+    {
+        return;
         let index = this.box.boxManager.textEffect.getRandomTextEffect();
         this.sptTextEffect.spriteFrame = this.spfrTextCombo[index];
         this.audioSource.playOneShot(this.audioClips[index]);
     }
 
-    private playEffect(): Promise<void> {
+    private playEffect(): Promise<void>
+    {
+        // return Promise()
         return new Promise((resolve, reject) => {
             this.uiTextEffect.opacity = 0;
             this.uiTextEffect.node.scale = new Vec3(0.3, 0.3, 0.3);

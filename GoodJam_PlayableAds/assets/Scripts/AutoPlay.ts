@@ -1,7 +1,10 @@
-import { _decorator, Component, EventKeyboard, Input, input, KeyCode, Node } from 'cc';
+import { _decorator, Component, EventKeyboard, Input, input, KeyCode, Node, Vec3, view } from 'cc';
 import { BoxManager } from './Core/BoxManager';
 import { LevelLoader } from './Core/LevelLoader';
+import { CreativeDataRecord } from './CreativeDataRecord';
 const { ccclass, property } = _decorator;
+
+const CLICK_GOOD : string = "CLICK_GOOD"
 
 @ccclass('AutoPlay')
 export class AutoPlay extends Component
@@ -12,6 +15,12 @@ export class AutoPlay extends Component
     @property(LevelLoader)
     level: LevelLoader = null;
 
+    @property(CreativeDataRecord)
+    recorder: CreativeDataRecord;
+
+    @property(Node)
+    canvasNode: Node;
+
     protected start()
     {
         input.on(Input.EventType.KEY_DOWN, this.onKeyDown, this);
@@ -19,44 +28,55 @@ export class AutoPlay extends Component
 
     private onKeyDown(event: EventKeyboard)
     {
-        switch (event.keyCode)
-        {
-            case KeyCode.SPACE:   
-                this.autoPlay();
-                break;
-        }
+        // switch (event.keyCode)
+        // {
+        //     case KeyCode.SPACE:   
+        //         this.autoPlay();
+        //         break;
+        // }
     }
 
     private autoPlay(): void 
     {
         const items = this.boxManager.getAllNeededItems();
         const activeGoods = this.level.getActiveGoods();
-        console.log("AutoPlay: Try to find item to box: ", items, activeGoods.map(g => g.getId()));
         for (let i = 0; i < items.length; i++) {
             const item = items[i];
             const found = activeGoods.find(good => good.getId() === item);
             if (found) {
                 found.onClick();
+                this.recordClickData(found.node.getWorldPosition())
                 return;
             }
         }
         const boxes = this.boxManager.getActiveBoxesByAscendingNeededItems();
         let items2 = boxes.filter(box => !box.isFull()).map(box => box.getId());
-        console.log("AutoPlay: No item to box, try to find in queue: ", items2);
         if (items2.length <= 0) return;
         const inQueueGoods = this.level.getInQueueGoods()
             .filter(g => items2.includes(g.good.getId()))
             .sort((a, b) => a.stepToTop - b.stepToTop);
-        console.log("AutoPlay: Found in queue: ", inQueueGoods);
         if (inQueueGoods.length > 0)
         {
-            inQueueGoods[ 0 ].shelf?.selectRandomGood();
+            const worldPos = inQueueGoods[ 0 ].shelf?.selectRandomGood();
+            if (worldPos)
+            {
+                this.recordClickData(worldPos)
+            }
         }
     }
 
     protected onDestroy(): void
     {
         input.off(Input.EventType.KEY_DOWN, this.onKeyDown, this);
+    }
+
+    public recordClickData(worldPos: Vec3)
+    {
+        const localPos = new Vec3();
+        this.canvasNode.inverseTransformPoint(localPos, worldPos)
+        const x = localPos.x + view.getDesignResolutionSize().width * 0.5;
+        const y =  view.getDesignResolutionSize().height - ( localPos.y + view.getDesignResolutionSize().height * 0.5)
+        this.recorder.AddData(CLICK_GOOD, x, y);
     }
 }
 
