@@ -1,0 +1,2809 @@
+{
+    "source_file": "good-slow-guitare-2025-341932.wav",
+    "estimated_tempo_bpm": 136.0,
+    "beat_count": 467,
+    "beats_data": [
+        {
+            "absolute_time_s": 19.29578231292517,
+            "interval_consecutive_s": null,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 19.71374149659864,
+            "interval_consecutive_s": 0.41795918367347085,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 20.108480725623583,
+            "interval_consecutive_s": 0.3947392290249425,
+            "interval_odd_beats_s": 0.8126984126984134,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 20.503219954648525,
+            "interval_consecutive_s": 0.3947392290249425,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.789478458049885
+        },
+        {
+            "absolute_time_s": 20.94439909297052,
+            "interval_consecutive_s": 0.4411791383219956,
+            "interval_odd_beats_s": 0.8359183673469381,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 21.385578231292516,
+            "interval_consecutive_s": 0.4411791383219956,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439912
+        },
+        {
+            "absolute_time_s": 21.849977324263037,
+            "interval_consecutive_s": 0.4643990929705204,
+            "interval_odd_beats_s": 0.905578231292516,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 22.291156462585032,
+            "interval_consecutive_s": 0.4411791383219956,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.905578231292516
+        },
+        {
+            "absolute_time_s": 22.755555555555556,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925196,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 23.196734693877552,
+            "interval_consecutive_s": 0.4411791383219956,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925196
+        },
+        {
+            "absolute_time_s": 23.637913832199548,
+            "interval_consecutive_s": 0.4411791383219956,
+            "interval_odd_beats_s": 0.8823582766439912,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 24.079092970521543,
+            "interval_consecutive_s": 0.4411791383219956,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439912
+        },
+        {
+            "absolute_time_s": 24.543492063492064,
+            "interval_consecutive_s": 0.4643990929705204,
+            "interval_odd_beats_s": 0.905578231292516,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 24.98467120181406,
+            "interval_consecutive_s": 0.4411791383219956,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.905578231292516
+        },
+        {
+            "absolute_time_s": 25.356190476190477,
+            "interval_consecutive_s": 0.37151927437641774,
+            "interval_odd_beats_s": 0.8126984126984134,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 25.75092970521542,
+            "interval_consecutive_s": 0.3947392290249425,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.7662585034013603
+        },
+        {
+            "absolute_time_s": 26.192108843537415,
+            "interval_consecutive_s": 0.4411791383219956,
+            "interval_odd_beats_s": 0.8359183673469381,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 26.656507936507936,
+            "interval_consecutive_s": 0.4643990929705204,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.905578231292516
+        },
+        {
+            "absolute_time_s": 27.09768707482993,
+            "interval_consecutive_s": 0.4411791383219956,
+            "interval_odd_beats_s": 0.905578231292516,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 27.562086167800455,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925196
+        },
+        {
+            "absolute_time_s": 28.003265306122447,
+            "interval_consecutive_s": 0.44117913832199207,
+            "interval_odd_beats_s": 0.905578231292516,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 28.444444444444443,
+            "interval_consecutive_s": 0.4411791383219956,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439877
+        },
+        {
+            "absolute_time_s": 28.88562358276644,
+            "interval_consecutive_s": 0.4411791383219956,
+            "interval_odd_beats_s": 0.8823582766439912,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 29.350022675736962,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925196
+        },
+        {
+            "absolute_time_s": 29.791201814058958,
+            "interval_consecutive_s": 0.4411791383219956,
+            "interval_odd_beats_s": 0.9055782312925196,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 30.162721088435376,
+            "interval_consecutive_s": 0.37151927437641774,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8126984126984134
+        },
+        {
+            "absolute_time_s": 30.53424036281179,
+            "interval_consecutive_s": 0.3715192743764142,
+            "interval_odd_beats_s": 0.7430385487528319,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 30.998639455782314,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8359183673469381
+        },
+        {
+            "absolute_time_s": 31.463038548752834,
+            "interval_consecutive_s": 0.4643990929705204,
+            "interval_odd_beats_s": 0.9287981859410444,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 31.90421768707483,
+            "interval_consecutive_s": 0.4411791383219956,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.905578231292516
+        },
+        {
+            "absolute_time_s": 32.36861678004535,
+            "interval_consecutive_s": 0.4643990929705204,
+            "interval_odd_beats_s": 0.905578231292516,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 32.80979591836735,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925196
+        },
+        {
+            "absolute_time_s": 33.25097505668934,
+            "interval_consecutive_s": 0.44117913832199207,
+            "interval_odd_beats_s": 0.8823582766439912,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 33.69215419501134,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439912
+        },
+        {
+            "absolute_time_s": 34.13333333333333,
+            "interval_consecutive_s": 0.44117913832199207,
+            "interval_odd_beats_s": 0.8823582766439912,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 34.528072562358275,
+            "interval_consecutive_s": 0.3947392290249425,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8359183673469346
+        },
+        {
+            "absolute_time_s": 34.89959183673469,
+            "interval_consecutive_s": 0.37151927437641774,
+            "interval_odd_beats_s": 0.7662585034013603,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 35.34077097505669,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8126984126984169
+        },
+        {
+            "absolute_time_s": 35.781950113378684,
+            "interval_consecutive_s": 0.44117913832199207,
+            "interval_odd_beats_s": 0.8823582766439912,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 36.24634920634921,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.905578231292516
+        },
+        {
+            "absolute_time_s": 36.710748299319725,
+            "interval_consecutive_s": 0.46439909297051685,
+            "interval_odd_beats_s": 0.9287981859410408,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 37.151927437641724,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.905578231292516
+        },
+        {
+            "absolute_time_s": 37.593106575963716,
+            "interval_consecutive_s": 0.44117913832199207,
+            "interval_odd_beats_s": 0.8823582766439912,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 38.034285714285716,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439912
+        },
+        {
+            "absolute_time_s": 38.47546485260771,
+            "interval_consecutive_s": 0.44117913832199207,
+            "interval_odd_beats_s": 0.8823582766439912,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 38.89342403628118,
+            "interval_consecutive_s": 0.4179591836734744,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8591383219954665
+        },
+        {
+            "absolute_time_s": 39.31138321995465,
+            "interval_consecutive_s": 0.4179591836734673,
+            "interval_odd_beats_s": 0.8359183673469417,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 39.72934240362812,
+            "interval_consecutive_s": 0.4179591836734673,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8359183673469346
+        },
+        {
+            "absolute_time_s": 40.147301587301584,
+            "interval_consecutive_s": 0.4179591836734673,
+            "interval_odd_beats_s": 0.8359183673469346,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 40.58848072562358,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8591383219954665
+        },
+        {
+            "absolute_time_s": 41.05287981859411,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925231,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 41.4940589569161,
+            "interval_consecutive_s": 0.44117913832199207,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.905578231292516
+        },
+        {
+            "absolute_time_s": 41.95845804988662,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.905578231292516,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 42.399637188208615,
+            "interval_consecutive_s": 0.44117913832199207,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.905578231292516
+        },
+        {
+            "absolute_time_s": 42.840816326530614,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8823582766439912,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 43.281995464852606,
+            "interval_consecutive_s": 0.44117913832199207,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439912
+        },
+        {
+            "absolute_time_s": 43.74639455782313,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.905578231292516,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 44.18757369614512,
+            "interval_consecutive_s": 0.44117913832199207,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.905578231292516
+        },
+        {
+            "absolute_time_s": 44.55909297052154,
+            "interval_consecutive_s": 0.37151927437641774,
+            "interval_odd_beats_s": 0.8126984126984098,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 44.95383219954648,
+            "interval_consecutive_s": 0.3947392290249425,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.7662585034013603
+        },
+        {
+            "absolute_time_s": 45.39501133786848,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8359183673469417,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 45.859410430839006,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925231
+        },
+        {
+            "absolute_time_s": 46.300589569161,
+            "interval_consecutive_s": 0.44117913832199207,
+            "interval_odd_beats_s": 0.905578231292516,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 46.76498866213152,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.905578231292516
+        },
+        {
+            "absolute_time_s": 47.206167800453514,
+            "interval_consecutive_s": 0.44117913832199207,
+            "interval_odd_beats_s": 0.905578231292516,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 47.64734693877551,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439912
+        },
+        {
+            "absolute_time_s": 48.088526077097505,
+            "interval_consecutive_s": 0.44117913832199207,
+            "interval_odd_beats_s": 0.8823582766439912,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 48.529705215419504,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439912
+        },
+        {
+            "absolute_time_s": 48.99410430839002,
+            "interval_consecutive_s": 0.46439909297051685,
+            "interval_odd_beats_s": 0.905578231292516,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 49.36562358276644,
+            "interval_consecutive_s": 0.37151927437641774,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8359183673469346
+        },
+        {
+            "absolute_time_s": 49.73714285714286,
+            "interval_consecutive_s": 0.37151927437641774,
+            "interval_odd_beats_s": 0.7430385487528355,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 50.178321995464856,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8126984126984169
+        },
+        {
+            "absolute_time_s": 50.64272108843537,
+            "interval_consecutive_s": 0.46439909297051685,
+            "interval_odd_beats_s": 0.905578231292516,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 51.1071201814059,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9287981859410408
+        },
+        {
+            "absolute_time_s": 51.57151927437642,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9287981859410479,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 52.01269841269841,
+            "interval_consecutive_s": 0.44117913832199207,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.905578231292516
+        },
+        {
+            "absolute_time_s": 52.453877551020405,
+            "interval_consecutive_s": 0.44117913832199207,
+            "interval_odd_beats_s": 0.8823582766439841,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 52.895056689342404,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439912
+        },
+        {
+            "absolute_time_s": 53.336235827664396,
+            "interval_consecutive_s": 0.44117913832199207,
+            "interval_odd_beats_s": 0.8823582766439912,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 53.777414965986395,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439912
+        },
+        {
+            "absolute_time_s": 54.12571428571429,
+            "interval_consecutive_s": 0.34829931972789296,
+            "interval_odd_beats_s": 0.7894784580498921,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 54.543673469387755,
+            "interval_consecutive_s": 0.4179591836734673,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.7662585034013603
+        },
+        {
+            "absolute_time_s": 54.98485260770975,
+            "interval_consecutive_s": 0.44117913832199207,
+            "interval_odd_beats_s": 0.8591383219954594,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 55.44925170068027,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.905578231292516
+        },
+        {
+            "absolute_time_s": 55.913650793650795,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9287981859410479,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 56.35482993197279,
+            "interval_consecutive_s": 0.44117913832199207,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.905578231292516
+        },
+        {
+            "absolute_time_s": 56.79600907029479,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8823582766439912,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 57.23718820861678,
+            "interval_consecutive_s": 0.44117913832199207,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439912
+        },
+        {
+            "absolute_time_s": 57.67836734693878,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8823582766439912,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 58.096326530612245,
+            "interval_consecutive_s": 0.4179591836734673,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8591383219954665
+        },
+        {
+            "absolute_time_s": 58.51428571428571,
+            "interval_consecutive_s": 0.4179591836734673,
+            "interval_odd_beats_s": 0.8359183673469346,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 58.909024943310655,
+            "interval_consecutive_s": 0.3947392290249425,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8126984126984098
+        },
+        {
+            "absolute_time_s": 59.350204081632654,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8359183673469417,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 59.791383219954646,
+            "interval_consecutive_s": 0.44117913832199207,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439912
+        },
+        {
+            "absolute_time_s": 60.25578231292517,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.905578231292516,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 60.69696145124716,
+            "interval_consecutive_s": 0.44117913832199207,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.905578231292516
+        },
+        {
+            "absolute_time_s": 61.161360544217686,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.905578231292516,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 61.602539682539685,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925231
+        },
+        {
+            "absolute_time_s": 62.04371882086168,
+            "interval_consecutive_s": 0.44117913832199207,
+            "interval_odd_beats_s": 0.8823582766439912,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 62.48489795918368,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439912
+        },
+        {
+            "absolute_time_s": 62.94929705215419,
+            "interval_consecutive_s": 0.46439909297051685,
+            "interval_odd_beats_s": 0.905578231292516,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 63.39047619047619,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.905578231292516
+        },
+        {
+            "absolute_time_s": 63.76199546485261,
+            "interval_consecutive_s": 0.37151927437641774,
+            "interval_odd_beats_s": 0.8126984126984169,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 64.13351473922903,
+            "interval_consecutive_s": 0.37151927437641774,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.7430385487528355
+        },
+        {
+            "absolute_time_s": 64.59791383219955,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.8359183673469417,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 65.06231292517006,
+            "interval_consecutive_s": 0.46439909297050974,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9287981859410337
+        },
+        {
+            "absolute_time_s": 65.50349206349206,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 65.96789115646258,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925231
+        },
+        {
+            "absolute_time_s": 66.40907029478458,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.9055782312925231,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 66.85024943310657,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439841
+        },
+        {
+            "absolute_time_s": 67.29142857142857,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8823582766439841,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 67.73260770975057,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 68.19700680272109,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925231,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 68.5685260770975,
+            "interval_consecutive_s": 0.37151927437641064,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8359183673469346
+        },
+        {
+            "absolute_time_s": 68.94004535147393,
+            "interval_consecutive_s": 0.37151927437642485,
+            "interval_odd_beats_s": 0.7430385487528355,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 69.38122448979591,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8126984126984098
+        },
+        {
+            "absolute_time_s": 69.84562358276644,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 70.31002267573696,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9287981859410479
+        },
+        {
+            "absolute_time_s": 70.77442176870748,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9287981859410479,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 71.21560090702948,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925231
+        },
+        {
+            "absolute_time_s": 71.65678004535147,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439841,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 72.09795918367347,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439841
+        },
+        {
+            "absolute_time_s": 72.53913832199547,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 72.98031746031747,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 73.35183673469388,
+            "interval_consecutive_s": 0.37151927437641064,
+            "interval_odd_beats_s": 0.8126984126984098,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 73.74657596371883,
+            "interval_consecutive_s": 0.3947392290249496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.7662585034013603
+        },
+        {
+            "absolute_time_s": 74.18775510204081,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8359183673469346,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 74.65215419501133,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 75.11655328798186,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9287981859410479,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 75.55773242630386,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925231
+        },
+        {
+            "absolute_time_s": 75.99891156462586,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 76.44009070294784,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439841
+        },
+        {
+            "absolute_time_s": 76.88126984126984,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8823582766439841,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 77.34566893424036,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925231
+        },
+        {
+            "absolute_time_s": 77.78684807256236,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.9055782312925231,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 78.15836734693877,
+            "interval_consecutive_s": 0.37151927437641064,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8126984126984098
+        },
+        {
+            "absolute_time_s": 78.55310657596372,
+            "interval_consecutive_s": 0.3947392290249496,
+            "interval_odd_beats_s": 0.7662585034013603,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 78.99428571428571,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8359183673469346
+        },
+        {
+            "absolute_time_s": 79.45868480725623,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 79.89986394557823,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925231
+        },
+        {
+            "absolute_time_s": 80.36426303854876,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925231,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 80.80544217687074,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 81.24662131519274,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8823582766439841,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 81.68780045351474,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 82.12897959183674,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 82.59337868480726,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925231
+        },
+        {
+            "absolute_time_s": 82.96489795918367,
+            "interval_consecutive_s": 0.37151927437641064,
+            "interval_odd_beats_s": 0.8359183673469346,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 83.33641723356008,
+            "interval_consecutive_s": 0.37151927437641064,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.7430385487528213
+        },
+        {
+            "absolute_time_s": 83.80081632653061,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.8359183673469346,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 84.26521541950113,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9287981859410479
+        },
+        {
+            "absolute_time_s": 84.70639455782313,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.9055782312925231,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 85.17079365079366,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925231
+        },
+        {
+            "absolute_time_s": 85.61197278911564,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 86.05315192743764,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439841
+        },
+        {
+            "absolute_time_s": 86.49433106575964,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 86.93551020408164,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 87.37668934240362,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439841,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 87.74820861678005,
+            "interval_consecutive_s": 0.37151927437642485,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8126984126984098
+        },
+        {
+            "absolute_time_s": 88.14294784580498,
+            "interval_consecutive_s": 0.3947392290249354,
+            "interval_odd_beats_s": 0.7662585034013603,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 88.58412698412698,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8359183673469346
+        },
+        {
+            "absolute_time_s": 89.0485260770975,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925231,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 89.51292517006803,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9287981859410479
+        },
+        {
+            "absolute_time_s": 89.95410430839003,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.9055782312925231,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 90.39528344671201,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439841
+        },
+        {
+            "absolute_time_s": 90.83646258503401,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8823582766439841,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 91.27764172335601,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 91.74204081632654,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925231,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 92.18321995464852,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 92.55473922902495,
+            "interval_consecutive_s": 0.37151927437642485,
+            "interval_odd_beats_s": 0.8126984126984098,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 92.94947845804988,
+            "interval_consecutive_s": 0.3947392290249354,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.7662585034013603
+        },
+        {
+            "absolute_time_s": 93.39065759637188,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8359183673469346,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 93.8550566893424,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925231
+        },
+        {
+            "absolute_time_s": 94.2962358276644,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.9055782312925231,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 94.76063492063491,
+            "interval_consecutive_s": 0.46439909297050974,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 95.20181405895691,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 95.64299319727891,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 96.08417233560091,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 96.50213151927437,
+            "interval_consecutive_s": 0.4179591836734602,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8591383219954594
+        },
+        {
+            "absolute_time_s": 96.92009070294785,
+            "interval_consecutive_s": 0.4179591836734744,
+            "interval_odd_beats_s": 0.8359183673469346,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 97.3148299319728,
+            "interval_consecutive_s": 0.3947392290249496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.812698412698424
+        },
+        {
+            "absolute_time_s": 97.75600907029478,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8359183673469346,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 98.19718820861678,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439841
+        },
+        {
+            "absolute_time_s": 98.6615873015873,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925231,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 99.1027664399093,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925231
+        },
+        {
+            "absolute_time_s": 99.56716553287981,
+            "interval_consecutive_s": 0.46439909297050974,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 100.00834467120181,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 100.44952380952381,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 100.89070294784581,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 101.3318820861678,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439841,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 101.79628117913832,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 102.16780045351474,
+            "interval_consecutive_s": 0.37151927437642485,
+            "interval_odd_beats_s": 0.8359183673469488,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 102.53931972789115,
+            "interval_consecutive_s": 0.37151927437641064,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.7430385487528355
+        },
+        {
+            "absolute_time_s": 102.98049886621315,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8126984126984098,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 103.44489795918368,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925231
+        },
+        {
+            "absolute_time_s": 103.9092970521542,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9287981859410479,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 104.37369614512471,
+            "interval_consecutive_s": 0.46439909297050974,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9287981859410337
+        },
+        {
+            "absolute_time_s": 104.81487528344671,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 105.25605442176871,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 105.69723356009071,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 106.1384126984127,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439841
+        },
+        {
+            "absolute_time_s": 106.57959183673469,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8823582766439841,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 106.95111111111112,
+            "interval_consecutive_s": 0.37151927437642485,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.812698412698424
+        },
+        {
+            "absolute_time_s": 107.34585034013605,
+            "interval_consecutive_s": 0.3947392290249354,
+            "interval_odd_beats_s": 0.7662585034013603,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 107.78702947845805,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8359183673469346
+        },
+        {
+            "absolute_time_s": 108.25142857142858,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925231,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 108.69260770975056,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 109.15700680272109,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 109.59818594104308,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925231
+        },
+        {
+            "absolute_time_s": 110.03936507936508,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 110.48054421768707,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439841
+        },
+        {
+            "absolute_time_s": 110.94494331065759,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 111.38612244897959,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925231
+        },
+        {
+            "absolute_time_s": 111.757641723356,
+            "interval_consecutive_s": 0.37151927437641064,
+            "interval_odd_beats_s": 0.8126984126984098,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 112.15238095238095,
+            "interval_consecutive_s": 0.3947392290249496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.7662585034013603
+        },
+        {
+            "absolute_time_s": 112.59356009070295,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8359183673469488,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 113.05795918367347,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925231
+        },
+        {
+            "absolute_time_s": 113.49913832199546,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 113.96353741496598,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 114.40471655328798,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.9055782312925231,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 114.84589569160998,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 115.28707482993197,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439841,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 115.72825396825397,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439841
+        },
+        {
+            "absolute_time_s": 116.12299319727892,
+            "interval_consecutive_s": 0.3947392290249496,
+            "interval_odd_beats_s": 0.8359183673469488,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 116.49451247165533,
+            "interval_consecutive_s": 0.37151927437641064,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.7662585034013603
+        },
+        {
+            "absolute_time_s": 116.93569160997733,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8126984126984098,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 117.40009070294785,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925231
+        },
+        {
+            "absolute_time_s": 117.86448979591837,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9287981859410479,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 118.30566893424036,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 118.77006802721088,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 119.21124716553288,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925231
+        },
+        {
+            "absolute_time_s": 119.65242630385488,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 120.09360544217687,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439841
+        },
+        {
+            "absolute_time_s": 120.53478458049887,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8823582766439841,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 120.97596371882086,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 121.34748299319727,
+            "interval_consecutive_s": 0.37151927437641064,
+            "interval_odd_beats_s": 0.8126984126984098,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 121.74222222222222,
+            "interval_consecutive_s": 0.3947392290249496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.7662585034013603
+        },
+        {
+            "absolute_time_s": 122.18340136054422,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8359183673469488,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 122.64780045351473,
+            "interval_consecutive_s": 0.46439909297050974,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 123.11219954648526,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9287981859410337,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 123.55337868480726,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925231
+        },
+        {
+            "absolute_time_s": 123.99455782312926,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 124.43573696145124,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439841
+        },
+        {
+            "absolute_time_s": 124.87691609977324,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.8823582766439841,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 125.34131519274376,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925231
+        },
+        {
+            "absolute_time_s": 125.78249433106576,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": 0.9055782312925231,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 126.15401360544217,
+            "interval_consecutive_s": 0.37151927437641064,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8126984126984098
+        },
+        {
+            "absolute_time_s": 126.54875283446712,
+            "interval_consecutive_s": 0.3947392290249496,
+            "interval_odd_beats_s": 0.7662585034013603,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 126.98993197278912,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8359183673469488
+        },
+        {
+            "absolute_time_s": 127.45433106575963,
+            "interval_consecutive_s": 0.46439909297050974,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 127.89551020408163,
+            "interval_consecutive_s": 0.4411791383219992,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 128.35990929705216,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925231,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 128.80108843537414,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 129.24226757369615,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 129.68344671201814,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 130.14784580498866,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 130.58902494331065,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 130.96054421768707,
+            "interval_consecutive_s": 0.37151927437642485,
+            "interval_odd_beats_s": 0.8126984126984098,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 131.3320634920635,
+            "interval_consecutive_s": 0.37151927437642485,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.7430385487528497
+        },
+        {
+            "absolute_time_s": 131.79646258503402,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.8359183673469488,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 132.26086167800455,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9287981859410479
+        },
+        {
+            "absolute_time_s": 132.70204081632653,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 133.16643990929705,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 133.60761904761904,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 134.04879818594105,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 134.48997732426304,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 134.95437641723356,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 135.39555555555555,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 135.76707482993197,
+            "interval_consecutive_s": 0.37151927437642485,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8126984126984098
+        },
+        {
+            "absolute_time_s": 136.1618140589569,
+            "interval_consecutive_s": 0.3947392290249354,
+            "interval_odd_beats_s": 0.7662585034013603,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 136.60299319727892,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8359183673469488
+        },
+        {
+            "absolute_time_s": 137.06739229024944,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925373,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 137.50857142857143,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 137.97297052154195,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 138.41414965986394,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 138.85532879818595,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 139.29650793650794,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 139.73768707482992,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439699,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 140.17886621315193,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 140.55038548752833,
+            "interval_consecutive_s": 0.3715192743763964,
+            "interval_odd_beats_s": 0.8126984126984098,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 140.9451247165533,
+            "interval_consecutive_s": 0.39473922902496383,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.7662585034013603
+        },
+        {
+            "absolute_time_s": 141.38630385487528,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8359183673469488,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 141.8507029478458,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 142.31510204081633,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9287981859410479,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 142.7562811791383,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 143.19746031746033,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 143.6386394557823,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 144.0798185941043,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439699,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 144.54421768707482,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 144.98539682539683,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": 0.9055782312925373,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 145.35691609977323,
+            "interval_consecutive_s": 0.3715192743763964,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8126984126984098
+        },
+        {
+            "absolute_time_s": 145.7516553287982,
+            "interval_consecutive_s": 0.39473922902496383,
+            "interval_odd_beats_s": 0.7662585034013603,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 146.19283446712018,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8359183673469488
+        },
+        {
+            "absolute_time_s": 146.6572335600907,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 147.0984126984127,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 147.5628117913832,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 148.00399092970522,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925373
+        },
+        {
+            "absolute_time_s": 148.4451700680272,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 148.8863492063492,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439699
+        },
+        {
+            "absolute_time_s": 149.3275283446712,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 149.79192743764173,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925373
+        },
+        {
+            "absolute_time_s": 150.16344671201813,
+            "interval_consecutive_s": 0.3715192743763964,
+            "interval_odd_beats_s": 0.8359183673469204,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 150.53496598639455,
+            "interval_consecutive_s": 0.37151927437642485,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.7430385487528213
+        },
+        {
+            "absolute_time_s": 150.99936507936508,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.8359183673469488,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 151.4637641723356,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9287981859410479
+        },
+        {
+            "absolute_time_s": 151.9049433106576,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 152.3693424036281,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 152.81052154195012,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": 0.9055782312925373,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 153.2517006802721,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 153.6928798185941,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439699,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 154.1340589569161,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 154.5752380952381,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 154.94675736961452,
+            "interval_consecutive_s": 0.37151927437642485,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8126984126984098
+        },
+        {
+            "absolute_time_s": 155.34149659863945,
+            "interval_consecutive_s": 0.3947392290249354,
+            "interval_odd_beats_s": 0.7662585034013603,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 155.78267573696147,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8359183673469488
+        },
+        {
+            "absolute_time_s": 156.24707482993196,
+            "interval_consecutive_s": 0.46439909297049553,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 156.71147392290248,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9287981859410195
+        },
+        {
+            "absolute_time_s": 157.1526530612245,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": 0.9055782312925373,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 157.59383219954648,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 158.03501133786847,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439699,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 158.47619047619048,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 158.940589569161,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925373,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 159.381768707483,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 159.75328798185942,
+            "interval_consecutive_s": 0.37151927437642485,
+            "interval_odd_beats_s": 0.8126984126984098,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 160.14802721088435,
+            "interval_consecutive_s": 0.3947392290249354,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.7662585034013603
+        },
+        {
+            "absolute_time_s": 160.58920634920634,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8359183673469204,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 161.05360544217686,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 161.49478458049887,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": 0.9055782312925373,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 161.9591836734694,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925373
+        },
+        {
+            "absolute_time_s": 162.40036281179138,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 162.84154195011337,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439699
+        },
+        {
+            "absolute_time_s": 163.28272108843538,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 163.7471201814059,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925373
+        },
+        {
+            "absolute_time_s": 164.1882993197279,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 164.5598185941043,
+            "interval_consecutive_s": 0.37151927437642485,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8126984126984098
+        },
+        {
+            "absolute_time_s": 164.95455782312925,
+            "interval_consecutive_s": 0.3947392290249354,
+            "interval_odd_beats_s": 0.7662585034013603,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 165.39573696145123,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8359183673469204
+        },
+        {
+            "absolute_time_s": 165.86013605442176,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 166.30131519274377,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925373
+        },
+        {
+            "absolute_time_s": 166.7657142857143,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925373,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 167.20689342403628,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 167.64807256235827,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439699,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 168.08925170068028,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 168.53043083900226,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 168.9948299319728,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 169.3663492063492,
+            "interval_consecutive_s": 0.37151927437642485,
+            "interval_odd_beats_s": 0.8359183673469488,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 169.73786848072564,
+            "interval_consecutive_s": 0.37151927437642485,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.7430385487528497
+        },
+        {
+            "absolute_time_s": 170.17904761904762,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8126984126984098,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 170.64344671201815,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 171.10784580498867,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9287981859410479,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 171.5722448979592,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9287981859410479
+        },
+        {
+            "absolute_time_s": 172.01342403628118,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 172.45460317460316,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439699
+        },
+        {
+            "absolute_time_s": 172.89578231292518,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 173.33696145124716,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 173.7317006802721,
+            "interval_consecutive_s": 0.3947392290249354,
+            "interval_odd_beats_s": 0.8359183673469204,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 174.12643990929706,
+            "interval_consecutive_s": 0.39473922902496383,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.7894784580498992
+        },
+        {
+            "absolute_time_s": 174.5443990929705,
+            "interval_consecutive_s": 0.417959183673446,
+            "interval_odd_beats_s": 0.8126984126984098,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 174.98557823129252,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8591383219954594
+        },
+        {
+            "absolute_time_s": 175.44997732426305,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925373,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 175.91437641723357,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9287981859410479
+        },
+        {
+            "absolute_time_s": 176.35555555555555,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 176.79673469387754,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439699
+        },
+        {
+            "absolute_time_s": 177.23791383219955,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 177.67909297052154,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 178.14349206349206,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 178.58467120181405,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 178.95619047619047,
+            "interval_consecutive_s": 0.37151927437642485,
+            "interval_odd_beats_s": 0.8126984126984098,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 179.3509297052154,
+            "interval_consecutive_s": 0.3947392290249354,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.7662585034013603
+        },
+        {
+            "absolute_time_s": 179.79210884353742,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": 0.8359183673469488,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 180.25650793650794,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925373
+        },
+        {
+            "absolute_time_s": 180.69768707482993,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 181.16208616780045,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 181.60326530612244,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 182.04444444444445,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 182.48562358276644,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 182.95002267573696,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 183.39120181405895,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 183.76272108843537,
+            "interval_consecutive_s": 0.37151927437642485,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8126984126984098
+        },
+        {
+            "absolute_time_s": 184.1342403628118,
+            "interval_consecutive_s": 0.37151927437642485,
+            "interval_odd_beats_s": 0.7430385487528497,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 184.59863945578232,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8359183673469488
+        },
+        {
+            "absolute_time_s": 185.06303854875284,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9287981859410479,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 185.50421768707483,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 185.96861678004535,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 186.40979591836734,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 186.85097505668935,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 187.29215419501134,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 187.73333333333332,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439699,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 188.19773242630384,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 188.66213151927437,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9287981859410479,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 189.10331065759638,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925373
+        },
+        {
+            "absolute_time_s": 189.5677097505669,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925373,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 190.0088888888889,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 190.45006802721088,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439699,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 190.8912471655329,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 191.33242630385487,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 191.77360544217686,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439699
+        },
+        {
+            "absolute_time_s": 192.21478458049887,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 192.65596371882086,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 193.09714285714287,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 193.53832199546486,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 193.97950113378684,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439699,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 194.42068027210885,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 194.86185941043084,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 195.30303854875282,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439699
+        },
+        {
+            "absolute_time_s": 195.74421768707484,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 196.18539682539682,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 196.6265759637188,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439699,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 197.06775510204082,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 197.5089342403628,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 197.97333333333333,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 198.43773242630385,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9287981859410479,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 198.90213151927438,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9287981859410479
+        },
+        {
+            "absolute_time_s": 199.3665306122449,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9287981859410479,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 199.8077097505669,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 200.2488888888889,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 200.69006802721088,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 201.13124716553287,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439699,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 201.57242630385488,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 202.01360544217687,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 202.45478458049885,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439699
+        },
+        {
+            "absolute_time_s": 202.89596371882087,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 203.33714285714285,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 203.77832199546486,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 204.21950113378685,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 204.66068027210883,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439699,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 205.10185941043085,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 205.54303854875283,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 205.98421768707482,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439699
+        },
+        {
+            "absolute_time_s": 206.42539682539683,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 206.86657596371882,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 207.30775510204083,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 207.74893424036281,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 208.1901133786848,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439699,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 208.6312925170068,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 209.0724716553288,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 209.51365079365078,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439699
+        },
+        {
+            "absolute_time_s": 209.9548299319728,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 210.39600907029478,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 210.83718820861677,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439699,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 211.27836734693878,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 211.69632653061225,
+            "interval_consecutive_s": 0.4179591836734744,
+            "interval_odd_beats_s": 0.8591383219954878,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 212.11428571428573,
+            "interval_consecutive_s": 0.4179591836734744,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8359183673469488
+        },
+        {
+            "absolute_time_s": 212.50902494331066,
+            "interval_consecutive_s": 0.3947392290249354,
+            "interval_odd_beats_s": 0.8126984126984098,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 212.95020408163265,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8359183673469204
+        },
+        {
+            "absolute_time_s": 213.39138321995466,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 213.85578231292516,
+            "interval_consecutive_s": 0.46439909297049553,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 214.29696145124717,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 214.7613605442177,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925373
+        },
+        {
+            "absolute_time_s": 215.20253968253968,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 215.64371882086166,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439699
+        },
+        {
+            "absolute_time_s": 216.08489795918368,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 216.5492970521542,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925373
+        },
+        {
+            "absolute_time_s": 216.9904761904762,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.9055782312925089,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 217.3619954648526,
+            "interval_consecutive_s": 0.37151927437642485,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8126984126984098
+        },
+        {
+            "absolute_time_s": 217.73351473922904,
+            "interval_consecutive_s": 0.37151927437642485,
+            "interval_odd_beats_s": 0.7430385487528497,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 218.19791383219956,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8359183673469488
+        },
+        {
+            "absolute_time_s": 218.66231292517006,
+            "interval_consecutive_s": 0.46439909297049553,
+            "interval_odd_beats_s": 0.9287981859410195,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 219.10349206349207,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 219.5678911564626,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": 0.9055782312925373,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 220.00907029478458,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 220.45024943310656,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439699,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 220.89142857142858,
+            "interval_consecutive_s": 0.4411791383220134,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.8823582766439984
+        },
+        {
+            "absolute_time_s": 221.33260770975056,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8823582766439984,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 221.79700680272109,
+            "interval_consecutive_s": 0.46439909297052395,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.9055782312925089
+        },
+        {
+            "absolute_time_s": 222.1685260770975,
+            "interval_consecutive_s": 0.37151927437642485,
+            "interval_odd_beats_s": 0.8359183673469488,
+            "interval_even_beats_s": null
+        },
+        {
+            "absolute_time_s": 222.54004535147394,
+            "interval_consecutive_s": 0.37151927437642485,
+            "interval_odd_beats_s": null,
+            "interval_even_beats_s": 0.7430385487528497
+        },
+        {
+            "absolute_time_s": 222.98122448979592,
+            "interval_consecutive_s": 0.44117913832198496,
+            "interval_odd_beats_s": 0.8126984126984098,
+            "interval_even_beats_s": null
+        }
+    ]
+}
