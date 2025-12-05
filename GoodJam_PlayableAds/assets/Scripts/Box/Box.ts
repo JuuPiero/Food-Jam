@@ -59,7 +59,7 @@ export class Box extends Component implements IBox {
     public complete(): Promise<void> {
         return new Promise((resolve, reject) => {
             this.boxEffect.show();
-            // this.animBox.play(EBoxAnimation.COMPLETE);
+            this.animBox.play(EBoxAnimation.COMPLETE);
             // TextEffects.Instance.show();
             AudioManager.playEffect(ESoundEffect.COMPLETE_BOX);
             this.scheduleOnce(() => {
