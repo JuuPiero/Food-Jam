@@ -1,4 +1,4 @@
-import { _decorator, Animation, Button, CCInteger, Color, Component, Node, sp, Sprite, SpriteFrame, tween, Vec3 } from 'cc';
+import { _decorator, Animation, Button, CCInteger, Color, Component, Node, sp, Sprite, SpriteFrame, sys, tween, Vec3 } from 'cc';
 import { GoodsBase } from '../Base/GoodsBase';
 import { State } from '../Base/State/State';
 import { GoodsState } from './GoodsState';
@@ -11,8 +11,9 @@ import { GameManager } from '../Core/GameManager';
 import { EGameState } from '../Core/EGameState';
 import { TouchEventListener } from '../Core/TouchEventListener';
 import { AudioManager, ESoundEffect } from '../AudioManager';
-import { LevelLoader } from '../Core/LevelLoader';
 import { PlayableAdsManager } from '../../base-script/PlayableAds/PlayableAdsManager';
+import { LevelLoader } from '../Core/LevelLoader';
+import { DifficultCurve } from '../Core/DifficultCurve';
 
 const { ccclass, property } = _decorator;
 
@@ -20,7 +21,8 @@ export enum EGoodsState {
     HIDDEN,
     INTERACTIVE,
     ACTIVE,
-    BLOCK
+    BLOCK,
+    PICKED
 }
 
 @ccclass('Goods')
@@ -31,6 +33,15 @@ export class Goods extends GoodsBase {
 
     @property(Animation)
     animGoods: Animation = null;
+    
+    @property()
+    public get goodPoint(): number
+    {
+        return this.referencedGoods.length;
+    }
+
+    @property([GoodsBase])
+    public referencedGoods: GoodsBase[] = [];
     
     @property(sp.Skeleton)
     skeletonSmoke: sp.Skeleton = null;
@@ -110,13 +121,51 @@ export class Goods extends GoodsBase {
     }
     
     public pickUp(): void {
+        this.changeState(EGoodsState.PICKED);
+        if (sys.isBrowser && typeof navigator.vibrate === 'function') {
+            navigator.vibrate(200);
+        }
         AudioManager.playEffect(ESoundEffect.PICKUP);
+        this.shelf?.boxManager?.levelLoader?.onItemPicked();
+        this.shelf?.removeGoodsReference(this);
+
+        //tính lại color points + update diffPoint theo progress item picked
+        DifficultCurve.instance.calculateAndStore();
+        DifficultCurve.instance.CalculateTargetPoint();
+        DifficultCurve.instance.debugShow();
+        
+        // Xử lý shelf
+        this.shelf.onGoodsPickUp(this);
         // Xử lý box
         let boxManager = this.shelf.boxManager;
         boxManager.pickUp(this);
-        // Xử lý shelf
-        this.shelf.onGoodsPickUp(this);
     }
+
+    //#region setReferencedGoods
+    public setReferencedGoods(referencedGoods: GoodsBase[]): void
+    {
+        this.referencedGoods = (referencedGoods || []).filter(good => !!good);
+    }
+    //#endregion
+
+    //#region removeReference
+    public removeReference(target: GoodsBase): void
+    {
+        if (!target) return;
+        const index = this.referencedGoods.indexOf(target);
+        if (index !== -1)
+        {
+            this.referencedGoods.splice(index, 1);
+        }
+    }
+    //#endregion
+
+    //#region getReferencedGoods
+    public getReferencedGoods(): GoodsBase[]
+    {
+        return this.referencedGoods;
+    }
+    //#endregion
 
     // Method play anim khói
     public playSmokeAnim(): void {

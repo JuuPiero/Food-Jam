@@ -51,6 +51,12 @@ export class SlotManager extends Component {
         this.flashesWarning();
     }
 
+    //#region getEmptySlotCount
+    public getEmptySlotCount(): number {
+        return this.freeSlots.filter(slot => !slot.isFull()).length;
+    }
+    //#endregion
+
     private flashesWarning(): void {
         this.uiWarning.forEach(uiOpacity => {
             if (uiOpacity.node.activeInHierarchy) {

@@ -37,6 +37,12 @@ export class MovingShelf extends Shelf {
             return;
         }
         super.update(deltaTime);
+        
+        // Kiểm tra velocity có null không
+        if (!this.velocity) {
+            return;
+        }
+        
         // Check out of bounds
         if (this.checkOutOfBounds()) {
             this.repositionSelfWhenOutOfBounds();
@@ -48,9 +54,9 @@ export class MovingShelf extends Shelf {
 
     public initialize(data: IShelfData): void { 
         super.initialize(data);
-        this.moveType = data.moveType;
+        this.MoveType = data.moveType;
         this.calculateVelocity();
-        switch (this.moveType) {
+        switch (this.MoveType) {
             case EMoveType.LEFT_TO_RIGHT:
                 break;
             case EMoveType.RIGHT_TO_LEFT:
@@ -60,10 +66,10 @@ export class MovingShelf extends Shelf {
             case EMoveType.BOTTOM_TO_TOP:
                 break;
         }
-        if (this.moveType == EMoveType.LEFT_TO_RIGHT ||  this.moveType == EMoveType.RIGHT_TO_LEFT)
+        if (this.MoveType == EMoveType.LEFT_TO_RIGHT ||  this.MoveType == EMoveType.RIGHT_TO_LEFT)
             this.registerBoundsLimitHorizontal();
         
-        if (this.moveType == EMoveType.BOTTOM_TO_TOP ||  this.moveType == EMoveType.TOP_TO_BOTTOM)
+        if (this.MoveType == EMoveType.BOTTOM_TO_TOP ||  this.MoveType == EMoveType.TOP_TO_BOTTOM)
             this.registerBoundsLimitVertical();
     }
 
@@ -72,10 +78,15 @@ export class MovingShelf extends Shelf {
     }
 
     private calculateVelocity() {
-        switch (this.moveType) {
+        // Khởi tạo velocity mặc định
+        this.velocity = new Vec2(0, 0);
+        
+        switch (this.MoveType) {
             case EMoveType.NONE:
+                // Giữ velocity = (0, 0)
                 break;
             case EMoveType.FALLING:
+                // Giữ velocity = (0, 0)
                 break;
             case EMoveType.LEFT_TO_RIGHT:
                 this.velocity = new Vec2(this.speed, 0);
@@ -94,7 +105,7 @@ export class MovingShelf extends Shelf {
 
     private checkOutOfBounds(): boolean {
         let pos = this.node.getPosition();
-        switch (this.moveType) {
+        switch (this.MoveType) {
             case EMoveType.NONE:
                 break;
             case EMoveType.FALLING:
@@ -125,7 +136,7 @@ export class MovingShelf extends Shelf {
         let maxPos: Vec3 = null;
         let newPos: Vec3 = null;
 
-        switch (this.moveType) {
+        switch (this.MoveType) {
             case EMoveType.LEFT_TO_RIGHT:
                 horizontalMovingShelves = shelves.filter(shelf => shelf.node.getPosition().y === pos.y);
                 horizontalMovingShelves.sort((a, b) => a.node.getPosition().x - b.node.getPosition().x);

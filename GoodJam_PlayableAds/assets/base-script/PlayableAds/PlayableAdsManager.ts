@@ -105,17 +105,6 @@ export class PlayableAdsManager extends Component {
     private countTimeTracking: number = 3;
     private totalTimePlay: number = 0;
 
-    protected update(dt: number): void {
-        if(this.runningGame){
-            this.totalTimePlay += dt;
-            this.countTimeTracking -= dt;
-            if(this.countTimeTracking <= 0){
-                this.countTimeTracking = 3;
-                TrackingManager.userEngagement(this.totalTimePlay);
-            }
-        }
-    }
-
     // Dùng khi click vào button vào store
     public openStore(): void {
         if (KeyboardListener.isCreativeVersion) return;

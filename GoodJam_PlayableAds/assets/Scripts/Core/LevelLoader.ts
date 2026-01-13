@@ -10,6 +10,7 @@ import { BoxSlot } from '../Slot/BoxSlot';
 import { BezierTween } from '../Modules/BezierTween';
 import { MapLoop } from '../MapLoop';
 import { Lock } from '../Lock/Lock';
+import { DifficultCurve } from './DifficultCurve';
 
 const { ccclass, property } = _decorator;
 
@@ -60,6 +61,9 @@ export class LevelLoader extends Component {
     private _shelfs: Shelf[] = [];
     private _fallingShelves: Shelf[] = [];
     private _listFallingShelf: Shelf[][] = [];
+    private _totalItems: number = 0;
+    private _pickedItems: number = 0;
+    
     private static _instance: LevelLoader = null;
     public static get Instance(): LevelLoader {
         return LevelLoader._instance;
@@ -74,6 +78,9 @@ export class LevelLoader extends Component {
         this.boxManager.levelLoader = this;
         let data = this.jsonLevelData[level].json as ILevelData;
        
+        // Reset progress counters
+        this.resetProgressCounters();
+        this._totalItems = this.computeTotalItems(data);
 
         HandleData.updatePosition(data);
         HandleData.updatePositionSingleShelf(data);
@@ -97,6 +104,9 @@ export class LevelLoader extends Component {
             }
             this._shelfs.push(shelf);
         }
+
+        //Tính điểm lần đầu
+        DifficultCurve.instance.calculateAndStore();
 
         this.boxManager.initialize(data);
         if(TutorialController.Instance.enableTut) {
@@ -197,6 +207,51 @@ animTut()
     public getShelves(): Shelf[] {
         return this._shelfs;
     }
+
+    //#region onItemPicked
+    public onItemPicked(): void
+    {
+        this._pickedItems++;
+    }
+    //#endregion
+
+    //#region getProgressByItemPicked
+    public getProgressByItemPicked(): number
+    {
+        if (this._totalItems <= 0)
+            return 0;
+        return Math.min(1, this._pickedItems / this._totalItems);
+    }
+    //#endregion
+
+    //#region computeTotalItems
+    private computeTotalItems(data: ILevelData): number
+    {
+        if (!data || !data.cells)
+            return 0;
+        let total = 0;
+        data.cells.forEach(cell =>
+        {
+            cell.itemsLayer.forEach(layer =>
+            {
+                layer.items.forEach(item =>
+                {
+                    if (item !== 0)
+                        total++;
+                });
+            });
+        });
+        return total;
+    }
+    //#endregion
+
+    //#region resetProgressCounters
+    private resetProgressCounters(): void
+    {
+        this._totalItems = 0;
+        this._pickedItems = 0;
+    }
+    //#endregion
 
     public setupFallingShelf(shelves: Shelf[]): Shelf[][] {
         // Lấy tất cả tọa độ Y

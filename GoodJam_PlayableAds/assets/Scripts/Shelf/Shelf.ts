@@ -1,4 +1,4 @@
-import { _decorator, Animation, Component, easing, Enum, instantiate, Node, Prefab, sp, SpriteFrame, tween, UIOpacity, Vec3 } from 'cc';
+import { _decorator, Animation, Component, easing, Enum, instantiate, log, Node, Prefab, sp, SpriteFrame, tween, UIOpacity, Vec3 } from 'cc';
 import { EMoveType, EShelfType, IShelfData } from '../Data/ILevelData';
 import { GoodsFactory } from '../Goods/GoodsFactory';
 import { SlotContainer } from './Layer/SlotContainer';
@@ -88,6 +88,8 @@ export abstract class Shelf extends Component {
 
     public initialize(data: IShelfData): void {
         this.data = JSON.parse(JSON.stringify(data));
+        this.MoveType = data.moveType;
+        log(this.MoveType)
         // Clear
         this.reset();
         if (this.skeletonLock) {
@@ -109,6 +111,9 @@ export abstract class Shelf extends Component {
         this.queueLayer.shelf = this;
         this.queueLayer.initialize(this.data.itemsLayer);
 
+        // Build goods references (cho DifficultCurve)
+        this.buildGoodsReferences();
+
         // Setup shadow
         this.nodeShadow.setParent(this.boxManager.levelLoader.nodeShadowContainer);
         this.nodeShadow.worldPosition = this.nodeShadowAnchor.worldPosition;
@@ -122,6 +127,8 @@ export abstract class Shelf extends Component {
 
     public onGoodsPickUp(goods: GoodsBase): void {
         this.mainLayer.remove(goods);
+        // Remove reference khỏi các goods khác (cho DifficultCurve)
+        this.removeGoodsReference(goods);
         let listGoods =  this.mainLayer.getAllGoods()
         // Nếu tất cả đều null thì push goods từ queueSlotContainer sang activeSlotContainer
         if (listGoods.every(goods => goods === null)) {
@@ -228,5 +235,97 @@ export abstract class Shelf extends Component {
             }
         });
     }
+
+    //#region buildGoodsReferences
+    /**
+     * Build references cho DifficultCurve: mỗi goods sẽ biết bị che phủ bởi bao nhiêu goods khác
+     * goodPoint = referencedGoods.length (số goods che phủ nó)
+     */
+    private buildGoodsReferences(): void
+    {
+        // Collect tất cả goods theo thứ tự layers: mainLayer (bottom) → queueLayer.layers (top)
+        const allLayers: ShelfLayer[] = [];
+        
+        // Thêm mainLayer (layer đang active - ở dưới cùng)
+        if (this.mainLayer)
+            allLayers.push(this.mainLayer);
+        
+        // Thêm queueLayer.layers (các layer chờ - ở trên)
+        // Queuelayer đang hoạt động như một stack: pop() lấy phần tử CUỐI (layer gần mainLayer nhất).
+        // Để đảm bảo thứ tự bottom → top đúng về mặt logic (layer gần mainLayer hơn có index nhỏ hơn),
+        // ta cần đảo ngược mảng layers trước khi push vào allLayers.
+        if (this.queueLayer && this.queueLayer.layers)
+        {
+            const queueLayersBottomToTop = [...this.queueLayer.layers].reverse();
+            allLayers.push(...queueLayersBottomToTop);
+        }
+
+        // Build references: goods ở layer cao hơn bị che bởi tất cả goods ở các layer thấp hơn
+        for (let i = 0; i < allLayers.length; i++)
+        {
+            const currentLayerGoods = allLayers[i].getAllGoods() || [];
+            const prevGoods: GoodsBase[] = [];
+            
+            // Collect tất cả goods từ các layer phía dưới (index < i)
+            for (let j = 0; j < i; j++)
+            {
+                const goods = allLayers[j].getAllGoods() || [];
+                goods.forEach(good =>
+                {
+                    if (good)
+                        prevGoods.push(good);
+                });
+            }
+            
+            // Set referencedGoods cho mỗi goods trong layer hiện tại
+            currentLayerGoods.forEach(good =>
+            {
+                if (good && good instanceof Goods)
+                {
+                    good.setReferencedGoods(prevGoods);
+                }
+            });
+        }
+    }
+    //#endregion
+
+    //#region removeGoodsReference
+    /**
+     * Khi pick goods, remove nó khỏi referencedGoods của tất cả goods khác
+     * Để update lại goodPoint cho DifficultCurve
+     */
+    public removeGoodsReference(target: GoodsBase): void
+    {
+        if (!target)
+            return;
+        
+        // Remove từ mainLayer
+        const mainGoods = this.mainLayer.getAllGoods() || [];
+        mainGoods.forEach(good =>
+        {
+            if (good && good instanceof Goods)
+            {
+                good.removeReference(target);
+            }
+        });
+        
+        // Remove từ queueLayer.layers (CẦN THIẾT cho DifficultCurve!)
+        // DifficultCurve tính goodPoint từ cả queueLayer, nên phải update khi pick goods
+        if (this.queueLayer && this.queueLayer.layers)
+        {
+            this.queueLayer.layers.forEach(layer =>
+            {
+                const goods = layer.getAllGoods() || [];
+                goods.forEach(good =>
+                {
+                    if (good && good instanceof Goods)
+                    {
+                        good.removeReference(target);
+                    }
+                });
+            });
+        }
+    }
+    //#endregion
 }
 

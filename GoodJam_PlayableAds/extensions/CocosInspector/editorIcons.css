@@ -14,9 +14,10 @@
     background-repeat: no-repeat;
     background-position: center center;
     margin-right: 1px;
+    font-size: 1rem;
 }
 
-.asset-icon > svg {
+.asset-icon>svg {
     font-size: calc(1em + 4px);
     width: 1em;
     height: 1em;
@@ -38,7 +39,7 @@ span[color].asset-icon-scene {
     color: #f0ad4e;
 }
 
-span[color].asset-icon-cube{
+span[color].asset-icon-cube {
     color: lightgray;
 }
 
@@ -83,6 +84,7 @@ span[color].asset-icon-particle {
 span[color].asset-icon-render-pipeline,
 span[color].asset-icon-svg,
 span[color].asset-icon-font,
+span[color].asset-icon-ttf-font,
 span[color].asset-icon-del,
 span[color].asset-icon-error,
 span[color].asset-icon-close,
@@ -780,4 +782,198 @@ span[color].asset-icon-file {
 
 .asset-icon-add::before {
     content: '\e64d';
+}
+
+.container svg {
+    font-size: calc(1em + 4px);
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.25em;
+    fill: currentColor;
+}
+
+.container[value="reflection-probe"],
+.container[value="lod-group"],
+.container[value="light-probe-group"],
+.container[value="camera"],
+.container[value="light-spot"],
+.container[value="light-sphere"],
+.container[value="light-ranged-directional"],
+.container[value="light-point"],
+.container[value="light-directional"],
+.container[value="buffer"],
+.container[value="erp-texture-cube"],
+.container[value="scene"] {
+    color: #f0ad4e;
+}
+
+.container[value="reset"],
+.container[value="curve"],
+.container[value="tiled-map"],
+.container[value="effect"],
+.container[value="javascript"] {
+    color: #ec7063;
+}
+
+.container[value="material"],
+.container[value="fbx"],
+.container[value="sprite-atlas"],
+.container[value="render-stage"],
+.container[value="label-atlas"],
+.container[value="folder"],
+.container[value="folder-open"],
+.container[value="zip"],
+.container[value="list"],
+.container[value="chunk"],
+.container[value="robot"],
+.container[value="word"],
+.container[value="music"],
+.container[value="video"],
+.container[value="typescript"] {
+    color: #3498db;
+}
+
+.container[value="audio"],
+.container[value="database"],
+.container[value="json"],
+.container[value="star"],
+.container[value="warn"],
+.container[value="warn-triangle"],
+.container[value="home"],
+.container[value="code"],
+.container[value="gltf-scene"] {
+    color: #fbd461;
+}
+
+.container[value="render-pipeline"],
+.container[value="svg"],
+.container[value="font"],
+.container[value="del"],
+.container[value="error"],
+.container[value="close"],
+.container[value="close-b"],
+.container[value="animation"],
+.container[value="marionette"],
+.container[value="gltf-skeleton"],
+.container[value="marionette-variant"],
+.container[value="code"] {
+    color: #ec7063;
+}
+
+.container[value="gltf"],
+.container[value="gltf-scene"],
+.container[value="image"],
+.container[value="info"],
+.container[value="info-i"],
+.container[value="texture-cube"],
+.container[value="texture"] {
+    color: #51dcf6;
+}
+
+.container[value="terrain-collider"],
+.container[value="sphere-collider"],
+.container[value="simplex-collider"],
+.container[value="rigid-body"],
+.container[value="point-constraint"],
+.container[value="plane-collider"],
+.container[value="mesh-collider"],
+.container[value="hinge-constraint"],
+.container[value="fixed-constraint"],
+.container[value="cylinder-collider"],
+.container[value="constant-force"],
+.container[value="cone-collider"],
+.container[value="capsule-collider"],
+.container[value="box-collider"],
+.container[value="mesh"],
+.container[value="pipeline"],
+.container[value="bin"] {
+    color: #b693f9;
+}
+
+.container[value="tiled-tile-comp"],
+.container[value="tiled-map-comp"],
+.container[value="custom-script"],
+.container[value="particle"],
+.container[value="motion-streak"],
+.container[value="line"],
+.container[value="billboard"],
+.container[value="bitmap-font"],
+.container[value="render-flow"],
+.container[value="physics-material"],
+.container[value="auto-atlas"] {
+    color: #00bcd4;
+}
+
+.container[value="skeleton"],
+.container[value="block-input-events"],
+.container[value="prefab"],
+.container[value="check-b"],
+.container[value="question"],
+.container[value="check"],
+.container[value="android"],
+.container[value="terrain"],
+.container[value="success"],
+.container[value="excel"] {
+    color: #6dd66d;
+}
+
+.container[value="rigid-body-2d"],
+.container[value="skinned-mesh-renderer"],
+.container[value="skinned-mesh-batch-renderer"],
+.container[value="mesh-renderer"],
+.container[value="sorting"] {
+    color: #8DD6A1;
+}
+
+.container[value="file"] {
+    color: #f5f5f5;
+}
+
+.container[value="switch-open"] {
+    color: #227f9b;
+}
+
+.container[value="switch-close"] {
+    color: #a3a3a3;
+}
+
+.container[value="video-player"],
+.container[value="particle-2d"],
+.container[value="sprite-renderer"],
+.container[value="sprite"],
+.container[value="render-root-2d"],
+.container[value="mask"],
+.container[value="label"],
+.container[value="graphics"] {
+    color: #C77DC7;
+}
+
+.container[value="widget"],
+.container[value="ui-transform"],
+.container[value="ui-opacity"],
+.container[value="ui-mesh-renderer"],
+.container[value="ui-coordinate-tracker"],
+.container[value="toggle-container"],
+.container[value="toggle"],
+.container[value="slider"],
+.container[value="scroll-view"],
+.container[value="scroll-bar"],
+.container[value="safe-area"],
+.container[value="progress-bar"],
+.container[value="page-view-indicator"],
+.container[value="page-view"],
+.container[value="layout-block"],
+.container[value="label-shadow"],
+.container[value="label-outline"],
+.container[value="edit-box"],
+.container[value="canvas-comp"],
+.container[value="button-block"],
+.container[value="web-view"],
+.container[value="sub-context-view"],
+.container[value="rich-text"] {
+    color: #ADB946;
+}
+
+:host([color="normal"]) .container[value] {
+    color: var(--color-normal-contrast);
 }

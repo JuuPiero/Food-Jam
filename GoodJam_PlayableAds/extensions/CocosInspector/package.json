@@ -1,6 +1,6 @@
 {
   "name": "cocos_inspector",
-  "version": "1.8.1",
+  "version": "2.2.4",
   "package_version": 2,
   "description": "Cocos Runtime Inspector for cocos creator3.x",
   "author": "chuan.zhang",
@@ -36,6 +36,13 @@
         "message": "refresh"
       }
     ],
+    "shortcuts": [
+      {
+        "message": "previewMode",
+        "win": "shift+enter",
+        "mac": "shift+enter"
+      }
+    ],
     "messages": {
       "previewMode": {
         "methods": [
@@ -65,5 +72,5 @@
     }
   },
   "dependencies": {},
-  "_storeId": "1fa886ec0dc33db888ac02c81195826f"
+  "_storeId": "d075adbeba481f2b9419a3a5d630695b"
 }

@@ -10,6 +10,7 @@ import { GameManager } from './GameManager';
 import { EGameState } from './EGameState';
 import { TutorialController } from './TutorialController';
 import { TextEffect } from './TextEffect';
+import { DifficultCurve } from './DifficultCurve';
 const { ccclass, property } = _decorator;
 
 @ccclass('BoxManager')
@@ -33,6 +34,11 @@ export class BoxManager extends Component {
     @property(CCInteger)
     tutorialID: number = 0;
 
+    @property({
+        type: CCBoolean
+    })
+    enableDifficultCurve: boolean = false;
+
     @property([UIOpacity])
     uiWarning: UIOpacity[] = [];
 
@@ -43,6 +49,7 @@ export class BoxManager extends Component {
     private _pool = new NodePool();
     private _boxesActive: Box[] = [];
     private _boxes: Box[] = [];
+    private _lastSpawnedBoxId: number = -1;
 
     public initialize(data: ILevelData): void {
         this.reset();
@@ -136,6 +143,7 @@ export class BoxManager extends Component {
                         box.node.setParent(node);
                         box.node.setPosition(0, 300, 0);
                         box.initialize(boxData.id, boxData.total);
+                        this.setLastSpawnedBoxId(boxData.id);
                         this._boxesActive.push(box);
                         tween(box.node).to(0.3, { position: new Vec3(0, 0, 0) }, { easing: easing.backOut })
                             .call(() => {
@@ -156,21 +164,44 @@ export class BoxManager extends Component {
                 }
             }
             if (node.children.length === 0) {
-                // Lấy danh sách ID của các box đang hoạt động
-                let activeIds = this._boxesActive.map(box => box.getId());
-                let boxData = BoxDataFactory.getBestBoxData(activeIds);
-                if (!boxData || !boxData.id) {
-                    return;
-                }
+                let id: number;
+                let total: number = 3;
 
+                if (this.enableDifficultCurve) {
+                    // Logic mới: Sử dụng DifficultCurve
+                    DifficultCurve.instance.calculateAndStore();
+                    DifficultCurve.instance.CalculateTargetPoint();
+
+                    let nearMissId = DifficultCurve.instance.tryUseNearMiss();
+                    id = nearMissId >= 0 ? nearMissId : DifficultCurve.instance.findNearestColorPointId();
+                } else {
+                    // Logic cũ: Sử dụng BoxDataFactory
+                    let activeIds = this._boxesActive.map(box => box.getId());
+                    let boxData = BoxDataFactory.getRandomBoxData(activeIds);
+                    if (!boxData || !boxData.id) {
+                        return;
+                    }
+                    id = boxData.id;
+                    total = boxData.total;
+                }
+               
                 let box = this.getNewBox();
                 box.levelLoader = this.levelLoader;
                 box.boxManager = this;
                 box.node.setParent(node);
                 box.node.setPosition(0, 300, 0);
-                box.initialize(boxData.id, boxData.total);
+                box.initialize(id, total);
+                
+                if (this.enableDifficultCurve) {
+                    this.setLastSpawnedBoxId(id);
+                    //Calculate lại target point
+                    DifficultCurve.instance.CalculateTargetPoint();
+                    DifficultCurve.instance.debugShow();
+                }
+
                 this._boxesActive.push(box);
-                tween(box.node).to(0.3, { position: new Vec3(0, 0, 0) }, { easing: easing.backOut })
+
+                tween(box.node).to(0.3, {position: new Vec3(0, 0, 0)}, {easing: easing.backOut})
                     .call(() => {
                         // Lấy goods từ free slot
                         for (let j = 0; j < this.slotManager.freeSlots.length; j++) {
@@ -213,6 +244,18 @@ export class BoxManager extends Component {
     public getBoxesActive(): Box[] {
         return this._boxesActive;
     }
+
+    //#region setLastSpawnedBoxId
+    public setLastSpawnedBoxId(id: number): void {
+        this._lastSpawnedBoxId = id;
+    }
+    //#endregion
+
+    //#region getLastSpawnedBoxId
+    public getLastSpawnedBoxId(): number {
+        return this._lastSpawnedBoxId;
+    }
+    //#endregion
 
     private put(box: Box): void {
         this._pool.put(box.node);

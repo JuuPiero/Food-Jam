@@ -2770,7 +2770,11 @@
     "col": {
       "__id__": 24
     },
-    "velocity": null,
+    "velocity": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 50
+    },
     "speed": 50,
     "_id": ""
   },

@@ -1,0 +1,31 @@
+{
+  "manifest_version": 2,
+  "name": "Your Extension Name",
+  "version": "1.0",
+  "description": "A simple Chrome extension that injects a script with an empty function.",
+  "background": {
+    "scripts": [
+      "src/background.js"
+    ],
+    "persistent": false
+  },
+  "permissions": [
+    "storage",
+    "http://*/*",
+    "https://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "src/content.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    "src/*.js"
+  ],
+  "devtools_page": "devtool.html"
+}

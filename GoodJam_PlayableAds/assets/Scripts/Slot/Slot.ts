@@ -1,8 +1,9 @@
 import { _decorator, Component, find, Node, tween, UIOpacity, Vec3 } from 'cc';
-import { EGoodsState, Goods } from '../Goods/Goods';
+import { EGoodsState } from '../Goods/Goods';
 import { BezierTween } from '../Modules/BezierTween';
 import { LevelLoader } from '../Core/LevelLoader';
-import { BoxManager } from '../Core/BoxManager';
+// Forward reference để tránh circular dependency: BoxSlot → Slot → BoxManager → Box → BoxSlot
+// Sử dụng any type để tránh import trực tiếp BoxManager
 import { TutorialController } from '../Core/TutorialController';
 import { ISlot } from './ISlot';
 import { GoodsBase } from '../Base/GoodsBase';
@@ -17,13 +18,15 @@ export class Slot extends Component implements ISlot {
     nodeParent: Node = null;
 
     public levelLoader: LevelLoader = null;
-    public boxManager: BoxManager = null;
+    // Sử dụng any để tránh circular dependency với BoxManager
+    public boxManager: any = null;
     protected _goodsId: number = -1;
     protected _isFull: boolean = false;
     protected _goods: GoodsBase = null;
 
     protected onLoad(): void {
-        this.boxManager = find("").getComponentInChildren(BoxManager);
+        // BoxManager sẽ được assign từ bên ngoài (dependency injection)
+        // Không tự tìm để tránh circular dependency
     }
 
     public reset(): void {
@@ -42,7 +45,7 @@ export class Slot extends Component implements ISlot {
         }
     }
 
-    public add(goods: GoodsBase, state?: EGoodsState): Promise<Goods> {
+    public add(goods: GoodsBase, state?: EGoodsState): Promise<GoodsBase> {
         return new Promise((resolve, reject) => {
             this._goods = goods;
             this._isFull = true;
@@ -88,7 +91,7 @@ export class Slot extends Component implements ISlot {
         return goods;
     }
 
-    public addTut(goods: Goods): Promise<Goods> {
+    public addTut(goods: GoodsBase): Promise<GoodsBase> {
         return new Promise((resolve, reject) => {
             setTimeout(()=>{
             this._goods = goods;
