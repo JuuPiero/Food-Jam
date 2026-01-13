@@ -172,10 +172,7 @@
       "b": 255,
       "a": 255
     },
-    "_spriteFrame": {
-      "__uuid__": "0ce3b5b9-c174-4f35-8089-e1c0757ed283@f9941",
-      "__expectedType__": "cc.SpriteFrame"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_fillType": 0,
     "_sizeMode": 1,
@@ -460,6 +457,7 @@
     "animGoods": {
       "__id__": 21
     },
+    "referencedGoods": [],
     "skeletonSmoke": {
       "__id__": 14
     },

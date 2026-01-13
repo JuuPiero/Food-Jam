@@ -174,63 +174,63 @@
     "sfrGoods": [
       null,
       {
-        "__uuid__": "d6f25dfb-ea38-4fc2-817d-898a85bc2476@f9941",
+        "__uuid__": "c1411ac1-421f-4693-bceb-eff1933cf194@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "0974d1d4-81fa-4dfd-84d2-658372fbe614@f9941",
+        "__uuid__": "e091f6be-8939-4985-a26f-9e887ecf3b02@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "0a5d3b77-20ab-416f-9c3d-a2070cbf2065@f9941",
+        "__uuid__": "bfb64360-dea2-48d6-b475-e62e516b0c5f@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "65bc3ba5-643d-4ba6-b451-b616760aec7b@f9941",
+        "__uuid__": "f41ec431-c283-4667-9954-cb87ae07742f@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "7e13ea84-9a49-493c-ba64-710e093e9608@f9941",
+        "__uuid__": "e096e2b1-85b1-4be6-820e-9afb5b40d123@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "8772245b-b5d3-41c5-9eb7-2399aa2a4ad9@f9941",
+        "__uuid__": "fc7105cf-2f8f-48cc-97c6-46245b722bc0@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "17300995-7916-491e-9a13-a05441fabb75@f9941",
+        "__uuid__": "f5a1bbc3-0a0a-42c6-810f-946b02c19140@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "3f81d166-816b-4dcc-ad8c-0808318ddf3c@f9941",
+        "__uuid__": "0444039c-1145-4659-a8f8-ab9faaf0ac11@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "9fda934d-40e6-4ba2-bd52-d5f60f175a62@f9941",
+        "__uuid__": "8405544b-9a2e-434a-b891-a8587ed306a6@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "1161fa31-a4ce-49e3-8368-85ed6267614b@f9941",
+        "__uuid__": "84e6852a-59a8-4563-b1f5-c2a905683a4f@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "a9130b80-cd50-4b4a-b6bf-1d075dd37550@f9941",
+        "__uuid__": "ff14958a-3ed9-4a2c-81a7-22dd5b63c29f@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "d881a1dd-41b1-464c-b8b1-b8954e696950@f9941",
+        "__uuid__": "5d6d9fa9-6c93-4eba-bc1c-d4c066abed4c@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "205e6526-f60d-4e3c-a90b-d4490816c76c@f9941",
+        "__uuid__": "0bc4f529-1c81-4f79-a3d6-b76fcac50b28@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "b4722c7d-94de-4358-9f45-415b3c62e678@f9941",
+        "__uuid__": "6fca43e3-6e01-40a0-9050-5296fe4534b7@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "f8152ea8-d3e0-4690-908b-61709d2b2af9@f9941",
+        "__uuid__": "4abde586-3e69-4724-b530-4325b8d30e06@f9941",
         "__expectedType__": "cc.SpriteFrame"
       }
     ],
@@ -924,7 +924,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 1.1368683772161603e-13,
-      "y": -230.39999999999986,
+      "y": -230.4000000000001,
       "z": 0
     },
     "_lrot": {
@@ -1354,7 +1354,7 @@
     "_top": 910,
     "_bottom": 910,
     "_horizontalCenter": 1.1368683772161603e-13,
-    "_verticalCenter": -0.11999999999999994,
+    "_verticalCenter": -0.12000000000000006,
     "_isAbsLeft": true,
     "_isAbsRight": true,
     "_isAbsTop": true,
@@ -3296,8 +3296,8 @@
         "__id__": 83
       }
     ],
-    "tutorialID": 19,
-    "enableDifficultCurve": false,
+    "tutorialID": 1,
+    "enableDifficultCurve": true,
     "uiWarning": [],
     "_id": "23zKBA1ClJGbbHcKzbHZXu"
   },
@@ -9293,7 +9293,7 @@
     ],
     "tutNode": null,
     "tutParent": null,
-    "tutShelfIndex": 10,
+    "tutShelfIndex": 16,
     "jsonLevelData": [
       {
         "__uuid__": "51952134-16fc-4d38-b3d3-6854fb7bb32d",
@@ -9306,7 +9306,7 @@
     "columns": 3,
     "spacingX": 465,
     "spacingY": 300,
-    "indexTutGoods": 2,
+    "indexTutGoods": 1,
     "nodeShadowContainer": {
       "__id__": 24
     },
@@ -28044,9 +28044,9 @@
       "__uuid__": "cc63e542-39c1-4125-8d20-a4ac30fca044@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
-    "duration": 0.77,
+    "duration": 0.6,
     "delay": 0,
-    "_id": "feYkkftuFJeZJcqjG39ldz"
+    "_id": "a7DTXSPrpHTas117ErC8NI"
   },
   {
     "__type__": "cc.UITransform",
@@ -30228,7 +30228,58 @@
       "__id__": 122
     },
     "debugLabel": null,
-    "diffCurvePoints": [],
+    "diffCurvePoints": [
+      {
+        "__type__": "cc.Vec2",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 0.05,
+        "y": 0.5
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 0.1,
+        "y": 1
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 0.15,
+        "y": 2
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 0.2,
+        "y": 2.5
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 0.4,
+        "y": 1
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 0.5,
+        "y": 1.5
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 0.6,
+        "y": 2
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 0.7,
+        "y": 2.5
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 0.8,
+        "y": 3
+      }
+    ],
     "_id": "03sgx32LRJpqgSVWvi+RHU"
   },
   {

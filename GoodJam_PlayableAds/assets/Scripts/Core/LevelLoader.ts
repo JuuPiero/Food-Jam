@@ -93,6 +93,7 @@ export class LevelLoader extends Component {
             let nodeShelf = instantiate(prefab);
             this.nodeLevelParent.addChild(nodeShelf);
             nodeShelf.setPosition(positions[i]);
+            nodeShelf.name = "Shelf_" + i;
 
             // Create layers
             let shelf = nodeShelf.getComponent(Shelf);

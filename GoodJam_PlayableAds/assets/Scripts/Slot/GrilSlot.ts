@@ -24,14 +24,13 @@ export class GrilSlot extends Slot {
             this._isFull = true;
             goods.slot = this;
             goods.node.setParent(this.nodeParent, true);
-            let endPos = this.nodeParent.getWorldPosition();
-            let endScale = this.nodeParent.getWorldScale();
+            let endPos = new Vec3(0, 0, 0);
             
             let duration = 0.5;
 
             tween(goods.node).parallel(
                 tween(goods.node).to(duration, {eulerAngles: new Vec3(0,0,0)}, {easing: easing.cubicOut}),
-                tween(goods.node).to(duration, {worldPosition: endPos}, {easing: easing.cubicOut}),
+                tween(goods.node).to(duration, {position: endPos}, {easing: easing.cubicOut}),
                 tween(goods.node).to(duration, {scale: new Vec3(1, 1, 1)}, {easing: easing.cubicOut})
             ).call(() => {
                 if (state) {

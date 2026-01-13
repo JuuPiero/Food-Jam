@@ -4,6 +4,7 @@ import { EMoveType, IShelfData } from '../Data/ILevelData';
 import { NormalShelf } from './NormalShelf';
 import { GameManager } from '../Core/GameManager';
 import { EGameState } from '../Core/EGameState';
+import { LevelLoader } from '../Core/LevelLoader';
 const { ccclass, property } = _decorator;
 
 
@@ -19,6 +20,13 @@ export class MovingShelfBoundsLimit {
 @ccclass('MovingShelf')
 export class MovingShelf extends Shelf {
 
+    /**
+     * Tốc độ tối đa multiplier khi tất cả goods được pick.
+     * 4.0 = 400% (tăng 4 lần so với tốc độ ban đầu).
+     * Có thể chỉnh sửa giá trị này để áp dụng cho toàn bộ MovingShelf.
+     */
+    public static maxSpeedMultiplier: number = 4.0;
+
     @property(MovingShelfBoundsLimit)
     boundsLimit: MovingShelfBoundsLimit = new MovingShelfBoundsLimit();
 
@@ -31,6 +39,8 @@ export class MovingShelf extends Shelf {
     @property
     speed: number = 0;
 
+    private _baseSpeed: number = 0;
+
     protected update(deltaTime: number) {
         let state = GameManager.Instance.State;
         if(state !== EGameState.PLAYING) {
@@ -42,6 +52,10 @@ export class MovingShelf extends Shelf {
         if (!this.velocity) {
             return;
         }
+
+        // Tính toán speed multiplier dựa trên progress (số goods đã pick)
+        const speedMultiplier = this.getSpeedMultiplier();
+        this.updateVelocityWithMultiplier(speedMultiplier);
         
         // Check out of bounds
         if (this.checkOutOfBounds()) {
@@ -55,6 +69,7 @@ export class MovingShelf extends Shelf {
     public initialize(data: IShelfData): void { 
         super.initialize(data);
         this.MoveType = data.moveType;
+        this._baseSpeed = this.speed; // Lưu tốc độ ban đầu
         this.calculateVelocity();
         switch (this.MoveType) {
             case EMoveType.LEFT_TO_RIGHT:
@@ -89,16 +104,67 @@ export class MovingShelf extends Shelf {
                 // Giữ velocity = (0, 0)
                 break;
             case EMoveType.LEFT_TO_RIGHT:
-                this.velocity = new Vec2(this.speed, 0);
+                this.velocity = new Vec2(this._baseSpeed, 0);
                 break;
             case EMoveType.RIGHT_TO_LEFT:
-                this.velocity = new Vec2(-this.speed, 0);
+                this.velocity = new Vec2(-this._baseSpeed, 0);
                 break;
             case EMoveType.BOTTOM_TO_TOP:
-                this.velocity = new Vec2(0, this.speed);
+                this.velocity = new Vec2(0, this._baseSpeed);
                 break;
             case EMoveType.TOP_TO_BOTTOM:
-                this.velocity = new Vec2(0, -this.speed);
+                this.velocity = new Vec2(0, -this._baseSpeed);
+                break;
+        }
+    }
+
+    /**
+     * Tính toán speed multiplier dựa trên progress (số goods đã pick / tổng số goods).
+     * Multiplier tăng từ 1.0 (100%) đến maxSpeedMultiplier (400%) khi progress từ 0 đến 1.
+     */
+    private getSpeedMultiplier(): number {
+        if (!LevelLoader.Instance) {
+            return 1.0;
+        }
+
+        const progress = LevelLoader.Instance.getProgressByItemPicked();
+        // Multiplier = 1.0 + progress * (maxMultiplier - 1.0)
+        // progress = 0 → multiplier = 1.0 (100%)
+        // progress = 1 → multiplier = maxSpeedMultiplier (400%)
+        const multiplier = 1.0 + progress * (MovingShelf.maxSpeedMultiplier - 1.0);
+        return multiplier;
+    }
+
+    /**
+     * Cập nhật velocity với speed multiplier hiện tại.
+     */
+    private updateVelocityWithMultiplier(multiplier: number): void {
+        if (!this.velocity) {
+            return;
+        }
+
+        // Tính toán tốc độ mới dựa trên baseSpeed và multiplier
+        const currentSpeed = this._baseSpeed * multiplier;
+
+        switch (this.MoveType) {
+            case EMoveType.LEFT_TO_RIGHT:
+                this.velocity.x = currentSpeed;
+                this.velocity.y = 0;
+                break;
+            case EMoveType.RIGHT_TO_LEFT:
+                this.velocity.x = -currentSpeed;
+                this.velocity.y = 0;
+                break;
+            case EMoveType.BOTTOM_TO_TOP:
+                this.velocity.x = 0;
+                this.velocity.y = currentSpeed;
+                break;
+            case EMoveType.TOP_TO_BOTTOM:
+                this.velocity.x = 0;
+                this.velocity.y = -currentSpeed;
+                break;
+            default:
+                // NONE và FALLING giữ nguyên velocity = (0, 0)
                 break;
         }
     }
