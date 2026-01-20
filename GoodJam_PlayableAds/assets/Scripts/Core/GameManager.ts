@@ -13,6 +13,8 @@ import { ScreenBase } from '../Screen/ScreenBase';
 import { PlayableAdsManager } from '../../base-script/PlayableAds/PlayableAdsManager';
 import { Random } from '../Modules/Random';
 import { generateShuffledSubArrays } from '../GenerateSubArrays';
+import { GameStart } from '../Base/State/GameState/GameStart';
+import { EventType, TrackingManager } from 'db://assets/base-script/PlayableAds/Tracking/TrackingManager';
 const { ccclass, property } = _decorator;
 
 // macro.CLEANUP_IMAGE_CACHE = false;
@@ -53,7 +55,10 @@ export class GameManager extends State<EGameState, GameState> {
 
     protected start(): void {
         GameManager._instance = this;
+        TrackingManager.TrackEvent(EventType.LOADING);
         this.State = EGameState.INITIALIZATION;
+        TrackingManager.TrackEvent(EventType.LOADED);
+        TrackingManager.TrackEvent(EventType.DISPLAYED);
     }
     
     startCounting()
@@ -80,6 +85,9 @@ export class GameManager extends State<EGameState, GameState> {
             case EGameState.READY:
                 this._stateIntance = new GameReady(this);
                 (this);
+                break;
+            case EGameState.START:
+                this._stateIntance = new GameStart(this);
                 break;
             case EGameState.PLAYING:
                 this._stateIntance = new GamePlaying(this);

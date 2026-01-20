@@ -1,10 +1,10 @@
 import { _decorator, Component, Enum, Game, game, Input, input } from 'cc';
 import super_html_playable from './super_html_playable';
-import { TrackingManager } from './Tracking/TrackingManager';
 import { EventListener } from './EventListener';
 import { GameEvent } from './GameEvent';
 import { GameManager } from '../../Scripts/Core/GameManager';
 import { KeyboardListener } from '../../Scripts/KeyboardListener';
+import { EventType, TrackingManager } from 'db://assets/base-script/PlayableAds/Tracking/TrackingManager';
 
 const { ccclass, property } = _decorator;
 
@@ -57,7 +57,6 @@ export class PlayableAdsManager extends Component {
     }
     
     protected start(): void {
-        TrackingManager.gameStart();
         game.on(Game.EVENT_RESUME, () => this.onGameResume());
         game.on(Game.EVENT_PAUSE, () => this.onGamePause());
         game.on(Game.EVENT_HIDE, () => this.onGameHide());
@@ -94,7 +93,6 @@ export class PlayableAdsManager extends Component {
 
     private actionFirstClicked(): void {
         if(!this.firstClicked){
-            // TrackingManager.firstClick();
             this.firstClicked = true;
 
             // Bật background Music sau lần đầu play PA. Đây là Policy của web nên bắt buộc phải follow.
@@ -109,7 +107,9 @@ export class PlayableAdsManager extends Component {
     public openStore(): void {
         if (KeyboardListener.isCreativeVersion) return;
         GameManager.Instance.unscheduleAllCallbacks();
-        TrackingManager.clickConversion();
+        if (this.activeTracking) {
+            TrackingManager.TrackEvent(EventType.CTA_CLICKED);
+        }
         super_html_playable.download();
         super_html_playable.game_end();
     }
@@ -117,7 +117,9 @@ export class PlayableAdsManager extends Component {
     // Dùng khi không click mà đẩy thẳng vào store
     public forceOpenStore(): void {
         if (KeyboardListener.isCreativeVersion) return;
-        TrackingManager.forceConversion();
+        if (this.activeTracking) {
+            TrackingManager.TrackEvent(EventType.CTA_CLICKED);
+        }
         super_html_playable.download();
         super_html_playable.game_end();
     }

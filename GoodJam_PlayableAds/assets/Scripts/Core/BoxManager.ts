@@ -1,4 +1,4 @@
-import { _decorator, CCBoolean, CCInteger, Component, easing, error, instantiate, Node, NodePool, Prefab, tween, UIOpacity, Vec3 } from 'cc';
+import { _decorator, CCBoolean, CCInteger, Component, easing, error, instantiate, Node, NodePool, Prefab, tween, UIOpacity, Vec3, log } from 'cc';
 import { Box } from '../Box/Box';
 import { ILevelData } from '../Data/ILevelData';
 import { ObjectPool } from '../Modules/ObjectPool';
@@ -11,6 +11,7 @@ import { EGameState } from './EGameState';
 import { TutorialController } from './TutorialController';
 import { TextEffect } from './TextEffect';
 import { DifficultCurve } from './DifficultCurve';
+import { EventType, TrackingManager } from 'db://assets/base-script/PlayableAds/Tracking/TrackingManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('BoxManager')
@@ -51,9 +52,14 @@ export class BoxManager extends Component {
     private _boxes: Box[] = [];
     private _lastSpawnedBoxId: number = -1;
 
+    private _totalBoxesToWin: number = 0;
+    private _completedBoxes: number = 0;
+    private _trackedProgress: Set<number> = new Set<number>();
+
     public initialize(data: ILevelData): void {
         this.reset();
         this.initPool();
+        this.initializeTrackingCounters(data);
         this.slotManager.freeSlots.forEach(slot => {
             slot.boxManager = this;
         });
@@ -225,6 +231,7 @@ export class BoxManager extends Component {
         if (index > -1) {
             this._boxesActive.splice(index, 1);
         }
+        this.trackProgress();
         let gameManager = GameManager.Instance;
         if (this.checkWin()) {
             gameManager.State = EGameState.WIN;
@@ -280,6 +287,62 @@ export class BoxManager extends Component {
 
     private checkWin(): boolean {
         return this.nodePositions.every(node => node.children.length === 0);
+    }
+
+    private initializeTrackingCounters(data: ILevelData): void {
+        // CHÚ Ý: BoxDataFactory.initialize(data) sẽ mutate level data (shift itemsLayer),
+        // nên cần tính trước khi gọi initialize().
+        this._completedBoxes = 0;
+        this._trackedProgress.clear();
+
+        const totalItems = this.countTotalItems(data);
+        // Mỗi box tiêu thụ tối đa 3 items (BoxDataFactory logic).
+        this._totalBoxesToWin = totalItems > 0 ? Math.ceil(totalItems / 3) : 0;
+    }
+
+    private countTotalItems(data: ILevelData): number {
+        if (!data || !data.cells) {
+            return 0;
+        }
+        let total = 0;
+        for (let i = 0; i < data.cells.length; i++) {
+            const cell = data.cells[i];
+            const layers = cell?.itemsLayer || [];
+            for (let j = 0; j < layers.length; j++) {
+                const items = layers[j]?.items || [];
+                for (let k = 0; k < items.length; k++) {
+                    const id = items[k];
+                    if (id !== 0) {
+                        total++;
+                    }
+                }
+            }
+        }
+        return total;
+    }
+
+    private trackProgress(): void {
+        this._completedBoxes++;
+        if (this._totalBoxesToWin <= 0) {
+            return;
+        }
+
+        const progress = (this._completedBoxes / this._totalBoxesToWin) * 100;
+        if (progress >= 25 && !this._trackedProgress.has(25)) {
+            log(`[Tracking] Progress ${progress}% => CHALLENGE_PASS_25`);
+            TrackingManager.TrackEvent(EventType.CHALLENGE_PASS_25);
+            this._trackedProgress.add(25);
+        }
+        if (progress >= 50 && !this._trackedProgress.has(50)) {
+            log(`[Tracking] Progress ${progress}% => CHALLENGE_PASS_50`);
+            TrackingManager.TrackEvent(EventType.CHALLENGE_PASS_50);
+            this._trackedProgress.add(50);
+        }
+        if (progress >= 75 && !this._trackedProgress.has(75)) {
+            log(`[Tracking] Progress ${progress}% => CHALLENGE_PASS_75`);
+            TrackingManager.TrackEvent(EventType.CHALLENGE_PASS_75);
+            this._trackedProgress.add(75);
+        }
     }
 
     private flashesWarning(): void {
