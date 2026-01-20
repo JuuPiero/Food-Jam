@@ -53,6 +53,18 @@ exports.methods = {
                 "value" : true
             }
         });
+    },
+    async delete_node() {
+        const type = Editor.Selection.getLastSelectedType();
+	    if(type !== 'node') {
+		    return;
+	    }
+	    const uuid = Editor.Selection.getLastSelected(type);
+        const node = await Editor.Message.request('scene', 'query-node', uuid);
+        const active = node.active;
+        Editor.Message.send('scene', 'remove-node', {
+            "uuid" : uuid,
+        });
     }
 };
 /**
