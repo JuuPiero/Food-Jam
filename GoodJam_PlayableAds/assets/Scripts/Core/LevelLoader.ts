@@ -11,6 +11,7 @@ import { BezierTween } from '../Modules/BezierTween';
 import { MapLoop } from '../MapLoop';
 import { Lock } from '../Lock/Lock';
 import { DifficultCurve } from './DifficultCurve';
+import { GoodsBase } from '../Base/GoodsBase';
 
 const { ccclass, property } = _decorator;
 
@@ -109,6 +110,12 @@ export class LevelLoader extends Component {
         //Tính điểm lần đầu
         DifficultCurve.instance.calculateAndStore();
 
+        // Đồng bộ tutorialID theo đúng món hàng mà tutorial trỏ tới,
+        // phải thực hiện TRƯỚC khi BoxManager.initialize() spawn box tutorial.
+        if (TutorialController.Instance.enableTut) {
+            this.syncTutorialId();
+        }
+
         this.boxManager.initialize(data);
         if(TutorialController.Instance.enableTut) {
             this.onTut();
@@ -146,6 +153,36 @@ export class LevelLoader extends Component {
         });
     }
     
+    //#region Tutorial sync
+    /**
+     * Đồng bộ tutorialID của BoxManager theo đúng món hàng mà tutorial đang trỏ tới.
+     * Nhờ vậy chỉ cần chỉnh tutShelfIndex / indexTutGoods trong LevelLoader,
+     * không cần chỉnh tutorialID thủ công bên BoxManager.
+     */
+    private syncTutorialId(): void {
+        let tutGoods = this.getTutorialGoods();
+        if (tutGoods) {
+            this.boxManager.tutorialID = tutGoods.getId();
+        }
+    }
+
+    /**
+     * Lấy món hàng tutorial dựa trên tutShelfIndex và indexTutGoods.
+     * Trả về null nếu index không hợp lệ hoặc slot rỗng.
+     */
+    private getTutorialGoods(): GoodsBase {
+        let shelfNode = this.nodeLevelParent.children[this.tutShelfIndex];
+        if (!shelfNode) {
+            return null;
+        }
+        let shelf = shelfNode.getComponent(Shelf);
+        if (!shelf) {
+            return null;
+        }
+        return shelf.getGoods()[this.indexTutGoods] ?? null;
+    }
+    //#endregion
+
 onTut()
 {
     
@@ -155,7 +192,10 @@ onTut()
         this.tutNode = tutObject.node;
         this.tutNode.parent = this.boxManager.nodeTopLayer;
         this.tutParent = this.boxManager.nodePositions[0].children[0].getComponent(Box).nodeSlots.children[0].getComponent(BoxSlot).nodeParent;
-        var targetTutObj = this.nodeLevelParent.children[this.tutShelfIndex].getComponent(Shelf).getGoods()[this.indexTutGoods];
+        var targetTutObj = this.getTutorialGoods();
+        if (!targetTutObj) {
+            return;
+        }
         this.tutNode.setWorldPosition(targetTutObj.node.getWorldPosition());
         this.tutNode.setWorldScale(targetTutObj.node.getWorldScale());
         var pos = targetTutObj.node.getWorldPosition()
@@ -167,7 +207,7 @@ onTut()
 }
 animTut()
     {
-        var targetTutObj = this.nodeLevelParent.children[this.tutShelfIndex].getComponent(Shelf).getGoods()[this.indexTutGoods];
+        var targetTutObj = this.getTutorialGoods();
         
         if(!targetTutObj || !this.tutNode || targetTutObj.node.active == false || this.tutNode.active ==false)
             return;
