@@ -71,7 +71,7 @@
     "__prefab": {
       "__id__": 3
     },
-    "activeTracking": true,
+    "activeTracking": false,
     "logDebug": false,
     "_id": ""
   },
