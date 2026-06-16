@@ -5,6 +5,7 @@ import { TutorialController } from './TutorialController';
 import { LevelLoader } from './LevelLoader';
 import { GameManager } from './GameManager';
 import { EGameState } from './EGameState';
+import { Goods } from '../Goods/Goods';
 const { ccclass, property } = _decorator;
 
 @ccclass('TouchEventListener')
@@ -33,7 +34,7 @@ export class TouchEventListener extends Component {
         return this._firstTouch;
     }
 
-    public onTouchGoods(): void {
+    public onTouchGoods(goods: Goods = null): void {
         this.onTouchStart(null);
     }
 

@@ -78,7 +78,7 @@ export class Goods extends GoodsBase {
     }
 
     public reset(): void {
-        
+       
     }
 
     public getId(): number {
@@ -86,10 +86,10 @@ export class Goods extends GoodsBase {
     }
 
     public onClick(): void {
-        let state = [EGameState.READY, EGameState.PLAYING];
+        const state = [EGameState.READY, EGameState.PLAYING];
         if (state.includes(GameManager.Instance.State)) {
             if (this.State === EGoodsState.ACTIVE) {
-                TouchEventListener.Instance.onTouchGoods();
+                TouchEventListener.Instance.onTouchGoods(this);
                 // GameManager.Instance.moveLimit--;
                 // if(GameManager.Instance.moveLimit<=0)
                 // {

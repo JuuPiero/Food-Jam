@@ -11,11 +11,11 @@ export class SlotController extends Component {
 
     public CheckMoveSlotToBox() {
         for (let i = 0; i < this.ObjHolding.length; i++) {
-            if (this.ObjHolding[i] != null && GameManager.instance.MoveToBoxIfFit(this.ObjHolding[i])) {
-                // Remove from list
-                this.ObjHolding[i] = null;
-                this.SortObjInSlot();
-            }
+            // if (this.ObjHolding[i] != null && GameManager.instance.MoveToBoxIfFit(this.ObjHolding[i])) {
+            //     // Remove from list
+            //     this.ObjHolding[i] = null;
+            //     this.SortObjInSlot();
+            // }
         }
     }
     public SortObjInSlot() {

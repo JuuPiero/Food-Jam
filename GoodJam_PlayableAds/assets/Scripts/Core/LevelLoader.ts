@@ -8,7 +8,6 @@ import { TutorialController } from './TutorialController';
 import { Box } from '../Box/Box';
 import { BoxSlot } from '../Slot/BoxSlot';
 import { BezierTween } from '../Modules/BezierTween';
-import { MapLoop } from '../MapLoop';
 import { Lock } from '../Lock/Lock';
 import { DifficultCurve } from './DifficultCurve';
 import { GoodsBase } from '../Base/GoodsBase';
@@ -23,7 +22,7 @@ export class LevelLoader extends Component {
 
     @property(BoxManager)
     boxManager: BoxManager = null;
-    
+
     @property([Prefab])
     prefabsShelf: Prefab[] = [];
 
@@ -55,7 +54,7 @@ export class LevelLoader extends Component {
     indexTutGoods: number = 0;
 
     @property(Node)
-    nodeShadowContainer: Node= null;
+    nodeShadowContainer: Node = null;
 
     public locks: Lock[] = [];
     public currentLevel: number = 0;
@@ -64,7 +63,7 @@ export class LevelLoader extends Component {
     private _listFallingShelf: Shelf[][] = [];
     private _totalItems: number = 0;
     private _pickedItems: number = 0;
-    
+
     private static _instance: LevelLoader = null;
     public static get Instance(): LevelLoader {
         return LevelLoader._instance;
@@ -78,7 +77,7 @@ export class LevelLoader extends Component {
         this.nodeLevelParent.removeAllChildren();
         this.boxManager.levelLoader = this;
         let data = this.jsonLevelData[level].json as ILevelData;
-       
+
         // Reset progress counters
         this.resetProgressCounters();
         this._totalItems = this.computeTotalItems(data);
@@ -97,7 +96,7 @@ export class LevelLoader extends Component {
             nodeShelf.name = "Shelf_" + i;
 
             // Create layers
-            let shelf = nodeShelf.getComponent(Shelf);
+            const shelf = nodeShelf.getComponent(Shelf);
             shelf.boxManager = this.boxManager;
             shelf.goodsFactory = this.goodsFactory;
             shelf.initialize(data.cells[i]);
@@ -117,7 +116,7 @@ export class LevelLoader extends Component {
         }
 
         this.boxManager.initialize(data);
-        if(TutorialController.Instance.enableTut) {
+        if (TutorialController.Instance.enableTut) {
             this.onTut();
         }
         this._listFallingShelf = this.setupFallingShelf(this._fallingShelves);
@@ -125,23 +124,23 @@ export class LevelLoader extends Component {
 
     public hintGoodsBySmoke(): void {
         let boxes = this.boxManager.getActiveBoxes();
-        
+
         // Kiểm tra nếu không có box nào hoặc mảng rỗng
         if (!boxes || boxes.length === 0) {
             return;
         }
-        
+
         // Tìm box có nhiều item nhất
         let maxBox = boxes.reduce((max, box) => {
             if (!max || !box) return box || max;
             return box.getSlots().length > max.getSlots().length ? box : max;
         }, boxes[0]);
-        
+
         // Kiểm tra maxBox có tồn tại không
         if (!maxBox) {
             return;
         }
-        
+
         let id = maxBox.getId();
         let shelves = this.getShelves();
         shelves.forEach(shelf => {
@@ -152,7 +151,7 @@ export class LevelLoader extends Component {
             }
         });
     }
-    
+
     //#region Tutorial sync
     /**
      * Đồng bộ tutorialID của BoxManager theo đúng món hàng mà tutorial đang trỏ tới.
@@ -183,10 +182,8 @@ export class LevelLoader extends Component {
     }
     //#endregion
 
-onTut()
-{
-    
-     
+    onTut() {
+
         TutorialController.Instance.OnTut();
         let tutObject = this.goodsFactory.createGoodsTut(this.boxManager.tutorialID);
         this.tutNode = tutObject.node;
@@ -201,45 +198,43 @@ onTut()
         var pos = targetTutObj.node.getWorldPosition()
         TutorialController.Instance.tutHand.parent = targetTutObj.node;
         TutorialController.Instance.tutHand.setPosition(Vec3.ZERO);
-        setTimeout(()=>{ this.animTut();},1000);
-        
-   
-}
-animTut()
-    {
+        setTimeout(() => { this.animTut(); }, 1000);
+
+    }
+
+    animTut() {
         var targetTutObj = this.getTutorialGoods();
-        
-        if(!targetTutObj || !this.tutNode || targetTutObj.node.active == false || this.tutNode.active ==false)
+
+        if (!targetTutObj || !this.tutNode || targetTutObj.node.active == false || this.tutNode.active == false)
             return;
         this.tutNode.setWorldPosition(targetTutObj.node.getWorldPosition());
         this.tutNode.setWorldScale(targetTutObj.node.getWorldScale());
 
         this.jump(this.tutNode);
-        setTimeout(()=>{ this.animTut();},1500)
+        setTimeout(() => { this.animTut(); }, 1500)
         // tween(this.tutNode)
         // .to(1,{worldPosition: this.tutParent.getWorldPosition()})
         // .call(()=>{this.animTut();})
         // .start()
     }
 
-    jump(target: Node)
-    {
+    jump(target: Node) {
         tween(target)
-        .to(1,{worldScale: this.tutParent.getWorldScale()})
-        .start();
-
-        BezierTween(target, 1 , target.getWorldPosition(), new Vec3(this.tutParent.worldPosition.x, this.tutParent.worldPosition.y + 500, this.tutParent.worldPosition.z), this.tutParent.worldPosition)
-        .then(()=>{
-            tween(target)
-            .to(.1,{scale: new Vec3(target.getScale().x*1.25,target.getScale().y *.75,target.getScale().z)})
-            .call(()=>{
-                tween(target)
-                .to(.1,{scale: new Vec3(target.getScale().x/1.25,target.getScale().y /.75,target.getScale().z)})
-                .start();
-        })
+            .to(1, { worldScale: this.tutParent.getWorldScale() })
             .start();
-    });
-}
+
+        BezierTween(target, 1, target.getWorldPosition(), new Vec3(this.tutParent.worldPosition.x, this.tutParent.worldPosition.y + 500, this.tutParent.worldPosition.z), this.tutParent.worldPosition)
+            .then(() => {
+                tween(target)
+                    .to(.1, { scale: new Vec3(target.getScale().x * 1.25, target.getScale().y * .75, target.getScale().z) })
+                    .call(() => {
+                        tween(target)
+                            .to(.1, { scale: new Vec3(target.getScale().x / 1.25, target.getScale().y / .75, target.getScale().z) })
+                            .start();
+                    })
+                    .start();
+            });
+    }
 
     public reset(): void {
 
@@ -250,15 +245,13 @@ animTut()
     }
 
     //#region onItemPicked
-    public onItemPicked(): void
-    {
+    public onItemPicked(): void {
         this._pickedItems++;
     }
     //#endregion
 
     //#region getProgressByItemPicked
-    public getProgressByItemPicked(): number
-    {
+    public getProgressByItemPicked(): number {
         if (this._totalItems <= 0)
             return 0;
         return Math.min(1, this._pickedItems / this._totalItems);
@@ -266,17 +259,13 @@ animTut()
     //#endregion
 
     //#region computeTotalItems
-    private computeTotalItems(data: ILevelData): number
-    {
+    private computeTotalItems(data: ILevelData): number {
         if (!data || !data.cells)
             return 0;
         let total = 0;
-        data.cells.forEach(cell =>
-        {
-            cell.itemsLayer.forEach(layer =>
-            {
-                layer.items.forEach(item =>
-                {
+        data.cells.forEach(cell => {
+            cell.itemsLayer.forEach(layer => {
+                layer.items.forEach(item => {
                     if (item !== 0)
                         total++;
                 });
@@ -287,8 +276,7 @@ animTut()
     //#endregion
 
     //#region resetProgressCounters
-    private resetProgressCounters(): void
-    {
+    private resetProgressCounters(): void {
         this._totalItems = 0;
         this._pickedItems = 0;
     }
@@ -315,7 +303,7 @@ animTut()
             }
             array.push(arr);
         }
-        
+
         array.forEach(arr => {
             // Sort tọa độ x lớn dần.
             arr.sort((a, b) => a.node.getPosition().y - b.node.getPosition().y);
@@ -339,21 +327,6 @@ animTut()
         }
         return positions;
     }
-    
-    private sortData(data: ILevelData): ILevelData {
-        // Tạo một bản sao của data để không thay đổi dữ liệu gốc
-        const sortedData = { ...data };
-        
-        // Sắp xếp mảng cells
-        sortedData.cells.sort((a, b) => {
-            // Nếu posY khác nhau, sắp xếp theo posY tăng dần
-            if (a.posY !== b.posY) {
-                return a.posY - b.posY;
-            }
-            // Nếu posY bằng nhau, sắp xếp theo posX giảm dần
-            return b.posX - a.posX;
-        });
 
-        return sortedData;
-    }
+   
 }

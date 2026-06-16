@@ -16,7 +16,7 @@ export class Multiscreen extends Component {
     public screenOrientation: ScreenType = ScreenType.PORTRAIT;
 
     protected update(dt: number): void {
-        let size = view.getVisibleSize();
+        const size = view.getVisibleSize();
         let screenOrientation = null;
         if (size.height > size.width && size.width / size.height < 0.7) {
             // Portrait
@@ -38,9 +38,9 @@ export class Multiscreen extends Component {
         }
     }
 
-    private onSizeChanged(): void {
-        console.error(1)
-    }
+    // private onSizeChanged(): void {
+    //     console.error(1)
+    // }
     private updateScreenOrientation(): void {
         switch (this.screenOrientation) {
             case ScreenType.PORTRAIT:

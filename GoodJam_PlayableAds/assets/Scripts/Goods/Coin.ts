@@ -9,6 +9,13 @@ const { ccclass, property } = _decorator;
 
 @ccclass('Coin')
 export class Coin extends GoodsBase {
+    public getId(): number {
+        return this._goodsId;
+        // throw new Error('Method not implemented.');
+    }
+    public playSmokeAnim(): void {
+        // throw new Error('Method not implemented.');
+    }
     
     public initialize(id: number, spriteFrame: SpriteFrame): void {
         this._goodsId = id;

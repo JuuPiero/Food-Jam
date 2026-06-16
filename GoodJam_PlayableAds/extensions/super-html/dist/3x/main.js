@@ -15,7 +15,6 @@ exports.methods = {
         Editor.Panel.open(package_json_1.default.name);
     },
     async turn_off(){
-        console.log('NVTHAN');
         //Editor.Panel.open("nvthan.main_panel");
 
         const type = Editor.Selection.getLastSelectedType();
@@ -35,7 +34,6 @@ exports.methods = {
         });
     },
     async turn_on() {
-        console.log('NVTHAN');
         //Editor.Panel.open("nvthan.main_panel");
 
         const type = Editor.Selection.getLastSelectedType();

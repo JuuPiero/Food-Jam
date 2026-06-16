@@ -8,6 +8,9 @@ export abstract class ShelfState implements IEnterState, IExitState, IUpdateStat
     public constructor(shelf: Shelf) {
         this._shelf = shelf;
     }
+    updateState(dt: number): void {
+        // throw new Error("Method not implemented.");
+    }
 
     public abstract enterState(): void;
     public abstract exitState(): void;

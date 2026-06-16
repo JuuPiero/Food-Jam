@@ -42,9 +42,7 @@ export class PlayableAdsManager extends Component {
         const pageTitle = document.title;
         if(pageTitle == this.titleDefault) return;
 
-        //Mở comment đoạn này để set lại biến titleDefault
-        //console.log("Page Title: " + pageTitle);
-
+        
         // Sau khi đã set lại biến titleDefault, mở comment đoạn này để lấy network
 
         // const paName = pageTitle.split("|")[1].trim();
@@ -124,9 +122,9 @@ export class PlayableAdsManager extends Component {
         super_html_playable.game_end();
     }
 
-    public static logDebug(message: string): void {
-        if(PlayableAdsManager.Instance.logDebug){
-            console.log(message);
-        }
-    }
+    // public static logDebug(message: string): void {
+    //     if(PlayableAdsManager.Instance.logDebug){
+    //         console.log(message);
+    //     }
+    // }
 }

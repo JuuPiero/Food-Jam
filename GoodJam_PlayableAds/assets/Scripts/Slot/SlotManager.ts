@@ -22,6 +22,7 @@ export class SlotManager extends Component {
                 slot.reset();
         });
     }
+    
 
     public getFreeSlot(): FreeSlot {
         return this.freeSlots.find(slot => !slot.isFull());

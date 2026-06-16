@@ -8,7 +8,7 @@ const { ccclass, property } = _decorator;
 export class NormalShelf extends Shelf {
     
     protected completeShelf(): void {
-        this.shelfCleared();
+        // this.shelfCleared();
     }
 }
 

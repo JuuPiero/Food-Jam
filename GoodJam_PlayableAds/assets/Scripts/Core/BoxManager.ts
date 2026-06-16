@@ -1,7 +1,6 @@
 import { _decorator, CCBoolean, CCInteger, Component, easing, error, instantiate, Node, NodePool, Prefab, tween, UIOpacity, Vec3, log } from 'cc';
 import { Box } from '../Box/Box';
 import { ILevelData } from '../Data/ILevelData';
-import { ObjectPool } from '../Modules/ObjectPool';
 import { SlotManager } from '../Slot/SlotManager';
 import { Goods } from '../Goods/Goods';
 import BoxDataFactory from '../BoxDataFactory';
@@ -139,7 +138,7 @@ export class BoxManager extends Component {
                         let activeIds = this._boxesActive.map(box => box.getId());
                         let boxData = BoxDataFactory.getTutorialBoxData(this.tutorialID, activeIds);
                         if (!boxData || !boxData.id) {
-                            console.log("noooo");
+                            // console.log("noooo");
                             return;
                         }
                         this.firstBoxSpawn = true;

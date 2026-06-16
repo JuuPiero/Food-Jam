@@ -31,7 +31,7 @@ export class Lock extends Component {
     public hp: number = 0;
 
     protected start(): void {
-        window.lock = this;
+        // window.lock = this;
         this.nodeBlockInput.active = true;
     }
 

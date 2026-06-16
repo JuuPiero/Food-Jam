@@ -44,7 +44,7 @@ export class Box extends Component implements IBox {
         this._total = count;
         this.boxEffect.box = this;
         this.initSlots();
-        console.log("%cID: " + this._boxId, "color: blue");
+        // console.log("%cID: " + this._boxId, "color: blue");
     }
 
     public reset(): void {
@@ -105,7 +105,7 @@ export class Box extends Component implements IBox {
                 continue;
             }
             boxSlot.addTut(goods).then(goods => {
-                goods.animGoods.play("GoodsJump");
+                // goods.animGoods.play("GoodsJump");
                 // this._count++;
                 // if (this._count === this._total) {
                 //     this.complete().then(() => {

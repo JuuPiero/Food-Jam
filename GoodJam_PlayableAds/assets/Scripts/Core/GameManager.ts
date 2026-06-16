@@ -11,8 +11,6 @@ import { GameEnd } from '../Base/State/GameState/GameEnd';
 import { LevelLoader } from './LevelLoader';
 import { ScreenBase } from '../Screen/ScreenBase';
 import { PlayableAdsManager } from '../../base-script/PlayableAds/PlayableAdsManager';
-import { Random } from '../Modules/Random';
-import { generateShuffledSubArrays } from '../GenerateSubArrays';
 import { GameStart } from '../Base/State/GameState/GameStart';
 import { EventType, TrackingManager } from 'db://assets/base-script/PlayableAds/Tracking/TrackingManager';
 const { ccclass, property } = _decorator;

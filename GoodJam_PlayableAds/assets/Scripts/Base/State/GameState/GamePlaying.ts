@@ -1,8 +1,6 @@
 import { _decorator, Component, Node } from 'cc';
 import { GameState } from './GameState';
-import { GameManager } from '../../../Core/GameManager';
-import { TextEffects } from '../../../TextEffects';
-import { AudioManager, ESoundEffect } from '../../../AudioManager';
+
 const { ccclass, property } = _decorator;
 
 @ccclass("GamePlaying")

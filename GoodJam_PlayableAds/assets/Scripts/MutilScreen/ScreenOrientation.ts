@@ -50,8 +50,8 @@ export class ScreenOrientation extends Component {
     }
 
     protected update(dt: number): void {
-        let bgOrtho = this.bgCamera.orthoHeight;
-        let uiOrtho = this.uiCamera.orthoHeight;
+        const bgOrtho = this.bgCamera.orthoHeight;
+        const uiOrtho = this.uiCamera.orthoHeight;
         if (bgOrtho !== uiOrtho) {
             this.bgCamera.orthoHeight = uiOrtho;
         }

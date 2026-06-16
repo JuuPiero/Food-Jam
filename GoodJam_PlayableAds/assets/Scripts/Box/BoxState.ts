@@ -10,10 +10,10 @@ export class BoxState implements IEnterState, IExitState {
     protected _box: Box = null;
 
     public enterState(): void {
-        console.log("BoxState enterState");
+        // console.log("BoxState enterState");
     }
 
     public exitState(): void {
-        console.log("BoxState exitState");
+        // console.log("BoxState exitState");
     }
 }

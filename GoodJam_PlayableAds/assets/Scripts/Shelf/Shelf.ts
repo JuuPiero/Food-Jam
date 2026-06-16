@@ -1,13 +1,11 @@
 import { _decorator, Animation, Component, easing, Enum, instantiate, log, Node, Prefab, sp, SpriteFrame, tween, UIOpacity, Vec3 } from 'cc';
 import { EMoveType, EShelfType, IShelfData } from '../Data/ILevelData';
 import { GoodsFactory } from '../Goods/GoodsFactory';
-import { SlotContainer } from './Layer/SlotContainer';
 import { EGoodsState, Goods } from '../Goods/Goods';
 import { BoxManager } from '../Core/BoxManager';
 import { GoodsBase } from '../Base/GoodsBase';
 import { ShelfStrategy } from './Strategy/ShelfStrategy';
 import { Lock } from '../Lock/Lock';
-import { AudioManager, ESoundEffect } from '../AudioManager';
 import { ShelfLayer } from './Layer/ShelfLayer';
 import { Queuelayer } from './QueueLayer';
 import { Random } from '../Modules/Random';
